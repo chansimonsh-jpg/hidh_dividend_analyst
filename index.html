@@ -48,7 +48,7 @@ svg text{font-family:system-ui,sans-serif}
 .picks-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
 .pick-card{background:#fff;border:1px solid #e5e5e5;border-radius:12px;padding:1.1rem}
 .pick-card.top{border:2px solid #1D9E75}
-.pick-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.4rem}
+.pick-header{display:block;margin-bottom:.5rem}
 .pick-ticker{font-size:15px;font-weight:600;color:#222}
 .pick-name{font-size:12px;color:#888;margin-bottom:.75rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .pick-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:.75rem}
@@ -153,9 +153,9 @@ svg text{font-family:system-ui,sans-serif}
     <div class="chart-card">
       <div class="chart-title">美股 US</div>
       <div class="legend">
-        <span><span class="ld" style="background:#1D9E75"></span>強力買入</span>
-        <span><span class="ld" style="background:#378ADD"></span>值得關注</span>
-        <span><span class="ld" style="background:#EF9F27"></span>觀望</span>
+        <span><span class="ld" style="background:#1D9E75"></span>強力買入 <strong>0</strong></span>
+        <span><span class="ld" style="background:#378ADD"></span>值得關注 <strong>49</strong></span>
+        <span><span class="ld" style="background:#EF9F27"></span>觀望 <strong>98</strong></span>
       </div>
       <svg id="us" viewBox="0 0 180 160" width="100%" height="160"></svg>
       <div class="chart-sub">147隻 · 均分 42.8 · 最高 68</div>
@@ -163,9 +163,9 @@ svg text{font-family:system-ui,sans-serif}
     <div class="chart-card">
       <div class="chart-title">港股 HK</div>
       <div class="legend">
-        <span><span class="ld" style="background:#1D9E75"></span>強力買入</span>
-        <span><span class="ld" style="background:#378ADD"></span>值得關注</span>
-        <span><span class="ld" style="background:#EF9F27"></span>觀望</span>
+        <span><span class="ld" style="background:#1D9E75"></span>強力買入 <strong>1</strong></span>
+        <span><span class="ld" style="background:#378ADD"></span>值得關注 <strong>50</strong></span>
+        <span><span class="ld" style="background:#EF9F27"></span>觀望 <strong>47</strong></span>
       </div>
       <svg id="hk" viewBox="0 0 180 160" width="100%" height="160"></svg>
       <div class="chart-sub">98隻 · 均分 49.8 · 最高 75</div>
@@ -173,9 +173,9 @@ svg text{font-family:system-ui,sans-serif}
     <div class="chart-card">
       <div class="chart-title">英股 UK</div>
       <div class="legend">
-        <span><span class="ld" style="background:#1D9E75"></span>強力買入</span>
-        <span><span class="ld" style="background:#378ADD"></span>值得關注</span>
-        <span><span class="ld" style="background:#EF9F27"></span>觀望</span>
+        <span><span class="ld" style="background:#1D9E75"></span>強力買入 <strong>2</strong></span>
+        <span><span class="ld" style="background:#378ADD"></span>值得關注 <strong>17</strong></span>
+        <span><span class="ld" style="background:#EF9F27"></span>觀望 <strong>43</strong></span>
       </div>
       <svg id="uk" viewBox="0 0 180 160" width="100%" height="160"></svg>
       <div class="chart-sub">62隻 · 均分 44.7 · 最高 80</div>
@@ -242,7 +242,7 @@ function drawDonut(svgId, strong, watch, hold) {
     path.setAttribute('d',`M ${x1} ${y1} A ${R} ${R} 0 ${large} 1 ${x2} ${y2} L ${ix2} ${iy2} A ${r} ${r} 0 ${large} 0 ${ix1} ${iy1} Z`);
     path.setAttribute('fill',colors[i]);
     svg.appendChild(path);
-    if(v/total>0.06){
+    if(v/total>0.03){
       const mid=angle+sweep/2;
       const lx=cx+(R+r)/2*Math.cos(mid),ly=cy+(R+r)/2*Math.sin(mid);
       const t=document.createElementNS('http://www.w3.org/2000/svg','text');
@@ -332,13 +332,16 @@ const MKT_BADGE={
 document.getElementById('picksGrid').innerHTML=PICKS.map(p=>`
   <div class="pick-card${p.rating==='strong'?' top':''}">
     <div class="pick-header">
-      <div>
-        <div class="pick-ticker">${p.ticker} ${MKT_BADGE[p.mkt]}</div>
-        <div class="pick-name">${p.name}</div>
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:4px;margin-bottom:4px">
+        <div style="display:flex;align-items:center;gap:5px">
+          <span style="font-size:14px;font-weight:600;color:#222;white-space:nowrap">${p.ticker}</span>
+          ${MKT_BADGE[p.mkt]}
+        </div>
+        <span class="${RATING_CLASS[p.rating]}" style="white-space:nowrap;flex-shrink:0">${RATING_LABEL[p.rating]}</span>
       </div>
-      <span class="${RATING_CLASS[p.rating]}">${RATING_LABEL[p.rating]}</span>
+      <div class="pick-name">${p.name}</div>
     </div>
-    <div class="pick-stats">
+    <div class="pick-stats"">
       <div class="pick-stat"><div class="pick-stat-label">股息率</div><div class="pick-stat-val">${p.yield_}%</div></div>
       <div class="pick-stat"><div class="pick-stat-label">PE</div><div class="pick-stat-val">${p.pe}x</div></div>
       <div class="pick-stat"><div class="pick-stat-label">P/B</div><div class="pick-stat-val">${p.pb}</div></div>
