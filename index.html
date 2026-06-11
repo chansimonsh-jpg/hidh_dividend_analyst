@@ -7,19 +7,11 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:system-ui,-apple-system,sans-serif;background:#f7f7f5;color:#333;line-height:1.7}
-a{color:#1D9E75;text-decoration:none}
-a:hover{text-decoration:underline}
-
-/* ── Header ── */
+a{color:#1D9E75;text-decoration:none}a:hover{text-decoration:underline}
 .header{background:#fff;border-bottom:1px solid #e5e5e5;padding:0 1.5rem}
 .header-inner{max-width:960px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:60px}
-.logo{font-size:18px;font-weight:600;color:#1D9E75;letter-spacing:-.3px}
-.logo span{color:#333}
-.nav{display:flex;gap:1.5rem;font-size:14px;color:#555}
-.nav a{color:#555}
-.nav a:hover{color:#1D9E75;text-decoration:none}
-
-/* ── Hero ── */
+.logo{font-size:18px;font-weight:600;color:#1D9E75}.logo span{color:#333}
+.nav{display:flex;gap:1.5rem;font-size:14px}.nav a{color:#555}.nav a:hover{color:#1D9E75;text-decoration:none}
 .hero{background:#fff;border-bottom:1px solid #e5e5e5;padding:2.5rem 1.5rem}
 .hero-inner{max-width:960px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:center}
 .hero-tag{font-size:11px;font-weight:600;color:#1D9E75;text-transform:uppercase;letter-spacing:.1em;margin-bottom:.5rem}
@@ -27,39 +19,24 @@ a:hover{text-decoration:underline}
 .hero-sub{font-size:15px;color:#666;margin-bottom:1.25rem}
 .hero-badges{display:flex;gap:8px;flex-wrap:wrap}
 .badge{font-size:11px;padding:4px 10px;border-radius:20px;font-weight:500}
-.badge-hk{background:#E1F5EE;color:#0F6E56}
-.badge-us{background:#E6F1FB;color:#185FA5}
-.badge-uk{background:#FAEEDA;color:#854F0B}
+.badge-hk{background:#E1F5EE;color:#0F6E56}.badge-us{background:#E6F1FB;color:#185FA5}.badge-uk{background:#FAEEDA;color:#854F0B}
 .hero-stats{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .stat-box{background:#f7f7f5;border-radius:10px;padding:1rem}
-.stat-val{font-size:24px;font-weight:600;color:#222}
-.stat-label{font-size:12px;color:#888;margin-top:2px}
-
-/* ── Ad banner ── */
-.ad-banner{max-width:960px;margin:1.5rem auto;padding:0 1.5rem}
-.ad-slot{display:none}
-
-/* ── Section ── */
+.stat-val{font-size:24px;font-weight:600;color:#222}.stat-label{font-size:12px;color:#888;margin-top:2px}
 .section{max-width:960px;margin:0 auto;padding:2rem 1.5rem}
 .section-title{font-size:13px;font-weight:600;color:#999;text-transform:uppercase;letter-spacing:.1em;margin-bottom:1.25rem;display:flex;align-items:center;gap:10px}
 .section-title::after{content:'';flex:1;height:1px;background:#e5e5e5}
-
-/* ── About cards ── */
 .about-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:1.5rem}
 .about-card{background:#fff;border:1px solid #e5e5e5;border-radius:12px;padding:1.25rem}
 .about-icon{font-size:20px;margin-bottom:.5rem}
 .about-card h3{font-size:14px;font-weight:600;color:#222;margin-bottom:.4rem}
 .about-card p{font-size:13px;color:#666;line-height:1.6}
-
-/* ── Score table ── */
 .score-table{width:100%;border-collapse:collapse;font-size:13px;background:#fff;border-radius:12px;overflow:hidden;border:1px solid #e5e5e5}
 .score-table th{background:#f7f7f5;padding:10px 14px;text-align:left;font-weight:600;color:#555;font-size:12px}
 .score-table td{padding:10px 14px;border-top:1px solid #f0f0f0;color:#444}
 .r-strong{background:#E1F5EE;color:#0F6E56;padding:3px 8px;border-radius:4px;font-size:11px;font-weight:600;white-space:nowrap}
 .r-watch{background:#E6F1FB;color:#185FA5;padding:3px 8px;border-radius:4px;font-size:11px;font-weight:600;white-space:nowrap}
 .r-hold{background:#FAEEDA;color:#854F0B;padding:3px 8px;border-radius:4px;font-size:11px;font-weight:600;white-space:nowrap}
-
-/* ── Charts ── */
 .top-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:12px}
 .chart-card{background:#fff;border:1px solid #e5e5e5;border-radius:12px;padding:16px}
 .chart-title{font-size:13px;font-weight:600;color:#444;margin-bottom:8px}
@@ -67,60 +44,45 @@ a:hover{text-decoration:underline}
 .ld{width:10px;height:10px;border-radius:2px;display:inline-block;margin-right:3px;vertical-align:2px}
 .chart-sub{text-align:center;font-size:11px;color:#888;margin-top:6px}
 svg text{font-family:system-ui,sans-serif}
-
-/* ── Picks ── */
 .picks-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
 .pick-card{background:#fff;border:1px solid #e5e5e5;border-radius:12px;padding:1.1rem}
 .pick-card.top{border:2px solid #1D9E75}
 .pick-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.4rem}
 .pick-ticker{font-size:15px;font-weight:600;color:#222}
-.pick-mkt{font-size:11px;color:#999;margin-top:2px}
 .pick-name{font-size:12px;color:#888;margin-bottom:.75rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .pick-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:.75rem}
 .pick-stat{background:#f7f7f5;border-radius:6px;padding:6px 8px}
-.pick-stat-label{font-size:10px;color:#999}
-.pick-stat-val{font-size:13px;font-weight:600;color:#222}
+.pick-stat-label{font-size:10px;color:#999}.pick-stat-val{font-size:13px;font-weight:600;color:#222}
 .score-track{height:4px;background:#f0f0f0;border-radius:2px;overflow:hidden;margin-top:.5rem}
 .score-fill{height:100%;border-radius:2px;background:#1D9E75}
 .score-row{display:flex;justify-content:space-between;font-size:10px;color:#aaa;margin-top:3px}
-
-/* ── Disclaimer ── */
 .disclaimer{background:#fff;border-top:1px solid #e5e5e5;padding:1.5rem;margin-top:2rem}
 .disclaimer-inner{max-width:960px;margin:0 auto;font-size:12px;color:#aaa;line-height:1.7}
 .disclaimer-inner strong{color:#888}
-
-/* ── Footer ── */
 .footer{background:#222;color:#aaa;padding:1.5rem;font-size:12px}
 .footer-inner{max-width:960px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem}
 .footer-logo{color:#1D9E75;font-weight:600;font-size:14px}
-
-@media(max-width:640px){
-  .hero-inner{grid-template-columns:1fr}
-  .hero-stats{display:none}
-  .top-row{grid-template-columns:1fr}
-}
+@media(max-width:640px){.hero-inner{grid-template-columns:1fr}.hero-stats{display:none}.top-row{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 
-<!-- ── Header ── -->
 <div class="header">
   <div class="header-inner">
     <div class="logo">HiDH <span>Dividend Analyst</span></div>
     <nav class="nav">
       <a href="#about">選股方法</a>
       <a href="#charts">市場概覽</a>
-      <a href="#picks">本週精選</a>
+      <a href="#picks">最新精選</a>
     </nav>
   </div>
 </div>
 
-<!-- ── Hero ── -->
 <div class="hero">
   <div class="hero-inner">
     <div>
-      <div class="hero-tag">每週更新 · 2026-06-07</div>
-      <h1>全球高息股<br>每週精選分析</h1>
+      <div class="hero-tag">每日更新 · 2026-06-11</div>
+      <h1>全球高息股<br>每日精選分析</h1>
       <p class="hero-sub">覆蓋香港、美國、英國三大市場，以系統化評分篩選出具備穩定派息能力的優質股票。</p>
       <div class="hero-badges">
         <span class="badge badge-hk">港股 HK</span>
@@ -129,23 +91,16 @@ svg text{font-family:system-ui,sans-serif}
       </div>
     </div>
     <div class="hero-stats">
-      <div class="stat-box"><div class="stat-val">164</div><div class="stat-label">本週評分股票數</div></div>
-      <div class="stat-box"><div class="stat-val">100</div><div class="stat-label">入圍股票（≥50分）</div></div>
+      <div class="stat-box"><div class="stat-val">307</div><div class="stat-label">今日追蹤股票數</div></div>
+      <div class="stat-box"><div class="stat-val">119</div><div class="stat-label">入圍股票（≥50分）</div></div>
       <div class="stat-box"><div class="stat-val">3</div><div class="stat-label">強力買入</div></div>
-      <div class="stat-box"><div class="stat-val">79</div><div class="stat-label">本週最高分</div></div>
+      <div class="stat-box"><div class="stat-val">80</div><div class="stat-label">今日最高分 (TW.L)</div></div>
     </div>
   </div>
 </div>
 
-<!-- ── Ad slot (top) ── -->
-<div class="ad-banner">
-  <div class="ad-slot">廣告位置 — 728×90</div>
-</div>
-
-<!-- ── About ── -->
 <div class="section" id="about">
   <div class="section-title">選股理念與方法</div>
-
   <div class="about-grid">
     <div class="about-card">
       <div class="about-icon">💡</div>
@@ -160,22 +115,19 @@ svg text{font-family:system-ui,sans-serif}
     <div class="about-card">
       <div class="about-icon">📊</div>
       <h3>系統化篩選</h3>
-      <p>每週自動更新數據，以量化評分模型對數百隻股票進行排名，過濾雜訊，聚焦真正值得關注的機會。</p>
+      <p>每日自動更新數據，以量化評分模型對數百隻股票進行排名，過濾雜訊，聚焦真正值得關注的機會。</p>
     </div>
     <div class="about-card">
       <div class="about-icon">🔄</div>
-      <h3>每週更新</h3>
-      <p>每週六根據最新市場數據重新評分，確保推介反映最新的估值及財務狀況。</p>
+      <h3>每日更新</h3>
+      <p>每個交易日收市後自動重新評分，確保推介反映最新的估值及財務狀況。</p>
     </div>
   </div>
 
   <div class="section-title" style="margin-top:2rem">評分系統</div>
-  <p style="font-size:14px;color:#666;margin-bottom:1rem">每隻股票以100分制進行綜合評分，涵蓋四個範疇，評級如下：</p>
-
+  <p style="font-size:14px;color:#666;margin-bottom:1rem">每隻股票以100分制進行綜合評分，涵蓋五個範疇：</p>
   <table class="score-table" style="margin-bottom:1.25rem">
-    <thead>
-      <tr><th>評分範疇</th><th>滿分</th><th>主要考量</th></tr>
-    </thead>
+    <thead><tr><th>評分範疇</th><th>滿分</th><th>主要考量</th></tr></thead>
     <tbody>
       <tr><td>股息質量</td><td>30分</td><td>息率水平、派息穩定性及覆蓋率</td></tr>
       <tr><td>估值</td><td>25分</td><td>現價相對歷史息率及市場的吸引程度</td></tr>
@@ -184,11 +136,8 @@ svg text{font-family:system-ui,sans-serif}
       <tr><td>技術走勢</td><td>10分</td><td>RSI、52週位置等技術指標</td></tr>
     </tbody>
   </table>
-
   <table class="score-table">
-    <thead>
-      <tr><th>評級</th><th>分數</th><th>意義</th></tr>
-    </thead>
+    <thead><tr><th>評級</th><th>分數</th><th>意義</th></tr></thead>
     <tbody>
       <tr><td><span class="r-strong">🟢🟢 強力買入</span></td><td>75分以上</td><td>各方面均表現優秀，值得重點關注</td></tr>
       <tr><td><span class="r-watch">🟢 值得關注</span></td><td>50–74分</td><td>基本面良好，可納入觀察名單</td></tr>
@@ -197,10 +146,8 @@ svg text{font-family:system-ui,sans-serif}
   </table>
 </div>
 
-<!-- ── Charts ── -->
 <div class="section" id="charts">
-  <div class="section-title">市場概覽 — 2026年第23週</div>
-
+  <div class="section-title">市場概覽 — 2026-06-11</div>
   <div class="top-row">
     <div class="chart-card">
       <div class="chart-title">美股 US</div>
@@ -210,7 +157,7 @@ svg text{font-family:system-ui,sans-serif}
         <span><span class="ld" style="background:#EF9F27"></span>觀望</span>
       </div>
       <svg id="us" viewBox="0 0 180 160" width="100%" height="160"></svg>
-      <div class="chart-sub">102隻 · 均分 51.1 · 最高 70</div>
+      <div class="chart-sub">147隻 · 均分 42.8 · 最高 68</div>
     </div>
     <div class="chart-card">
       <div class="chart-title">港股 HK</div>
@@ -220,7 +167,7 @@ svg text{font-family:system-ui,sans-serif}
         <span><span class="ld" style="background:#EF9F27"></span>觀望</span>
       </div>
       <svg id="hk" viewBox="0 0 180 160" width="100%" height="160"></svg>
-      <div class="chart-sub">49隻 · 均分 57.6 · 最高 75</div>
+      <div class="chart-sub">98隻 · 均分 49.8 · 最高 75</div>
     </div>
     <div class="chart-card">
       <div class="chart-title">英股 UK</div>
@@ -230,12 +177,11 @@ svg text{font-family:system-ui,sans-serif}
         <span><span class="ld" style="background:#EF9F27"></span>觀望</span>
       </div>
       <svg id="uk" viewBox="0 0 180 160" width="100%" height="160"></svg>
-      <div class="chart-sub">13隻 · 均分 52.2 · 最高 79</div>
+      <div class="chart-sub">62隻 · 均分 44.7 · 最高 80</div>
     </div>
   </div>
-
   <div class="chart-card">
-    <div class="chart-title">各市場前10名評分分佈</div>
+    <div class="chart-title">前10名評分分佈</div>
     <div class="legend">
       <span><span class="ld" style="background:#1D9E75"></span>強力買入</span>
       <span><span class="ld" style="background:#378ADD"></span>值得關注</span>
@@ -245,189 +191,156 @@ svg text{font-family:system-ui,sans-serif}
   </div>
 </div>
 
-<!-- ── Ad slot (middle) ── -->
-<div class="ad-banner">
-  <div class="ad-slot">廣告位置 — 728×90</div>
-</div>
-
-<!-- ── Weekly Picks ── -->
 <div class="section" id="picks">
-  <div class="section-title">本週精選推介</div>
-  <p style="font-size:13px;color:#999;margin-bottom:1.25rem">以下為本週評分最高股票，綠框為強力買入。數據截至 2026-06-07。</p>
-
+  <div class="section-title">最新精選推介 — 2026-06-11</div>
+  <p style="font-size:13px;color:#999;margin-bottom:1.25rem">以下為今日評分最高股票（≥50分），綠框為強力買入。</p>
   <div class="picks-grid" id="picksGrid"></div>
 </div>
 
-<!-- ── Ad slot (bottom) ── -->
-<div class="ad-banner">
-  <div class="ad-slot">廣告位置 — 728×90</div>
-</div>
-
-<!-- ── Disclaimer ── -->
 <div class="disclaimer">
   <div class="disclaimer-inner">
     <strong>免責聲明：</strong>本網站所有內容僅供參考及教育用途，不構成任何投資建議或買賣邀請。投資涉及風險，過往表現不代表未來回報。讀者應自行進行盡職審查，並在作出任何投資決定前諮詢持牌財務顧問。本站對因使用本站資料而引起的任何損失概不負責。
   </div>
 </div>
 
-<!-- ── Footer ── -->
 <div class="footer">
   <div class="footer-inner">
     <span class="footer-logo">HiDH Dividend Analyst</span>
-    <span>© 2026 prosynchk.com · 每週六更新</span>
-    <span>資料來源：Yahoo Finance · 僅供參考</span>
+    <span>
+      <a href="about.html" style="color:#aaa;text-decoration:none">關於我們</a> ·
+      <a href="privacy.html" style="color:#aaa;text-decoration:none">私隱政策</a>
+    </span>
+    <span>© 2026 prosynchk.com · 資料來源：Yahoo Finance · 僅供參考</span>
   </div>
 </div>
 
 <script>
-// ── Donut charts ──────────────────────────────────────────
-function drawDonut(svgId, values, colors) {
-  const svg = document.getElementById(svgId);
-  const cx=90, cy=80, R=65, r=42;
-  const total = values.reduce((a,b)=>a+b,0);
-  let angle = -Math.PI/2;
-  values.forEach((v,i) => {
-    if(v===0) return;
-    const sweep = (v/total)*2*Math.PI;
-    const x1=cx+R*Math.cos(angle), y1=cy+R*Math.sin(angle);
-    const x2=cx+R*Math.cos(angle+sweep), y2=cy+R*Math.sin(angle+sweep);
-    const ix1=cx+r*Math.cos(angle), iy1=cy+r*Math.sin(angle);
-    const ix2=cx+r*Math.cos(angle+sweep), iy2=cy+r*Math.sin(angle+sweep);
-    const large = sweep>Math.PI?1:0;
-    const path = document.createElementNS('http://www.w3.org/2000/svg','path');
-    path.setAttribute('d',`M ${x1} ${y1} A ${R} ${R} 0 ${large} 1 ${x2} ${y2} L ${ix2} ${iy2} A ${r} ${r} 0 ${large} 0 ${ix1} ${iy1} Z`);
-    path.setAttribute('fill', colors[i]);
-    svg.appendChild(path);
-    if(v/total > 0.06) {
-      const mid = angle+sweep/2;
-      const lx = cx+(R+r)/2*Math.cos(mid), ly = cy+(R+r)/2*Math.sin(mid);
-      const t = document.createElementNS('http://www.w3.org/2000/svg','text');
-      t.setAttribute('x',lx); t.setAttribute('y',ly+4);
-      t.setAttribute('text-anchor','middle'); t.setAttribute('font-size','11');
-      t.setAttribute('fill','#fff'); t.setAttribute('font-weight','600');
-      t.textContent = v; svg.appendChild(t);
-    }
-    angle += sweep;
-  });
-  const ct = document.createElementNS('http://www.w3.org/2000/svg','text');
-  ct.setAttribute('x',cx); ct.setAttribute('y',cy+5);
-  ct.setAttribute('text-anchor','middle'); ct.setAttribute('font-size','13');
-  ct.setAttribute('fill','#555'); ct.setAttribute('font-weight','600');
-  ct.textContent = total+'隻'; svg.appendChild(ct);
-}
-drawDonut('us',[0,14,88],['#1D9E75','#378ADD','#EF9F27']);
-drawDonut('hk',[3,19,27],['#1D9E75','#378ADD','#EF9F27']);
-drawDonut('uk',[1, 4, 8],['#1D9E75','#378ADD','#EF9F27']);
+const US_STATS = {"total": 147, "strong": 0, "watch": 49, "hold": 98, "avg": 42.8, "max": 68};
+const HK_STATS = {"total": 98, "strong": 1, "watch": 50, "hold": 47, "avg": 49.8, "max": 75};
+const UK_STATS = {"total": 62, "strong": 2, "watch": 17, "hold": 43, "avg": 44.7, "max": 80};
+const TOP10    = [{"label": "TW.L", "score": 80, "mkt": "UK", "rating": "strong"}, {"label": "III.L", "score": 79, "mkt": "UK", "rating": "strong"}, {"label": "0358.HK", "score": 75, "mkt": "HK", "rating": "strong"}, {"label": "0027.HK", "score": 74, "mkt": "HK", "rating": "watch"}, {"label": "0914.HK", "score": 74, "mkt": "HK", "rating": "watch"}, {"label": "2600.HK", "score": 74, "mkt": "HK", "rating": "watch"}, {"label": "0168.HK", "score": 72, "mkt": "HK", "rating": "watch"}, {"label": "0874.HK", "score": 72, "mkt": "HK", "rating": "watch"}, {"label": "1193.HK", "score": 71, "mkt": "HK", "rating": "watch"}, {"label": "0467.HK", "score": 68, "mkt": "HK", "rating": "watch"}];
+const PICKS    = [{"ticker": "TW.L", "name": "Taylor Wimpey plc", "mkt": "UK", "score": 80, "rating": "strong", "yield_": "10.6", "pe": "25.2", "pb": "0.64"}, {"ticker": "III.L", "name": "3i Group Ord", "mkt": "UK", "score": 79, "rating": "strong", "yield_": "3.9", "pe": "4.1", "pb": "0.72"}, {"ticker": "0358.HK", "name": "Jiangxi Copper Company Limited", "mkt": "HK", "score": 75, "rating": "strong", "yield_": "5.9", "pe": "11.9", "pb": "1.15"}, {"ticker": "0027.HK", "name": "Galaxy Entertainment Group Limited", "mkt": "HK", "score": 74, "rating": "watch", "yield_": "5.1", "pe": "12.8", "pb": "1.64"}, {"ticker": "0914.HK", "name": "Anhui Conch Cement Company Limited", "mkt": "HK", "score": 74, "rating": "watch", "yield_": "9.6", "pe": "10.6", "pb": "0.43"}, {"ticker": "2600.HK", "name": "Aluminum Corporation of China Limited", "mkt": "HK", "score": 74, "rating": "watch", "yield_": "3.1", "pe": "9.8", "pb": "1.79"}, {"ticker": "0168.HK", "name": "Tsingtao Brewery Company Limited", "mkt": "HK", "score": 72, "rating": "watch", "yield_": "5.4", "pe": "12.5", "pb": "1.80"}, {"ticker": "0874.HK", "name": "Guangzhou Baiyunshan Pharmaceutical Holdings Company Limited", "mkt": "HK", "score": 72, "rating": "watch", "yield_": "6.2", "pe": "7.4", "pb": "0.55"}, {"ticker": "1193.HK", "name": "China Resources Gas Group Limited", "mkt": "HK", "score": 71, "rating": "watch", "yield_": "7.5", "pe": "11.2", "pb": "0.91"}, {"ticker": "0467.HK", "name": "United Energy Group Limited", "mkt": "HK", "score": 68, "rating": "watch", "yield_": "11.9", "pe": "10.5", "pb": "0.82"}, {"ticker": "TAP", "name": "Molson Coors Beverage Company", "mkt": "US", "score": 68, "rating": "watch", "yield_": "4.7", "pe": "0.0", "pb": "0.76"}, {"ticker": "CTSH", "name": "Cognizant Technology Solutions Corporation", "mkt": "US", "score": 68, "rating": "watch", "yield_": "2.5", "pe": "11.2", "pb": "1.63"}];
 
-// ── Bar chart ─────────────────────────────────────────────
-const stocks = [
-  {label:'III.L',   score:79, color:'#1D9E75', mkt:'UK'},
-  {label:'0636.HK', score:75, color:'#1D9E75', mkt:'HK'},
-  {label:'1193.HK', score:75, color:'#1D9E75', mkt:'HK'},
-  {label:'0914.HK', score:73, color:'#378ADD', mkt:'HK'},
-  {label:'0027.HK', score:72, color:'#378ADD', mkt:'HK'},
-  {label:'CTSH',    score:70, color:'#378ADD', mkt:'US'},
-  {label:'0552.HK', score:70, color:'#378ADD', mkt:'HK'},
-  {label:'0168.HK', score:69, color:'#378ADD', mkt:'HK'},
-  {label:'TAP',     score:68, color:'#378ADD', mkt:'US'},
-  {label:'PGR',     score:66, color:'#378ADD', mkt:'US'},
-];
-const mktStyle = {
+function drawDonut(svgId, strong, watch, hold) {
+  const svg = document.getElementById(svgId);
+  if(!svg) return;
+  const values=[strong,watch,hold], colors=['#1D9E75','#378ADD','#EF9F27'];
+  const cx=90,cy=80,R=65,r=42;
+  const total=values.reduce((a,b)=>a+b,0);
+  if(total===0) return;
+  let angle=-Math.PI/2;
+  values.forEach((v,i)=>{
+    if(v===0) return;
+    const sweep=(v/total)*2*Math.PI;
+    const x1=cx+R*Math.cos(angle),y1=cy+R*Math.sin(angle);
+    const x2=cx+R*Math.cos(angle+sweep),y2=cy+R*Math.sin(angle+sweep);
+    const ix1=cx+r*Math.cos(angle),iy1=cy+r*Math.sin(angle);
+    const ix2=cx+r*Math.cos(angle+sweep),iy2=cy+r*Math.sin(angle+sweep);
+    const large=sweep>Math.PI?1:0;
+    const path=document.createElementNS('http://www.w3.org/2000/svg','path');
+    path.setAttribute('d',`M ${x1} ${y1} A ${R} ${R} 0 ${large} 1 ${x2} ${y2} L ${ix2} ${iy2} A ${r} ${r} 0 ${large} 0 ${ix1} ${iy1} Z`);
+    path.setAttribute('fill',colors[i]);
+    svg.appendChild(path);
+    if(v/total>0.06){
+      const mid=angle+sweep/2;
+      const lx=cx+(R+r)/2*Math.cos(mid),ly=cy+(R+r)/2*Math.sin(mid);
+      const t=document.createElementNS('http://www.w3.org/2000/svg','text');
+      t.setAttribute('x',lx);t.setAttribute('y',ly+4);
+      t.setAttribute('text-anchor','middle');t.setAttribute('font-size','11');
+      t.setAttribute('fill','#fff');t.setAttribute('font-weight','600');
+      t.textContent=v;svg.appendChild(t);
+    }
+    angle+=sweep;
+  });
+  const ct=document.createElementNS('http://www.w3.org/2000/svg','text');
+  ct.setAttribute('x',cx);ct.setAttribute('y',cy+5);
+  ct.setAttribute('text-anchor','middle');ct.setAttribute('font-size','13');
+  ct.setAttribute('fill','#555');ct.setAttribute('font-weight','600');
+  ct.textContent=total+'隻';svg.appendChild(ct);
+}
+
+drawDonut('us',US_STATS.strong,US_STATS.watch,US_STATS.hold);
+drawDonut('hk',HK_STATS.strong,HK_STATS.watch,HK_STATS.hold);
+drawDonut('uk',UK_STATS.strong,UK_STATS.watch,UK_STATS.hold);
+
+const RATING_COLOR={strong:'#1D9E75',watch:'#378ADD',hold:'#EF9F27'};
+const MKT_STYLE={
   US:{bg:'#E6F1FB',text:'#185FA5'},
   HK:{bg:'#E1F5EE',text:'#0F6E56'},
   UK:{bg:'#FAEEDA',text:'#854F0B'},
 };
-const svg = document.getElementById('bar');
+const svg=document.getElementById('bar');
 const W=900,H=240,padL=36,padB=46,padT=10,padR=10;
-const chartW=W-padL-padR, chartH=H-padB-padT;
-const minScore=50, maxScore=85;
-const barW=chartW/stocks.length, gap=barW*0.22;
+const chartW=W-padL-padR,chartH=H-padB-padT;
+const scores=TOP10.map(s=>s.score);
+const minScore=Math.max(40,Math.min(...scores)-5);
+const maxScore=Math.min(100,Math.max(...scores)+5);
+const barW=chartW/TOP10.length,gap=barW*0.22;
 
-[50,55,60,65,70,75,80,85].forEach(v=>{
+[...Array(6)].map((_,i)=>Math.round(minScore+i*(maxScore-minScore)/5)).forEach(v=>{
   const y=padT+chartH-((v-minScore)/(maxScore-minScore))*chartH;
   const line=document.createElementNS('http://www.w3.org/2000/svg','line');
-  line.setAttribute('x1',padL); line.setAttribute('x2',W-padR);
-  line.setAttribute('y1',y); line.setAttribute('y2',y);
-  line.setAttribute('stroke',v===50?'#ccc':'#eee'); line.setAttribute('stroke-width','1');
+  line.setAttribute('x1',padL);line.setAttribute('x2',W-padR);
+  line.setAttribute('y1',y);line.setAttribute('y2',y);
+  line.setAttribute('stroke',v===Math.round(minScore)?'#ccc':'#eee');line.setAttribute('stroke-width','1');
   svg.appendChild(line);
   const t=document.createElementNS('http://www.w3.org/2000/svg','text');
-  t.setAttribute('x',padL-4); t.setAttribute('y',y+4);
-  t.setAttribute('text-anchor','end'); t.setAttribute('font-size','10');
-  t.setAttribute('fill','#999'); t.textContent=v; svg.appendChild(t);
+  t.setAttribute('x',padL-4);t.setAttribute('y',y+4);
+  t.setAttribute('text-anchor','end');t.setAttribute('font-size','10');
+  t.setAttribute('fill','#999');t.textContent=v;svg.appendChild(t);
 });
 
-stocks.forEach((s,i)=>{
+TOP10.forEach((s,i)=>{
   const barH=((s.score-minScore)/(maxScore-minScore))*chartH;
-  const x=padL+i*barW+gap/2;
-  const y=padT+chartH-barH;
-  const w=barW-gap;
-
+  const x=padL+i*barW+gap/2,y=padT+chartH-barH,w=barW-gap;
   const rect=document.createElementNS('http://www.w3.org/2000/svg','rect');
-  rect.setAttribute('x',x); rect.setAttribute('y',y);
-  rect.setAttribute('width',w); rect.setAttribute('height',barH);
-  rect.setAttribute('fill',s.color); rect.setAttribute('rx','3');
+  rect.setAttribute('x',x);rect.setAttribute('y',y);
+  rect.setAttribute('width',w);rect.setAttribute('height',barH);
+  rect.setAttribute('fill',RATING_COLOR[s.rating]);rect.setAttribute('rx','3');
   svg.appendChild(rect);
-
   const ts=document.createElementNS('http://www.w3.org/2000/svg','text');
-  ts.setAttribute('x',x+w/2); ts.setAttribute('y',y-4);
-  ts.setAttribute('text-anchor','middle'); ts.setAttribute('font-size','10');
-  ts.setAttribute('fill','#555'); ts.setAttribute('font-weight','600');
-  ts.textContent=s.score; svg.appendChild(ts);
-
+  ts.setAttribute('x',x+w/2);ts.setAttribute('y',y-4);
+  ts.setAttribute('text-anchor','middle');ts.setAttribute('font-size','10');
+  ts.setAttribute('fill','#555');ts.setAttribute('font-weight','600');
+  ts.textContent=s.score;svg.appendChild(ts);
   const tl=document.createElementNS('http://www.w3.org/2000/svg','text');
-  tl.setAttribute('x',x+w/2); tl.setAttribute('y',H-padB+14);
-  tl.setAttribute('text-anchor','middle'); tl.setAttribute('font-size','10');
-  tl.setAttribute('fill','#777'); tl.textContent=s.label; svg.appendChild(tl);
-
-  const ms=mktStyle[s.mkt];
+  tl.setAttribute('x',x+w/2);tl.setAttribute('y',H-padB+14);
+  tl.setAttribute('text-anchor','middle');tl.setAttribute('font-size','10');
+  tl.setAttribute('fill','#777');tl.textContent=s.label;svg.appendChild(tl);
+  const ms=MKT_STYLE[s.mkt];
   const bw=24,bh=13,bx=x+w/2-bw/2,by=H-padB+18;
   const brect=document.createElementNS('http://www.w3.org/2000/svg','rect');
-  brect.setAttribute('x',bx); brect.setAttribute('y',by);
-  brect.setAttribute('width',bw); brect.setAttribute('height',bh);
-  brect.setAttribute('fill',ms.bg); brect.setAttribute('rx','3');
+  brect.setAttribute('x',bx);brect.setAttribute('y',by);
+  brect.setAttribute('width',bw);brect.setAttribute('height',bh);
+  brect.setAttribute('fill',ms.bg);brect.setAttribute('rx','3');
   svg.appendChild(brect);
   const bt=document.createElementNS('http://www.w3.org/2000/svg','text');
-  bt.setAttribute('x',bx+bw/2); bt.setAttribute('y',by+9);
-  bt.setAttribute('text-anchor','middle'); bt.setAttribute('font-size','9');
-  bt.setAttribute('fill',ms.text); bt.setAttribute('font-weight','600');
-  bt.textContent=s.mkt; svg.appendChild(bt);
+  bt.setAttribute('x',bx+bw/2);bt.setAttribute('y',by+9);
+  bt.setAttribute('text-anchor','middle');bt.setAttribute('font-size','9');
+  bt.setAttribute('fill',ms.text);bt.setAttribute('font-weight','600');
+  bt.textContent=s.mkt;svg.appendChild(bt);
 });
 
-// ── Weekly picks ──────────────────────────────────────────
-const picks = [
-  {ticker:'III.L',  name:'3i Group Ord',               mkt:'UK',score:79,rating:'strong',yield_:3.85,pe:4.1, pb:0.73},
-  {ticker:'0636.HK',name:'KLN Logistics Group',         mkt:'HK',score:75,rating:'strong',yield_:4.44,pe:7.79,pb:0.62},
-  {ticker:'1193.HK',name:'China Resources Gas',         mkt:'HK',score:75,rating:'strong',yield_:7.39,pe:11.35,pb:0.92},
-  {ticker:'0914.HK',name:'Anhui Conch Cement',          mkt:'HK',score:73,rating:'watch', yield_:9.5, pe:10.71,pb:0.43},
-  {ticker:'0027.HK',name:'Galaxy Entertainment',        mkt:'HK',score:72,rating:'watch', yield_:5.13,pe:12.79,pb:1.64},
-  {ticker:'CTSH',   name:'Cognizant Tech Solutions',    mkt:'US',score:70,rating:'watch', yield_:2.48,pe:11.54,pb:1.67},
-  {ticker:'0552.HK',name:'China Comms Services',        mkt:'HK',score:70,rating:'watch', yield_:6.4, pe:6.77, pb:0.51},
-  {ticker:'0168.HK',name:'Tsingtao Brewery',            mkt:'HK',score:69,rating:'watch', yield_:5.53,pe:12.12,pb:1.75},
-  {ticker:'TAP',    name:'Molson Coors Beverage',       mkt:'US',score:68,rating:'watch', yield_:4.92,pe:26.6, pb:0.73},
-  {ticker:'PGR',    name:'Progressive Corporation',     mkt:'US',score:66,rating:'watch', yield_:6.81,pe:10.37,pb:3.72},
-  {ticker:'FRES.L', name:'Fresnillo plc',               mkt:'UK',score:64,rating:'watch', yield_:3.18,pe:21.33,pb:6.39},
-  {ticker:'GIS',    name:'General Mills',               mkt:'US',score:65,rating:'watch', yield_:7.36,pe:8.11, pb:3.2},
-];
-const rLabel={strong:'🟢🟢 強力買入',watch:'🟢 值得關注',hold:'⚖️ 觀望'};
-const rClass={strong:'r-strong',watch:'r-watch',hold:'r-hold'};
-const mktBadge={
-  HK:`<span class="badge badge-hk">HK</span>`,
-  US:`<span class="badge badge-us">US</span>`,
-  UK:`<span class="badge badge-uk">UK</span>`,
+const RATING_LABEL={strong:'🟢🟢 強力買入',watch:'🟢 值得關注',hold:'⚖️ 觀望'};
+const RATING_CLASS={strong:'r-strong',watch:'r-watch',hold:'r-hold'};
+const MKT_BADGE={
+  HK:'<span class="badge badge-hk">HK</span>',
+  US:'<span class="badge badge-us">US</span>',
+  UK:'<span class="badge badge-uk">UK</span>',
 };
-document.getElementById('picksGrid').innerHTML = picks.map(p=>`
+document.getElementById('picksGrid').innerHTML=PICKS.map(p=>`
   <div class="pick-card${p.rating==='strong'?' top':''}">
     <div class="pick-header">
       <div>
-        <div class="pick-ticker">${p.ticker} ${mktBadge[p.mkt]}</div>
-        <div class="pick-mkt">${p.name}</div>
+        <div class="pick-ticker">${p.ticker} ${MKT_BADGE[p.mkt]}</div>
+        <div class="pick-name">${p.name}</div>
       </div>
-      <span class="${rClass[p.rating]}">${rLabel[p.rating]}</span>
+      <span class="${RATING_CLASS[p.rating]}">${RATING_LABEL[p.rating]}</span>
     </div>
     <div class="pick-stats">
-      <div class="pick-stat"><div class="pick-stat-label">股息率</div><div class="pick-stat-val">${p.yield_.toFixed(1)}%</div></div>
-      <div class="pick-stat"><div class="pick-stat-label">PE</div><div class="pick-stat-val">${p.pe.toFixed(1)}x</div></div>
-      <div class="pick-stat"><div class="pick-stat-label">P/B</div><div class="pick-stat-val">${p.pb.toFixed(2)}</div></div>
+      <div class="pick-stat"><div class="pick-stat-label">股息率</div><div class="pick-stat-val">${p.yield_}%</div></div>
+      <div class="pick-stat"><div class="pick-stat-label">PE</div><div class="pick-stat-val">${p.pe}x</div></div>
+      <div class="pick-stat"><div class="pick-stat-label">P/B</div><div class="pick-stat-val">${p.pb}</div></div>
     </div>
     <div class="score-track"><div class="score-fill" style="width:${p.score}%"></div></div>
     <div class="score-row"><span>評分</span><span>${p.score}/100</span></div>
