@@ -82,7 +82,7 @@ svg text{font-family:system-ui,sans-serif}
 <div class="hero">
   <div class="hero-inner">
     <div>
-      <div class="hero-tag">每日更新 · 2026-06-11</div>
+      <div class="hero-tag">每日更新 · 2026-06-12</div>
       <h1>全球高息股<br>每日精選分析</h1>
       <p class="hero-sub">覆蓋香港、美國、英國三大市場，以系統化評分篩選出具備穩定派息能力的優質股票。</p>
       <div class="hero-badges">
@@ -93,9 +93,9 @@ svg text{font-family:system-ui,sans-serif}
     </div>
     <div class="hero-stats">
       <div class="stat-box"><div class="stat-val">307</div><div class="stat-label">今日追蹤股票數</div></div>
-      <div class="stat-box"><div class="stat-val">119</div><div class="stat-label">入圍股票（≥50分）</div></div>
+      <div class="stat-box"><div class="stat-val">117</div><div class="stat-label">入圍股票（≥50分）</div></div>
       <div class="stat-box"><div class="stat-val">3</div><div class="stat-label">強力買入</div></div>
-      <div class="stat-box"><div class="stat-val">80</div><div class="stat-label">今日最高分 (TW.L)</div></div>
+      <div class="stat-box"><div class="stat-val">81</div><div class="stat-label">今日最高分 (TW.L)</div></div>
     </div>
   </div>
 </div>
@@ -148,37 +148,37 @@ svg text{font-family:system-ui,sans-serif}
 </div>
 
 <div class="section" id="charts">
-  <div class="section-title">市場概覽 — 2026-06-11</div>
+  <div class="section-title">市場概覽 — 2026-06-12</div>
   <div class="top-row">
     <div class="chart-card">
       <div class="chart-title">美股 US</div>
       <div class="legend">
         <span><span class="ld" style="background:#1D9E75"></span>強力買入 <strong>0</strong></span>
-        <span><span class="ld" style="background:#378ADD"></span>值得關注 <strong>49</strong></span>
-        <span><span class="ld" style="background:#EF9F27"></span>觀望 <strong>98</strong></span>
+        <span><span class="ld" style="background:#378ADD"></span>值得關注 <strong>47</strong></span>
+        <span><span class="ld" style="background:#EF9F27"></span>觀望 <strong>100</strong></span>
       </div>
       <svg id="us" viewBox="0 0 180 160" width="100%" height="160"></svg>
-      <div class="chart-sub">147隻 · 均分 42.8 · 最高 68</div>
+      <div class="chart-sub">147隻 · 均分 42.4 · 最高 68</div>
     </div>
     <div class="chart-card">
       <div class="chart-title">港股 HK</div>
       <div class="legend">
         <span><span class="ld" style="background:#1D9E75"></span>強力買入 <strong>1</strong></span>
-        <span><span class="ld" style="background:#378ADD"></span>值得關注 <strong>50</strong></span>
-        <span><span class="ld" style="background:#EF9F27"></span>觀望 <strong>47</strong></span>
+        <span><span class="ld" style="background:#378ADD"></span>值得關注 <strong>48</strong></span>
+        <span><span class="ld" style="background:#EF9F27"></span>觀望 <strong>49</strong></span>
       </div>
       <svg id="hk" viewBox="0 0 180 160" width="100%" height="160"></svg>
-      <div class="chart-sub">98隻 · 均分 49.8 · 最高 75</div>
+      <div class="chart-sub">98隻 · 均分 50.6 · 最高 75</div>
     </div>
     <div class="chart-card">
       <div class="chart-title">英股 UK</div>
       <div class="legend">
         <span><span class="ld" style="background:#1D9E75"></span>強力買入 <strong>2</strong></span>
-        <span><span class="ld" style="background:#378ADD"></span>值得關注 <strong>17</strong></span>
-        <span><span class="ld" style="background:#EF9F27"></span>觀望 <strong>43</strong></span>
+        <span><span class="ld" style="background:#378ADD"></span>值得關注 <strong>19</strong></span>
+        <span><span class="ld" style="background:#EF9F27"></span>觀望 <strong>41</strong></span>
       </div>
       <svg id="uk" viewBox="0 0 180 160" width="100%" height="160"></svg>
-      <div class="chart-sub">62隻 · 均分 44.7 · 最高 80</div>
+      <div class="chart-sub">62隻 · 均分 45.2 · 最高 81</div>
     </div>
   </div>
   <div class="chart-card">
@@ -193,7 +193,7 @@ svg text{font-family:system-ui,sans-serif}
 </div>
 
 <div class="section" id="picks">
-  <div class="section-title">最新精選推介 — 2026-06-11</div>
+  <div class="section-title">最新精選推介 — 2026-06-12</div>
   <p style="font-size:13px;color:#999;margin-bottom:1.25rem">以下為今日評分最高股票（≥50分），綠框為強力買入。</p>
   <div class="picks-grid" id="picksGrid"></div>
 </div>
@@ -216,11 +216,11 @@ svg text{font-family:system-ui,sans-serif}
 </div>
 
 <script>
-const US_STATS = {"total": 147, "strong": 0, "watch": 49, "hold": 98, "avg": 42.8, "max": 68};
-const HK_STATS = {"total": 98, "strong": 1, "watch": 50, "hold": 47, "avg": 49.8, "max": 75};
-const UK_STATS = {"total": 62, "strong": 2, "watch": 17, "hold": 43, "avg": 44.7, "max": 80};
-const TOP10    = [{"label": "TW.L", "score": 80, "mkt": "UK", "rating": "strong"}, {"label": "III.L", "score": 79, "mkt": "UK", "rating": "strong"}, {"label": "0358.HK", "score": 75, "mkt": "HK", "rating": "strong"}, {"label": "0027.HK", "score": 74, "mkt": "HK", "rating": "watch"}, {"label": "0914.HK", "score": 74, "mkt": "HK", "rating": "watch"}, {"label": "2600.HK", "score": 74, "mkt": "HK", "rating": "watch"}, {"label": "0168.HK", "score": 72, "mkt": "HK", "rating": "watch"}, {"label": "0874.HK", "score": 72, "mkt": "HK", "rating": "watch"}, {"label": "1193.HK", "score": 71, "mkt": "HK", "rating": "watch"}, {"label": "0467.HK", "score": 68, "mkt": "HK", "rating": "watch"}];
-const PICKS    = [{"ticker": "TW.L", "name": "Taylor Wimpey plc", "mkt": "UK", "score": 80, "rating": "strong", "yield_": "10.6", "pe": "25.2", "pb": "0.64"}, {"ticker": "III.L", "name": "3i Group Ord", "mkt": "UK", "score": 79, "rating": "strong", "yield_": "3.9", "pe": "4.1", "pb": "0.72"}, {"ticker": "0358.HK", "name": "Jiangxi Copper Company Limited", "mkt": "HK", "score": 75, "rating": "strong", "yield_": "5.9", "pe": "11.9", "pb": "1.15"}, {"ticker": "0027.HK", "name": "Galaxy Entertainment Group Limited", "mkt": "HK", "score": 74, "rating": "watch", "yield_": "5.1", "pe": "12.8", "pb": "1.64"}, {"ticker": "0914.HK", "name": "Anhui Conch Cement Company Limited", "mkt": "HK", "score": 74, "rating": "watch", "yield_": "9.6", "pe": "10.6", "pb": "0.43"}, {"ticker": "2600.HK", "name": "Aluminum Corporation of China Limited", "mkt": "HK", "score": 74, "rating": "watch", "yield_": "3.1", "pe": "9.8", "pb": "1.79"}, {"ticker": "0168.HK", "name": "Tsingtao Brewery Company Limited", "mkt": "HK", "score": 72, "rating": "watch", "yield_": "5.4", "pe": "12.5", "pb": "1.80"}, {"ticker": "0874.HK", "name": "Guangzhou Baiyunshan Pharmaceutical Holdings Company Limited", "mkt": "HK", "score": 72, "rating": "watch", "yield_": "6.2", "pe": "7.4", "pb": "0.55"}, {"ticker": "1193.HK", "name": "China Resources Gas Group Limited", "mkt": "HK", "score": 71, "rating": "watch", "yield_": "7.5", "pe": "11.2", "pb": "0.91"}, {"ticker": "0467.HK", "name": "United Energy Group Limited", "mkt": "HK", "score": 68, "rating": "watch", "yield_": "11.9", "pe": "10.5", "pb": "0.82"}, {"ticker": "TAP", "name": "Molson Coors Beverage Company", "mkt": "US", "score": 68, "rating": "watch", "yield_": "4.7", "pe": "0.0", "pb": "0.76"}, {"ticker": "CTSH", "name": "Cognizant Technology Solutions Corporation", "mkt": "US", "score": 68, "rating": "watch", "yield_": "2.5", "pe": "11.2", "pb": "1.63"}];
+const US_STATS = {"total": 147, "strong": 0, "watch": 47, "hold": 100, "avg": 42.4, "max": 68};
+const HK_STATS = {"total": 98, "strong": 1, "watch": 48, "hold": 49, "avg": 50.6, "max": 75};
+const UK_STATS = {"total": 62, "strong": 2, "watch": 19, "hold": 41, "avg": 45.2, "max": 81};
+const TOP10    = [{"label": "TW.L", "score": 81, "mkt": "UK", "rating": "strong"}, {"label": "III.L", "score": 79, "mkt": "UK", "rating": "strong"}, {"label": "2600.HK", "score": 75, "mkt": "HK", "rating": "strong"}, {"label": "0027.HK", "score": 74, "mkt": "HK", "rating": "watch"}, {"label": "RKT.L", "score": 73, "mkt": "UK", "rating": "watch"}, {"label": "0570.HK", "score": 72, "mkt": "HK", "rating": "watch"}, {"label": "0358.HK", "score": 72, "mkt": "HK", "rating": "watch"}, {"label": "0168.HK", "score": 72, "mkt": "HK", "rating": "watch"}, {"label": "0874.HK", "score": 71, "mkt": "HK", "rating": "watch"}, {"label": "2319.HK", "score": 71, "mkt": "HK", "rating": "watch"}];
+const PICKS    = [{"ticker": "TW.L", "name": "Taylor Wimpey plc", "mkt": "UK", "score": 81, "rating": "strong", "yield_": "10.3", "pe": "24.7", "pb": "0.63"}, {"ticker": "III.L", "name": "3i Group Ord", "mkt": "UK", "score": 79, "rating": "strong", "yield_": "3.5", "pe": "4.1", "pb": "0.73"}, {"ticker": "2600.HK", "name": "Aluminum Corporation of China Limited", "mkt": "HK", "score": 75, "rating": "strong", "yield_": "2.9", "pe": "9.9", "pb": "1.81"}, {"ticker": "0027.HK", "name": "Galaxy Entertainment Group Limited", "mkt": "HK", "score": 74, "rating": "watch", "yield_": "4.8", "pe": "12.7", "pb": "1.63"}, {"ticker": "RKT.L", "name": "Reckitt Benckiser Group plc", "mkt": "UK", "score": 73, "rating": "watch", "yield_": "10.1", "pe": "9.4", "pb": "3.82"}, {"ticker": "0570.HK", "name": "China Traditional Chinese Medicine Holdings Co. Limited", "mkt": "HK", "score": 72, "rating": "watch", "yield_": "5.8", "pe": "0.0", "pb": "0.31"}, {"ticker": "0358.HK", "name": "Jiangxi Copper Company Limited", "mkt": "HK", "score": 72, "rating": "watch", "yield_": "6.0", "pe": "11.8", "pb": "1.13"}, {"ticker": "0168.HK", "name": "Tsingtao Brewery Company Limited", "mkt": "HK", "score": 72, "rating": "watch", "yield_": "5.4", "pe": "12.5", "pb": "1.80"}, {"ticker": "0874.HK", "name": "Guangzhou Baiyunshan Pharmaceutical Holdings Company Limited", "mkt": "HK", "score": 71, "rating": "watch", "yield_": "5.9", "pe": "7.1", "pb": "0.55"}, {"ticker": "2319.HK", "name": "China Mengniu Dairy Company Limited", "mkt": "HK", "score": 71, "rating": "watch", "yield_": "7.0", "pe": "36.0", "pb": "1.37"}, {"ticker": "0762.HK", "name": "China Unicom (Hong Kong) Limited", "mkt": "HK", "score": 70, "rating": "watch", "yield_": "8.6", "pe": "9.3", "pb": "0.53"}, {"ticker": "0552.HK", "name": "China Communications Services Corporation Limited", "mkt": "HK", "score": 69, "rating": "watch", "yield_": "12.1", "pe": "6.8", "pb": "0.51"}];
 
 function drawDonut(svgId, strong, watch, hold) {
   const svg = document.getElementById(svgId);
