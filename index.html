@@ -20,7 +20,7 @@ a{color:#1D9E75;text-decoration:none}a:hover{text-decoration:underline}
 .hero-sub{font-size:15px;color:#666;margin-bottom:1.25rem}
 .hero-badges{display:flex;gap:8px;flex-wrap:wrap}
 .badge{font-size:11px;padding:4px 10px;border-radius:20px;font-weight:500}
-.badge-hk{background:#E1F5EE;color:#0F6E56}.badge-us{background:#E6F1FB;color:#185FA5}.badge-uk{background:#FAEEDA;color:#854F0B}
+.badge-hk{background:#E1F5EE;color:#0F6E56}.badge-us{background:#E6F1FB;color:#185FA5}.badge-uk{background:#FAEEDA;color:#854F0B}.badge-cn{background:#FDECEA;color:#B71C1C}
 .hero-stats{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .stat-box{background:#f7f7f5;border-radius:10px;padding:1rem}
 .stat-val{font-size:24px;font-weight:600;color:#222}.stat-label{font-size:12px;color:#888;margin-top:2px}
@@ -38,7 +38,7 @@ a{color:#1D9E75;text-decoration:none}a:hover{text-decoration:underline}
 .r-strong{background:#E1F5EE;color:#0F6E56;padding:3px 8px;border-radius:4px;font-size:11px;font-weight:600;white-space:nowrap}
 .r-watch{background:#E6F1FB;color:#185FA5;padding:3px 8px;border-radius:4px;font-size:11px;font-weight:600;white-space:nowrap}
 .r-hold{background:#FAEEDA;color:#854F0B;padding:3px 8px;border-radius:4px;font-size:11px;font-weight:600;white-space:nowrap}
-.top-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:12px}
+.top-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
 .chart-card{background:#fff;border:1px solid #e5e5e5;border-radius:12px;padding:16px}
 .chart-title{font-size:13px;font-weight:600;color:#444;margin-bottom:8px}
 .legend{display:flex;gap:10px;margin-bottom:8px;font-size:11px;color:#666;flex-wrap:wrap}
@@ -57,6 +57,10 @@ svg text{font-family:system-ui,sans-serif}
 .score-track{height:4px;background:#f0f0f0;border-radius:2px;overflow:hidden;margin-top:.5rem}
 .score-fill{height:100%;border-radius:2px;background:#1D9E75}
 .score-row{display:flex;justify-content:space-between;font-size:10px;color:#aaa;margin-top:3px}
+.pros-cons{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:8px;margin-bottom:6px}
+.pros{background:#F0FBF5;border-radius:6px;padding:6px 8px;font-size:11px;color:#0F6E56}
+.cons{background:#FEF3F2;border-radius:6px;padding:6px 8px;font-size:11px;color:#B42318}
+.pros-label,.cons-label{font-weight:600;margin-bottom:2px;font-size:10px}
 .disclaimer{background:#fff;border-top:1px solid #e5e5e5;padding:1.5rem;margin-top:2rem}
 .disclaimer-inner{max-width:960px;margin:0 auto;font-size:12px;color:#aaa;line-height:1.7}
 .disclaimer-inner strong{color:#888}
@@ -78,23 +82,29 @@ svg text{font-family:system-ui,sans-serif}
     </nav>
   </div>
 </div>
+<div style="display:flex;justify-content:flex-end;gap:6px;padding:.4rem 1.5rem;background:#fff;border-bottom:0.5px solid #e5e5e5">
+  <button id="btn-zh-hk" style="font-size:12px;padding:4px 12px;border-radius:20px;border:0.5px solid #1D9E75;background:#1D9E75;color:#fff;cursor:pointer" onclick="setLang('zh-hk')">繁體</button>
+  <button id="btn-zh-cn" style="font-size:12px;padding:4px 12px;border-radius:20px;border:0.5px solid #e5e5e5;background:transparent;color:#666;cursor:pointer" onclick="setLang('zh-cn')">简体</button>
+  <button id="btn-en"    style="font-size:12px;padding:4px 12px;border-radius:20px;border:0.5px solid #e5e5e5;background:transparent;color:#666;cursor:pointer" onclick="setLang('en')">English</button>
+</div>
 
 <div class="hero">
   <div class="hero-inner">
     <div>
-      <div class="hero-tag">每日更新 · 2026-06-12</div>
+      <div class="hero-tag">每日更新 · 2026-06-13</div>
       <h1>全球高息股<br>每日精選分析</h1>
       <p class="hero-sub">覆蓋香港、美國、英國三大市場，以系統化評分篩選出具備穩定派息能力的優質股票。</p>
       <div class="hero-badges">
         <span class="badge badge-hk">港股 HK</span>
         <span class="badge badge-us">美股 US</span>
         <span class="badge badge-uk">英股 UK</span>
+        <span class="badge badge-cn">A股 CN</span>
       </div>
     </div>
     <div class="hero-stats">
-      <div class="stat-box"><div class="stat-val">307</div><div class="stat-label">今日追蹤股票數</div></div>
-      <div class="stat-box"><div class="stat-val">117</div><div class="stat-label">入圍股票（≥50分）</div></div>
-      <div class="stat-box"><div class="stat-val">3</div><div class="stat-label">強力買入</div></div>
+      <div class="stat-box"><div class="stat-val">413</div><div class="stat-label">今日追蹤股票數</div></div>
+      <div class="stat-box"><div class="stat-val">176</div><div class="stat-label">入圍股票（≥50分）</div></div>
+      <div class="stat-box"><div class="stat-val">5</div><div class="stat-label">強力買入</div></div>
       <div class="stat-box"><div class="stat-val">81</div><div class="stat-label">今日最高分 (TW.L)</div></div>
     </div>
   </div>
@@ -148,37 +158,47 @@ svg text{font-family:system-ui,sans-serif}
 </div>
 
 <div class="section" id="charts">
-  <div class="section-title">市場概覽 — 2026-06-12</div>
+  <div class="section-title">市場概覽 — 2026-06-13</div>
   <div class="top-row">
     <div class="chart-card">
       <div class="chart-title">美股 US</div>
       <div class="legend">
         <span><span class="ld" style="background:#1D9E75"></span>強力買入 <strong>0</strong></span>
         <span><span class="ld" style="background:#378ADD"></span>值得關注 <strong>47</strong></span>
-        <span><span class="ld" style="background:#EF9F27"></span>觀望 <strong>100</strong></span>
+        <span><span class="ld" style="background:#EF9F27"></span>觀望 <strong>96</strong></span>
       </div>
       <svg id="us" viewBox="0 0 180 160" width="100%" height="160"></svg>
-      <div class="chart-sub">147隻 · 均分 42.4 · 最高 68</div>
+      <div class="chart-sub">143隻 · 均分 42.4 · 最高 68</div>
     </div>
     <div class="chart-card">
       <div class="chart-title">港股 HK</div>
       <div class="legend">
-        <span><span class="ld" style="background:#1D9E75"></span>強力買入 <strong>1</strong></span>
-        <span><span class="ld" style="background:#378ADD"></span>值得關注 <strong>48</strong></span>
-        <span><span class="ld" style="background:#EF9F27"></span>觀望 <strong>49</strong></span>
+        <span><span class="ld" style="background:#1D9E75"></span>強力買入 <strong>0</strong></span>
+        <span><span class="ld" style="background:#378ADD"></span>值得關注 <strong>49</strong></span>
+        <span><span class="ld" style="background:#EF9F27"></span>觀望 <strong>45</strong></span>
       </div>
       <svg id="hk" viewBox="0 0 180 160" width="100%" height="160"></svg>
-      <div class="chart-sub">98隻 · 均分 50.6 · 最高 75</div>
+      <div class="chart-sub">94隻 · 均分 50.4 · 最高 73</div>
     </div>
     <div class="chart-card">
       <div class="chart-title">英股 UK</div>
       <div class="legend">
         <span><span class="ld" style="background:#1D9E75"></span>強力買入 <strong>2</strong></span>
-        <span><span class="ld" style="background:#378ADD"></span>值得關注 <strong>19</strong></span>
+        <span><span class="ld" style="background:#378ADD"></span>值得關注 <strong>17</strong></span>
         <span><span class="ld" style="background:#EF9F27"></span>觀望 <strong>41</strong></span>
       </div>
       <svg id="uk" viewBox="0 0 180 160" width="100%" height="160"></svg>
-      <div class="chart-sub">62隻 · 均分 45.2 · 最高 81</div>
+      <div class="chart-sub">60隻 · 均分 44.9 · 最高 81</div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">A股 CN</div>
+      <div class="legend">
+        <span><span class="ld" style="background:#1D9E75"></span>強力買入 <strong>3</strong></span>
+        <span><span class="ld" style="background:#378ADD"></span>值得關注 <strong>58</strong></span>
+        <span><span class="ld" style="background:#EF9F27"></span>觀望 <strong>55</strong></span>
+      </div>
+      <svg id="cn" viewBox="0 0 180 160" width="100%" height="160"></svg>
+      <div class="chart-sub">116隻 · 均分 51.6 · 最高 80</div>
     </div>
   </div>
   <div class="chart-card">
@@ -193,7 +213,7 @@ svg text{font-family:system-ui,sans-serif}
 </div>
 
 <div class="section" id="picks">
-  <div class="section-title">最新精選推介 — 2026-06-12</div>
+  <div class="section-title">最新精選推介 — 2026-06-13</div>
   <p style="font-size:13px;color:#999;margin-bottom:1.25rem">以下為今日評分最高股票（≥50分），綠框為強力買入。</p>
   <div class="picks-grid" id="picksGrid"></div>
 </div>
@@ -216,11 +236,12 @@ svg text{font-family:system-ui,sans-serif}
 </div>
 
 <script>
-const US_STATS = {"total": 147, "strong": 0, "watch": 47, "hold": 100, "avg": 42.4, "max": 68};
-const HK_STATS = {"total": 98, "strong": 1, "watch": 48, "hold": 49, "avg": 50.6, "max": 75};
-const UK_STATS = {"total": 62, "strong": 2, "watch": 19, "hold": 41, "avg": 45.2, "max": 81};
-const TOP10    = [{"label": "TW.L", "score": 81, "mkt": "UK", "rating": "strong"}, {"label": "III.L", "score": 79, "mkt": "UK", "rating": "strong"}, {"label": "2600.HK", "score": 75, "mkt": "HK", "rating": "strong"}, {"label": "0027.HK", "score": 74, "mkt": "HK", "rating": "watch"}, {"label": "RKT.L", "score": 73, "mkt": "UK", "rating": "watch"}, {"label": "0570.HK", "score": 72, "mkt": "HK", "rating": "watch"}, {"label": "0358.HK", "score": 72, "mkt": "HK", "rating": "watch"}, {"label": "0168.HK", "score": 72, "mkt": "HK", "rating": "watch"}, {"label": "0874.HK", "score": 71, "mkt": "HK", "rating": "watch"}, {"label": "2319.HK", "score": 71, "mkt": "HK", "rating": "watch"}];
-const PICKS    = [{"ticker": "TW.L", "name": "Taylor Wimpey plc", "mkt": "UK", "score": 81, "rating": "strong", "yield_": "10.3", "pe": "24.7", "pb": "0.63"}, {"ticker": "III.L", "name": "3i Group Ord", "mkt": "UK", "score": 79, "rating": "strong", "yield_": "3.5", "pe": "4.1", "pb": "0.73"}, {"ticker": "2600.HK", "name": "Aluminum Corporation of China Limited", "mkt": "HK", "score": 75, "rating": "strong", "yield_": "2.9", "pe": "9.9", "pb": "1.81"}, {"ticker": "0027.HK", "name": "Galaxy Entertainment Group Limited", "mkt": "HK", "score": 74, "rating": "watch", "yield_": "4.8", "pe": "12.7", "pb": "1.63"}, {"ticker": "RKT.L", "name": "Reckitt Benckiser Group plc", "mkt": "UK", "score": 73, "rating": "watch", "yield_": "10.1", "pe": "9.4", "pb": "3.82"}, {"ticker": "0570.HK", "name": "China Traditional Chinese Medicine Holdings Co. Limited", "mkt": "HK", "score": 72, "rating": "watch", "yield_": "5.8", "pe": "0.0", "pb": "0.31"}, {"ticker": "0358.HK", "name": "Jiangxi Copper Company Limited", "mkt": "HK", "score": 72, "rating": "watch", "yield_": "6.0", "pe": "11.8", "pb": "1.13"}, {"ticker": "0168.HK", "name": "Tsingtao Brewery Company Limited", "mkt": "HK", "score": 72, "rating": "watch", "yield_": "5.4", "pe": "12.5", "pb": "1.80"}, {"ticker": "0874.HK", "name": "Guangzhou Baiyunshan Pharmaceutical Holdings Company Limited", "mkt": "HK", "score": 71, "rating": "watch", "yield_": "5.9", "pe": "7.1", "pb": "0.55"}, {"ticker": "2319.HK", "name": "China Mengniu Dairy Company Limited", "mkt": "HK", "score": 71, "rating": "watch", "yield_": "7.0", "pe": "36.0", "pb": "1.37"}, {"ticker": "0762.HK", "name": "China Unicom (Hong Kong) Limited", "mkt": "HK", "score": 70, "rating": "watch", "yield_": "8.6", "pe": "9.3", "pb": "0.53"}, {"ticker": "0552.HK", "name": "China Communications Services Corporation Limited", "mkt": "HK", "score": 69, "rating": "watch", "yield_": "12.1", "pe": "6.8", "pb": "0.51"}];
+const US_STATS = {"total": 143, "strong": 0, "watch": 47, "hold": 96, "avg": 42.4, "max": 68};
+const HK_STATS = {"total": 94, "strong": 0, "watch": 49, "hold": 45, "avg": 50.4, "max": 73};
+const UK_STATS = {"total": 60, "strong": 2, "watch": 17, "hold": 41, "avg": 44.9, "max": 81};
+const CN_STATS = {"total": 116, "strong": 3, "watch": 58, "hold": 55, "avg": 51.6, "max": 80};
+const TOP10    = [{"label": "TW.L", "score": 81, "mkt": "UK", "rating": "strong"}, {"label": "601766.SS", "score": 80, "mkt": "CN", "rating": "strong"}, {"label": "III.L", "score": 79, "mkt": "UK", "rating": "strong"}, {"label": "600809.SS", "score": 77, "mkt": "CN", "rating": "strong"}, {"label": "000963.SZ", "score": 77, "mkt": "CN", "rating": "strong"}, {"label": "600219.SS", "score": 74, "mkt": "CN", "rating": "watch"}, {"label": "000538.SZ", "score": 74, "mkt": "CN", "rating": "watch"}, {"label": "2600.HK", "score": 73, "mkt": "HK", "rating": "watch"}, {"label": "603369.SS", "score": 73, "mkt": "CN", "rating": "watch"}, {"label": "RKT.L", "score": 72, "mkt": "UK", "rating": "watch"}];
+const PICKS    = [{"ticker": "TW.L", "name": "Taylor Wimpey plc", "mkt": "UK", "score": 81, "rating": "strong", "yield_": "10.2", "pe": "24.9", "pb": "0.63", "pro_zh_hk": "\u9ad8\u606f\u7387 10.2%\uff0c\u73fe\u91d1\u56de\u5831\u5438\u5f15", "con_zh_hk": "\u80a1\u606f\u589e\u9577\u52d5\u529b\u4e0d\u8db3", "pro_zh_cn": "\u9ad8\u80a1\u606f\u7387 10.2%\uff0c\u73b0\u91d1\u56de\u62a5\u5438\u5f15", "con_zh_cn": "\u80a1\u606f\u589e\u957f\u52a8\u529b\u4e0d\u8db3", "pro_en": "High yield 10.2%, attractive income", "con_en": "Limited dividend growth momentum"}, {"ticker": "601766.SS", "name": "CRRC Corporation Limited", "mkt": "CN", "score": 80, "rating": "strong", "yield_": "5.6", "pe": "12.3", "pb": "0.94", "pro_zh_hk": "\u606f\u7387 5.6%\uff0c\u512a\u65bc\u5e02\u5834\u5e73\u5747", "con_zh_hk": "\u9700\u7559\u610f\u5e02\u5834\u98a8\u96aa\u53ca\u884c\u696d\u6ce2\u52d5", "pro_zh_cn": "\u80a1\u606f\u7387 5.6%\uff0c\u4f18\u4e8e\u5e02\u573a\u5e73\u5747", "con_zh_cn": "\u9700\u7559\u610f\u5e02\u573a\u98ce\u9669\u53ca\u884c\u4e1a\u6ce2\u52a8", "pro_en": "Yield 5.6%, above market average", "con_en": "Monitor market and sector risks"}, {"ticker": "III.L", "name": "3i Group plc", "mkt": "UK", "score": 79, "rating": "strong", "yield_": "3.4", "pe": "4.3", "pb": "0.76", "pro_zh_hk": "\u80a1\u606f\u8cea\u91cf\u9ad8\uff0c\u6d3e\u606f\u7a69\u5b9a\u53ef\u9760", "con_zh_hk": "\u9700\u7559\u610f\u5e02\u5834\u98a8\u96aa\u53ca\u884c\u696d\u6ce2\u52d5", "pro_zh_cn": "\u80a1\u606f\u8d28\u91cf\u9ad8\uff0c\u6d3e\u606f\u7a33\u5b9a\u53ef\u9760", "con_zh_cn": "\u9700\u7559\u610f\u5e02\u573a\u98ce\u9669\u53ca\u884c\u4e1a\u6ce2\u52a8", "pro_en": "High dividend quality, stable payout", "con_en": "Monitor market and sector risks"}, {"ticker": "600809.SS", "name": "Shanxi Xinghuacun Fen Wine Factory Co.,Ltd.", "mkt": "CN", "score": 77, "rating": "strong", "yield_": "5.1", "pe": "13.2", "pb": "3.21", "pro_zh_hk": "\u606f\u7387 5.1%\uff0c\u512a\u65bc\u5e02\u5834\u5e73\u5747", "con_zh_hk": "\u9700\u7559\u610f\u5e02\u5834\u98a8\u96aa\u53ca\u884c\u696d\u6ce2\u52d5", "pro_zh_cn": "\u80a1\u606f\u7387 5.1%\uff0c\u4f18\u4e8e\u5e02\u573a\u5e73\u5747", "con_zh_cn": "\u9700\u7559\u610f\u5e02\u573a\u98ce\u9669\u53ca\u884c\u4e1a\u6ce2\u52a8", "pro_en": "Yield 5.1%, above market average", "con_en": "Monitor market and sector risks"}, {"ticker": "000963.SZ", "name": "Huadong Medicine Co., Ltd", "mkt": "CN", "score": 77, "rating": "strong", "yield_": "5.2", "pe": "14.6", "pb": "1.98", "pro_zh_hk": "\u606f\u7387 5.2%\uff0c\u512a\u65bc\u5e02\u5834\u5e73\u5747", "con_zh_hk": "\u9700\u7559\u610f\u5e02\u5834\u98a8\u96aa\u53ca\u884c\u696d\u6ce2\u52d5", "pro_zh_cn": "\u80a1\u606f\u7387 5.2%\uff0c\u4f18\u4e8e\u5e02\u573a\u5e73\u5747", "con_zh_cn": "\u9700\u7559\u610f\u5e02\u573a\u98ce\u9669\u53ca\u884c\u4e1a\u6ce2\u52a8", "pro_en": "Yield 5.2%, above market average", "con_en": "Monitor market and sector risks"}, {"ticker": "600219.SS", "name": "Shandong Nanshan Aluminium Co.,Ltd.", "mkt": "CN", "score": 74, "rating": "watch", "yield_": "11.9", "pe": "13.1", "pb": "1.02", "pro_zh_hk": "\u9ad8\u606f\u7387 11.9%\uff0c\u73fe\u91d1\u56de\u5831\u5438\u5f15", "con_zh_hk": "\u9700\u7559\u610f\u5e02\u5834\u98a8\u96aa\u53ca\u884c\u696d\u6ce2\u52d5", "pro_zh_cn": "\u9ad8\u80a1\u606f\u7387 11.9%\uff0c\u73b0\u91d1\u56de\u62a5\u5438\u5f15", "con_zh_cn": "\u9700\u7559\u610f\u5e02\u573a\u98ce\u9669\u53ca\u884c\u4e1a\u6ce2\u52a8", "pro_en": "High yield 11.9%, attractive income", "con_en": "Monitor market and sector risks"}, {"ticker": "000538.SZ", "name": "Yunnan Baiyao Group Co.,Ltd", "mkt": "CN", "score": 74, "rating": "watch", "yield_": "9.9", "pe": "17.1", "pb": "2.14", "pro_zh_hk": "\u9ad8\u606f\u7387 9.9%\uff0c\u73fe\u91d1\u56de\u5831\u5438\u5f15", "con_zh_hk": "\u9700\u7559\u610f\u5e02\u5834\u98a8\u96aa\u53ca\u884c\u696d\u6ce2\u52d5", "pro_zh_cn": "\u9ad8\u80a1\u606f\u7387 9.9%\uff0c\u73b0\u91d1\u56de\u62a5\u5438\u5f15", "con_zh_cn": "\u9700\u7559\u610f\u5e02\u573a\u98ce\u9669\u53ca\u884c\u4e1a\u6ce2\u52a8", "pro_en": "High yield 9.9%, attractive income", "con_en": "Monitor market and sector risks"}, {"ticker": "2600.HK", "name": "Aluminum Corporation of China Limited", "mkt": "HK", "score": 73, "rating": "watch", "yield_": "2.7", "pe": "10.4", "pb": "1.90", "pro_zh_hk": "\u80a1\u606f\u8cea\u91cf\u9ad8\uff0c\u6d3e\u606f\u7a69\u5b9a\u53ef\u9760", "con_zh_hk": "\u606f\u7387\u504f\u4f4e\uff0c\u6536\u606f\u5438\u5f15\u529b\u6709\u9650", "pro_zh_cn": "\u80a1\u606f\u8d28\u91cf\u9ad8\uff0c\u6d3e\u606f\u7a33\u5b9a\u53ef\u9760", "con_zh_cn": "\u80a1\u606f\u7387\u504f\u4f4e\uff0c\u6536\u606f\u5438\u5f15\u529b\u6709\u9650", "pro_en": "High dividend quality, stable payout", "con_en": "Low yield limits income appeal"}, {"ticker": "603369.SS", "name": "Jiangsu King's Luck Brewery Joint-Stock Co.,Ltd.", "mkt": "CN", "score": 73, "rating": "watch", "yield_": "9.6", "pe": "13.3", "pb": "1.74", "pro_zh_hk": "\u9ad8\u606f\u7387 9.6%\uff0c\u73fe\u91d1\u56de\u5831\u5438\u5f15", "con_zh_hk": "\u9700\u7559\u610f\u5e02\u5834\u98a8\u96aa\u53ca\u884c\u696d\u6ce2\u52d5", "pro_zh_cn": "\u9ad8\u80a1\u606f\u7387 9.6%\uff0c\u73b0\u91d1\u56de\u62a5\u5438\u5f15", "con_zh_cn": "\u9700\u7559\u610f\u5e02\u573a\u98ce\u9669\u53ca\u884c\u4e1a\u6ce2\u52a8", "pro_en": "High yield 9.6%, attractive income", "con_en": "Monitor market and sector risks"}, {"ticker": "RKT.L", "name": "Reckitt Benckiser Group plc", "mkt": "UK", "score": 72, "rating": "watch", "yield_": "9.9", "pe": "9.5", "pb": "3.87", "pro_zh_hk": "\u9ad8\u606f\u7387 9.9%\uff0c\u73fe\u91d1\u56de\u5831\u5438\u5f15", "con_zh_hk": "\u8ca1\u52d9\u5065\u5eb7\u5ea6\u4e00\u822c\uff0c\u9700\u95dc\u6ce8\u8ca0\u50b5", "pro_zh_cn": "\u9ad8\u80a1\u606f\u7387 9.9%\uff0c\u73b0\u91d1\u56de\u62a5\u5438\u5f15", "con_zh_cn": "\u8d22\u52a1\u5065\u5eb7\u5ea6\u4e00\u822c\uff0c\u9700\u5173\u6ce8\u8d1f\u503a", "pro_en": "High yield 9.9%, attractive income", "con_en": "Moderate financials, watch debt levels"}, {"ticker": "0570.HK", "name": "China Traditional Chinese Medicine Holdings Co. Limited", "mkt": "HK", "score": 72, "rating": "watch", "yield_": "5.8", "pe": "0.0", "pb": "0.31", "pro_zh_hk": "\u606f\u7387 5.8%\uff0c\u512a\u65bc\u5e02\u5834\u5e73\u5747", "con_zh_hk": "\u80a1\u606f\u8cea\u91cf\u4e00\u822c\uff0c\u9700\u7559\u610f\u6d3e\u606f\u6301\u7e8c\u6027", "pro_zh_cn": "\u80a1\u606f\u7387 5.8%\uff0c\u4f18\u4e8e\u5e02\u573a\u5e73\u5747", "con_zh_cn": "\u80a1\u606f\u8d28\u91cf\u4e00\u822c\uff0c\u9700\u7559\u610f\u6d3e\u606f\u6301\u7eed\u6027", "pro_en": "Yield 5.8%, above market average", "con_en": "Moderate dividend quality, sustainability risk"}, {"ticker": "601390.SS", "name": "China Railway Group Limited", "mkt": "CN", "score": 72, "rating": "watch", "yield_": "5.7", "pe": "5.9", "pb": "0.35", "pro_zh_hk": "\u606f\u7387 5.7%\uff0c\u512a\u65bc\u5e02\u5834\u5e73\u5747", "con_zh_hk": "\u8ca1\u52d9\u5065\u5eb7\u5ea6\u4e00\u822c\uff0c\u9700\u95dc\u6ce8\u8ca0\u50b5", "pro_zh_cn": "\u80a1\u606f\u7387 5.7%\uff0c\u4f18\u4e8e\u5e02\u573a\u5e73\u5747", "con_zh_cn": "\u8d22\u52a1\u5065\u5eb7\u5ea6\u4e00\u822c\uff0c\u9700\u5173\u6ce8\u8d1f\u503a", "pro_en": "Yield 5.7%, above market average", "con_en": "Moderate financials, watch debt levels"}];
 
 function drawDonut(svgId, strong, watch, hold) {
   const svg = document.getElementById(svgId);
@@ -263,12 +284,14 @@ function drawDonut(svgId, strong, watch, hold) {
 drawDonut('us',US_STATS.strong,US_STATS.watch,US_STATS.hold);
 drawDonut('hk',HK_STATS.strong,HK_STATS.watch,HK_STATS.hold);
 drawDonut('uk',UK_STATS.strong,UK_STATS.watch,UK_STATS.hold);
+drawDonut('cn',CN_STATS.strong,CN_STATS.watch,CN_STATS.hold);
 
 const RATING_COLOR={strong:'#1D9E75',watch:'#378ADD',hold:'#EF9F27'};
 const MKT_STYLE={
   US:{bg:'#E6F1FB',text:'#185FA5'},
   HK:{bg:'#E1F5EE',text:'#0F6E56'},
   UK:{bg:'#FAEEDA',text:'#854F0B'},
+  CN:{bg:'#FDECEA',text:'#B71C1C'},
 };
 const svg=document.getElementById('bar');
 const W=900,H=240,padL=36,padB=46,padT=10,padR=10;
@@ -328,6 +351,7 @@ const MKT_BADGE={
   HK:'<span class="badge badge-hk">HK</span>',
   US:'<span class="badge badge-us">US</span>',
   UK:'<span class="badge badge-uk">UK</span>',
+  CN:'<span class="badge badge-cn">CN</span>',
 };
 document.getElementById('picksGrid').innerHTML=PICKS.map(p=>`
   <div class="pick-card${p.rating==='strong'?' top':''}">
@@ -341,15 +365,94 @@ document.getElementById('picksGrid').innerHTML=PICKS.map(p=>`
       </div>
       <div class="pick-name">${p.name}</div>
     </div>
-    <div class="pick-stats"">
-      <div class="pick-stat"><div class="pick-stat-label">股息率</div><div class="pick-stat-val">${p.yield_}%</div></div>
+    <div class="pick-stats">
+      <div class="pick-stat"><div class="pick-stat-label" data-zh-hk="股息率" data-zh-cn="股息率" data-en="Yield">股息率</div><div class="pick-stat-val">${p.yield_}%</div></div>
       <div class="pick-stat"><div class="pick-stat-label">PE</div><div class="pick-stat-val">${p.pe}x</div></div>
       <div class="pick-stat"><div class="pick-stat-label">P/B</div><div class="pick-stat-val">${p.pb}</div></div>
+    </div>
+    <div class="pros-cons">
+      <div class="pros"><div class="pros-label">✅ 優點</div><div class="pros-text" data-zh-hk="${p.pro_zh_hk}" data-zh-cn="${p.pro_zh_cn}" data-en="${p.pro_en}">${p.pro_zh_hk}</div></div>
+      <div class="cons"><div class="cons-label">⚠️ 缺點</div><div class="cons-text" data-zh-hk="${p.con_zh_hk}" data-zh-cn="${p.con_zh_cn}" data-en="${p.con_en}">${p.con_zh_hk}</div></div>
     </div>
     <div class="score-track"><div class="score-fill" style="width:${p.score}%"></div></div>
     <div class="score-row"><span>評分</span><span>${p.score}/100</span></div>
   </div>
 `).join('');
 </script>
-</body>
+<script>
+function setLang(lang) {
+  var btns = {'zh-hk':'#btn-zh-hk','zh-cn':'#btn-zh-cn','en':'#btn-en'};
+  Object.values(btns).forEach(function(id){
+    var el=document.querySelector(id);
+    if(el){el.style.background='transparent';el.style.color='#666';el.style.borderColor='#e5e5e5';}
+  });
+  var active=document.querySelector(btns[lang]);
+  if(active){active.style.background='#1D9E75';active.style.color='#fff';active.style.borderColor='#1D9E75';}
+  var T = {
+    'zh-hk':{heroTitle:'全球高息股<br>每日精選分析',heroSub:'覆蓋香港、美國、英國及A股四大市場，以系統化評分篩選出具備穩定派息能力的優質股票。',stat1:'今日追蹤股票數',stat2:'入圍股票（≥50分）',stat3:'強力買入',stat4:'今日最高分',mktHK:'港股 HK',mktUS:'美股 US',mktUK:'英股 UK',mktCN:'A股 CN',chartUS:'美股 US',chartHK:'港股 HK',chartUK:'英股 UK',chartCN:'A股 CN',top10:'前10名評分分佈',sec0:'選股理念與方法',sec1:'評分系統',sec2_pre:'市場概覽',sec3_pre:'最新精選推介',about0h:'選股理念',about1h:'三大市場',about2h:'系統化篩選',about3h:'每日更新',about0p:'長期穩定的股息收入是財富增長的重要基石。我們不單看當前息率高低，更重視企業的派息可持續性、財務健康狀況及估值合理性。',about1p:'同步覆蓋香港、美國及英國市場，以統一標準進行跨市場比較，讓投資者掌握全球高息機會。',about2p:'每日自動更新數據，以量化評分模型對數百隻股票進行排名，過濾雜訊，聚焦真正值得關注的機會。',about3p:'每個交易日收市後自動重新評分，確保推介反映最新的估值及財務狀況。',scoreIntro:'每隻股票以100分制進行綜合評分，涵蓋五個範疇：',th1:'評分範疇',th2:'滿分',th3:'主要考量',row1:['股息質量','30分','息率水平、派息穩定性及覆蓋率'],row2:['估值','25分','現價相對歷史息率及市場的吸引程度'],row3:['財務健康','25分','資產負債、現金流及償債能力'],row4:['增長','10分','股息增長趨勢及盈利前景'],row5:['技術走勢','10分','RSI、52週位置等技術指標'],rth1:'評級',rth2:'分數',rth3:'意義',rrow1:'各方面均表現優秀，值得重點關注',rrow2:'基本面良好，可納入觀察名單',rrow3:'有一定吸引力，但需留意風險',picksNote:'以下為今日評分最高股票（≥50分），綠框為強力買入。',pros:'✅ 優點',cons:'⚠️ 缺點',score:'評分',yieldLbl:'股息率',discLabel:'免責聲明',disc:'本網站所有內容僅供參考及教育用途，不構成任何投資建議或買賣邀請。投資涉及風險，過往表現不代表未來回報。',footerRight:'每個交易日更新',footerSource:'資料來源：Yahoo Finance · 僅供參考'},
+    'zh-cn':{heroTitle:'全球高息股<br>每日精选分析',heroSub:'覆盖香港、美国、英国及A股四大市场，以系统化评分筛选出具备稳定派息能力的优质股票。',stat1:'今日追踪股票数',stat2:'入围股票（≥50分）',stat3:'强力买入',stat4:'今日最高分',mktHK:'港股 HK',mktUS:'美股 US',mktUK:'英股 UK',mktCN:'A股 CN',chartUS:'美股 US',chartHK:'港股 HK',chartUK:'英股 UK',chartCN:'A股 CN',top10:'前10名评分分布',sec0:'选股理念与方法',sec1:'评分系统',sec2_pre:'市场概览',sec3_pre:'最新精选推介',about0h:'选股理念',about1h:'三大市场',about2h:'系统化筛选',about3h:'每日更新',about0p:'长期稳定的股息收入是财富增长的重要基石。我们不单看当前息率高低，更重视企业的派息可持续性、财务健康状况及估值合理性。',about1p:'同步覆盖香港、美国及英国市场，以统一标准进行跨市场比较，让投资者掌握全球高息机会。',about2p:'每日自动更新数据，以量化评分模型对数百只股票进行排名，过滤杂讯，聚焦真正值得关注的机会。',about3p:'每个交易日收市后自动重新评分，确保推介反映最新的估值及财务状况。',scoreIntro:'每只股票以100分制进行综合评分，涵盖五个范畴：',th1:'评分范畴',th2:'满分',th3:'主要考量',row1:['股息质量','30分','息率水平、派息稳定性及覆盖率'],row2:['估值','25分','现价相对历史息率及市场的吸引程度'],row3:['财务健康','25分','资产负债、现金流及偿债能力'],row4:['增长','10分','股息增长趋势及盈利前景'],row5:['技术走势','10分','RSI、52周位置等技术指标'],rth1:'评级',rth2:'分数',rth3:'意义',rrow1:'各方面均表现优秀，值得重点关注',rrow2:'基本面良好，可纳入观察名单',rrow3:'有一定吸引力，但需留意风险',picksNote:'以下为今日评分最高股票（≥50分），绿框为强力买入。',pros:'✅ 优点',cons:'⚠️ 缺点',score:'评分',yieldLbl:'股息率',discLabel:'免责声明',disc:'本网站所有内容仅供参考及教育用途，不构成任何投资建议或买卖邀请。投资涉及风险，过往表现不代表未来回报。',footerRight:'每个交易日更新',footerSource:'资料来源：Yahoo Finance · 仅供参考'},
+    'en':{heroTitle:'Global Dividend Stocks<br>Daily Analysis',heroSub:'Covering HK, US, UK and China A-shares. Systematic scoring to identify quality dividend stocks.',stat1:'Stocks Tracked',stat2:'Qualified (≥50pts)',stat3:'Strong Buy',stat4:"Today's High",mktHK:'HK Stocks',mktUS:'US Stocks',mktUK:'UK Stocks',mktCN:'China A-Shares',chartUS:'US Stocks',chartHK:'HK Stocks',chartUK:'UK Stocks',chartCN:'China A-Shares',top10:'Top 10 Score Distribution',sec0:'Investment Philosophy',sec1:'Scoring System',sec2_pre:'Market Overview',sec3_pre:'Top Picks',about0h:'Philosophy',about1h:'4 Markets',about2h:'Systematic Screening',about3h:'Daily Update',about0p:'We focus not just on yield but on dividend sustainability, financial health, and valuation to find quality long-term holdings.',about1p:'Covering Hong Kong, US, UK and China A-shares with a unified scoring framework for cross-market comparison.',about2p:'Daily automated data updates with quantitative scoring to rank hundreds of stocks and surface the most compelling opportunities.',about3p:'Re-scored every trading day after market close to reflect the latest valuations and financial conditions.',scoreIntro:'Each stock is scored on a 100-point scale across five dimensions:',th1:'Category',th2:'Max',th3:'Key Criteria',row1:['Dividend Quality','30pts','Yield level, payout stability & coverage'],row2:['Valuation','25pts','Current price vs historical yield & attractiveness'],row3:['Financial Health','25pts','Balance sheet, cash flow & debt coverage'],row4:['Growth','10pts','Dividend growth trend & earnings outlook'],row5:['Technical','10pts','RSI, 52-week position & other indicators'],rth1:'Rating',rth2:'Score',rth3:'Meaning',rrow1:'Excellent across all dimensions, high priority',rrow2:'Good fundamentals, worth monitoring',rrow3:'Some appeal, monitor risks',picksNote:'Top-rated stocks today (≥50pts). Green border = Strong Buy.',pros:'✅ Pro',cons:'⚠️ Con',score:'Score',yieldLbl:'Yield',discLabel:'Disclaimer',disc:'All content is for reference only. Not investment advice. Investing involves risk.',footerRight:'Updated every trading day',footerSource:'Data: Yahoo Finance · For reference only'},
+  };
+  var t = T[lang] || T['zh-hk'];
+  var h1=document.querySelector('.hero h1'); if(h1) h1.innerHTML=t.heroTitle;
+  var hs=document.querySelector('.hero-sub'); if(hs) hs.textContent=t.heroSub;
+  var sl=document.querySelectorAll('.stat-label');
+  [t.stat1,t.stat2,t.stat3,t.stat4].forEach(function(s,i){if(sl[i])sl[i].textContent=s;});
+  var hb=document.querySelectorAll('.hero-badges .badge');
+  [t.mktHK,t.mktUS,t.mktUK,t.mktCN].forEach(function(s,i){if(hb[i])hb[i].textContent=s;});
+  var ct=document.querySelectorAll('.chart-title');
+  [t.chartUS,t.chartHK,t.chartUK,t.chartCN,t.top10].forEach(function(s,i){if(ct[i])ct[i].firstChild.textContent=s;});
+  var st=document.querySelectorAll('.section-title');
+  if(st[0]) st[0].childNodes[0].textContent=t.sec0;
+  if(st[1]) st[1].childNodes[0].textContent=t.sec1;
+  if(st[2]){var d2=st[2].textContent.split('—')[1]||''; st[2].childNodes[0].textContent=t.sec2_pre+(d2?' — '+d2.trim():'');}
+  if(st[3]){var d3=st[3].textContent.split('—')[1]||''; st[3].childNodes[0].textContent=t.sec3_pre+(d3?' — '+d3.trim():'');}
+  var ah=document.querySelectorAll('.about-card h3');
+  [t.about0h,t.about1h,t.about2h,t.about3h].forEach(function(s,i){if(ah[i])ah[i].textContent=s;});
+  var ap=document.querySelectorAll('.about-card p');
+  [t.about0p,t.about1p,t.about2p,t.about3p].forEach(function(s,i){if(ap[i])ap[i].textContent=s;});
+  var si=document.querySelector('#about > p'); if(si) si.textContent=t.scoreIntro;
+  var ths=document.querySelectorAll('.score-table:first-of-type th');
+  [t.th1,t.th2,t.th3].forEach(function(s,i){if(ths[i])ths[i].textContent=s;});
+  var rows=document.querySelectorAll('.score-table:first-of-type tbody tr');
+  [t.row1,t.row2,t.row3,t.row4,t.row5].forEach(function(r,i){if(rows[i]){var tds=rows[i].querySelectorAll('td');if(tds[0])tds[0].textContent=r[0];if(tds[1])tds[1].textContent=r[1];if(tds[2])tds[2].textContent=r[2];}});
+  var rths=document.querySelectorAll('.score-table:last-of-type th');
+  [t.rth1,t.rth2,t.rth3].forEach(function(s,i){if(rths[i])rths[i].textContent=s;});
+  var rrows=document.querySelectorAll('.score-table:last-of-type tbody tr');
+  [t.rrow1,t.rrow2,t.rrow3].forEach(function(r,i){if(rrows[i]){var tds=rrows[i].querySelectorAll('td');if(tds[2])tds[2].textContent=r;}});
+  var pn=document.querySelector('#picks > p'); if(pn) pn.textContent=t.picksNote;
+  document.querySelectorAll('.pros-label').forEach(function(el){el.textContent=t.pros;});
+  document.querySelectorAll('.cons-label').forEach(function(el){el.textContent=t.cons;});
+  document.querySelectorAll('.score-row span:first-child').forEach(function(el){el.textContent=t.score;});
+  document.querySelectorAll('.pick-stat-label[data-zh-hk]').forEach(function(el){el.textContent=t.yieldLbl;});
+  document.querySelectorAll('.pros-text').forEach(function(el){el.textContent=el.getAttribute('data-'+lang)||el.getAttribute('data-zh-hk');});
+  document.querySelectorAll('.cons-text').forEach(function(el){el.textContent=el.getAttribute('data-'+lang)||el.getAttribute('data-zh-hk');});
+  var fi=document.querySelectorAll('.footer-inner span');
+  if(fi[1]) fi[1].textContent='© 2026 prosynchk.com · '+t.footerRight;
+  if(fi[2]) fi[2].textContent=t.footerSource;
+  var disc=document.querySelector('.disclaimer-inner');
+  if(disc) disc.innerHTML='<strong>'+t.discLabel+'：</strong>'+t.disc;
+  var ll={'zh-hk':['強力買入','值得關注','觀望'],'zh-cn':['强力买入','值得关注','观望'],'en':['Strong Buy','Watch','Hold']};
+  var la=ll[lang]||ll['zh-hk'];
+  document.querySelectorAll('.legend span[data-zh-hk]').forEach(function(el){
+    var k=el.getAttribute('data-zh-hk'),n=el.querySelector('strong')?el.querySelector('strong').outerHTML:'';
+    if(k==='強力買入')el.innerHTML='<span class="ld" style="background:#1D9E75"></span>'+la[0]+' '+n;
+    else if(k==='值得關注')el.innerHTML='<span class="ld" style="background:#378ADD"></span>'+la[1]+' '+n;
+    else if(k==='觀望')el.innerHTML='<span class="ld" style="background:#EF9F27"></span>'+la[2]+' '+n;
+  });
+  var uw=lang==='en'?' stocks':'隻';
+  document.querySelectorAll('.chart-sub').forEach(function(el){
+    var tx=el.textContent;
+    if(tx.indexOf('隻')!==-1)el.textContent=tx.replace('隻',uw);
+    else if(tx.indexOf(' stocks')!==-1)el.textContent=tx.replace(' stocks',uw);
+  });
+  document.querySelectorAll('svg[id]').forEach(function(svg){
+    var ct=svg.querySelector('text:last-of-type');
+    if(ct&&(ct.textContent.includes('隻')||ct.textContent.includes('stk'))){
+      var n=ct.textContent.replace('隻','').replace(' stk','').trim();
+      ct.textContent=n+(lang==='en'?' stk':'隻');
+    }
+  });
+}
+</script></body>
 </html>
