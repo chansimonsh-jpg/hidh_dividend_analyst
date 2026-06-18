@@ -53,11 +53,18 @@ jobs:
           echo "找到輸出: $html_dir"
           echo "html_dir=$html_dir" >> "$GITHUB_OUTPUT"
 
+      - name: Copy today's index.html into html_archive/（保留歷史，唔覆蓋）
+        run: |
+          today=$(date -u +%Y%m%d)
+          mkdir -p html_archive
+          cp "${{ steps.find_html.outputs.html_dir }}/index.html" "html_archive/index_${today}.html"
+          echo "archive_file=html_archive/index_${today}.html" >> "$GITHUB_ENV"
+
       - name: Commit & push updated data
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          for f in UK_Dividend_Analysis.xlsx HK_Dividend_Analysis.xlsx US_Dividend_Analysis.xlsx CN_Dividend_Analysis.xlsx pick_history.json; do
+          for f in UK_Dividend_Analysis.xlsx HK_Dividend_Analysis.xlsx US_Dividend_Analysis.xlsx CN_Dividend_Analysis.xlsx pick_history.json "$archive_file"; do
             [ -f "$f" ] && git add "$f"
           done
           git diff --staged --quiet || git commit -m "Daily update: $(date -u +%Y-%m-%d)"
