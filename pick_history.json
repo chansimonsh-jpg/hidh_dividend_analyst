@@ -72,6 +72,11 @@
       "date": "2026-06-16",
       "price": 16.26,
       "end_date": "2026-06-18"
+    },
+    {
+      "date": "2026-06-18",
+      "price": 15.57,
+      "end_date": null
     }
   ],
   "pick:HK:0027.HK": [
@@ -119,6 +124,11 @@
       "date": "2026-06-16",
       "price": 148.5,
       "end_date": "2026-06-16"
+    },
+    {
+      "date": "2026-06-18",
+      "price": 140.54,
+      "end_date": null
     }
   ],
   "avoid:US:WEC": [
@@ -188,14 +198,14 @@
     {
       "date": "2026-06-17",
       "price": 46.01,
-      "end_date": null
+      "end_date": "2026-06-18"
     }
   ],
   "avoid:US:PM": [
     {
       "date": "2026-06-17",
       "price": 179.44,
-      "end_date": null
+      "end_date": "2026-06-18"
     }
   ],
   "pick:CN:600018.SS": [
