@@ -177,7 +177,9 @@ def load_history():
     return migrated
 
 def save_history(history):
-    os.makedirs(os.path.dirname(HISTORY_FILE), exist_ok=True)
+    d = os.path.dirname(HISTORY_FILE)
+    if d:
+        os.makedirs(d, exist_ok=True)
     with open(HISTORY_FILE, "w", encoding="utf-8") as f:
         json.dump(history, f, ensure_ascii=False, indent=2)
 
