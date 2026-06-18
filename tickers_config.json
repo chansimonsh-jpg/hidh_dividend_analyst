@@ -1,0 +1,2967 @@
+{
+  "_meta": {
+    "version": "1.0",
+    "last_updated": "2026-06-12",
+    "description": "股息追蹤清單 — 由 batch_importer 使用"
+  },
+  "tickers": {
+    "LGEN.L": {
+      "name": "Legal & General",
+      "market": "UK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "ABDN.L": {
+      "name": "abrdn plc",
+      "market": "UK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "MNG.L": {
+      "name": "M&G Investments",
+      "market": "UK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "IMB.L": {
+      "name": "Imperial Brands",
+      "market": "UK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "BATS.L": {
+      "name": "BAT Tobacco",
+      "market": "UK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "UKW.L": {
+      "name": "Greencoat UK Wind",
+      "market": "UK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "ORIT.L": {
+      "name": "Octopus Renewables",
+      "market": "UK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "TRIG.L": {
+      "name": "TRIG Renewables",
+      "market": "UK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "BSIF.L": {
+      "name": "Bluefield Solar",
+      "market": "UK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "LAND.L": {
+      "name": "Land Securities",
+      "market": "UK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "AV.L": {
+      "name": "Aviva plc",
+      "market": "UK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "HSBA.L": {
+      "name": "HSBC Holdings",
+      "market": "UK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "BARC.L": {
+      "name": "Barclays plc",
+      "market": "UK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "NWG.L": {
+      "name": "NatWest Group",
+      "market": "UK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "LLOY.L": {
+      "name": "Lloyds Banking Group",
+      "market": "UK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "SDR.L": {
+      "name": "Schroders plc",
+      "market": "UK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "INF.L": {
+      "name": "Informa plc",
+      "market": "UK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "OSB.L": {
+      "name": "OSB Group",
+      "market": "UK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "BLND.L": {
+      "name": "British Land",
+      "market": "UK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "BBOX.L": {
+      "name": "Tritax Big Box",
+      "market": "UK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "HMSO.L": {
+      "name": "Hammerson plc",
+      "market": "UK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "PHP.L": {
+      "name": "Primary Health Prop",
+      "market": "UK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "BYG.L": {
+      "name": "Big Yellow Group",
+      "market": "UK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "UU.L": {
+      "name": "United Utilities",
+      "market": "UK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "SVT.L": {
+      "name": "Severn Trent",
+      "market": "UK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "NG.L": {
+      "name": "National Grid",
+      "market": "UK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "SSE.L": {
+      "name": "SSE plc",
+      "market": "UK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "HFEL.L": {
+      "name": "Henderson Far East",
+      "market": "UK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "MYI.L": {
+      "name": "Murray International",
+      "market": "UK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "MRCH.L": {
+      "name": "Merchants Trust",
+      "market": "UK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "CTY.L": {
+      "name": "City of London IT",
+      "market": "UK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "AAIF.L": {
+      "name": "Aberdeen Asian Inc",
+      "market": "UK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "BP.L": {
+      "name": "BP plc",
+      "market": "UK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "SHEL.L": {
+      "name": "Shell plc",
+      "market": "UK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "AAL.L": {
+      "name": "Anglo American",
+      "market": "UK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "RIO.L": {
+      "name": "Rio Tinto",
+      "market": "UK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "GSK.L": {
+      "name": "GSK plc",
+      "market": "UK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "AZN.L": {
+      "name": "AstraZeneca",
+      "market": "UK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "ULVR.L": {
+      "name": "Unilever plc",
+      "market": "UK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "BWY.L": {
+      "name": "Bellway plc",
+      "market": "UK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "TW.L": {
+      "name": "Taylor Wimpey",
+      "market": "UK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "PSN.L": {
+      "name": "Persimmon plc",
+      "market": "UK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "VOD.L": {
+      "name": "Vodafone Group",
+      "market": "UK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "BT-A.L": {
+      "name": "BT Group",
+      "market": "UK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "BA.L": {
+      "name": "BAE Systems",
+      "market": "UK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "PSON.L": {
+      "name": "Pearson plc",
+      "market": "UK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "WPP.L": {
+      "name": "WPP plc",
+      "market": "UK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "OCDO.L": {
+      "name": "Ocado Group",
+      "market": "UK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "SMIN.L": {
+      "name": "Smiths Group plc",
+      "market": "UK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "0005.HK": {
+      "name": "HSBC Asia",
+      "market": "HK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "2388.HK": {
+      "name": "BOC Hong Kong",
+      "market": "HK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "1398.HK": {
+      "name": "ICBC",
+      "market": "HK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "0939.HK": {
+      "name": "CCB",
+      "market": "HK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "3988.HK": {
+      "name": "Bank of China",
+      "market": "HK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "1288.HK": {
+      "name": "Agricultural Bank",
+      "market": "HK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "0023.HK": {
+      "name": "Bank of East Asia",
+      "market": "HK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "0823.HK": {
+      "name": "Link REIT",
+      "market": "HK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "0016.HK": {
+      "name": "Sun Hung Kai Prop",
+      "market": "HK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "0012.HK": {
+      "name": "Henderson Land",
+      "market": "HK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "0101.HK": {
+      "name": "Hang Lung Prop",
+      "market": "HK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "0778.HK": {
+      "name": "Fortune REIT",
+      "market": "HK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "2778.HK": {
+      "name": "Champion REIT",
+      "market": "HK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "0405.HK": {
+      "name": "Yuexiu REIT",
+      "market": "HK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "0006.HK": {
+      "name": "Power Assets",
+      "market": "HK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "0002.HK": {
+      "name": "CLP Holdings",
+      "market": "HK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "0003.HK": {
+      "name": "HK & China Gas",
+      "market": "HK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "1038.HK": {
+      "name": "CK Infrastructure",
+      "market": "HK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "0177.HK": {
+      "name": "Jiangsu Expressway",
+      "market": "HK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "0548.HK": {
+      "name": "Shenzhen Expressway",
+      "market": "HK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "0728.HK": {
+      "name": "China Telecom",
+      "market": "HK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "0762.HK": {
+      "name": "China Unicom",
+      "market": "HK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "0941.HK": {
+      "name": "China Mobile",
+      "market": "HK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "2318.HK": {
+      "name": "Ping An Insurance",
+      "market": "HK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "0966.HK": {
+      "name": "China Taiping",
+      "market": "HK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "1336.HK": {
+      "name": "New China Life",
+      "market": "HK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "0857.HK": {
+      "name": "PetroChina",
+      "market": "HK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "0386.HK": {
+      "name": "Sinopec",
+      "market": "HK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "1088.HK": {
+      "name": "China Shenhua",
+      "market": "HK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "1171.HK": {
+      "name": "Yanzhou Coal",
+      "market": "HK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "0083.HK": {
+      "name": "Sino Land",
+      "market": "HK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "0001.HK": {
+      "name": "CK Hutchison",
+      "market": "HK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "0019.HK": {
+      "name": "Swire Pacific A",
+      "market": "HK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "0087.HK": {
+      "name": "Swire Pacific B",
+      "market": "HK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "0066.HK": {
+      "name": "MTR Corporation",
+      "market": "HK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "0151.HK": {
+      "name": "Want Want China",
+      "market": "HK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "0291.HK": {
+      "name": "China Resources Beer",
+      "market": "HK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "1929.HK": {
+      "name": "Chow Tai Fook",
+      "market": "HK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "0960.HK": {
+      "name": "Longfor Group",
+      "market": "HK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "2319.HK": {
+      "name": "Mengniu Dairy",
+      "market": "HK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "6823.HK": {
+      "name": "HKT Trust",
+      "market": "HK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "0270.HK": {
+      "name": "Guangdong Investment",
+      "market": "HK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "0659.HK": {
+      "name": "NWS Holdings",
+      "market": "HK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "1997.HK": {
+      "name": "Wharf REIC",
+      "market": "HK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "0694.HK": {
+      "name": "Beijing Enterprises",
+      "market": "HK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "0836.HK": {
+      "name": "China Resources Power",
+      "market": "HK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "0358.HK": {
+      "name": "Jiangxi Copper",
+      "market": "HK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "2600.HK": {
+      "name": "Aluminum Corp China",
+      "market": "HK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "1113.HK": {
+      "name": "CR Land",
+      "market": "HK",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "600036.SS": {
+      "name": "招商銀行",
+      "market": "CN",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "601398.SS": {
+      "name": "工商銀行",
+      "market": "CN",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "601288.SS": {
+      "name": "農業銀行",
+      "market": "CN",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "601939.SS": {
+      "name": "建設銀行",
+      "market": "CN",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "601988.SS": {
+      "name": "中國銀行",
+      "market": "CN",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "601328.SS": {
+      "name": "交通銀行",
+      "market": "CN",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "600016.SS": {
+      "name": "民生銀行",
+      "market": "CN",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "601166.SS": {
+      "name": "興業銀行",
+      "market": "CN",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "600028.SS": {
+      "name": "中國石化",
+      "market": "CN",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "601857.SS": {
+      "name": "中國石油",
+      "market": "CN",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "600900.SS": {
+      "name": "長江電力",
+      "market": "CN",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "601088.SS": {
+      "name": "中國神華",
+      "market": "CN",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "600011.SS": {
+      "name": "華能國際",
+      "market": "CN",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "601601.SS": {
+      "name": "中國太保",
+      "market": "CN",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "601318.SS": {
+      "name": "中國平安",
+      "market": "CN",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "601336.SS": {
+      "name": "新華保險",
+      "market": "CN",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "600050.SS": {
+      "name": "中國聯通",
+      "market": "CN",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "600886.SS": {
+      "name": "國投電力",
+      "market": "CN",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "601186.SS": {
+      "name": "中國鐵建",
+      "market": "CN",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "601800.SS": {
+      "name": "中國交建",
+      "market": "CN",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "601390.SS": {
+      "name": "中國中鐵",
+      "market": "CN",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "601668.SS": {
+      "name": "中國建築",
+      "market": "CN",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "601225.SS": {
+      "name": "陝西煤業",
+      "market": "CN",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "601666.SS": {
+      "name": "平煤股份",
+      "market": "CN",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "600188.SS": {
+      "name": "兗礦能源",
+      "market": "CN",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "600519.SS": {
+      "name": "貴州茅台",
+      "market": "CN",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "000858.SZ": {
+      "name": "五糧液",
+      "market": "CN",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "600887.SS": {
+      "name": "伊利股份",
+      "market": "CN",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "000333.SZ": {
+      "name": "美的集團",
+      "market": "CN",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "000651.SZ": {
+      "name": "格力電器",
+      "market": "CN",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "O": {
+      "name": "Realty Income",
+      "market": "US",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "AMT": {
+      "name": "American Tower",
+      "market": "US",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "PLD": {
+      "name": "Prologis",
+      "market": "US",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "SPG": {
+      "name": "Simon Property",
+      "market": "US",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "VTR": {
+      "name": "Ventas",
+      "market": "US",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "WELL": {
+      "name": "Welltower",
+      "market": "US",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "NNN": {
+      "name": "NNN REIT",
+      "market": "US",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "STAG": {
+      "name": "STAG Industrial",
+      "market": "US",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "VICI": {
+      "name": "VICI Properties",
+      "market": "US",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "NEE": {
+      "name": "NextEra Energy",
+      "market": "US",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "DUK": {
+      "name": "Duke Energy",
+      "market": "US",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "SO": {
+      "name": "Southern Company",
+      "market": "US",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "D": {
+      "name": "Dominion Energy",
+      "market": "US",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "AEP": {
+      "name": "American Elec Power",
+      "market": "US",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "XEL": {
+      "name": "Xcel Energy",
+      "market": "US",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "WEC": {
+      "name": "WEC Energy",
+      "market": "US",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "ES": {
+      "name": "Eversource Energy",
+      "market": "US",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "JPM": {
+      "name": "JPMorgan Chase",
+      "market": "US",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "BAC": {
+      "name": "Bank of America",
+      "market": "US",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "WFC": {
+      "name": "Wells Fargo",
+      "market": "US",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "C": {
+      "name": "Citigroup",
+      "market": "US",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "USB": {
+      "name": "US Bancorp",
+      "market": "US",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "PRU": {
+      "name": "Prudential Financial",
+      "market": "US",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "MET": {
+      "name": "MetLife",
+      "market": "US",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "XOM": {
+      "name": "ExxonMobil",
+      "market": "US",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "CVX": {
+      "name": "Chevron",
+      "market": "US",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "COP": {
+      "name": "ConocoPhillips",
+      "market": "US",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "EOG": {
+      "name": "EOG Resources",
+      "market": "US",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "PSX": {
+      "name": "Phillips 66",
+      "market": "US",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "JNJ": {
+      "name": "Johnson & Johnson",
+      "market": "US",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "ABBV": {
+      "name": "AbbVie",
+      "market": "US",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "MRK": {
+      "name": "Merck",
+      "market": "US",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "PFE": {
+      "name": "Pfizer",
+      "market": "US",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "KO": {
+      "name": "Coca-Cola",
+      "market": "US",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "PEP": {
+      "name": "PepsiCo",
+      "market": "US",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "PG": {
+      "name": "Procter & Gamble",
+      "market": "US",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "MO": {
+      "name": "Altria Group",
+      "market": "US",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "PM": {
+      "name": "Philip Morris",
+      "market": "US",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "T": {
+      "name": "AT&T",
+      "market": "US",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "VZ": {
+      "name": "Verizon",
+      "market": "US",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "SCHD": {
+      "name": "Schwab US Dividend ETF",
+      "market": "US",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "VYM": {
+      "name": "Vanguard High Div ETF",
+      "market": "US",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "HDV": {
+      "name": "iShares Core Dividend",
+      "market": "US",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "JEPI": {
+      "name": "JPM Equity Premium Inc",
+      "market": "US",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "JEPQ": {
+      "name": "JPM Nasdaq Eq Premium",
+      "market": "US",
+      "added_date": "2024-01-01",
+      "source": "initial"
+    },
+    "III.L": {
+      "name": "3i Group Ord",
+      "market": "UK",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 77,
+      "yield_at_add": 3.68
+    },
+    "CTSH": {
+      "name": "Cognizant Technology Solutions Corporation",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 72,
+      "yield_at_add": 2.53
+    },
+    "ZTS": {
+      "name": "Zoetis Inc.",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 69,
+      "yield_at_add": 2.64
+    },
+    "TAP": {
+      "name": "Molson Coors Beverage Company",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 69,
+      "yield_at_add": 4.66
+    },
+    "PGR": {
+      "name": "The Progressive Corporation",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 66,
+      "yield_at_add": 6.85
+    },
+    "EXE": {
+      "name": "Expand Energy Corporation",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 66,
+      "yield_at_add": 3.59
+    },
+    "FIS": {
+      "name": "Fidelity National Information Services, Inc.",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 65,
+      "yield_at_add": 4.35
+    },
+    "OTIS": {
+      "name": "Otis Worldwide Corporation",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 64,
+      "yield_at_add": 2.4
+    },
+    "ACN": {
+      "name": "Accenture plc",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 64,
+      "yield_at_add": 3.81
+    },
+    "600219.SS": {
+      "name": "Shandong Nanshan Aluminium Co.,Ltd.",
+      "market": "CN",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 64,
+      "yield_at_add": 4.14
+    },
+    "601816.SS": {
+      "name": "Beijing-Shanghai High-Speed Railway Co., Ltd.",
+      "market": "CN",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 64,
+      "yield_at_add": 2.36
+    },
+    "FRES.L": {
+      "name": "Fresnillo plc",
+      "market": "UK",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 64,
+      "yield_at_add": 3.16
+    },
+    "KHC": {
+      "name": "The Kraft Heinz Company",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 63,
+      "yield_at_add": 6.62
+    },
+    "GIS": {
+      "name": "General Mills, Inc.",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 63,
+      "yield_at_add": 7.13
+    },
+    "ERIE": {
+      "name": "Erie Indemnity Company",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 63,
+      "yield_at_add": 2.57
+    },
+    "601766.SS": {
+      "name": "CRRC Corporation Limited",
+      "market": "CN",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 63,
+      "yield_at_add": 3.45
+    },
+    "AOS": {
+      "name": "A. O. Smith Corporation",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 62,
+      "yield_at_add": 2.41
+    },
+    "0322.HK": {
+      "name": "Tingyi (Cayman Islands) Holding Corp.",
+      "market": "HK",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 62,
+      "yield_at_add": 5.87
+    },
+    "EG": {
+      "name": "Everest Group, Ltd.",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 61,
+      "yield_at_add": 2.37
+    },
+    "RKT.L": {
+      "name": "Reckitt Benckiser Group plc",
+      "market": "UK",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 61,
+      "yield_at_add": 4.66
+    },
+    "0636.HK": {
+      "name": "KLN Logistics Group Limited",
+      "market": "HK",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 61,
+      "yield_at_add": 2.78
+    },
+    "000538.SZ": {
+      "name": "Yunnan Baiyao Group Co.,Ltd",
+      "market": "CN",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 61,
+      "yield_at_add": 3.93
+    },
+    "IR": {
+      "name": "Ingersoll Rand Inc.",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 61,
+      "yield_at_add": 0.11
+    },
+    "AIG": {
+      "name": "American International Group, Inc.",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 60,
+      "yield_at_add": 2.65
+    },
+    "BLK": {
+      "name": "BlackRock, Inc.",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 60,
+      "yield_at_add": 2.23
+    },
+    "CMCSA": {
+      "name": "Comcast Corporation",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 60,
+      "yield_at_add": 5.41
+    },
+    "CAG": {
+      "name": "Conagra Brands, Inc.",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 60,
+      "yield_at_add": 10.35
+    },
+    "600938.SS": {
+      "name": "CNOOC Limited",
+      "market": "CN",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 60,
+      "yield_at_add": 4.25
+    },
+    "0639.HK": {
+      "name": "Shougang Fushan Resources Group Limited",
+      "market": "HK",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 60,
+      "yield_at_add": 6.83
+    },
+    "HIK.L": {
+      "name": "Hikma Pharmaceuticals PLC",
+      "market": "UK",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 60,
+      "yield_at_add": 4.19
+    },
+    "601117.SS": {
+      "name": "China National Chemical Engineering Co., Ltd",
+      "market": "CN",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 60,
+      "yield_at_add": 2.55
+    },
+    "0552.HK": {
+      "name": "China Communications Services Corporation Limited",
+      "market": "HK",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 59,
+      "yield_at_add": 5.58
+    },
+    "BR": {
+      "name": "Broadridge Financial Solutions, Inc.",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 59,
+      "yield_at_add": 2.69
+    },
+    "GEHC": {
+      "name": "GE HealthCare Technologies Inc.",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 59,
+      "yield_at_add": 0.22
+    },
+    "LEN": {
+      "name": "Lennar Corporation",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 58,
+      "yield_at_add": 2.21
+    },
+    "000963.SZ": {
+      "name": "Huadong Medicine Co., Ltd",
+      "market": "CN",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 58,
+      "yield_at_add": 1.88
+    },
+    "600018.SS": {
+      "name": "Shanghai International Port (Group) Co., Ltd.",
+      "market": "CN",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 58,
+      "yield_at_add": 2.59
+    },
+    "0576.HK": {
+      "name": "Zhejiang Expressway Co., Ltd.",
+      "market": "HK",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 58,
+      "yield_at_add": 5.88
+    },
+    "0215.HK": {
+      "name": "Hutchison Telecommunications Hong Kong Holdings Limited",
+      "market": "HK",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 58,
+      "yield_at_add": 5.08
+    },
+    "600600.SS": {
+      "name": "Tsingtao Brewery Company Limited",
+      "market": "CN",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 58,
+      "yield_at_add": 3.28
+    },
+    "600809.SS": {
+      "name": "Shanxi Xinghuacun Fen Wine Factory Co.,Ltd.",
+      "market": "CN",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 58,
+      "yield_at_add": 2.97
+    },
+    "POOL": {
+      "name": "Pool Corporation",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 57,
+      "yield_at_add": 2.65
+    },
+    "MRSH": {
+      "name": "Marsh & McLennan Companies, Inc.",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 57,
+      "yield_at_add": 2.12
+    },
+    "000001.SZ": {
+      "name": "Ping An Bank Co., Ltd.",
+      "market": "CN",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 57,
+      "yield_at_add": 6.77
+    },
+    "RVTY": {
+      "name": "Revvity, Inc.",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 57,
+      "yield_at_add": 0.28
+    },
+    "0293.HK": {
+      "name": "Cathay Pacific Airways Limited",
+      "market": "HK",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 57,
+      "yield_at_add": 5.08
+    },
+    "AVY": {
+      "name": "Avery Dennison Corporation",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 57,
+      "yield_at_add": 2.5
+    },
+    "600019.SS": {
+      "name": "Baoshan Iron & Steel Co., Ltd.",
+      "market": "CN",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 56,
+      "yield_at_add": 3.73
+    },
+    "CI": {
+      "name": "The Cigna Group",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 56,
+      "yield_at_add": 2.1
+    },
+    "0168.HK": {
+      "name": "Tsingtao Brewery Company Limited",
+      "market": "HK",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 56,
+      "yield_at_add": 4.76
+    },
+    "0883.HK": {
+      "name": "CNOOC Limited",
+      "market": "HK",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 56,
+      "yield_at_add": 6.58
+    },
+    "TMUS": {
+      "name": "T-Mobile US, Inc.",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 56,
+      "yield_at_add": 2.16
+    },
+    "002236.SZ": {
+      "name": "Zhejiang Dahua Technology Co., Ltd.",
+      "market": "CN",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 56,
+      "yield_at_add": 2.59
+    },
+    "GILD": {
+      "name": "Gilead Sciences, Inc.",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 55,
+      "yield_at_add": 2.62
+    },
+    "BF-B": {
+      "name": "Brown-Forman Corporation",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 55,
+      "yield_at_add": 3.43
+    },
+    "0467.HK": {
+      "name": "United Energy Group Limited",
+      "market": "HK",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 55,
+      "yield_at_add": 11.58
+    },
+    "0921.HK": {
+      "name": "Hisense Home Appliances Group Co., Ltd.",
+      "market": "HK",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 55,
+      "yield_at_add": 5.16
+    },
+    "600585.SS": {
+      "name": "Anhui Conch Cement Company Limited",
+      "market": "CN",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 55,
+      "yield_at_add": 4
+    },
+    "300502.SZ": {
+      "name": "Eoptolink Technology Inc., Ltd.",
+      "market": "CN",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 55,
+      "yield_at_add": 0.14
+    },
+    "0440.HK": {
+      "name": "Dah Sing Financial Holdings Limited",
+      "market": "HK",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 55,
+      "yield_at_add": 5.22
+    },
+    "0288.HK": {
+      "name": "WH Group Limited",
+      "market": "HK",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 55,
+      "yield_at_add": 7.47
+    },
+    "603986.SS": {
+      "name": "GigaDevice Semiconductor Inc.",
+      "market": "CN",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 55,
+      "yield_at_add": 0.17
+    },
+    "601919.SS": {
+      "name": "COSCO SHIPPING Holdings Co., Ltd.",
+      "market": "CN",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 55,
+      "yield_at_add": 7.25
+    },
+    "HWM": {
+      "name": "Howmet Aerospace Inc.",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 55,
+      "yield_at_add": 0.18
+    },
+    "000708.SZ": {
+      "name": "Citic Pacific Special Steel Group Co., Ltd",
+      "market": "CN",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 55,
+      "yield_at_add": 4.38
+    },
+    "002532.SZ": {
+      "name": "Tianshan Aluminum Group Co.,Ltd",
+      "market": "CN",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 55,
+      "yield_at_add": 3.26
+    },
+    "601658.SS": {
+      "name": "Postal Savings Bank of China Co., Ltd.",
+      "market": "CN",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 55,
+      "yield_at_add": 5.79
+    },
+    "601169.SS": {
+      "name": "Bank of Beijing Co., Ltd.",
+      "market": "CN",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 54,
+      "yield_at_add": 5.72
+    },
+    "600031.SS": {
+      "name": "Sany Heavy Industry Co.,Ltd",
+      "market": "CN",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 54,
+      "yield_at_add": 2.06
+    },
+    "HPQ": {
+      "name": "HP Inc.",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 54,
+      "yield_at_add": 4.77
+    },
+    "EME": {
+      "name": "EMCOR Group, Inc.",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 54,
+      "yield_at_add": 0.16
+    },
+    "BDX": {
+      "name": "Becton, Dickinson and Company",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 54,
+      "yield_at_add": 2.88
+    },
+    "1193.HK": {
+      "name": "China Resources Gas Group Limited",
+      "market": "HK",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 54,
+      "yield_at_add": 3.33
+    },
+    "600066.SS": {
+      "name": "Yutong Bus Co.,Ltd.",
+      "market": "CN",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 54,
+      "yield_at_add": 4.71
+    },
+    "600690.SS": {
+      "name": "Haier Smart Home Co., Ltd.",
+      "market": "CN",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 54,
+      "yield_at_add": 4
+    },
+    "TSN": {
+      "name": "Tyson Foods, Inc.",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 54,
+      "yield_at_add": 3.57
+    },
+    "WST": {
+      "name": "West Pharmaceutical Services, Inc.",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 54,
+      "yield_at_add": 0.27
+    },
+    "0914.HK": {
+      "name": "Anhui Conch Cement Company Limited",
+      "market": "HK",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 54,
+      "yield_at_add": 4.43
+    },
+    "0027.HK": {
+      "name": "Galaxy Entertainment Group Limited",
+      "market": "HK",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 54,
+      "yield_at_add": 2.53
+    },
+    "0590.HK": {
+      "name": "Luk Fook Holdings (International) Limited",
+      "market": "HK",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 54,
+      "yield_at_add": 5.47
+    },
+    "1044.HK": {
+      "name": "Hengan International Group Company Limited",
+      "market": "HK",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 53,
+      "yield_at_add": 5.02
+    },
+    "ABF.L": {
+      "name": "Associated British Foods plc",
+      "market": "UK",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 53,
+      "yield_at_add": 3.24
+    },
+    "0934.HK": {
+      "name": "Sinopec Kantons Holdings Limited",
+      "market": "HK",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 53,
+      "yield_at_add": 5.57
+    },
+    "GEV": {
+      "name": "GE Vernova Inc.",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 53,
+      "yield_at_add": 0.21
+    },
+    "ADP": {
+      "name": "Automatic Data Processing, Inc.",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 53,
+      "yield_at_add": 3
+    },
+    "603369.SS": {
+      "name": "Jiangsu King's Luck Brewery Joint-Stock Co.,Ltd.",
+      "market": "CN",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 53,
+      "yield_at_add": 2.98
+    },
+    "688009.SS": {
+      "name": "China Railway Signal & Communication Corporation Limited",
+      "market": "CN",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 53,
+      "yield_at_add": 3.15
+    },
+    "300308.SZ": {
+      "name": "Zhongji Innolight Co., Ltd.",
+      "market": "CN",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 53,
+      "yield_at_add": 0.18
+    },
+    "LVS": {
+      "name": "Las Vegas Sands Corp.",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 53,
+      "yield_at_add": 2.19
+    },
+    "SNA": {
+      "name": "Snap-on Incorporated",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 53,
+      "yield_at_add": 2.52
+    },
+    "002028.SZ": {
+      "name": "Sieyuan Electric Co., Ltd.",
+      "market": "CN",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 53,
+      "yield_at_add": 0.47
+    },
+    "601006.SS": {
+      "name": "Daqin Railway Co., Ltd.",
+      "market": "CN",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 53,
+      "yield_at_add": 5.9
+    },
+    "0868.HK": {
+      "name": "Xinyi Glass Holdings Limited",
+      "market": "HK",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 52,
+      "yield_at_add": 3.52
+    },
+    "OMC": {
+      "name": "Omnicom Group Inc.",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 52,
+      "yield_at_add": 4.13
+    },
+    "CPB": {
+      "name": "The Campbell's Company",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 52,
+      "yield_at_add": 6.84
+    },
+    "0788.HK": {
+      "name": "China Tower Corporation Limited",
+      "market": "HK",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 52,
+      "yield_at_add": 3.09
+    },
+    "0683.HK": {
+      "name": "Kerry Properties Limited",
+      "market": "HK",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 52,
+      "yield_at_add": 4.88
+    },
+    "ABT": {
+      "name": "Abbott Laboratories",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 52,
+      "yield_at_add": 2.87
+    },
+    "PFG": {
+      "name": "Principal Financial Group, Inc.",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 52,
+      "yield_at_add": 2.96
+    },
+    "002736.SZ": {
+      "name": "Guosen Securities Co., Ltd.",
+      "market": "CN",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 51,
+      "yield_at_add": 2.94
+    },
+    "MKC": {
+      "name": "McCormick & Company, Incorporated",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 51,
+      "yield_at_add": 3.93
+    },
+    "SBRY.L": {
+      "name": "J Sainsbury plc",
+      "market": "UK",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 51,
+      "yield_at_add": 4.46
+    },
+    "0135.HK": {
+      "name": "Kunlun Energy Company Limited",
+      "market": "HK",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 51,
+      "yield_at_add": 3.69
+    },
+    "0267.HK": {
+      "name": "CITIC Limited",
+      "market": "HK",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 51,
+      "yield_at_add": 5.57
+    },
+    "600023.SS": {
+      "name": "Zhejiang Zheneng Electric Power Co., Ltd.",
+      "market": "CN",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 51,
+      "yield_at_add": 5.31
+    },
+    "0874.HK": {
+      "name": "Guangzhou Baiyunshan Pharmaceutical Holdings Company Limited",
+      "market": "HK",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 51,
+      "yield_at_add": 5.74
+    },
+    "0551.HK": {
+      "name": "Yue Yuen Industrial (Holdings) Limited",
+      "market": "HK",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 51,
+      "yield_at_add": 6.51
+    },
+    "DPZ": {
+      "name": "Domino's Pizza, Inc.",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 51,
+      "yield_at_add": 2.48
+    },
+    "AFL": {
+      "name": "Aflac Incorporated",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 51,
+      "yield_at_add": 2.08
+    },
+    "688396.SS": {
+      "name": "China Resources Microelectronics Limited",
+      "market": "CN",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 51,
+      "yield_at_add": 0.2
+    },
+    "NKE": {
+      "name": "NIKE, Inc.",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 51,
+      "yield_at_add": 3.61
+    },
+    "TXT": {
+      "name": "Textron Inc.",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 51,
+      "yield_at_add": 0.09
+    },
+    "STZ": {
+      "name": "Constellation Brands, Inc.",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 51,
+      "yield_at_add": 2.83
+    },
+    "601916.SS": {
+      "name": "China Zheshang Bank Co., Ltd",
+      "market": "CN",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 51,
+      "yield_at_add": 5.43
+    },
+    "GOOG": {
+      "name": "Alphabet Inc.",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 50,
+      "yield_at_add": 0.24
+    },
+    "0570.HK": {
+      "name": "China Traditional Chinese Medicine Holdings Co. Limited",
+      "market": "HK",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 50,
+      "yield_at_add": 4.2
+    },
+    "0881.HK": {
+      "name": "Zhongsheng Group Holdings Limited",
+      "market": "HK",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 50,
+      "yield_at_add": 6.56
+    },
+    "GOOGL": {
+      "name": "Alphabet Inc.",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 50,
+      "yield_at_add": 0.24
+    },
+    "000999.SZ": {
+      "name": "China Resources Sanjiu Medical & Pharmaceutical Co., Ltd.",
+      "market": "CN",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 50,
+      "yield_at_add": 4.09
+    },
+    "SWKS": {
+      "name": "Skyworks Solutions, Inc.",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 50,
+      "yield_at_add": 3.85
+    },
+    "L": {
+      "name": "Loews Corporation",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 50,
+      "yield_at_add": 0.23
+    },
+    "MCD": {
+      "name": "McDonald's Corporation",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 50,
+      "yield_at_add": 2.6
+    },
+    "TER": {
+      "name": "Teradyne, Inc.",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 50,
+      "yield_at_add": 0.13
+    },
+    "688008.SS": {
+      "name": "Montage Technology Co., Ltd.",
+      "market": "CN",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 50,
+      "yield_at_add": 0.4
+    },
+    "688072.SS": {
+      "name": "Piotech Inc.",
+      "market": "CN",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 50,
+      "yield_at_add": 0.1
+    },
+    "0579.HK": {
+      "name": "Beijing Jingneng Clean Energy Co., Limited",
+      "market": "HK",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 49,
+      "yield_at_add": 7.27
+    },
+    "CINF": {
+      "name": "Cincinnati Financial Corporation",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 49,
+      "yield_at_add": 2.23
+    },
+    "BMY": {
+      "name": "Bristol-Myers Squibb Company",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 49,
+      "yield_at_add": 4.41
+    },
+    "3328.HK": {
+      "name": "Bank of Communications Co., Ltd.",
+      "market": "HK",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 49,
+      "yield_at_add": 7.2
+    },
+    "FIX": {
+      "name": "Comfort Systems USA, Inc.",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 49,
+      "yield_at_add": 0.14
+    },
+    "300628.SZ": {
+      "name": "Yealink Network Technology Co., Ltd.",
+      "market": "CN",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 49,
+      "yield_at_add": 3.86
+    },
+    "300450.SZ": {
+      "name": "Wuxi Lead Intelligent Equipment CO.,LTD.",
+      "market": "CN",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 49,
+      "yield_at_add": 1.01
+    },
+    "002371.SZ": {
+      "name": "NAURA Technology Group Co., Ltd.",
+      "market": "CN",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 49,
+      "yield_at_add": 0.2
+    },
+    "002001.SZ": {
+      "name": "Zhejiang NHU Company Ltd.",
+      "market": "CN",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 49,
+      "yield_at_add": 2.53
+    },
+    "601998.SS": {
+      "name": "China CITIC Bank Corporation Limited",
+      "market": "CN",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 49,
+      "yield_at_add": 5.62
+    },
+    "601728.SS": {
+      "name": "China Telecom Corporation Limited",
+      "market": "CN",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 49,
+      "yield_at_add": 3.68
+    },
+    "601229.SS": {
+      "name": "Bank of Shanghai Co., Ltd.",
+      "market": "CN",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 49,
+      "yield_at_add": 6.55
+    },
+    "300803.SZ": {
+      "name": "Beijing Compass Technology Development Co., Ltd.",
+      "market": "CN",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 49,
+      "yield_at_add": 0.08
+    },
+    "000408.SZ": {
+      "name": "Zangge Mining Company Limited",
+      "market": "CN",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 49,
+      "yield_at_add": 1.2
+    },
+    "TSCO": {
+      "name": "Tractor Supply Company",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 49,
+      "yield_at_add": 3.06
+    },
+    "Q": {
+      "name": "Qnity Electronics, Inc.",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 49,
+      "yield_at_add": 0.21
+    },
+    "ATO": {
+      "name": "Atmos Energy Corporation",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 48,
+      "yield_at_add": 2.38
+    },
+    "IP": {
+      "name": "International Paper Company",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 48,
+      "yield_at_add": 5.17
+    },
+    "1216.HK": {
+      "name": "Zhongyuan Bank Co., Ltd.",
+      "market": "HK",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 48,
+      "yield_at_add": 3.94
+    },
+    "DG": {
+      "name": "Dollar General Corporation",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 48,
+      "yield_at_add": 2.05
+    },
+    "PAYX": {
+      "name": "Paychex, Inc.",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 48,
+      "yield_at_add": 4.72
+    },
+    "000895.SZ": {
+      "name": "Henan Shuanghui Investment & Development Co.,Ltd.",
+      "market": "CN",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 48,
+      "yield_at_add": 4.64
+    },
+    "002241.SZ": {
+      "name": "Goertek Inc.",
+      "market": "CN",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 48,
+      "yield_at_add": 0.87
+    },
+    "300661.SZ": {
+      "name": "SG Micro Corp",
+      "market": "CN",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 48,
+      "yield_at_add": 0.17
+    },
+    "002311.SZ": {
+      "name": "Guangdong Haid Group Co., Limited",
+      "market": "CN",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 48,
+      "yield_at_add": 1.7
+    },
+    "1114.HK": {
+      "name": "Brilliance China Automotive Holdings Limited",
+      "market": "HK",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 48,
+      "yield_at_add": 27.62
+    },
+    "TSCO.L": {
+      "name": "Tesco PLC",
+      "market": "UK",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 48,
+      "yield_at_add": 3.17
+    },
+    "0257.HK": {
+      "name": "China Everbright Environment Group Limited",
+      "market": "HK",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 48,
+      "yield_at_add": 4.64
+    },
+    "601825.SS": {
+      "name": "Shanghai Rural Commercial Bank Co., Ltd.",
+      "market": "CN",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 48,
+      "yield_at_add": 6.05
+    },
+    "688012.SS": {
+      "name": "Advanced Micro-Fabrication Equipment Inc. China",
+      "market": "CN",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 48,
+      "yield_at_add": 0.11
+    },
+    "002415.SZ": {
+      "name": "Hangzhou Hikvision Digital Technology Co., Ltd.",
+      "market": "CN",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 48,
+      "yield_at_add": 3.19
+    },
+    "VRT": {
+      "name": "Vertiv Holdings Co",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 48,
+      "yield_at_add": 0.08
+    },
+    "600803.SS": {
+      "name": "ENN Natural Gas Co., Ltd.",
+      "market": "CN",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 48,
+      "yield_at_add": 5.45
+    },
+    "600989.SS": {
+      "name": "Ningxia Baofeng Energy Group Co., Ltd.",
+      "market": "CN",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 48,
+      "yield_at_add": 3.04
+    },
+    "600515.SS": {
+      "name": "Hainan Airport Infrastructure Co., Ltd",
+      "market": "CN",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 48,
+      "yield_at_add": 0.12
+    },
+    "600584.SS": {
+      "name": "JCET Group Co., Ltd.",
+      "market": "CN",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 47,
+      "yield_at_add": 0.32
+    },
+    "0316.HK": {
+      "name": "Orient Overseas (International) Limited",
+      "market": "HK",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 47,
+      "yield_at_add": 8.82
+    },
+    "1093.HK": {
+      "name": "CSPC Pharmaceutical Group Limited",
+      "market": "HK",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 47,
+      "yield_at_add": 3.01
+    },
+    "0998.HK": {
+      "name": "China CITIC Bank Corporation Limited",
+      "market": "HK",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 47,
+      "yield_at_add": 7.32
+    },
+    "0041.HK": {
+      "name": "Great Eagle Holdings Limited",
+      "market": "HK",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 47,
+      "yield_at_add": 4.98
+    },
+    "GEN": {
+      "name": "Gen Digital Inc.",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 47,
+      "yield_at_add": 2.07
+    },
+    "600941.SS": {
+      "name": "China Mobile Limited",
+      "market": "CN",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 47,
+      "yield_at_add": 3.69
+    },
+    "601818.SS": {
+      "name": "China Everbright Bank Company Limited",
+      "market": "CN",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 47,
+      "yield_at_add": 5.89
+    },
+    "CASY": {
+      "name": "Casey's General Stores, Inc.",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 46,
+      "yield_at_add": 0.27
+    },
+    "HSY": {
+      "name": "The Hershey Company",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 46,
+      "yield_at_add": 3.18
+    },
+    "IFF": {
+      "name": "International Flavors & Fragrances Inc.",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 46,
+      "yield_at_add": 2.04
+    },
+    "MDT": {
+      "name": "Medtronic plc",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 46,
+      "yield_at_add": 3.59
+    },
+    "600111.SS": {
+      "name": "China Northern Rare Earth (Group) High-Tech Co.,Ltd",
+      "market": "CN",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 46,
+      "yield_at_add": 0.22
+    },
+    "0010.HK": {
+      "name": "Hang Lung Group Limited",
+      "market": "HK",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 46,
+      "yield_at_add": 4.49
+    },
+    "HAS": {
+      "name": "Hasbro, Inc.",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 46,
+      "yield_at_add": 3.33
+    },
+    "KMB": {
+      "name": "Kimberly-Clark Corporation",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 46,
+      "yield_at_add": 5.03
+    },
+    "601698.SS": {
+      "name": "China Satellite Communications Co., Ltd.",
+      "market": "CN",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 46,
+      "yield_at_add": 0.13
+    },
+    "600015.SS": {
+      "name": "Hua Xia Bank Co., Limited",
+      "market": "CN",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 46,
+      "yield_at_add": 5.91
+    },
+    "600039.SS": {
+      "name": "Sichuan Road & Bridge Group Co.,Ltd",
+      "market": "CN",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 46,
+      "yield_at_add": 6.12
+    },
+    "PPG": {
+      "name": "PPG Industries, Inc.",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 46,
+      "yield_at_add": 2.37
+    },
+    "MOS": {
+      "name": "The Mosaic Company",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 46,
+      "yield_at_add": 3.86
+    },
+    "000988.SZ": {
+      "name": "HGTECH Company Limited",
+      "market": "CN",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 46,
+      "yield_at_add": 0.34
+    },
+    "002142.SZ": {
+      "name": "Bank of Ningbo Co., Ltd.",
+      "market": "CN",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 45,
+      "yield_at_add": 3.03
+    },
+    "601077.SS": {
+      "name": "Chongqing Rural Commercial Bank Co., Ltd.",
+      "market": "CN",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 45,
+      "yield_at_add": 5.56
+    },
+    "1186.HK": {
+      "name": "China Railway Construction Corporation Limited",
+      "market": "HK",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 45,
+      "yield_at_add": 6.83
+    },
+    "1099.HK": {
+      "name": "Sinopharm Group Co. Ltd.",
+      "market": "HK",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 45,
+      "yield_at_add": 4.44
+    },
+    "DCC.L": {
+      "name": "DCC plc",
+      "market": "UK",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 45,
+      "yield_at_add": 3.54
+    },
+    "ADM.L": {
+      "name": "Admiral Group plc",
+      "market": "UK",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 45,
+      "yield_at_add": 4.59
+    },
+    "MNDI.L": {
+      "name": "Mondi plc",
+      "market": "UK",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 45,
+      "yield_at_add": 3.34
+    },
+    "300122.SZ": {
+      "name": "Chongqing Zhifei Biological Products Co., Ltd.",
+      "market": "CN",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 45,
+      "yield_at_add": 3.13
+    },
+    "PWR": {
+      "name": "Quanta Services, Inc.",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 45,
+      "yield_at_add": 0.06
+    },
+    "CFG": {
+      "name": "Citizens Financial Group, Inc.",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 45,
+      "yield_at_add": 2.74
+    },
+    "APA": {
+      "name": "APA Corporation",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 45,
+      "yield_at_add": 2.69
+    },
+    "MU": {
+      "name": "Micron Technology, Inc.",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 44,
+      "yield_at_add": 0.06
+    },
+    "002049.SZ": {
+      "name": "Unigroup Guoxin Microelectronics Co., Ltd.",
+      "market": "CN",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 44,
+      "yield_at_add": 0.73
+    },
+    "0303.HK": {
+      "name": "Vtech Holdings Limited",
+      "market": "HK",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 44,
+      "yield_at_add": 8.42
+    },
+    "KR": {
+      "name": "The Kroger Co.",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 44,
+      "yield_at_add": 2.18
+    },
+    "LRCX": {
+      "name": "Lam Research Corporation",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 44,
+      "yield_at_add": 0.28
+    },
+    "001965.SZ": {
+      "name": "China Merchants Expressway Network & Technology Holdings Co.,Ltd.",
+      "market": "CN",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 44,
+      "yield_at_add": 4.31
+    },
+    "601018.SS": {
+      "name": "Ningbo Zhoushan Port Company Limited",
+      "market": "CN",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 44,
+      "yield_at_add": 3.37
+    },
+    "601838.SS": {
+      "name": "Bank of Chengdu Co., Ltd.",
+      "market": "CN",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 44,
+      "yield_at_add": 5.31
+    },
+    "688271.SS": {
+      "name": "Shanghai United Imaging Healthcare Co., Ltd.",
+      "market": "CN",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 44,
+      "yield_at_add": 0.22
+    },
+    "601009.SS": {
+      "name": "Bank of Nanjing Co., Ltd.",
+      "market": "CN",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 44,
+      "yield_at_add": 5.97
+    },
+    "1157.HK": {
+      "name": "Zoomlion Heavy Industry Science and Technology Co., Ltd.",
+      "market": "HK",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 43,
+      "yield_at_add": 6.32
+    },
+    "JBL": {
+      "name": "Jabil Inc.",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 43,
+      "yield_at_add": 0.08
+    },
+    "KVUE": {
+      "name": "Kenvue Inc.",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 43,
+      "yield_at_add": 4.6
+    },
+    "BBY": {
+      "name": "Best Buy Co., Inc.",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 43,
+      "yield_at_add": 4.91
+    },
+    "CLX": {
+      "name": "The Clorox Company",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 43,
+      "yield_at_add": 5.12
+    },
+    "688036.SS": {
+      "name": "Shenzhen Transsion Holdings Co., Ltd.",
+      "market": "CN",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 43,
+      "yield_at_add": 3.32
+    },
+    "600919.SS": {
+      "name": "Bank of Jiangsu Co., Ltd.",
+      "market": "CN",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 43,
+      "yield_at_add": 5.79
+    },
+    "600660.SS": {
+      "name": "Fuyao Glass Industry Group Co., Ltd.",
+      "market": "CN",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 43,
+      "yield_at_add": 3.89
+    },
+    "600346.SS": {
+      "name": "Hengli Petrochemical Co.,Ltd.",
+      "market": "CN",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 43,
+      "yield_at_add": 2.73
+    },
+    "002837.SZ": {
+      "name": "Shenzhen Envicool Technology Co., Ltd.",
+      "market": "CN",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 43,
+      "yield_at_add": 0.25
+    },
+    "CL": {
+      "name": "Colgate-Palmolive Company",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 43,
+      "yield_at_add": 2.38
+    },
+    "PEG": {
+      "name": "Public Service Enterprise Group Incorporated",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 43,
+      "yield_at_add": 3.37
+    },
+    "000568.SZ": {
+      "name": "Luzhou Laojiao Co.,Ltd",
+      "market": "CN",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 43,
+      "yield_at_add": 5.26
+    },
+    "HRL": {
+      "name": "Hormel Foods Corporation",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 43,
+      "yield_at_add": 4.74
+    },
+    "AMCR": {
+      "name": "Amcor plc",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 42,
+      "yield_at_add": 6.43
+    },
+    "IBM": {
+      "name": "International Business Machines Corporation",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 42,
+      "yield_at_add": 2.47
+    },
+    "HD": {
+      "name": "The Home Depot, Inc.",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 42,
+      "yield_at_add": 2.84
+    },
+    "0956.HK": {
+      "name": "China Suntien Green Energy Corporation Limited",
+      "market": "HK",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 42,
+      "yield_at_add": 6.05
+    },
+    "SYY": {
+      "name": "Sysco Corporation",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 42,
+      "yield_at_add": 2.78
+    },
+    "600460.SS": {
+      "name": "Hangzhou Silan Microelectronics Co., Ltd.",
+      "market": "CN",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 42,
+      "yield_at_add": 0.14
+    },
+    "ED": {
+      "name": "Consolidated Edison, Inc.",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 42,
+      "yield_at_add": 3.25
+    },
+    "600926.SS": {
+      "name": "Bank of Hangzhou Co., Ltd.",
+      "market": "CN",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 41,
+      "yield_at_add": 4.78
+    },
+    "000625.SZ": {
+      "name": "Chongqing Changan Automobile Company Limited",
+      "market": "CN",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 41,
+      "yield_at_add": 2.95
+    },
+    "WDC": {
+      "name": "Western Digital Corporation",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 41,
+      "yield_at_add": 0.11
+    },
+    "IVZ": {
+      "name": "Invesco Ltd.",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 41,
+      "yield_at_add": 2.98
+    },
+    "ARE": {
+      "name": "Alexandria Real Estate Equities, Inc.",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 41,
+      "yield_at_add": 5.35
+    },
+    "CRDA.L": {
+      "name": "Croda International Plc",
+      "market": "UK",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 41,
+      "yield_at_add": 3.64
+    },
+    "DVN": {
+      "name": "Devon Energy Corporation",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 41,
+      "yield_at_add": 2.3
+    },
+    "RF": {
+      "name": "Regions Financial Corporation",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 41,
+      "yield_at_add": 3.64
+    },
+    "688082.SS": {
+      "name": "ACM Research (Shanghai), Inc.",
+      "market": "CN",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 41,
+      "yield_at_add": 0.51
+    },
+    "603288.SS": {
+      "name": "Foshan Haitian Flavouring and Food Company Ltd.",
+      "market": "CN",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 41,
+      "yield_at_add": 2.4
+    },
+    "300760.SZ": {
+      "name": "Shenzhen Mindray Bio-Medical Electronics Co., Ltd.",
+      "market": "CN",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 41,
+      "yield_at_add": 2.6
+    },
+    "0144.HK": {
+      "name": "China Merchants Port Holdings Company Limited",
+      "market": "HK",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 40,
+      "yield_at_add": 5.66
+    },
+    "HTGC": {
+      "name": "Hercules Capital, Inc.",
+      "market": "US",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 40,
+      "yield_at_add": 12.1
+    },
+    "1179.HK": {
+      "name": "H World Group Limited",
+      "market": "HK",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 40,
+      "yield_at_add": 3.33
+    },
+    "000596.SZ": {
+      "name": "Anhui Gujing Distillery Co., Ltd.",
+      "market": "CN",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 40,
+      "yield_at_add": 3.74
+    },
+    "688041.SS": {
+      "name": "Hygon Information Technology Co., Ltd.",
+      "market": "CN",
+      "added_date": "2026-06-12",
+      "source": "screener",
+      "score_at_add": 40,
+      "yield_at_add": 0.1
+    }
+  }
+}
