@@ -1,0 +1,80 @@
+name: Daily Dividend Update
+
+# 美股(NYSE/NASDAQ)4pm ET收市，留1-2小時buffer等數據settle：
+#   22:15 UTC = 18:15 EDT(夏令，3月-11月) / 17:15 EST(冬令，11月-3月)
+# 用 :15 而唔係 :00，係因為GitHub排程喺準點鐘會塞車，可能delay
+on:
+  schedule:
+    - cron: '15 22 * * 1-5'   # 只喺UTC週一至五（對應美股交易日，唔會跨日）
+  workflow_dispatch: {}        # 畫面上手動按一下試跑
+
+permissions:
+  contents: write   # 寫返 Excel/pick_history.json 落 repo
+  pages: write      # 發佈去 GitHub Pages
+  id-token: write   # deploy-pages 需要
+
+concurrency:
+  group: daily-dividend-update
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    outputs:
+      html_dir: ${{ steps.find_html.outputs.html_dir }}
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run daily importer（雲端冇本機IBKR，自動fallback去yfinance/akshare/靜態備用）
+        env:
+          USE_IBKR: "false"
+        run: python daily_importer_global_v6.py
+
+      - name: Generate HTML dashboard
+        run: python generate_html.py
+
+      - name: Locate today's generated HTML folder
+        id: find_html
+        run: |
+          html_dir=$(find web_site -mindepth 1 -maxdepth 1 -type d | head -1)
+          if [ -z "$html_dir" ]; then
+            echo "找不到 generate_html.py 嘅輸出資料夾，停止部署 Pages" >&2
+            exit 1
+          fi
+          echo "找到輸出: $html_dir"
+          echo "html_dir=$html_dir" >> "$GITHUB_OUTPUT"
+
+      - name: Commit & push updated data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          for f in UK_Dividend_Analysis.xlsx HK_Dividend_Analysis.xlsx US_Dividend_Analysis.xlsx CN_Dividend_Analysis.xlsx pick_history.json; do
+            [ -f "$f" ] && git add "$f"
+          done
+          git diff --staged --quiet || git commit -m "Daily update: $(date -u +%Y-%m-%d)"
+          git push
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ${{ steps.find_html.outputs.html_dir }}
+
+  deploy:
+    needs: update
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
