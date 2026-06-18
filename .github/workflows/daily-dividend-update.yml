@@ -63,10 +63,20 @@ jobs:
           git diff --staged --quiet || git commit -m "Daily update: $(date -u +%Y-%m-%d)"
           git push
 
+      - name: Build Pages staging folder（新index.html + 現有靜態檔，例如CNAME/about/privacy/ads.txt/sitemap）
+        id: pages_stage
+        run: |
+          mkdir -p _pages_site
+          cp "${{ steps.find_html.outputs.html_dir }}/index.html" _pages_site/index.html
+          for f in CNAME about.html privacy.html ads.txt sitemap.xml robots.txt; do
+            [ -f "$f" ] && cp "$f" _pages_site/
+          done
+          echo "stage_dir=_pages_site" >> "$GITHUB_OUTPUT"
+
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ${{ steps.find_html.outputs.html_dir }}
+          path: ${{ steps.pages_stage.outputs.stage_dir }}
 
   deploy:
     needs: update
