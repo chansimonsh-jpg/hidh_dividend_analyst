@@ -30,19 +30,15 @@ import openpyxl
 
 # ── 設定 ─────────────────────────────────────────────────
 EXCEL_FILES = {
-    "UK": "UK_Dividend_Analysis.xlsx",
-    "HK": "HK_Dividend_Analysis.xlsx",
-    "US": "US_Dividend_Analysis.xlsx",
-    "CN": "CN_Dividend_Analysis.xlsx",
+    "UK": r"D:\finance_project\UK_Dividend_Analysis.xlsx",
+    "HK": r"D:\finance_project\HK_Dividend_Analysis.xlsx",
+    "US": r"D:\finance_project\US_Dividend_Analysis.xlsx",
+    "CN": r"D:\finance_project\CN_Dividend_Analysis.xlsx",
 }
-OUTPUT_BASE  = "web_site"   # 相對路徑；GitHub Actions 會直接將今日嗰個子資料夾發佈去 Pages，
-                            # 唔會將呢個資料夾 commit 落 git（每次都係即跑即棄嘅 build output）
+OUTPUT_BASE  = r"D:\finance_project\web_site"
 OUTPUT_FILE  = os.path.join(OUTPUT_BASE, datetime.date.today().strftime("%Y%m%d"), "index.html")
-HISTORY_FILE = "pick_history.json"  # 記錄每隻股票「最早推介」日期與股價，長期累積、不會被每日的輸出資料夾覆蓋
-                                     # （相對路徑＝repo根目錄，會被 commit 落 git 以保持跨日持久化）
 TOP_N        = 10    # 柱狀圖顯示前N名
 PICKS_N      = 12    # 推介卡片數量
-AVOID_N      = 10    # 避開股票卡片數量（評分最低的N隻）
 MIN_SCORE    = 50    # 入圍門檻（顯示用）
 RATING_STRONG = 75
 RATING_WATCH  = 50
@@ -148,97 +144,6 @@ def fmt(v, decimals=1, suffix=""):
     try: return f"{float(v):.{decimals}f}{suffix}"
     except: return "─"
 
-# ── 推介／避開歷史記錄（最早推介或避開日期／股價）──────────
-# 每隻股票的記錄是一個「期間」清單：[{date, price, end_date}, ...]
-# end_date 是 None 代表這段期間還在進行中（目前仍在名單裡）；
-# 一旦跌出名單，這段期間就會被封存（end_date 填上封存當天），永遠不再更動；
-# 之後同一隻股票重新入選/重新被列為避開，會另外開一筆新的期間，舊的那筆完全不受影響。
-# key 的格式是 "pick:HK:0001.HK" 或 "avoid:US:XYZ"，用 kind 前綴把「推介」跟「避開」分開，
-# 同一隻股票理論上可以同時有自己的推介歷史與避開歷史，互不影響。
-def load_history():
-    """讀取長期累積的歷史記錄；檔案不存在或損毀時回傳空白記錄。
-    也會自動把舊版資料轉成新版格式（單一物件→清單；沒有 kind 前綴的舊 key→視為 pick:）。"""
-    if not os.path.exists(HISTORY_FILE):
-        return {}
-    try:
-        with open(HISTORY_FILE, "r", encoding="utf-8") as f:
-            raw = json.load(f)
-    except Exception as e:
-        print(f"  ⚠️  讀取 {HISTORY_FILE} 失敗（{e}），視為空白記錄重新開始")
-        return {}
-
-    migrated = {}
-    for key, val in raw.items():
-        if isinstance(val, dict):
-            val = [{"date": val.get("date"), "price": val.get("price"), "end_date": None}]
-        if not (key.startswith("pick:") or key.startswith("avoid:")):
-            key = f"pick:{key}"
-        migrated[key] = val
-    return migrated
-
-def save_history(history):
-    d = os.path.dirname(HISTORY_FILE)
-    if d:
-        os.makedirs(d, exist_ok=True)
-    with open(HISTORY_FILE, "w", encoding="utf-8") as f:
-        json.dump(history, f, ensure_ascii=False, indent=2)
-
-def history_key(s, kind="pick"):
-    return f"{kind}:{s['mkt']}:{s['ticker']}"
-
-def get_active_episode(history, key):
-    """回傳目前進行中的那一筆期間（end_date 是 None），沒有就回傳 None"""
-    eps = history.get(key)
-    if eps and eps[-1].get("end_date") is None:
-        return eps[-1]
-    return None
-
-def reconcile_history(history, items, today_str, kind="pick"):
-    """每天執行一次（推介、避開各跑一次，用 kind 區分）：
-    1. 之前在追蹤、但今天已經不在名單（評分轉好/轉弱、被剔除）的股票，
-       把它目前進行中的那筆記錄封存（end_date=今天），之後永遠不會再更新。
-    2. 今天在名單裡的股票：
-       - 完全沒記錄過，或上一筆記錄已經封存（代表是重新入選/重新被列為避開）→ 開一筆全新記錄。
-       - 上一筆記錄還在進行中 → 完全不動，沿用原本的日期與股價。
-    回傳 (新開期間數, 封存期間數)。"""
-    prefix = f"{kind}:"
-    active_keys = {history_key(s, kind) for s in items}
-    opened = closed = 0
-
-    for key, eps in history.items():
-        if not key.startswith(prefix) or key in active_keys:
-            continue
-        if eps and eps[-1].get("end_date") is None:
-            eps[-1]["end_date"] = today_str
-            closed += 1
-
-    for s in items:
-        key = history_key(s, kind)
-        eps = history.setdefault(key, [])
-        if not eps or eps[-1].get("end_date") is not None:
-            try:
-                price = float(s["price"])
-            except (TypeError, ValueError):
-                price = None
-            eps.append({"date": today_str, "price": price, "end_date": None})
-            opened += 1
-
-    return opened, closed
-
-def calc_change(current, base):
-    """計算漲跌幅，回傳顯示文字與顏色"""
-    try:
-        current = float(current)
-        base    = float(base)
-        if base == 0:
-            return {"text": "─", "color": "#999"}
-        pct = (current - base) / base * 100
-        sign = "+" if pct > 0 else ""
-        color = "#0F6E56" if pct > 0 else ("#B42318" if pct < 0 else "#888")
-        return {"text": f"{sign}{pct:.1f}%", "color": color}
-    except (TypeError, ValueError):
-        return {"text": "─", "color": "#999"}
-
 # ── 生成 HTML ─────────────────────────────────────────────
 SETLANG_JS = """
 function setLang(lang) {
@@ -249,9 +154,9 @@ function setLang(lang) {
   var ab=document.querySelector({'zh-hk':'#btn-zh-hk','zh-cn':'#btn-zh-cn','en':'#btn-en'}[lang]);
   if(ab){ab.style.background='#1D9E75';ab.style.color='#fff';ab.style.borderColor='#1D9E75';}
   var T={
-    'zh-hk':{heroTitle:'全球高息股<br>每日精選分析',heroSub:'覆蓋香港、美國、英國及A股四大市場，以系統化評分篩選出具備穩定派息能力的優質股票。',heroTag:'每日更新',stat1:'今日追蹤股票數',stat2:'入圍股票（≥50分）',stat3:'強力買入',stat4:'今日最高分',mktHK:'港股 HK',mktUS:'美股 US',mktUK:'英股 UK',mktCN:'A股 CN',cUS:'美股 US',cHK:'港股 HK',cUK:'英股 UK',cCN:'A股 CN',top10:'前10名評分分佈',sec0:'選股理念與方法',sec1:'評分系統',sec2:'市場概覽',sec3:'最新精選推介',sec4:'高危名單',ah:['選股理念','四大市場','系統化篩選','每日更新'],ap:['長期穩定的股息收入是財富增長的重要基石。我們不單看當前息率高低，更重視企業的派息可持續性、財務健康狀況及估值合理性。','同步覆蓋香港、美國、英國及A股四大市場，以統一標準進行跨市場比較，讓投資者掌握全球高息機會。','每日自動更新數據，以量化評分模型對數百隻股票進行排名，過濾雜訊，聚焦真正值得關注的機會。','每個交易日收市後自動重新評分，確保推介反映最新的估值及財務狀況。'],scoreIntro:'每隻股票以100分制進行綜合評分，涵蓋五個範疇：',th:['評分範疇','滿分','主要考量'],rows:[['股息質量','30分','息率水平、派息穩定性及覆蓋率'],['估值','25分','現價相對歷史息率及市場的吸引程度'],['財務健康','25分','資產負債、現金流及償債能力'],['增長','10分','股息增長趨勢及盈利前景'],['技術走勢','10分','RSI、52週位置等技術指標']],rth:['評級','分數','意義'],rmean:['各方面均表現優秀，值得重點關注','基本面良好，可納入觀察名單','有一定吸引力，但需留意風險'],ll:['強力買入','值得關注','觀望'],unit:'隻',rl:{'strong':'🟢🟢 強力買入','watch':'🟢 值得關注','hold':'⚖️ 觀望'},picksNote:'以下為今日評分最高股票（≥50分），綠框為強力買入。',avoidNote:'以下為今日評分最低的股票（最多10隻），紅框代表高危股票，數據與上方推介股一致。',pros:'✅ 優點',cons:'⚠️ 缺點',score:'評分',yieldLbl:'股息率',discLabel:'免責聲明',disc:'本網站所有內容僅供參考及教育用途，不構成任何投資建議或買賣邀請。投資涉及風險，過往表現不代表未來回報。讀者應自行進行盡職審查，並在作出任何投資決定前諮詢持牌財務顧問。',f2:'每個交易日更新',f3:'資料來源：Yahoo Finance · 僅供參考'},
-    'zh-cn':{heroTitle:'全球高息股<br>每日精选分析',heroSub:'覆盖香港、美国、英国及A股四大市场，以系统化评分筛选出具备稳定派息能力的优质股票。',heroTag:'每日更新',stat1:'今日追踪股票数',stat2:'入围股票（≥50分）',stat3:'强力买入',stat4:'今日最高分',mktHK:'港股 HK',mktUS:'美股 US',mktUK:'英股 UK',mktCN:'A股 CN',cUS:'美股 US',cHK:'港股 HK',cUK:'英股 UK',cCN:'A股 CN',top10:'前10名评分分布',sec0:'选股理念与方法',sec1:'评分系统',sec2:'市场概览',sec3:'最新精选推介',sec4:'高危名单',ah:['选股理念','四大市场','系统化筛选','每日更新'],ap:['长期稳定的股息收入是财富增长的重要基石。我们不单看当前息率高低，更重视企业的派息可持续性、财务健康状况及估值合理性。','同步覆盖香港、美国、英国及A股四大市场，以统一标准进行跨市场比较，让投资者掌握全球高息机会。','每日自动更新数据，以量化评分模型对数百只股票进行排名，过滤杂讯，聚焦真正值得关注的机会。','每个交易日收市后自动重新评分，确保推介反映最新的估值及财务状况。'],scoreIntro:'每只股票以100分制进行综合评分，涵盖五个范畴：',th:['评分范畴','满分','主要考量'],rows:[['股息质量','30分','息率水平、派息稳定性及覆盖率'],['估值','25分','现价相对历史息率及市场的吸引程度'],['财务健康','25分','资产负债、现金流及偿债能力'],['增长','10分','股息增长趋势及盈利前景'],['技术走势','10分','RSI、52周位置等技术指标']],rth:['评级','分数','意义'],rmean:['各方面均表现优秀，值得重点关注','基本面良好，可纳入观察名单','有一定吸引力，但需留意风险'],ll:['强力买入','值得关注','观望'],unit:'只',rl:{'strong':'🟢🟢 强力买入','watch':'🟢 值得关注','hold':'⚖️ 观望'},picksNote:'以下为今日评分最高股票（≥50分），绿框为强力买入。',avoidNote:'以下为今日评分最低的股票（最多10只），红框代表高危股票，数据与上方推介股一致。',pros:'✅ 优点',cons:'⚠️ 缺点',score:'评分',yieldLbl:'股息率',discLabel:'免责声明',disc:'本网站所有内容仅供参考及教育用途，不构成任何投资建议或买卖邀请。投资涉及风险，过往表现不代表未来回报。读者应自行进行尽职审查，并在作出任何投资决定前咨询持牌财务顾问。',f2:'每个交易日更新',f3:'资料来源：Yahoo Finance · 仅供参考'},
-    'en':{heroTitle:'Global Dividend Stocks<br>Daily Analysis',heroSub:'Covering HK, US, UK and China A-shares with systematic scoring to identify quality dividend stocks.',heroTag:'Daily Update',stat1:'Stocks Tracked',stat2:'Qualified (≥50pts)',stat3:'Strong Buy',stat4:"Today\'s High",mktHK:'HK Stocks',mktUS:'US Stocks',mktUK:'UK Stocks',mktCN:'China A-Shares',cUS:'US Stocks',cHK:'HK Stocks',cUK:'UK Stocks',cCN:'China A-Shares',top10:'Top 10 Score Distribution',sec0:'Investment Philosophy',sec1:'Scoring System',sec2:'Market Overview',sec3:'Top Picks',sec4:'High-Risk List',ah:['Philosophy','4 Markets','Systematic Screening','Daily Update'],ap:['We focus not just on yield but on dividend sustainability, financial health and valuation to find quality long-term holdings.','Covering HK, US, UK and China A-shares with a unified scoring framework for cross-market comparison.','Daily automated updates with quantitative scoring to rank hundreds of stocks and surface the best opportunities.','Re-scored every trading day after market close to reflect the latest valuations and conditions.'],scoreIntro:'Each stock is scored on a 100-point scale across five dimensions:',th:['Category','Max','Key Criteria'],rows:[['Dividend Quality','30pts','Yield level, payout stability & coverage'],['Valuation','25pts','Current price vs historical yield & attractiveness'],['Financial Health','25pts','Balance sheet, cash flow & debt coverage'],['Growth','10pts','Dividend growth trend & earnings outlook'],['Technical','10pts','RSI, 52-week position & other indicators']],rth:['Rating','Score','Meaning'],rmean:['Excellent across all dimensions, high priority','Good fundamentals, worth monitoring','Some appeal, monitor risks'],ll:['Strong Buy','Watch','Hold'],unit:'stk',rl:{'strong':'🟢🟢 Strong Buy','watch':'🟢 Watch','hold':'⚖️ Hold'},picksNote:'Top-rated stocks today (≥50pts). Green border = Strong Buy.',avoidNote:'Lowest-scoring stocks today (up to 10). Red border = high risk. Same data fields as the picks above.',pros:'✅ Pro',cons:'⚠️ Con',score:'Score',yieldLbl:'Yield',discLabel:'Disclaimer',disc:'All content is for reference and educational purposes only. Not investment advice. Investing involves risk. Past performance does not guarantee future results.',f2:'Updated every trading day',f3:'Data: Yahoo Finance · For reference only'},
+    'zh-hk':{heroTitle:'全球高息股<br>每日精選分析',heroSub:'覆蓋香港、美國、英國及A股四大市場，以系統化評分篩選出具備穩定派息能力的優質股票。',heroTag:'每日更新',stat1:'今日追蹤股票數',stat2:'入圍股票（≥50分）',stat3:'強力買入',stat4:'今日最高分',mktHK:'港股 HK',mktUS:'美股 US',mktUK:'英股 UK',mktCN:'A股 CN',cUS:'美股 US',cHK:'港股 HK',cUK:'英股 UK',cCN:'A股 CN',top10:'前10名評分分佈',sec0:'選股理念與方法',sec1:'評分系統',sec2:'市場概覽',sec3:'最新精選推介',ah:['選股理念','三大市場','系統化篩選','每日更新'],ap:['長期穩定的股息收入是財富增長的重要基石。我們不單看當前息率高低，更重視企業的派息可持續性、財務健康狀況及估值合理性。','同步覆蓋香港、美國及英國市場，以統一標準進行跨市場比較，讓投資者掌握全球高息機會。','每日自動更新數據，以量化評分模型對數百隻股票進行排名，過濾雜訊，聚焦真正值得關注的機會。','每個交易日收市後自動重新評分，確保推介反映最新的估值及財務狀況。'],scoreIntro:'每隻股票以100分制進行綜合評分，涵蓋五個範疇：',th:['評分範疇','滿分','主要考量'],rows:[['股息質量','30分','息率水平、派息穩定性及覆蓋率'],['估值','25分','現價相對歷史息率及市場的吸引程度'],['財務健康','25分','資產負債、現金流及償債能力'],['增長','10分','股息增長趨勢及盈利前景'],['技術走勢','10分','RSI、52週位置等技術指標']],rth:['評級','分數','意義'],rmean:['各方面均表現優秀，值得重點關注','基本面良好，可納入觀察名單','有一定吸引力，但需留意風險'],ll:['強力買入','值得關注','觀望'],unit:'隻',rl:{'strong':'🟢🟢 強力買入','watch':'🟢 值得關注','hold':'⚖️ 觀望'},picksNote:'以下為今日評分最高股票（≥50分），綠框為強力買入。',pros:'✅ 優點',cons:'⚠️ 缺點',score:'評分',yieldLbl:'股息率',discLabel:'免責聲明',disc:'本網站所有內容僅供參考及教育用途，不構成任何投資建議或買賣邀請。投資涉及風險，過往表現不代表未來回報。讀者應自行進行盡職審查，並在作出任何投資決定前諮詢持牌財務顧問。',f2:'每個交易日更新',f3:'資料來源：Yahoo Finance · 僅供參考'},
+    'zh-cn':{heroTitle:'全球高息股<br>每日精选分析',heroSub:'覆盖香港、美国、英国及A股四大市场，以系统化评分筛选出具备稳定派息能力的优质股票。',heroTag:'每日更新',stat1:'今日追踪股票数',stat2:'入围股票（≥50分）',stat3:'强力买入',stat4:'今日最高分',mktHK:'港股 HK',mktUS:'美股 US',mktUK:'英股 UK',mktCN:'A股 CN',cUS:'美股 US',cHK:'港股 HK',cUK:'英股 UK',cCN:'A股 CN',top10:'前10名评分分布',sec0:'选股理念与方法',sec1:'评分系统',sec2:'市场概览',sec3:'最新精选推介',ah:['选股理念','三大市场','系统化筛选','每日更新'],ap:['长期稳定的股息收入是财富增长的重要基石。我们不单看当前息率高低，更重视企业的派息可持续性、财务健康状况及估值合理性。','同步覆盖香港、美国及英国市场，以统一标准进行跨市场比较，让投资者掌握全球高息机会。','每日自动更新数据，以量化评分模型对数百只股票进行排名，过滤杂讯，聚焦真正值得关注的机会。','每个交易日收市后自动重新评分，确保推介反映最新的估值及财务状况。'],scoreIntro:'每只股票以100分制进行综合评分，涵盖五个范畴：',th:['评分范畴','满分','主要考量'],rows:[['股息质量','30分','息率水平、派息稳定性及覆盖率'],['估值','25分','现价相对历史息率及市场的吸引程度'],['财务健康','25分','资产负债、现金流及偿债能力'],['增长','10分','股息增长趋势及盈利前景'],['技术走势','10分','RSI、52周位置等技术指标']],rth:['评级','分数','意义'],rmean:['各方面均表现优秀，值得重点关注','基本面良好，可纳入观察名单','有一定吸引力，但需留意风险'],ll:['强力买入','值得关注','观望'],unit:'只',rl:{'strong':'🟢🟢 强力买入','watch':'🟢 值得关注','hold':'⚖️ 观望'},picksNote:'以下为今日评分最高股票（≥50分），绿框为强力买入。',pros:'✅ 优点',cons:'⚠️ 缺点',score:'评分',yieldLbl:'股息率',discLabel:'免责声明',disc:'本网站所有内容仅供参考及教育用途，不构成任何投资建议或买卖邀请。投资涉及风险，过往表现不代表未来回报。读者应自行进行尽职审查，并在作出任何投资决定前咨询持牌财务顾问。',f2:'每个交易日更新',f3:'资料来源：Yahoo Finance · 仅供参考'},
+    'en':{heroTitle:'Global Dividend Stocks<br>Daily Analysis',heroSub:'Covering HK, US, UK and China A-shares with systematic scoring to identify quality dividend stocks.',heroTag:'Daily Update',stat1:'Stocks Tracked',stat2:'Qualified (≥50pts)',stat3:'Strong Buy',stat4:"Today\'s High",mktHK:'HK Stocks',mktUS:'US Stocks',mktUK:'UK Stocks',mktCN:'China A-Shares',cUS:'US Stocks',cHK:'HK Stocks',cUK:'UK Stocks',cCN:'China A-Shares',top10:'Top 10 Score Distribution',sec0:'Investment Philosophy',sec1:'Scoring System',sec2:'Market Overview',sec3:'Top Picks',ah:['Philosophy','4 Markets','Systematic Screening','Daily Update'],ap:['We focus not just on yield but on dividend sustainability, financial health and valuation to find quality long-term holdings.','Covering HK, US, UK and China A-shares with a unified scoring framework for cross-market comparison.','Daily automated updates with quantitative scoring to rank hundreds of stocks and surface the best opportunities.','Re-scored every trading day after market close to reflect the latest valuations and conditions.'],scoreIntro:'Each stock is scored on a 100-point scale across five dimensions:',th:['Category','Max','Key Criteria'],rows:[['Dividend Quality','30pts','Yield level, payout stability & coverage'],['Valuation','25pts','Current price vs historical yield & attractiveness'],['Financial Health','25pts','Balance sheet, cash flow & debt coverage'],['Growth','10pts','Dividend growth trend & earnings outlook'],['Technical','10pts','RSI, 52-week position & other indicators']],rth:['Rating','Score','Meaning'],rmean:['Excellent across all dimensions, high priority','Good fundamentals, worth monitoring','Some appeal, monitor risks'],ll:['Strong Buy','Watch','Hold'],unit:'stk',rl:{'strong':'🟢🟢 Strong Buy','watch':'🟢 Watch','hold':'⚖️ Hold'},picksNote:'Top-rated stocks today (≥50pts). Green border = Strong Buy.',pros:'✅ Pro',cons:'⚠️ Con',score:'Score',yieldLbl:'Yield',discLabel:'Disclaimer',disc:'All content is for reference and educational purposes only. Not investment advice. Investing involves risk. Past performance does not guarantee future results.',f2:'Updated every trading day',f3:'Data: Yahoo Finance · For reference only'},
   };
   var t=T[lang]||T['zh-hk'];
   document.title=(lang==='en'?'Global Dividend Analysis':'全球高息股分析')+' | HiDH Dividend Analyst';
@@ -267,10 +172,9 @@ function setLang(lang) {
   if(st[1])st[1].childNodes[0].textContent=t.sec1;
   if(st[2]){var d2=st[2].textContent.match(/[0-9]{4}-[0-9]{2}-[0-9]{2}/);st[2].childNodes[0].textContent=t.sec2+(d2?' — '+d2[0]:'');}
   if(st[3]){var d3=st[3].textContent.match(/[0-9]{4}-[0-9]{2}-[0-9]{2}/);st[3].childNodes[0].textContent=t.sec3+(d3?' — '+d3[0]:'');}
-  if(st[4]){var d4=st[4].textContent.match(/[0-9]{4}-[0-9]{2}-[0-9]{2}/);st[4].childNodes[0].textContent=t.sec4+(d4?' — '+d4[0]:'');}
   var ag=document.getElementById('about-grid');
   if(ag){ag.querySelectorAll('h3').forEach(function(el,i){if(t.ah[i])el.textContent=t.ah[i];});ag.querySelectorAll('p').forEach(function(el,i){if(t.ap[i])el.textContent=t.ap[i];});}
-  var si=document.getElementById('score-intro');if(si)si.textContent=t.scoreIntro;
+  var si=document.querySelector('#about > p');if(si)si.textContent=t.scoreIntro;
   var tbls=document.querySelectorAll('.score-table');
   if(tbls[0]){tbls[0].querySelectorAll('th').forEach(function(el,i){if(t.th[i])el.textContent=t.th[i];});tbls[0].querySelectorAll('tbody tr').forEach(function(tr,i){if(t.rows[i]){var tds=tr.querySelectorAll('td');tds.forEach(function(td,j){if(t.rows[i][j])td.textContent=t.rows[i][j];});}});}
   if(tbls[1]){tbls[1].querySelectorAll('th').forEach(function(el,i){if(t.rth[i])el.textContent=t.rth[i];});tbls[1].querySelectorAll('tbody tr').forEach(function(tr,i){var tds=tr.querySelectorAll('td');if(tds[1])tds[1].textContent=tds[1].getAttribute('data-'+lang)||tds[1].getAttribute('data-zh-hk')||tds[1].textContent;if(tds[2]&&t.rmean[i])tds[2].textContent=t.rmean[i];});}
@@ -279,14 +183,18 @@ function setLang(lang) {
   document.querySelectorAll('.chart-sub[data-zh-hk]').forEach(function(el){el.textContent=el.getAttribute('data-'+lang)||el.getAttribute('data-zh-hk');});
   document.querySelectorAll('svg[id]').forEach(function(svg){var texts=svg.querySelectorAll('text'),last=texts[texts.length-1];if(last){var m=last.textContent.match(/^([0-9]+)/);if(m)last.textContent=m[1]+t.unit;}});
   var pn=document.getElementById('picks-note');if(pn)pn.textContent=t.picksNote;
-  var an=document.getElementById('avoid-note');if(an)an.textContent=t.avoidNote;
   document.querySelectorAll('.pros-label').forEach(function(el){el.textContent=t.pros;});
   document.querySelectorAll('.cons-label').forEach(function(el){el.textContent=t.cons;});
   document.querySelectorAll('.score-row span:first-child').forEach(function(el){el.textContent=t.score;});
-  document.querySelectorAll('.pick-stat-label[data-zh-hk], .pick-track-label[data-zh-hk], .r-avoid[data-zh-hk], .risk-label[data-zh-hk], .risk-text[data-zh-hk]').forEach(function(el){el.textContent=el.getAttribute('data-'+lang)||el.getAttribute('data-zh-hk');});
+  document.querySelectorAll('.pick-stat-label[data-zh-hk]').forEach(function(el){el.textContent=t.yieldLbl;});
   document.querySelectorAll('.pros-text').forEach(function(el){el.textContent=el.getAttribute('data-'+lang)||el.getAttribute('data-zh-hk');});
   document.querySelectorAll('.cons-text').forEach(function(el){el.textContent=el.getAttribute('data-'+lang)||el.getAttribute('data-zh-hk');});
-  var fi=document.querySelectorAll('.footer-inner span');if(fi[2])fi[2].textContent='© 2026 prosynchk.com · '+t.f2+' · '+t.f3;
+  var fi=document.querySelectorAll('.footer-inner span');if(fi[1])fi[1].textContent='© 2026 prosynchk.com · '+t.f2;if(fi[2])fi[2].textContent=t.f3;
+  var ch={'zh-hk':['合作機會','歡迎合作','如您有興趣進行廣告合作、內容授權、數據合作或其他商業合作，歡迎透過以下方式聯絡我們。'],'zh-cn':['合作机会','欢迎合作','如您有兴趣进行广告合作、内容授权、数据合作或其他商业合作，欢迎通过以下方式联系我们。'],'en':['Partnership','Work With Us','Interested in advertising, content licensing, data collaboration or other business opportunities? Get in touch.']};
+  var cl=ch[lang]||ch['zh-hk'];
+  var chead=document.getElementById('contact-heading');if(chead)chead.childNodes[0].textContent=cl[0];
+  var ctitle=document.getElementById('contact-title');if(ctitle)ctitle.textContent=cl[1];
+  var cbody=document.getElementById('contact-body');if(cbody)cbody.textContent=cl[2];
   var disc=document.querySelector('.disclaimer-inner');if(disc)disc.innerHTML='<strong>'+t.discLabel+'：</strong>'+t.disc;
 }
 """
@@ -294,27 +202,12 @@ function setLang(lang) {
 
 
 def generate_html(stocks, stats, report_date):
-    top10   = stocks[:TOP_N]
-    picks   = [s for s in stocks if s["score"] >= MIN_SCORE][:PICKS_N]
-    avoided = sorted(stocks, key=lambda x: x["score"])[:AVOID_N]   # 評分最低的N隻，列入高危名單
+    top10  = stocks[:TOP_N]
+    picks  = [s for s in stocks if s["score"] >= MIN_SCORE][:PICKS_N]
     total  = sum(s["total"] for s in stats.values())
     n_strong = sum(s["strong"] for s in stats.values())
     max_score  = int(stocks[0]["score"]) if stocks else 0
     max_ticker = stocks[0]["ticker"] if stocks else ""
-
-    # 載入歷史記錄：推介、避開各自校對一次 —
-    # 封存跌出名單的舊期間、為新入選/重新入選的股票開新期間
-    history = load_history()
-    op, cp = reconcile_history(history, picks,   report_date, kind="pick")
-    oa, ca = reconcile_history(history, avoided, report_date, kind="avoid")
-    if op or cp or oa or ca:
-        save_history(history)
-        parts = []
-        if op: parts.append(f"推介新開 {op} 筆")
-        if cp: parts.append(f"推介封存 {cp} 筆")
-        if oa: parts.append(f"避開新開 {oa} 筆")
-        if ca: parts.append(f"避開封存 {ca} 筆")
-        print(f"  🔄 歷史記錄更新：{'、'.join(parts)}（{HISTORY_FILE}）")
 
     top10_js = json.dumps([{
         "label":  s["ticker"],
@@ -323,8 +216,7 @@ def generate_html(stocks, stats, report_date):
         "rating": get_rating_key(s["score"]),
     } for s in top10])
 
-    def get_metric_signals(s):
-        """根據各項指標，列出所有適用的優點/缺點原因清單，供 get_pros_cons 與 get_risk_reasons 共用"""
+    def get_pros_cons(s):
         phk,chk,pcn,ccn,pen,cen = [],[],[],[],[],[]
         try:
             yld = float(s["yield"]) if s["yield"] else 0
@@ -347,10 +239,6 @@ def generate_html(stocks, stats, report_date):
             if sg < 5:     chk.append("股息增長動力不足"); ccn.append("股息增长动力不足"); cen.append("Limited dividend growth momentum")
             if pe > 25:    chk.append(f"PE {pe:.1f}x，估值偏貴"); ccn.append(f"PE {pe:.1f}x，估值偏贵"); cen.append(f"High PE of {pe:.1f}x")
         except: pass
-        return phk,chk,pcn,ccn,pen,cen
-
-    def get_pros_cons(s):
-        phk,chk,pcn,ccn,pen,cen = get_metric_signals(s)
         return {
             "pro_zh_hk": phk[0] if phk else "評分良好，具備一定投資價值",
             "con_zh_hk": chk[0] if chk else "需留意市場風險及行業波動",
@@ -358,32 +246,6 @@ def generate_html(stocks, stats, report_date):
             "con_zh_cn": ccn[0] if ccn else "需留意市场风险及行业波动",
             "pro_en":    pen[0] if pen else "Good overall score, investment potential",
             "con_en":    cen[0] if cen else "Monitor market and sector risks",
-        }
-
-    def get_risk_reasons(s):
-        """彙整這隻股票所有偏弱的指標，作為「高危原因」——跟 get_pros_cons 不同，這裡不只取第一項，
-        而是把全部適用的弱點都列出來，因為高危卡片不需要優點，只需要把低分原因講清楚。"""
-        _,chk,_,ccn,_,cen = get_metric_signals(s)
-        if not chk:
-            chk, ccn, cen = ["整體評分偏低，建議謹慎評估"], ["整体评分偏低，建议谨慎评估"], ["Overall score is low, evaluate with caution"]
-        return {
-            "risk_zh_hk": "；".join(chk),
-            "risk_zh_cn": "；".join(ccn),
-            "risk_en":    "; ".join(cen),
-        }
-
-    def get_track_record(s, kind="pick"):
-        """根據目前進行中的期間，算出這隻股票的日期、當時股價、現價與漲跌"""
-        ep = get_active_episode(history, history_key(s, kind)) or {"date": report_date, "price": s["price"]}
-        first_date  = ep.get("date", report_date)
-        first_price = ep.get("price")
-        chg = calc_change(s["price"], first_price)
-        return {
-            "first_date":  first_date,
-            "first_price": fmt(first_price, 2),
-            "price":       fmt(s["price"], 2),
-            "chg_text":    chg["text"],
-            "chg_color":   chg["color"],
         }
 
     picks_js = json.dumps([{
@@ -396,20 +258,7 @@ def generate_html(stocks, stats, report_date):
         "pe":     fmt(s["pe"]),
         "pb":     fmt(s["pb"], 2),
         **get_pros_cons(s),
-        **get_track_record(s, "pick"),
     } for s in picks])
-
-    avoid_js = json.dumps([{
-        "ticker": s["ticker"],
-        "name":   s["name"],
-        "mkt":    s["mkt"],
-        "score":  int(s["score"]),
-        "yield_": fmt(s["yield"]),
-        "pe":     fmt(s["pe"]),
-        "pb":     fmt(s["pb"], 2),
-        **get_risk_reasons(s),
-        **get_track_record(s, "avoid"),
-    } for s in avoided])
 
     html = f"""<!DOCTYPE html>
 <html lang="zh-HK">
@@ -418,14 +267,6 @@ def generate_html(stocks, stats, report_date):
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>全球高息股分析 | HiDH Dividend Analyst</title>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9533474113956980" crossorigin="anonymous"></script>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-P1VNXYE3FB"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){{dataLayer.push(arguments);}}
-  gtag('js', new Date());
-  gtag('config', 'G-P1VNXYE3FB');
-</script>
 <style>
 *{{box-sizing:border-box;margin:0;padding:0}}
 body{{font-family:system-ui,-apple-system,sans-serif;background:#f7f7f5;color:#333;line-height:1.7}}
@@ -446,7 +287,7 @@ a{{color:#1D9E75;text-decoration:none}}a:hover{{text-decoration:underline}}
 .stat-box{{background:#f7f7f5;border-radius:10px;padding:1rem}}
 .stat-val{{font-size:24px;font-weight:600;color:#222}}.stat-label{{font-size:12px;color:#888;margin-top:2px}}
 .section{{max-width:960px;margin:0 auto;padding:2rem 1.5rem}}
-.section-title{{font-size:20px;font-weight:700;color:#222;text-transform:uppercase;letter-spacing:.02em;margin-bottom:1.25rem;display:flex;align-items:center;gap:10px}}
+.section-title{{font-size:13px;font-weight:600;color:#999;text-transform:uppercase;letter-spacing:.1em;margin-bottom:1.25rem;display:flex;align-items:center;gap:10px}}
 .section-title::after{{content:'';flex:1;height:1px;background:#e5e5e5}}
 .about-grid{{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:1.5rem}}
 .about-card{{background:#fff;border:1px solid #e5e5e5;border-radius:12px;padding:1.25rem}}
@@ -459,7 +300,6 @@ a{{color:#1D9E75;text-decoration:none}}a:hover{{text-decoration:underline}}
 .r-strong{{background:#E1F5EE;color:#0F6E56;padding:3px 8px;border-radius:4px;font-size:11px;font-weight:600;white-space:nowrap}}
 .r-watch{{background:#E6F1FB;color:#185FA5;padding:3px 8px;border-radius:4px;font-size:11px;font-weight:600;white-space:nowrap}}
 .r-hold{{background:#FAEEDA;color:#854F0B;padding:3px 8px;border-radius:4px;font-size:11px;font-weight:600;white-space:nowrap}}
-.r-avoid{{background:#FDECEA;color:#B71C1C;padding:3px 8px;border-radius:4px;font-size:11px;font-weight:600;white-space:nowrap}}
 .top-row{{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}}
 .chart-card{{background:#fff;border:1px solid #e5e5e5;border-radius:12px;padding:16px}}
 .chart-title{{font-size:13px;font-weight:600;color:#444;margin-bottom:8px}}
@@ -470,27 +310,19 @@ svg text{{font-family:system-ui,sans-serif}}
 .picks-grid{{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}}
 .pick-card{{background:#fff;border:1px solid #e5e5e5;border-radius:12px;padding:1.1rem}}
 .pick-card.top{{border:2px solid #1D9E75}}
-.pick-card.avoid{{border:2px solid #B71C1C}}
 .pick-header{{display:block;margin-bottom:.5rem}}
 .pick-ticker{{font-size:15px;font-weight:600;color:#222}}
 .pick-name{{font-size:12px;color:#888;margin-bottom:.75rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}}
 .pick-stats{{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:.75rem}}
 .pick-stat{{background:#f7f7f5;border-radius:6px;padding:6px 8px}}
 .pick-stat-label{{font-size:10px;color:#999}}.pick-stat-val{{font-size:13px;font-weight:600;color:#222}}
-.pick-track{{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:.75rem 0;padding:.6rem 0;border-top:1px dashed #eee;border-bottom:1px dashed #eee}}
-.pick-track-item{{text-align:center}}
-.pick-track-label{{font-size:9px;color:#999;margin-bottom:2px}}
-.pick-track-val{{font-size:12px;font-weight:600;color:#222;white-space:nowrap}}
 .score-track{{height:4px;background:#f0f0f0;border-radius:2px;overflow:hidden;margin-top:.5rem}}
 .score-fill{{height:100%;border-radius:2px;background:#1D9E75}}
-.score-fill.avoid{{background:#B71C1C}}
 .score-row{{display:flex;justify-content:space-between;font-size:10px;color:#aaa;margin-top:3px}}
 .pros-cons{{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:8px;margin-bottom:6px}}
 .pros{{background:#F0FBF5;border-radius:6px;padding:6px 8px;font-size:11px;color:#0F6E56}}
 .cons{{background:#FEF3F2;border-radius:6px;padding:6px 8px;font-size:11px;color:#B42318}}
 .pros-label,.cons-label{{font-weight:600;margin-bottom:2px;font-size:10px}}
-.risk-box{{background:#FEF3F2;border-radius:6px;padding:8px 10px;font-size:11px;color:#B42318;margin-top:8px;margin-bottom:6px}}
-.risk-label{{font-weight:600;margin-bottom:3px;font-size:10px}}
 .disclaimer{{background:#fff;border-top:1px solid #e5e5e5;padding:1.5rem;margin-top:2rem}}
 .disclaimer-inner{{max-width:960px;margin:0 auto;font-size:12px;color:#aaa;line-height:1.7}}
 .disclaimer-inner strong{{color:#888}}
@@ -506,10 +338,9 @@ svg text{{font-family:system-ui,sans-serif}}
   <div class="header-inner">
     <div class="logo">HiDH <span>Dividend Analyst</span></div>
     <nav class="nav">
-      <a href="#about" data-zh-hk="選股方法" data-zh-cn="选股方法" data-en="Methodology">選股方法</a>
-      <a href="#charts" data-zh-hk="市場概覽" data-zh-cn="市场概览" data-en="Markets">市場概覽</a>
-      <a href="#picks" data-zh-hk="最新精選" data-zh-cn="最新精选" data-en="Top Picks">最新精選</a>
-      <a href="#avoid" data-zh-hk="高危名單" data-zh-cn="高危名单" data-en="High-Risk List">高危名單</a>
+      <a href="#about">選股方法</a>
+      <a href="#charts">市場概覽</a>
+      <a href="#picks">最新精選</a>
     </nav>
   </div>
 </div>
@@ -524,7 +355,7 @@ svg text{{font-family:system-ui,sans-serif}}
     <div>
       <div class="hero-tag">每日更新 · {report_date}</div>
       <h1>全球高息股<br>每日精選分析</h1>
-      <p class="hero-sub">覆蓋香港、美國、英國及A股四大市場，以系統化評分篩選出具備穩定派息能力的優質股票。</p>
+      <p class="hero-sub">覆蓋香港、美國、英國三大市場，以系統化評分篩選出具備穩定派息能力的優質股票。</p>
       <div class="hero-badges">
         <span class="badge badge-hk">港股 HK</span>
         <span class="badge badge-us">美股 US</span>
@@ -543,7 +374,7 @@ svg text{{font-family:system-ui,sans-serif}}
 
 <div class="section" id="about">
   <div class="section-title">選股理念與方法</div>
-  <div class="about-grid" id="about-grid">
+  <div class="about-grid">
     <div class="about-card">
       <div class="about-icon">💡</div>
       <h3>選股理念</h3>
@@ -551,8 +382,8 @@ svg text{{font-family:system-ui,sans-serif}}
     </div>
     <div class="about-card">
       <div class="about-icon">🌍</div>
-      <h3>四大市場</h3>
-      <p>同步覆蓋香港、美國、英國及A股四大市場，以統一標準進行跨市場比較，讓投資者掌握全球高息機會。</p>
+      <h3>三大市場</h3>
+      <p>同步覆蓋香港、美國及英國市場，以統一標準進行跨市場比較，讓投資者掌握全球高息機會。</p>
     </div>
     <div class="about-card">
       <div class="about-icon">📊</div>
@@ -567,7 +398,7 @@ svg text{{font-family:system-ui,sans-serif}}
   </div>
 
   <div class="section-title" style="margin-top:2rem">評分系統</div>
-  <p id="score-intro" style="font-size:14px;color:#666;margin-bottom:1rem">每隻股票以100分制進行綜合評分，涵蓋五個範疇：</p>
+  <p style="font-size:14px;color:#666;margin-bottom:1rem">每隻股票以100分制進行綜合評分，涵蓋五個範疇：</p>
   <table class="score-table" style="margin-bottom:1.25rem">
     <thead><tr><th>評分範疇</th><th>滿分</th><th>主要考量</th></tr></thead>
     <tbody>
@@ -581,9 +412,9 @@ svg text{{font-family:system-ui,sans-serif}}
   <table class="score-table">
     <thead><tr><th>評級</th><th>分數</th><th>意義</th></tr></thead>
     <tbody>
-      <tr><td><span class="r-strong" data-rating="strong">🟢🟢 強力買入</span></td><td data-zh-hk="75分以上" data-zh-cn="75分以上" data-en="75+">75分以上</td><td>各方面均表現優秀，值得重點關注</td></tr>
-      <tr><td><span class="r-watch" data-rating="watch">🟢 值得關注</span></td><td data-zh-hk="50–74分" data-zh-cn="50–74分" data-en="50–74">50–74分</td><td>基本面良好，可納入觀察名單</td></tr>
-      <tr><td><span class="r-hold" data-rating="hold">⚖️ 觀望</span></td><td data-zh-hk="40–49分" data-zh-cn="40–49分" data-en="40–49">40–49分</td><td>有一定吸引力，但需留意風險</td></tr>
+      <tr><td><span class="r-strong" data-rating="strong">🟢🟢 強力買入</span></td><td>75分以上</td><td>各方面均表現優秀，值得重點關注</td></tr>
+      <tr><td><span class="r-watch" data-rating="watch">🟢 值得關注</span></td><td>50–74分</td><td>基本面良好，可納入觀察名單</td></tr>
+      <tr><td><span class="r-hold" data-rating="hold">⚖️ 觀望</span></td><td>40–49分</td><td>有一定吸引力，但需留意風險</td></tr>
     </tbody>
   </table>
 </div>
@@ -594,9 +425,9 @@ svg text{{font-family:system-ui,sans-serif}}
     <div class="chart-card">
       <div class="chart-title">美股 US</div>
       <div class="legend">
-        <span data-zh-hk="強力買入"><span class="ld" style="background:#1D9E75"></span>強力買入 <strong>{stats['US']['strong']}</strong></span>
-        <span data-zh-hk="值得關注"><span class="ld" style="background:#378ADD"></span>值得關注 <strong>{stats['US']['watch']}</strong></span>
-        <span data-zh-hk="觀望"><span class="ld" style="background:#EF9F27"></span>觀望 <strong>{stats['US']['hold']}</strong></span>
+        <span><span class="ld" style="background:#1D9E75"></span>強力買入 <strong>{stats['US']['strong']}</strong></span>
+        <span><span class="ld" style="background:#378ADD"></span>值得關注 <strong>{stats['US']['watch']}</strong></span>
+        <span><span class="ld" style="background:#EF9F27"></span>觀望 <strong>{stats['US']['hold']}</strong></span>
       </div>
       <svg id="us" viewBox="0 0 180 160" width="100%" height="160"></svg>
       <div class="chart-sub" data-zh-hk="{stats['US']['total']}隻 · 均分 {stats['US']['avg']} · 最高 {stats['US']['max']}" data-zh-cn="{stats['US']['total']}只 · 均分 {stats['US']['avg']} · 最高 {stats['US']['max']}" data-en="{stats['US']['total']} stks · Avg {stats['US']['avg']} · High {stats['US']['max']}">{stats['US']['total']}隻 · 均分 {stats['US']['avg']} · 最高 {stats['US']['max']}</div>
@@ -604,9 +435,9 @@ svg text{{font-family:system-ui,sans-serif}}
     <div class="chart-card">
       <div class="chart-title">港股 HK</div>
       <div class="legend">
-        <span data-zh-hk="強力買入"><span class="ld" style="background:#1D9E75"></span>強力買入 <strong>{stats['HK']['strong']}</strong></span>
-        <span data-zh-hk="值得關注"><span class="ld" style="background:#378ADD"></span>值得關注 <strong>{stats['HK']['watch']}</strong></span>
-        <span data-zh-hk="觀望"><span class="ld" style="background:#EF9F27"></span>觀望 <strong>{stats['HK']['hold']}</strong></span>
+        <span><span class="ld" style="background:#1D9E75"></span>強力買入 <strong>{stats['HK']['strong']}</strong></span>
+        <span><span class="ld" style="background:#378ADD"></span>值得關注 <strong>{stats['HK']['watch']}</strong></span>
+        <span><span class="ld" style="background:#EF9F27"></span>觀望 <strong>{stats['HK']['hold']}</strong></span>
       </div>
       <svg id="hk" viewBox="0 0 180 160" width="100%" height="160"></svg>
       <div class="chart-sub" data-zh-hk="{stats['HK']['total']}隻 · 均分 {stats['HK']['avg']} · 最高 {stats['HK']['max']}" data-zh-cn="{stats['HK']['total']}只 · 均分 {stats['HK']['avg']} · 最高 {stats['HK']['max']}" data-en="{stats['HK']['total']} stks · Avg {stats['HK']['avg']} · High {stats['HK']['max']}">{stats['HK']['total']}隻 · 均分 {stats['HK']['avg']} · 最高 {stats['HK']['max']}</div>
@@ -614,9 +445,9 @@ svg text{{font-family:system-ui,sans-serif}}
     <div class="chart-card">
       <div class="chart-title">英股 UK</div>
       <div class="legend">
-        <span data-zh-hk="強力買入"><span class="ld" style="background:#1D9E75"></span>強力買入 <strong>{stats['UK']['strong']}</strong></span>
-        <span data-zh-hk="值得關注"><span class="ld" style="background:#378ADD"></span>值得關注 <strong>{stats['UK']['watch']}</strong></span>
-        <span data-zh-hk="觀望"><span class="ld" style="background:#EF9F27"></span>觀望 <strong>{stats['UK']['hold']}</strong></span>
+        <span><span class="ld" style="background:#1D9E75"></span>強力買入 <strong>{stats['UK']['strong']}</strong></span>
+        <span><span class="ld" style="background:#378ADD"></span>值得關注 <strong>{stats['UK']['watch']}</strong></span>
+        <span><span class="ld" style="background:#EF9F27"></span>觀望 <strong>{stats['UK']['hold']}</strong></span>
       </div>
       <svg id="uk" viewBox="0 0 180 160" width="100%" height="160"></svg>
       <div class="chart-sub" data-zh-hk="{stats['UK']['total']}隻 · 均分 {stats['UK']['avg']} · 最高 {stats['UK']['max']}" data-zh-cn="{stats['UK']['total']}只 · 均分 {stats['UK']['avg']} · 最高 {stats['UK']['max']}" data-en="{stats['UK']['total']} stks · Avg {stats['UK']['avg']} · High {stats['UK']['max']}">{stats['UK']['total']}隻 · 均分 {stats['UK']['avg']} · 最高 {stats['UK']['max']}</div>
@@ -624,9 +455,9 @@ svg text{{font-family:system-ui,sans-serif}}
     <div class="chart-card">
       <div class="chart-title">A股 CN</div>
       <div class="legend">
-        <span data-zh-hk="強力買入"><span class="ld" style="background:#1D9E75"></span>強力買入 <strong>{stats['CN']['strong']}</strong></span>
-        <span data-zh-hk="值得關注"><span class="ld" style="background:#378ADD"></span>值得關注 <strong>{stats['CN']['watch']}</strong></span>
-        <span data-zh-hk="觀望"><span class="ld" style="background:#EF9F27"></span>觀望 <strong>{stats['CN']['hold']}</strong></span>
+        <span><span class="ld" style="background:#1D9E75"></span>強力買入 <strong>{stats['CN']['strong']}</strong></span>
+        <span><span class="ld" style="background:#378ADD"></span>值得關注 <strong>{stats['CN']['watch']}</strong></span>
+        <span><span class="ld" style="background:#EF9F27"></span>觀望 <strong>{stats['CN']['hold']}</strong></span>
       </div>
       <svg id="cn" viewBox="0 0 180 160" width="100%" height="160"></svg>
       <div class="chart-sub" data-zh-hk="{stats['CN']['total']}隻 · 均分 {stats['CN']['avg']} · 最高 {stats['CN']['max']}" data-zh-cn="{stats['CN']['total']}只 · 均分 {stats['CN']['avg']} · 最高 {stats['CN']['max']}" data-en="{stats['CN']['total']} stks · Avg {stats['CN']['avg']} · High {stats['CN']['max']}">{stats['CN']['total']}隻 · 均分 {stats['CN']['avg']} · 最高 {stats['CN']['max']}</div>
@@ -635,9 +466,9 @@ svg text{{font-family:system-ui,sans-serif}}
   <div class="chart-card">
     <div class="chart-title">前{TOP_N}名評分分佈</div>
     <div class="legend">
-      <span data-zh-hk="強力買入"><span class="ld" style="background:#1D9E75"></span>強力買入</span>
-      <span data-zh-hk="值得關注"><span class="ld" style="background:#378ADD"></span>值得關注</span>
-      <span data-zh-hk="觀望"><span class="ld" style="background:#EF9F27"></span>觀望</span>
+      <span><span class="ld" style="background:#1D9E75"></span>強力買入</span>
+      <span><span class="ld" style="background:#378ADD"></span>值得關注</span>
+      <span><span class="ld" style="background:#EF9F27"></span>觀望</span>
     </div>
     <svg id="bar" viewBox="0 0 900 240" width="100%" height="240"></svg>
   </div>
@@ -649,12 +480,19 @@ svg text{{font-family:system-ui,sans-serif}}
   <div class="picks-grid" id="picksGrid"></div>
 </div>
 
-<div class="section" id="avoid">
-  <div class="section-title">高危名單 — {report_date}</div>
-  <p id="avoid-note" style="font-size:13px;color:#999;margin-bottom:1.25rem">以下為今日評分最低的股票（最多{AVOID_N}隻），紅框代表高危股票，數據與上方推介股一致。</p>
-  <div class="picks-grid" id="avoidGrid"></div>
-</div>
 
+<div class="section" id="contact">
+  <div class="section-title" id="contact-heading">合作機會</div>
+  <div style="background:#fff;border-radius:16px;padding:2rem;text-align:center;border:1px solid #e5e5e5">
+    <div style="font-size:2rem;margin-bottom:1rem">🤝</div>
+    <h3 style="font-size:18px;font-weight:600;color:#222;margin-bottom:.75rem" id="contact-title">歡迎合作</h3>
+    <p style="font-size:14px;color:#555;line-height:1.7;margin-bottom:1.5rem" id="contact-body">如您有興趣進行廣告合作、內容授權、數據合作或其他商業合作，歡迎透過以下方式聯絡我們。</p>
+    <a href="mailto:prosynchk@gmail.com" style="display:inline-flex;align-items:center;gap:8px;background:#1D9E75;color:#fff;padding:10px 24px;border-radius:8px;text-decoration:none;font-size:14px;font-weight:600">
+      <span>✉️</span>
+      <span>prosynchk@gmail.com</span>
+    </a>
+  </div>
+</div>
 <div class="disclaimer">
   <div class="disclaimer-inner">
     <strong>免責聲明：</strong>本網站所有內容僅供參考及教育用途，不構成任何投資建議或買賣邀請。投資涉及風險，過往表現不代表未來回報。讀者應自行進行盡職審查，並在作出任何投資決定前諮詢持牌財務顧問。本站對因使用本站資料而引起的任何損失概不負責。
@@ -665,10 +503,10 @@ svg text{{font-family:system-ui,sans-serif}}
   <div class="footer-inner">
     <span class="footer-logo">HiDH Dividend Analyst</span>
     <span>
-      <a href="about.html" style="color:#aaa;text-decoration:none" data-zh-hk="關於我們" data-zh-cn="关于我们" data-en="About">關於我們</a> ·
-      <a href="privacy.html" style="color:#aaa;text-decoration:none" data-zh-hk="私隱政策" data-zh-cn="隐私政策" data-en="Privacy">私隱政策</a>
+      <a href="about.html" style="color:#aaa;text-decoration:none">關於我們</a> ·
+      <a href="privacy.html" style="color:#aaa;text-decoration:none">私隱政策</a>
     </span>
-    <span>© {datetime.date.today().year} prosynchk.com · 每個交易日更新 · 資料來源：Yahoo Finance · 僅供參考</span>
+    <span>© {datetime.date.today().year} prosynchk.com · 資料來源：Yahoo Finance · 僅供參考</span>
   </div>
 </div>
 
@@ -679,7 +517,6 @@ const UK_STATS = {json.dumps(stats['UK'])};
 const CN_STATS = {json.dumps(stats['CN'])};
 const TOP10    = {top10_js};
 const PICKS    = {picks_js};
-const AVOID    = {avoid_js};
 
 function drawDonut(svgId, strong, watch, hold) {{
   const svg = document.getElementById(svgId);
@@ -808,49 +645,11 @@ document.getElementById('picksGrid').innerHTML=PICKS.map(p=>`
       <div class="pick-stat"><div class="pick-stat-label">PE</div><div class="pick-stat-val">${{p.pe}}x</div></div>
       <div class="pick-stat"><div class="pick-stat-label">P/B</div><div class="pick-stat-val">${{p.pb}}</div></div>
     </div>
-    <div class="pick-track">
-      <div class="pick-track-item"><div class="pick-track-label" data-zh-hk="推介日期" data-zh-cn="推介日期" data-en="Picked On">推介日期</div><div class="pick-track-val">${{p.first_date}}</div></div>
-      <div class="pick-track-item"><div class="pick-track-label" data-zh-hk="漲跌" data-zh-cn="涨跌" data-en="Change">漲跌</div><div class="pick-track-val" style="color:${{p.chg_color}}">${{p.chg_text}}</div></div>
-      <div class="pick-track-item"><div class="pick-track-label" data-zh-hk="推介價" data-zh-cn="推介价" data-en="Then">推介價</div><div class="pick-track-val">${{p.first_price}}</div></div>
-      <div class="pick-track-item"><div class="pick-track-label" data-zh-hk="現價" data-zh-cn="现价" data-en="Now">現價</div><div class="pick-track-val">${{p.price}}</div></div>
-    </div>
     <div class="pros-cons">
       <div class="pros"><div class="pros-label">✅ 優點</div><div class="pros-text" data-zh-hk="${{p.pro_zh_hk}}" data-zh-cn="${{p.pro_zh_cn}}" data-en="${{p.pro_en}}">${{p.pro_zh_hk}}</div></div>
       <div class="cons"><div class="cons-label">⚠️ 缺點</div><div class="cons-text" data-zh-hk="${{p.con_zh_hk}}" data-zh-cn="${{p.con_zh_cn}}" data-en="${{p.con_en}}">${{p.con_zh_hk}}</div></div>
     </div>
     <div class="score-track"><div class="score-fill" style="width:${{p.score}}%"></div></div>
-    <div class="score-row"><span>評分</span><span>${{p.score}}/100</span></div>
-  </div>
-`).join('');
-
-document.getElementById('avoidGrid').innerHTML=AVOID.map(p=>`
-  <div class="pick-card avoid">
-    <div class="pick-header">
-      <div style="display:flex;align-items:center;justify-content:space-between;gap:4px;margin-bottom:4px">
-        <div style="display:flex;align-items:center;gap:5px">
-          <span style="font-size:14px;font-weight:600;color:#222;white-space:nowrap">${{p.ticker}}</span>
-          ${{MKT_BADGE[p.mkt]}}
-        </div>
-        <span class="r-avoid" style="white-space:nowrap;flex-shrink:0" data-zh-hk="🔴 高危" data-zh-cn="🔴 高危" data-en="🔴 High Risk">🔴 高危</span>
-      </div>
-      <div class="pick-name">${{p.name}}</div>
-    </div>
-    <div class="pick-stats">
-      <div class="pick-stat"><div class="pick-stat-label" data-zh-hk="股息率" data-zh-cn="股息率" data-en="Yield">股息率</div><div class="pick-stat-val">${{p.yield_}}%</div></div>
-      <div class="pick-stat"><div class="pick-stat-label">PE</div><div class="pick-stat-val">${{p.pe}}x</div></div>
-      <div class="pick-stat"><div class="pick-stat-label">P/B</div><div class="pick-stat-val">${{p.pb}}</div></div>
-    </div>
-    <div class="pick-track">
-      <div class="pick-track-item"><div class="pick-track-label" data-zh-hk="避開日期" data-zh-cn="避开日期" data-en="Flagged On">避開日期</div><div class="pick-track-val">${{p.first_date}}</div></div>
-      <div class="pick-track-item"><div class="pick-track-label" data-zh-hk="漲跌" data-zh-cn="涨跌" data-en="Change">漲跌</div><div class="pick-track-val" style="color:${{p.chg_color}}">${{p.chg_text}}</div></div>
-      <div class="pick-track-item"><div class="pick-track-label" data-zh-hk="避開價" data-zh-cn="避开价" data-en="Then">避開價</div><div class="pick-track-val">${{p.first_price}}</div></div>
-      <div class="pick-track-item"><div class="pick-track-label" data-zh-hk="現價" data-zh-cn="现价" data-en="Now">現價</div><div class="pick-track-val">${{p.price}}</div></div>
-    </div>
-    <div class="risk-box">
-      <div class="risk-label" data-zh-hk="⚠️ 高危原因" data-zh-cn="⚠️ 高危原因" data-en="⚠️ Risk Factors">⚠️ 高危原因</div>
-      <div class="risk-text" data-zh-hk="${{p.risk_zh_hk}}" data-zh-cn="${{p.risk_zh_cn}}" data-en="${{p.risk_en}}">${{p.risk_zh_hk}}</div>
-    </div>
-    <div class="score-track"><div class="score-fill avoid" style="width:${{p.score}}%"></div></div>
     <div class="score-row"><span>評分</span><span>${{p.score}}/100</span></div>
   </div>
 `).join('');
@@ -883,12 +682,8 @@ def main():
     html = generate_html(stocks, stats, report_date)
 
     os.makedirs(os.path.dirname(OUTPUT_FILE), exist_ok=True)
-    # 先寫到暫存檔，寫完整個內容後再一次性替換正式檔案 ——
-    # 避免瀏覽器（或自動重新整理工具）在 write() 進行中途，讀到只寫了一半、被截斷的檔案
-    tmp_path = OUTPUT_FILE + ".tmp"
-    with open(tmp_path, "w", encoding="utf-8") as f:
+    with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
         f.write(html)
-    os.replace(tmp_path, OUTPUT_FILE)
 
     top5 = ', '.join(s['ticker'] for s in stocks[:5])
     print(f"\n✅ 已生成：{OUTPUT_FILE}")
