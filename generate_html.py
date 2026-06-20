@@ -1348,6 +1348,19 @@ svg text{{font-family:system-ui,sans-serif}}
   <div class="picks-grid" id="avoidGrid"></div>
 </div>
 
+<div class="section" id="contact">
+  <div class="section-title" id="contact-heading">合作機會</div>
+  <div style="background:#fff;border-radius:16px;padding:2rem;text-align:center;border:1px solid #e5e5e5">
+    <div style="font-size:2rem;margin-bottom:1rem">🤝</div>
+    <h3 style="font-size:18px;font-weight:600;color:#222;margin-bottom:.75rem" id="contact-title">歡迎合作</h3>
+    <p style="font-size:14px;color:#555;line-height:1.7;margin-bottom:1.5rem" id="contact-body">如您有興趣進行廣告合作、內容授權、數據合作或其他商業合作，歡迎透過以下方式聯絡我們。</p>
+    <a href="mailto:prosynchk@gmail.com" style="display:inline-flex;align-items:center;gap:8px;background:#1D9E75;color:#fff;padding:10px 24px;border-radius:8px;text-decoration:none;font-size:14px;font-weight:600">
+      <span>✉️</span>
+      <span>prosynchk@gmail.com</span>
+    </a>
+  </div>
+</div>
+
 <div class="disclaimer">
   <div class="disclaimer-inner">
     <strong>免責聲明：</strong>本網站所有內容僅供參考及教育用途，不構成任何投資建議或買賣邀請。投資涉及風險，過往表現不代表未來回報。讀者應自行進行盡職審查，並在作出任何投資決定前諮詢持牌財務顧問。本站對因使用本站資料而引起的任何損失概不負責。
@@ -1548,19 +1561,6 @@ document.getElementById('avoidGrid').innerHTML=AVOID.map(p=>`
   </div>
 `).join('');
 </script>
-
-<div class="section" id="contact">
-  <div class="section-title" id="contact-heading">合作機會</div>
-  <div style="background:#fff;border-radius:16px;padding:2rem;text-align:center;border:1px solid #e5e5e5">
-    <div style="font-size:2rem;margin-bottom:1rem">🤝</div>
-    <h3 style="font-size:18px;font-weight:600;color:#222;margin-bottom:.75rem" id="contact-title">歡迎合作</h3>
-    <p style="font-size:14px;color:#555;line-height:1.7;margin-bottom:1.5rem" id="contact-body">如您有興趣進行廣告合作、內容授權、數據合作或其他商業合作，歡迎透過以下方式聯絡我們。</p>
-    <a href="mailto:prosynchk@gmail.com" style="display:inline-flex;align-items:center;gap:8px;background:#1D9E75;color:#fff;padding:10px 24px;border-radius:8px;text-decoration:none;font-size:14px;font-weight:600">
-      <span>✉️</span>
-      <span>prosynchk@gmail.com</span>
-    </a>
-  </div>
-</div>
 
 </body>
 </html>"""
