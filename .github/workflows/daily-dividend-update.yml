@@ -70,6 +70,15 @@ jobs:
           git diff --staged --quiet || git commit -m "Daily update: $(date -u +%Y-%m-%d)"
           git push
 
+      - name: Keepalive（防止 GitHub 因無活動而靜默停用 scheduled workflow）
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          echo "$(date -u +%Y-%m-%dT%H:%M:%SZ)" > .github/keepalive
+          git add .github/keepalive
+          git commit -m "keepalive: $(date -u +%Y-%m-%d)" || true
+          git push || true
+
       - name: Build Pages staging folder（新index.html + 現有靜態檔，例如CNAME/about/privacy/ads.txt/sitemap）
         id: pages_stage
         run: |
