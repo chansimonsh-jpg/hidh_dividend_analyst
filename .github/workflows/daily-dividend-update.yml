@@ -84,7 +84,7 @@ jobs:
         run: |
           mkdir -p _pages_site
           cp "${{ steps.find_html.outputs.html_dir }}/index.html" _pages_site/index.html
-          for f in CNAME about.html privacy.html ads.txt sitemap.xml robots.txt; do
+          for f in CNAME about.html privacy.html ads.txt sitemap.xml robots.txt icon.png; do
             [ -f "$f" ] && cp "$f" _pages_site/
           done
           echo "stage_dir=_pages_site" >> "$GITHUB_OUTPUT"
