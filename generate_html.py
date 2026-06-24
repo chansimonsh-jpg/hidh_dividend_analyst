@@ -266,6 +266,8 @@ def generate_html(stocks, stats, report_date):
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>全球高息股分析 | HiDH Dividend Analyst</title>
+<link rel="icon" type="image/png" href="/icon.png">
+<link rel="apple-touch-icon" href="/icon.png">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9533474113956980" crossorigin="anonymous"></script>
 <style>
 *{{box-sizing:border-box;margin:0;padding:0}}
@@ -1110,6 +1112,8 @@ def generate_html(stocks, stats, report_date):
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>全球高息股分析 | HiDH Dividend Analyst</title>
+<link rel="icon" type="image/png" href="/icon.png">
+<link rel="apple-touch-icon" href="/icon.png">
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9533474113956980" crossorigin="anonymous"></script>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-P1VNXYE3FB"></script>
