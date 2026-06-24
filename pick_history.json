@@ -86,7 +86,7 @@
     {
       "date": "2026-06-23",
       "price": 16.06,
-      "end_date": null
+      "end_date": "2026-06-24"
     }
   ],
   "pick:HK:0027.HK": [
@@ -181,7 +181,7 @@
     {
       "date": "2026-06-16",
       "price": 215.66,
-      "end_date": null
+      "end_date": "2026-06-24"
     }
   ],
   "avoid:US:VTR": [
@@ -189,6 +189,11 @@
       "date": "2026-06-16",
       "price": 83.46,
       "end_date": "2026-06-23"
+    },
+    {
+      "date": "2026-06-24",
+      "price": 85.37,
+      "end_date": null
     }
   ],
   "avoid:US:STAG": [
@@ -262,6 +267,11 @@
       "date": "2026-06-23",
       "price": 9.7,
       "end_date": "2026-06-23"
+    },
+    {
+      "date": "2026-06-24",
+      "price": 9.52,
+      "end_date": null
     }
   ]
 }
