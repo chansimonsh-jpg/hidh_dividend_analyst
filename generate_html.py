@@ -982,6 +982,11 @@ function setLang(lang) {
   document.querySelectorAll('.pros-text').forEach(function(el){el.textContent=el.getAttribute('data-'+lang)||el.getAttribute('data-zh-hk');});
   document.querySelectorAll('.cons-text').forEach(function(el){el.textContent=el.getAttribute('data-'+lang)||el.getAttribute('data-zh-hk');});
   var fi=document.querySelectorAll('.footer-inner span');if(fi[2])fi[2].textContent='© 2026 prosynchk.com · '+t.f2+' · '+t.f3;
+  var ch={'zh-hk':['合作機會','歡迎合作','如您有興趣進行廣告合作、內容授權、數據合作或其他商業合作，歡迎透過以下方式聯絡我們。'],'zh-cn':['合作机会','欢迎合作','如您有兴趣进行广告合作、内容授权、数据合作或其他商业合作，欢迎通过以下方式联系我们。'],'en':['Partnership','Work With Us','Interested in advertising, content licensing, data collaboration or other business opportunities? Get in touch.']};
+  var cl=ch[lang]||ch['zh-hk'];
+  var chead=document.getElementById('contact-heading');if(chead)chead.childNodes[0].textContent=cl[0];
+  var ctitle=document.getElementById('contact-title');if(ctitle)ctitle.textContent=cl[1];
+  var cbody=document.getElementById('contact-body');if(cbody)cbody.textContent=cl[2];
   var disc=document.querySelector('.disclaimer-inner');if(disc)disc.innerHTML='<strong>'+t.discLabel+'：</strong>'+t.disc;
 }
 """
@@ -1608,4 +1613,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
