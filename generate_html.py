@@ -722,6 +722,7 @@ import datetime
 import os
 import json
 import openpyxl
+import pandas as pd
 
 # ── 設定 ─────────────────────────────────────────────────
 EXCEL_FILES = {
@@ -815,6 +816,59 @@ def load_excel_data():
 
     all_stocks.sort(key=lambda x: x["score"], reverse=True)
     return all_stocks
+
+# ── 讀取各股歷年股息（用於 sparkline）────────────────────────
+def load_dividend_history():
+    """從四個 Excel 讀取每隻股票的歷年股息（按年彙總），
+    回傳 dict: { ticker -> {"annual": {year: amount}, "trend": "grow"|"cut"|"flat"} }
+    只讀取 Date(col0) + Dividend_Amount(col3)。"""
+    cur_year = datetime.date.today().year
+    result = {}
+    for mkt, filepath in EXCEL_FILES.items():
+        if not os.path.exists(filepath):
+            continue
+        try:
+            xl = pd.ExcelFile(filepath)
+            summary = f"{mkt} 總覽"
+            before = len(result)
+            for sheet in xl.sheet_names:
+                if sheet == summary:
+                    continue
+                try:
+                    df = xl.parse(sheet, usecols=[0, 3], header=0)
+                    df.columns = ["date", "div"]
+                    df["div"] = pd.to_numeric(df["div"], errors="coerce")
+                    df = df[df["div"] > 0].copy()
+                    if df.empty:
+                        continue
+                    df["year"] = pd.to_datetime(df["date"], errors="coerce").dt.year
+                    df = df.dropna(subset=["year"])
+                    df = df[df["year"] < cur_year]
+                    if df.empty:
+                        continue
+                    annual = {int(y): round(float(v), 4)
+                              for y, v in df.groupby("year")["div"].sum().items()}
+                    trend = _classify_div_trend(annual)
+                    result[sheet] = {"annual": annual, "trend": trend}
+                except Exception:
+                    pass
+            print(f"  📈 {mkt}: {len(result)-before} 隻股息歷史")
+        except Exception as e:
+            print(f"  ⚠️  {mkt} 股息歷史讀取失敗：{e}")
+    print(f"  ✅ 股息歷史合計：{len(result)} 隻")
+    return result
+
+def _classify_div_trend(annual):
+    vals = list(annual.values())
+    if len(vals) < 2:
+        return "flat"
+    cuts  = sum(1 for i in range(1, len(vals)) if vals[i] < vals[i-1] * 0.95)
+    grows = sum(1 for i in range(1, len(vals)) if vals[i] > vals[i-1] * 1.01)
+    if cuts > 0:
+        return "cut"
+    if grows >= len(vals) - 1:
+        return "grow"
+    return "flat"
 
 def get_rating_key(score):
     if score >= RATING_STRONG: return "strong"
@@ -982,18 +1036,15 @@ function setLang(lang) {
   document.querySelectorAll('.pros-text').forEach(function(el){el.textContent=el.getAttribute('data-'+lang)||el.getAttribute('data-zh-hk');});
   document.querySelectorAll('.cons-text').forEach(function(el){el.textContent=el.getAttribute('data-'+lang)||el.getAttribute('data-zh-hk');});
   var fi=document.querySelectorAll('.footer-inner span');if(fi[2])fi[2].textContent='© 2026 prosynchk.com · '+t.f2+' · '+t.f3;
-  var ch={'zh-hk':['合作機會','歡迎合作','如您有興趣進行廣告合作、內容授權、數據合作或其他商業合作，歡迎透過以下方式聯絡我們。'],'zh-cn':['合作机会','欢迎合作','如您有兴趣进行广告合作、内容授权、数据合作或其他商业合作，欢迎通过以下方式联系我们。'],'en':['Partnership','Work With Us','Interested in advertising, content licensing, data collaboration or other business opportunities? Get in touch.']};
-  var cl=ch[lang]||ch['zh-hk'];
-  var chead=document.getElementById('contact-heading');if(chead)chead.childNodes[0].textContent=cl[0];
-  var ctitle=document.getElementById('contact-title');if(ctitle)ctitle.textContent=cl[1];
-  var cbody=document.getElementById('contact-body');if(cbody)cbody.textContent=cl[2];
   var disc=document.querySelector('.disclaimer-inner');if(disc)disc.innerHTML='<strong>'+t.discLabel+'：</strong>'+t.disc;
 }
 """
 
 
 
-def generate_html(stocks, stats, report_date):
+def generate_html(stocks, stats, report_date, div_hist=None):
+    if div_hist is None:
+        div_hist = {}
     top10   = stocks[:TOP_N]
     picks   = [s for s in stocks if s["score"] >= MIN_SCORE][:PICKS_N]
     avoided = sorted(stocks, key=lambda x: x["score"])[:AVOID_N]   # 評分最低的N隻，列入高危名單
@@ -1086,6 +1137,16 @@ def generate_html(stocks, stats, report_date):
             "chg_color":   chg["color"],
         }
 
+    def get_div_data(s):
+        """取出該股的年度股息 sparkline 資料"""
+        info = div_hist.get(s["ticker"], {})
+        annual = info.get("annual", {})
+        trend  = info.get("trend", "flat")
+        # 保留最近6年
+        years  = sorted(annual.keys())[-6:]
+        pts    = [{"y": yr, "v": annual[yr]} for yr in years]
+        return {"div_pts": pts, "div_trend": trend}
+
     picks_js = json.dumps([{
         "ticker": s["ticker"],
         "name":   s["name"],
@@ -1097,6 +1158,7 @@ def generate_html(stocks, stats, report_date):
         "pb":     fmt(s["pb"], 2),
         **get_pros_cons(s),
         **get_track_record(s, "pick"),
+        **get_div_data(s),
     } for s in picks])
 
     avoid_js = json.dumps([{
@@ -1109,6 +1171,7 @@ def generate_html(stocks, stats, report_date):
         "pb":     fmt(s["pb"], 2),
         **get_risk_reasons(s),
         **get_track_record(s, "avoid"),
+        **get_div_data(s),
     } for s in avoided])
 
     html = f"""<!DOCTYPE html>
@@ -1193,6 +1256,13 @@ svg text{{font-family:system-ui,sans-serif}}
 .pros-label,.cons-label{{font-weight:600;margin-bottom:2px;font-size:10px}}
 .risk-box{{background:#FEF3F2;border-radius:6px;padding:8px 10px;font-size:11px;color:#B42318;margin-top:8px;margin-bottom:6px}}
 .risk-label{{font-weight:600;margin-bottom:3px;font-size:10px}}
+.div-spark{{margin-top:8px;margin-bottom:2px}}
+.div-spark-row{{display:flex;align-items:center;gap:6px;margin-bottom:4px}}
+.div-trend-badge{{font-size:10px;font-weight:600;padding:2px 7px;border-radius:3px;white-space:nowrap}}
+.div-trend-grow{{background:#E1F5EE;color:#0F6E56}}
+.div-trend-cut{{background:#FEF3F2;color:#B42318}}
+.div-trend-flat{{background:#FAEEDA;color:#854F0B}}
+.div-spark svg{{display:block;width:100%;height:70px}}
 .disclaimer{{background:#fff;border-top:1px solid #e5e5e5;padding:1.5rem;margin-top:2rem}}
 .disclaimer-inner{{max-width:960px;margin:0 auto;font-size:12px;color:#aaa;line-height:1.7}}
 .disclaimer-inner strong{{color:#888}}
@@ -1498,6 +1568,43 @@ TOP10.forEach((s,i)=>{{
   bt.textContent=s.mkt;svg.appendChild(bt);
 }});
 
+
+function renderSparkline(p){{
+  const pts=p.div_pts;
+  const W=200,H=70,padL=4,padR=4,padT=14,padB=16;
+  const vals=pts.map(d=>d.v);
+  const minV=Math.min(...vals),maxV=Math.max(...vals);
+  const rng=maxV-minV||maxV*0.1||0.1;
+  const xs=pts.map((_,i)=>padL+i*(W-padL-padR)/(pts.length-1));
+  const ys=pts.map(d=>padT+(H-padT-padB)*(1-(d.v-minV)/rng));
+  const col=p.div_trend==='grow'?'#1D9E75':p.div_trend==='cut'?'#B71C1C':'#BA7517';
+  const badgeTxt=p.div_trend==='grow'?'\u2191 \u6301\u7e8c\u589e\u9577':p.div_trend==='cut'?'\u26a0 \u66fe\u7d93\u6e1b\u606f':'\u2192 \u7a69\u5b9a\u6d3e\u606f';
+  const badgeCls=p.div_trend==='grow'?'div-trend-grow':p.div_trend==='cut'?'div-trend-cut':'div-trend-flat';
+  let path=`M${{xs[0]}},${{ys[0]}}`;
+  for(let i=1;i<xs.length;i++) path+=` L${{xs[i]}},${{ys[i]}}`;
+  const aPath=path+` L${{xs[xs.length-1]}},${{H-padB}} L${{xs[0]}},${{H-padB}} Z`;
+  const colA=p.div_trend==='grow'?'#E1F5EE':p.div_trend==='cut'?'#FEF3F2':'#FAEEDA';
+  const ff='system-ui,-apple-system,sans-serif';
+  let dots='';
+  pts.forEach((d,i)=>{{
+    dots+=`<circle cx="${{xs[i].toFixed(1)}}" cy="${{ys[i].toFixed(1)}}" r="3" fill="${{col}}"/>`;
+    if(i===0||i===pts.length-1){{
+      const anchor=i===0?'start':'end';
+      const lx=i===0?xs[i]+4:xs[i]-4;
+      dots+=`<text x="${{lx.toFixed(1)}}" y="${{(ys[i]-5).toFixed(1)}}" text-anchor="${{anchor}}" font-size="9" font-family="${{ff}}" fill="${{col}}" font-weight="600">${{d.v.toFixed(2)}}</text>`;
+      dots+=`<text x="${{lx.toFixed(1)}}" y="${{(H-padB+11).toFixed(1)}}" text-anchor="${{anchor}}" font-size="9" font-family="${{ff}}" fill="#aaa">${{d.y}}</text>`;
+    }}
+  }});
+  return `<div class="div-spark">
+    <div class="div-spark-row"><span class="div-trend-badge ${{badgeCls}}">${{badgeTxt}}</span></div>
+    <svg viewBox="0 0 ${{W}} ${{H}}" preserveAspectRatio="none" aria-hidden="true">
+      <path d="${{aPath}}" fill="${{colA}}"/>
+      <path d="${{path}}" stroke="${{col}}" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+      ${{dots}}
+    </svg>
+  </div>`;
+}}
+
 const RATING_LABEL={{strong:'🟢🟢 強力買入',watch:'🟢 值得關注',hold:'⚖️ 觀望'}};
 const RATING_CLASS={{strong:'r-strong',watch:'r-watch',hold:'r-hold'}};
 const MKT_BADGE={{
@@ -1535,6 +1642,7 @@ document.getElementById('picksGrid').innerHTML=PICKS.map(p=>`
     </div>
     <div class="score-track"><div class="score-fill" style="width:${{p.score}}%"></div></div>
     <div class="score-row"><span>評分</span><span>${{p.score}}/100</span></div>
+    ${{p.div_pts&&p.div_pts.length>1?renderSparkline(p):''}}
   </div>
 `).join('');
 
@@ -1567,6 +1675,7 @@ document.getElementById('avoidGrid').innerHTML=AVOID.map(p=>`
     </div>
     <div class="score-track"><div class="score-fill avoid" style="width:${{p.score}}%"></div></div>
     <div class="score-row"><span>評分</span><span>${{p.score}}/100</span></div>
+    ${{p.div_pts&&p.div_pts.length>1?renderSparkline(p):''}}
   </div>
 `).join('');
 </script>
@@ -1591,12 +1700,15 @@ def main():
 
     print(f"\n✅ 合計 {len(stocks)} 隻股票")
 
+    print("\n📈 讀取股息歷史...")
+    div_hist = load_dividend_history()
+
     stats = get_market_stats(stocks)
     for mkt, s in stats.items():
         print(f"   {mkt}: {s['total']}隻，強力買入 {s['strong']}，值得關注 {s['watch']}，觀望 {s['hold']}，均分 {s['avg']}")
 
     report_date = str(datetime.date.today())
-    html = generate_html(stocks, stats, report_date)
+    html = generate_html(stocks, stats, report_date, div_hist=div_hist)
 
     os.makedirs(os.path.dirname(OUTPUT_FILE), exist_ok=True)
     # 先寫到暫存檔，寫完整個內容後再一次性替換正式檔案 ——
