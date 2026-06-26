@@ -1,0 +1,59 @@
+name: 1 · Daily Data Update
+
+# 美股收市後跑：22:15 UTC = 18:15 EDT / 17:15 EST
+on:
+  schedule:
+    - cron: '15 22 * * 1-5'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: daily-data-update
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # 需要完整歷史以避免 push 衝突
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run daily importer
+        env:
+          USE_IBKR: "false"
+        run: python daily_importer_global_v6.py
+
+      - name: Commit & push updated Excel files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          for f in UK_Dividend_Analysis.xlsx HK_Dividend_Analysis.xlsx \
+                   US_Dividend_Analysis.xlsx CN_Dividend_Analysis.xlsx; do
+            [ -f "$f" ] && git add "$f"
+          done
+          git diff --staged --quiet && echo "No Excel changes" && exit 0
+          git pull --rebase origin main
+          git commit -m "Data update: $(date -u +%Y-%m-%d)"
+          git push
+
+      - name: Keepalive
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          echo "$(date -u +%Y-%m-%dT%H:%M:%SZ)" > .github/keepalive
+          git add .github/keepalive
+          git pull --rebase origin main || true
+          git commit -m "keepalive: $(date -u +%Y-%m-%d)" || true
+          git push || true
