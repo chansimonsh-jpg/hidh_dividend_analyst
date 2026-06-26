@@ -44,8 +44,8 @@ jobs:
             [ -f "$f" ] && git add "$f"
           done
           git diff --staged --quiet && echo "No Excel changes" && exit 0
-          git pull --rebase origin main
           git commit -m "Data update: $(date -u +%Y-%m-%d)"
+          git pull --rebase origin main
           git push
 
       - name: Keepalive
