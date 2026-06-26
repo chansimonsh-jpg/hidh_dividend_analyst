@@ -66,8 +66,8 @@ jobs:
             [ -f "$f" ] && git add "$f"
           done
           git diff --staged --quiet && echo "Nothing to commit" && exit 0
-          git pull --rebase origin main
           git commit -m "HTML update: $(date -u +%Y-%m-%d)"
+          git pull --rebase origin main
           git push
 
       - name: Build Pages staging folder
