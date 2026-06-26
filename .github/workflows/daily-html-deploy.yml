@@ -1,0 +1,97 @@
+name: 2 · Generate HTML & Deploy Pages
+
+# 由 Workflow 1 完成後自動觸發，或手動跑
+on:
+  workflow_run:
+    workflows: ["1 · Daily Data Update"]
+    types: [completed]
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: daily-html-deploy
+  cancel-in-progress: false
+
+jobs:
+  build:
+    # workflow_run 觸發時只喺 Workflow 1 成功才跑；手動跑則無條件執行
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    outputs:
+      html_dir: ${{ steps.find_html.outputs.html_dir }}
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Generate HTML dashboard
+        run: python generate_html.py
+
+      - name: Locate today's generated HTML folder
+        id: find_html
+        run: |
+          html_dir=$(find web_site -mindepth 1 -maxdepth 1 -type d | head -1)
+          if [ -z "$html_dir" ]; then
+            echo "找不到 generate_html.py 嘅輸出資料夾，停止部署 Pages" >&2
+            exit 1
+          fi
+          echo "找到輸出: $html_dir"
+          echo "html_dir=$html_dir" >> "$GITHUB_OUTPUT"
+
+      - name: Archive today's index.html
+        run: |
+          today=$(date -u +%Y%m%d)
+          mkdir -p html_archive
+          cp "${{ steps.find_html.outputs.html_dir }}/index.html" "html_archive/index_${today}.html"
+          echo "archive_file=html_archive/index_${today}.html" >> "$GITHUB_ENV"
+
+      - name: Commit & push pick_history + archive
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          for f in pick_history.json "$archive_file"; do
+            [ -f "$f" ] && git add "$f"
+          done
+          git diff --staged --quiet && echo "Nothing to commit" && exit 0
+          git pull --rebase origin main
+          git commit -m "HTML update: $(date -u +%Y-%m-%d)"
+          git push
+
+      - name: Build Pages staging folder
+        id: pages_stage
+        run: |
+          mkdir -p _pages_site
+          cp "${{ steps.find_html.outputs.html_dir }}/index.html" _pages_site/index.html
+          for f in CNAME about.html privacy.html ads.txt sitemap.xml robots.txt icon.png; do
+            [ -f "$f" ] && cp "$f" _pages_site/
+          done
+          echo "stage_dir=_pages_site" >> "$GITHUB_OUTPUT"
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ${{ steps.pages_stage.outputs.stage_dir }}
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
