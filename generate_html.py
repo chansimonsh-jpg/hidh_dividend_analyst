@@ -1675,7 +1675,6 @@ document.getElementById('avoidGrid').innerHTML=AVOID.map(p=>`
     </div>
     <div class="score-track"><div class="score-fill avoid" style="width:${{p.score}}%"></div></div>
     <div class="score-row"><span>評分</span><span>${{p.score}}/100</span></div>
-    ${{p.div_pts&&p.div_pts.length>1?renderSparkline(p):''}}
   </div>
 `).join('');
 </script>
@@ -1725,3 +1724,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
