@@ -1308,8 +1308,8 @@ svg text{{font-family:system-ui,sans-serif}}
 .div-spark-leg-line{{width:12px;height:2px;border-radius:1px;display:inline-block}}
 .div-spark-desc{{display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-top:6px}}
 .div-spark-desc-box{{border-radius:4px;padding:4px 7px}}
-.div-spark-desc-lbl{{font-size:9px;font-weight:600;margin-bottom:1px}}
-.div-spark-desc-val{{font-size:10px}}
+.div-spark-desc-lbl{{font-size:10px;font-weight:600;margin-bottom:1px}}
+.div-spark-desc-val{{font-size:11px}}
 .disclaimer{{background:#fff;border-top:1px solid #e5e5e5;padding:1.5rem;margin-top:2rem}}
 .disclaimer-inner{{max-width:960px;margin:0 auto;font-size:12px;color:#aaa;line-height:1.7}}
 .disclaimer-inner strong{{color:#888}}
@@ -1688,7 +1688,7 @@ function renderSparkline(p){{
       <span class="div-spark-leg"><span class="div-spark-leg-line" style="background:${{PX_COL}};opacity:.7"></span>\u80a1\u50f9</span>
       <span style="font-size:9px;color:#aaa;margin-left:auto">${{divPts[0].y}} \u2192 ${{divPts[divPts.length-1].y}}</span>
     </div>
-    <svg viewBox="0 0 ${{W}} ${{H}}" style="display:block;width:100%;height:${{H}}px;overflow:visible" aria-hidden="true">
+    <svg viewBox="0 0 ${{W}} ${{H}}" preserveAspectRatio="xMidYMid meet" style="display:block;width:100%;height:${{H}}px" aria-hidden="true">
       ${{pSvg}}
       <path d="${{dpath}}" stroke="${{DIV_COL}}" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
       <circle cx="${{dxs[0].toFixed(1)}}" cy="${{dys[0].toFixed(1)}}" r="3" fill="${{DIV_COL}}"/>
