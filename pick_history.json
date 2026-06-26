@@ -187,6 +187,11 @@
       "date": "2026-06-16",
       "price": 215.66,
       "end_date": "2026-06-24"
+    },
+    {
+      "date": "2026-06-26",
+      "price": 225.49,
+      "end_date": null
     }
   ],
   "avoid:US:VTR": [
@@ -269,7 +274,7 @@
     {
       "date": "2026-06-26",
       "price": 12.6,
-      "end_date": null
+      "end_date": "2026-06-26"
     }
   ],
   "pick:HK:0322.HK": [
