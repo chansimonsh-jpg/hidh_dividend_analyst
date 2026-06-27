@@ -72,8 +72,7 @@ EXCEL_FILES = {
     "CN": "CN_Dividend_Analysis.xlsx",
 }
 SUMMARY_SHEET_NAME = "{market} 總覽"   # e.g. "UK 總覽"
-BACKUP_FOLDER  = "backup"   # 相對路徑（原本 "x:\\backup" 只喺Windows本機先有效；
-                            # GitHub Actions runner 每次都係新環境，backup 唔會被 commit、跑完即棄）
+BACKUP_FOLDER  = "x:\\backup"
 MAX_SAVE_RETRY = 3
 
 RISK_FREE_RATES = {
@@ -87,9 +86,7 @@ IBKR_HOST      = "127.0.0.1"
 IBKR_PORT      = 4002
 IBKR_CLIENT_ID = 10
 IBKR_TIMEOUT   = 15
-# 本機跑（有IBKR Gateway）保持 True；GitHub Actions cloud runner 連唔到本機 IBKR，
-# workflow 會設 環境變數 USE_IBKR=false 覆寫呢個預設值
-USE_IBKR       = os.environ.get("USE_IBKR", "true").strip().lower() in ("1", "true", "yes")
+USE_IBKR       = True
 
 STANDARD_NCOLS = 13   # cols A-M
 SCORE_COL_START = 14  # col N onwards
@@ -661,7 +658,8 @@ def score_growth(info, df_hist):
     elif dgr>=5: pts+=5
     elif dgr>=2: pts+=4
     elif dgr>=0: pts+=2
-    eg=info.get("earningsGrowth") or info.get("earningsQuarterlyGrowth")
+    eg=info.get("earningsGrowth")
+    if eg is None: eg=info.get("earningsQuarterlyGrowth")
     if eg is None: pts+=1  # 數據缺失：給低分
     else:
         eg=safe(eg,0)

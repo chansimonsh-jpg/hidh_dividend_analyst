@@ -1306,7 +1306,9 @@ def score_dividend_quality(info, c_yield, y_avg, y_std, df_hist):
                      info.get("trailingAnnualDividendRate"), 0)
     shares    = safe(info.get("sharesOutstanding"), 0)
     div_paid  = div_total * shares if shares > 0 else 0
-    if fcf > 0 and div_paid > 0:
+    if fcf < 0:
+        pts += 0                 # 現金流為負，明確懲罰
+    elif fcf > 0 and div_paid > 0:
         fcf_cov = fcf / div_paid
         if   fcf_cov >= 2.0: pts += 8
         elif fcf_cov >= 1.5: pts += 6
@@ -1345,11 +1347,11 @@ def score_valuation(info, c_yield, y_avg, y_std, c_pe, pe_avg, pe_std,
     else:                 pts += 0
     # ② P/B（7分）
     pb = safe(info.get("priceToBook"), -1)
-    if   pb <= 0:    pts += 3   # 未知
-    elif pb <= 1.0:  pts += 7
-    elif pb <= 1.5:  pts += 5
-    elif pb <= 2.5:  pts += 3
-    elif pb <= 4.0:  pts += 1
+    if   pb <= 0:    pts += 2   # 未知/負值
+    elif pb <= 0.8:  pts += 7   # 真正折讓才給滿分
+    elif pb <= 1.2:  pts += 5
+    elif pb <= 2.0:  pts += 3
+    elif pb <= 3.5:  pts += 1
     else:            pts += 0
     # ③ Yield Spread vs 無風險利率（10分）
     spread = c_yield - risk_free_rate
@@ -1382,7 +1384,8 @@ def score_financial_health(info):
     # ② 利息覆蓋（Interest Coverage）（9分）
     ebit    = safe(info.get("ebit") or info.get("operatingIncome"), 0)
     int_exp = abs(safe(info.get("interestExpense"), 0))
-    if ebit > 0 and int_exp > 0:
+    if ebit < 0:              pts += 0    # 營業虧損，明確懲罰
+    elif ebit > 0 and int_exp > 0:
         ic = ebit / int_exp
         if   ic >= 8:   pts += 9
         elif ic >= 5:   pts += 7
@@ -1425,7 +1428,9 @@ def score_growth(info, df_hist):
     elif dgr >= 0:  pts += 2
     else:           pts += 0
     # ② 盈利增長（4分）
-    eg_raw = info.get("earningsGrowth") or info.get("earningsQuarterlyGrowth")
+    eg_raw = info.get("earningsGrowth")
+    if eg_raw is None:
+        eg_raw = info.get("earningsQuarterlyGrowth")
     if eg_raw is None:
         pts += 2  # 未知，給中等分
     else:

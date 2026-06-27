@@ -578,7 +578,7 @@ def score_dividend_quality(info, c_yield, y_avg, y_std, df_hist):
     elif 0 < pr <= 0.65: pts += 8
     elif 0 < pr <= 0.80: pts += 5
     elif 0 < pr <= 0.95: pts += 2
-    elif pr > 1.0:       pts += 0
+    elif pr > 0.95:      pts += 0   # 幾乎全派或超過盈利，明確懲罰
     else:                pts += 2
     fcf      = safe(info.get("freeCashflow"), 0)
     div_rate = safe(info.get("dividendRate") or info.get("trailingAnnualDividendRate"), 0)
@@ -682,7 +682,9 @@ def score_growth(info, df_hist):
     elif dgr >= 2:  pts += 4
     elif dgr >= 0:  pts += 2
     else:           pts += 0
-    eg_raw = info.get("earningsGrowth") or info.get("earningsQuarterlyGrowth")
+    eg_raw = info.get("earningsGrowth")
+    if eg_raw is None:
+        eg_raw = info.get("earningsQuarterlyGrowth")
     if eg_raw is None: pts += 1
     else:
         eg = safe(eg_raw, 0.0)
