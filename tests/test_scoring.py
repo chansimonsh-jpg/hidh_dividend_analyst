@@ -35,7 +35,11 @@ def _load(alias, rel_path):
 daily    = _load("_daily",    "daily_importer_global_v6.py")
 batch    = _load("_batch",    "batch_importer_global_v6.py")
 screener = _load("_screener", "screener_global.py")
-html_mod = _load("_html",     os.path.join("web_site", "generate_html.py"))
+# generate_html.py is at repo root in git, under web_site/ in the dev working tree
+_html_rel = ("generate_html.py"
+             if os.path.exists(os.path.join(ROOT, "generate_html.py"))
+             else os.path.join("web_site", "generate_html.py"))
+html_mod = _load("_html", _html_rel)
 
 # ── Test-data helpers ──────────────────────────────────────────────────────
 

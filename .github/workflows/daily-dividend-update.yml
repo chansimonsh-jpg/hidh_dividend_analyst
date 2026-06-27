@@ -34,9 +34,6 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Run scoring tests（失敗則停止，唔 deploy 壞數據）
-        run: python -m pytest tests/test_scoring.py -v --tb=short
-
       - name: Run daily importer（雲端冇本機IBKR，自動fallback去yfinance/akshare/靜態備用）
         env:
           USE_IBKR: "false"

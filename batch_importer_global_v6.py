@@ -1745,486 +1745,487 @@ def get_cn_fundamentals(ticker_id: str) -> dict:
         pass
     return info
 
-# ==========================================
-# 🚀 主程式
-# ==========================================
-print("==========================================")
-print(f"🚀 全球三市場評分看盤系統 v6 ── ({TODAY_DATE})")
-print("==========================================")
-print(f"📌 無風險利率設定: UK={RISK_FREE_RATES['UK']}%  "
-      f"US={RISK_FREE_RATES['US']}%  HK={RISK_FREE_RATES['HK']}%  CN={RISK_FREE_RATES['CN']}%")
-print("==========================================")
-
-# ── 連接 IBKR（只連一次）────────────────────────────────
-if USE_IBKR:
-    _ibkr_fetcher.connect()
-
-summary_by_market    = {"UK": [], "HK": [], "US": [], "CN": []}
-stock_data_by_market = {"UK": {}, "HK": {}, "US": {}, "CN": {}}
-results_by_market     = {"UK": {}, "HK": {}, "US": {}, "CN": {}}   # 新股的完整評分結果（給 rebuild_summary 用）
-
-# =========================================================
-# 預掃描：邊個市場已有 Excel？邊隻 ticker 已經有自己嗰個 sheet？
-# ── 呢一步係「漸進式更新」嘅關鍵：已存在嘅 sheet 完全唔會
-#    再被處理／覆寫，daily_importer 每日 append 落去嗰啲歷史
-#    紀錄先可以完整保留。淨係真係未出現過嘅新 ticker 先會被抓取。
-# =========================================================
-existing_wb     = {}   # market -> 已開啟嘅 openpyxl Workbook（若檔案存在）
-existing_sheets = {}   # market -> set(已存在嘅個股 sheet 名)
-
-for market, excel_file in EXCEL_FILES.items():
-    sum_name = f"{market} 總覽"
-    if os.path.exists(excel_file):
-        wb_e = openpyxl.load_workbook(excel_file)
-        existing_wb[market]     = wb_e
-        existing_sheets[market] = set(wb_e.sheetnames) - {sum_name}
-        print(f"📂 [{market}] 已有 {excel_file}，現存 {len(existing_sheets[market])} 隻個股 sheet")
-    else:
-        existing_wb[market]     = None
-        existing_sheets[market] = set()
-        print(f"📂 [{market}] 未找到 {excel_file}，將會全新建立")
-
-# 完整 ticker → (ticker, name) 對應表（不論新舊），rebuild_summary 需要全市場視角
-smap_by_market = {"UK": {}, "HK": {}, "US": {}, "CN": {}}
-for ticker_id, (name, market) in TICKERS_CONFIG.items():
-    smap_by_market.setdefault(market, {})[ticker_to_sheet(ticker_id)] = (ticker_id, name)
-
-for ticker_id, (name, market) in TICKERS_CONFIG.items():
-    sheet_name = ticker_to_sheet(ticker_id)
-
-    # ⏭ 已經有自己嗰個 sheet＝已追蹤緊嘅舊股，完全唔再處理
-    #    （唔再重新拉歷史、唔再洗 yfinance/IBKR 配額，最重要係唔會
-    #    觸碰到 daily_importer 逐日 append 落去嗰段歷史）
-    if sheet_name in existing_sheets.get(market, set()):
-        continue
-
-    print(f"\n📥 [{market}] {ticker_id} ({name}) ... (新股，建立歷史)")
-
-    try:
-        if market == "CN":
-            # ── CN 市場：AKShare 新浪源（可突破大陸以外 IP 限制）──
-            df_stock = get_cn_history(ticker_id, period_years=5)
-            if df_stock.empty:
-                print("  ❌ CN 無歷史數據，跳過"); continue
-            # 合併實際除息記錄（A股年派一次，合併後方可計算滾動息率）
-            cn_divs = get_cn_dividends(ticker_id)
-            if not cn_divs.empty:
-                div_map = {d: v for d, v in zip(cn_divs["Date"], cn_divs["Dividend_Amount"])}
-                df_stock["Dividend_Amount"] = df_stock["Date"].map(div_map).fillna(0.0)
-            info = get_cn_fundamentals(ticker_id)
+if __name__ == '__main__':
+    # ==========================================
+    # 🚀 主程式
+    # ==========================================
+    print("==========================================")
+    print(f"🚀 全球三市場評分看盤系統 v6 ── ({TODAY_DATE})")
+    print("==========================================")
+    print(f"📌 無風險利率設定: UK={RISK_FREE_RATES['UK']}%  "
+          f"US={RISK_FREE_RATES['US']}%  HK={RISK_FREE_RATES['HK']}%  CN={RISK_FREE_RATES['CN']}%")
+    print("==========================================")
+    
+    # ── 連接 IBKR（只連一次）────────────────────────────────
+    if USE_IBKR:
+        _ibkr_fetcher.connect()
+    
+    summary_by_market    = {"UK": [], "HK": [], "US": [], "CN": []}
+    stock_data_by_market = {"UK": {}, "HK": {}, "US": {}, "CN": {}}
+    results_by_market     = {"UK": {}, "HK": {}, "US": {}, "CN": {}}   # 新股的完整評分結果（給 rebuild_summary 用）
+    
+    # =========================================================
+    # 預掃描：邊個市場已有 Excel？邊隻 ticker 已經有自己嗰個 sheet？
+    # ── 呢一步係「漸進式更新」嘅關鍵：已存在嘅 sheet 完全唔會
+    #    再被處理／覆寫，daily_importer 每日 append 落去嗰啲歷史
+    #    紀錄先可以完整保留。淨係真係未出現過嘅新 ticker 先會被抓取。
+    # =========================================================
+    existing_wb     = {}   # market -> 已開啟嘅 openpyxl Workbook（若檔案存在）
+    existing_sheets = {}   # market -> set(已存在嘅個股 sheet 名)
+    
+    for market, excel_file in EXCEL_FILES.items():
+        sum_name = f"{market} 總覽"
+        if os.path.exists(excel_file):
+            wb_e = openpyxl.load_workbook(excel_file)
+            existing_wb[market]     = wb_e
+            existing_sheets[market] = set(wb_e.sheetnames) - {sum_name}
+            print(f"📂 [{market}] 已有 {excel_file}，現存 {len(existing_sheets[market])} 隻個股 sheet")
         else:
-            # ── UK / HK / US：沿用 yfinance ──────────────────
-            tk     = yf.Ticker(ticker_id)
-            df_raw = tk.history(period="5y")
-            if df_raw.empty:
-                print("  ⚠️  5年數據為空，嘗試 2年...")
-                df_raw = tk.history(period="2y")
-                if df_raw.empty:
-                    print("  ❌ 無歷史數據，跳過"); continue
-
-            df_raw = df_raw.reset_index()
-            df_raw.columns = [str(c).capitalize() for c in df_raw.columns]
-            if "Dividends" in df_raw.columns:
-                df_raw.rename(columns={"Dividends": "Dividend_Amount"}, inplace=True)
-            df_raw["Date"] = pd.to_datetime(df_raw["Date"]).dt.date
-            for col in ["Close", "Volume", "Dividend_Amount"]:
-                if col not in df_raw.columns:
-                    df_raw[col] = 0.0 if col != "Volume" else 0
-
-            df_stock = df_raw[["Date", "Close", "Volume", "Dividend_Amount"]].copy()
-
-            # UK：yfinance history 用便士（GBX），統一換算英鎊（GBP）
-            if market == "UK":
-                df_stock["Close"]           = df_stock["Close"] / 100.0
-                df_stock["Dividend_Amount"] = df_stock["Dividend_Amount"] / 100.0
-
-            info = get_info_with_fallback(ticker_id, market)
-
-        # ── EPS 驗證 ──────────────────────────────────────
-        current_eps = None
+            existing_wb[market]     = None
+            existing_sheets[market] = set()
+            print(f"📂 [{market}] 未找到 {excel_file}，將會全新建立")
+    
+    # 完整 ticker → (ticker, name) 對應表（不論新舊），rebuild_summary 需要全市場視角
+    smap_by_market = {"UK": {}, "HK": {}, "US": {}, "CN": {}}
+    for ticker_id, (name, market) in TICKERS_CONFIG.items():
+        smap_by_market.setdefault(market, {})[ticker_to_sheet(ticker_id)] = (ticker_id, name)
+    
+    for ticker_id, (name, market) in TICKERS_CONFIG.items():
+        sheet_name = ticker_to_sheet(ticker_id)
+    
+        # ⏭ 已經有自己嗰個 sheet＝已追蹤緊嘅舊股，完全唔再處理
+        #    （唔再重新拉歷史、唔再洗 yfinance/IBKR 配額，最重要係唔會
+        #    觸碰到 daily_importer 逐日 append 落去嗰段歷史）
+        if sheet_name in existing_sheets.get(market, set()):
+            continue
+    
+        print(f"\n📥 [{market}] {ticker_id} ({name}) ... (新股，建立歷史)")
+    
         try:
-            current_eps = info.get("trailingEps", None)
-            raw_price   = info.get("currentPrice", 0)
-            # UK：info["currentPrice"] 可能是便士，Close 已換算為英鎊
-            chk_price   = (raw_price / 100.0
-                           if market == "UK" and raw_price > 50
-                           else raw_price)
-            if current_eps and chk_price > 0:
-                temp_pe = chk_price / current_eps
-                if temp_pe > 80 or temp_pe < 2:
-                    current_eps = None
+            if market == "CN":
+                # ── CN 市場：AKShare 新浪源（可突破大陸以外 IP 限制）──
+                df_stock = get_cn_history(ticker_id, period_years=5)
+                if df_stock.empty:
+                    print("  ❌ CN 無歷史數據，跳過"); continue
+                # 合併實際除息記錄（A股年派一次，合併後方可計算滾動息率）
+                cn_divs = get_cn_dividends(ticker_id)
+                if not cn_divs.empty:
+                    div_map = {d: v for d, v in zip(cn_divs["Date"], cn_divs["Dividend_Amount"])}
+                    df_stock["Dividend_Amount"] = df_stock["Date"].map(div_map).fillna(0.0)
+                info = get_cn_fundamentals(ticker_id)
+            else:
+                # ── UK / HK / US：沿用 yfinance ──────────────────
+                tk     = yf.Ticker(ticker_id)
+                df_raw = tk.history(period="5y")
+                if df_raw.empty:
+                    print("  ⚠️  5年數據為空，嘗試 2年...")
+                    df_raw = tk.history(period="2y")
+                    if df_raw.empty:
+                        print("  ❌ 無歷史數據，跳過"); continue
+    
+                df_raw = df_raw.reset_index()
+                df_raw.columns = [str(c).capitalize() for c in df_raw.columns]
+                if "Dividends" in df_raw.columns:
+                    df_raw.rename(columns={"Dividends": "Dividend_Amount"}, inplace=True)
+                df_raw["Date"] = pd.to_datetime(df_raw["Date"]).dt.date
+                for col in ["Close", "Volume", "Dividend_Amount"]:
+                    if col not in df_raw.columns:
+                        df_raw[col] = 0.0 if col != "Volume" else 0
+    
+                df_stock = df_raw[["Date", "Close", "Volume", "Dividend_Amount"]].copy()
+    
+                # UK：yfinance history 用便士（GBX），統一換算英鎊（GBP）
+                if market == "UK":
+                    df_stock["Close"]           = df_stock["Close"] / 100.0
+                    df_stock["Dividend_Amount"] = df_stock["Dividend_Amount"] / 100.0
+    
+                info = get_info_with_fallback(ticker_id, market)
+    
+            # ── EPS 驗證 ──────────────────────────────────────
+            current_eps = None
+            try:
+                current_eps = info.get("trailingEps", None)
+                raw_price   = info.get("currentPrice", 0)
+                # UK：info["currentPrice"] 可能是便士，Close 已換算為英鎊
+                chk_price   = (raw_price / 100.0
+                               if market == "UK" and raw_price > 50
+                               else raw_price)
+                if current_eps and chk_price > 0:
+                    temp_pe = chk_price / current_eps
+                    if temp_pe > 80 or temp_pe < 2:
+                        current_eps = None
+            except Exception:
+                pass
+    
+            # ── Current Yield % ───────────────────────────────
+            # A股年派一次用 400 日滾動，其他市場 252 日
+            rolling_window = 400 if market == "CN" else 252
+            rolling_div = df_stock["Dividend_Amount"].rolling(rolling_window, min_periods=1).sum()
+            hist_yield  = (rolling_div / df_stock["Close"].replace(0, np.nan)) * 100
+            hist_yield  = hist_yield.where((hist_yield > 0) & (hist_yield < 30))
+            df_stock["Current_Yield_%"] = hist_yield
+    
+            # 最後一行：優先用過去 365 日實際除息記錄重新計算
+            # 比 dividendRate 更可靠：自動反映削息/加息，唔受格式問題影響
+            last_close  = df_stock["Close"].iloc[-1]
+            last_date   = df_stock.index[-1] if hasattr(df_stock.index[-1], "year")                       else pd.Timestamp(df_stock["Date"].iloc[-1] if "Date" in df_stock.columns else df_stock.index[-1])
+            cutoff      = last_date - pd.Timedelta(days=365)
+            recent_divs = df_stock["Dividend_Amount"][df_stock.index >= cutoff]                       if hasattr(df_stock.index[-1], "year")                       else df_stock["Dividend_Amount"].tail(252)
+            annual_div_actual = recent_divs.sum()
+    
+            if annual_div_actual > 0 and last_close > 0:
+                c_yield_current = round(annual_div_actual / last_close * 100, 4)
+                print(f"  ✅ 實際除息計算息率: {c_yield_current:.2f}%  (年化股息={annual_div_actual:.4f})")
+            else:
+                # 後備：dividendRate（格式可能不一致，加合理性上限）
+                div_rate = safe(info.get("dividendRate") or info.get("trailingAnnualDividendRate"), 0)
+                # UK: dividendRate 有時係便士，需檢查
+                if market == "UK" and div_rate > last_close * 0.5 and div_rate > 1:
+                    div_rate /= 100.0   # 疑似便士，換算英鎊
+                c_yield_current = round(div_rate / last_close * 100, 4) if last_close > 0 and div_rate > 0 else 0.0
+                if c_yield_current > 0:
+                    print(f"  ℹ️  除息記錄不足，使用 dividendRate 後備: {c_yield_current:.2f}%")
+    
+            # 合理性上限：>30% 視為異常（如除息記錄包含特別股息），改用 hist_yield 均值
+            if c_yield_current > 30:
+                c_yield_current = float(hist_yield.dropna().mean()) if hist_yield.dropna().any() else 0.0
+                print(f"  ⚠️  息率 >30% 異常，改用歷史均值: {c_yield_current:.2f}%")
+    
+            if c_yield_current > 0:
+                df_stock.at[df_stock.index[-1], "Current_Yield_%"] = c_yield_current
+    
+            yields = hist_yield.dropna().values
+            y_avg  = np.mean(yields) if len(yields) > 0 else 5.0
+            y_std  = np.std(yields)  if len(yields) > 1 else 1.0
+            if y_std == 0: y_std = 0.5
+    
+            df_stock["Yield_5yr_Avg"]  = y_avg
+            df_stock["Yield_買入線"]   = y_avg + 1.5 * y_std
+            df_stock["Yield_賣出線"]   = y_avg - 1.5 * y_std
+    
+            # ── EPS Fallback（基於股息反推）──────────────────
+            if not current_eps or current_eps <= 0 or np.isnan(current_eps):
+                safe_div    = df_stock["Close"].iloc[-1] * (y_avg / 100)
+                current_eps = safe_div / 0.8
+                if current_eps <= 0:
+                    current_eps = df_stock["Close"].iloc[-1] / 12.0
+                print(f"  ℹ️  EPS fallback = {current_eps:.4f} (基於股息反推)")
+    
+            # ── Current PE ────────────────────────────────────
+            df_stock["Current_PE"] = df_stock["Close"] / current_eps
+            df_stock.loc[df_stock["Current_PE"] > 80, "Current_PE"] = 80
+            df_stock.loc[df_stock["Current_PE"] < 0,  "Current_PE"] = 0
+    
+            pes = df_stock["Current_PE"].dropna().values
+            pe_filtered = (
+                pes[(pes >= np.percentile(pes, 1)) & (pes <= np.percentile(pes, 99))]
+                if len(pes) > 20 else pes
+            )
+            pe_avg = np.mean(pe_filtered) if len(pe_filtered) > 0 else 12.0
+            pe_std = np.std(pe_filtered)  if len(pe_filtered) > 1 else 2.0
+            if pe_std == 0: pe_std = 1.5
+    
+            df_stock["PE_5yr_Avg"]  = pe_avg
+            df_stock["PE_買入線"]   = pe_avg - 1.5 * pe_std
+            df_stock["PE_賣出線"]   = pe_avg + 1.5 * pe_std
+    
+            # ── 評分（傳入市場對應利率）───────────────────────
+            rfr     = RISK_FREE_RATES.get(market, 4.3)
+            c_yield = df_stock["Current_Yield_%"].iloc[-1]
+            if c_yield is None or (isinstance(c_yield, float) and np.isnan(c_yield)):
+                c_yield = 0.0
+            c_pe    = df_stock["Current_PE"].iloc[-1]
+            snap    = get_score_snapshot(info, df_stock, c_yield, y_avg, y_std,
+                                         c_pe, pe_avg, pe_std,
+                                         risk_free_rate=rfr)
+    
+            # ── 公司名稱 ──────────────────────────────────────
+            df_stock["Company_Name"] = None
+            df_stock.at[df_stock.index[-1], "Company_Name"] = name
+    
+            # ── 寫入 df_stock ─────────────────────────────────
+            for col in SCORE_SNAPSHOT_COLS:
+                df_stock[col] = None
+            last_idx = df_stock.index[-1]
+            for col in SCORE_SNAPSHOT_COLS:
+                df_stock.at[last_idx, col] = snap.get(col)
+    
+            stock_data_by_market[market][sheet_name] = df_stock[ALL_COLUMNS].copy()
+    
+            results_by_market[market][sheet_name] = {
+                "snap": snap, "y_avg": y_avg, "y_std": y_std,
+                "pe_avg": pe_avg, "pe_std": pe_std, "name": name,
+                "close": df_stock["Close"].iloc[-1], "yield": c_yield, "pe": c_pe,
+            }
+    
+            y_buy   = y_avg + 1.5 * y_std
+            y_sell  = y_avg - 1.5 * y_std
+            pe_buy  = pe_avg - 1.5 * pe_std
+            pe_sell = pe_avg + 1.5 * pe_std
+            total   = snap["Score_總分_100"]
+    
+            summary_by_market[market].append({
+                "股票代號": ticker_id, "公司名稱": name,
+                "現價":     round(df_stock["Close"].iloc[-1], 2),
+                "最新股息率": round(c_yield, 2), "5年均息率": round(y_avg, 2),
+                "🟢 息率買入線": round(y_buy, 2),  "🔴 息率賣出線": round(y_sell, 2),
+                "最新 PE":  round(c_pe, 2),    "5年均 PE":  round(pe_avg, 2),
+                "🟢 PE買入線":  round(pe_buy, 2), "🔴 PE賣出線": round(pe_sell, 2),
+                "Payout_%":        snap["Payout_Ratio_%"],
+                "FCF覆蓋":         snap["FCF_Coverage"],
+                "Net_Debt/EBITDA": snap["Net_Debt_EBITDA"],
+                "利息覆蓋":        snap["Interest_Coverage"],
+                "流動比率":        snap["Current_Ratio"],
+                "P/B":             snap["PB_Ratio"],
+                "Yield_Spread":    snap["Yield_Spread_vs_Bond"],
+                "DGR_3yr%":        snap["DGR_3yr_%"],
+                "RSI_14":          snap["RSI_14"],
+                "52W位置%":        snap["52W_Position_%"],
+                "S_股息質量":      snap["Score_股息質量_30"],
+                "S_估值":          snap["Score_估值_25"],
+                "S_財務健康":      snap["Score_財務健康_25"],
+                "S_增長":          snap["Score_增長潛力_10"],
+                "S_技術":          snap["Score_技術面_10"],
+                "📊 總分_100":     total,
+                "📊 綜合診斷":     get_status(total),
+            })
+            print(f"  ✅ 總分: {total}  ({get_status(total)})")
+    
+        except Exception as e:
+            import traceback
+            print(f"  ❌ 處理 {ticker_id} 時出錯: {e}")
+            print(f"     {traceback.format_exc()}")
+    
+    # ── 斷開 IBKR ────────────────────────────────────────────
+    if USE_IBKR:
+        _ibkr_fetcher.disconnect()
+    
+    # ==========================================
+    # 💾 寫入 3 個 Excel 文件
+    # ==========================================
+    print("\n💾 寫入3個Excel文件...")
+    
+    def write_df_to_new_sheet(wb, sheet_name, df):
+        """將 DataFrame 寫成一個全新嘅 sheet（唔會觸碰任何現存 sheet/工作簿其他內容）。
+        行為貼近 pandas .to_excel()：NaN → 空白格。"""
+        ws = wb.create_sheet(title=sheet_name)
+        ws.append(list(df.columns))
+        for row in df.itertuples(index=False):
+            vals = [None if (isinstance(v, float) and v != v) else v for v in row]
+            ws.append(vals)
+        return ws
+    
+    
+    def style_one_stock_sheet(ws, sn):
+        """個股 sheet 美化＋圖表。只喺呢個 sheet 第一次建立時叫用一次，
+        現存（已經美化過）嗰啲 sheet 唔會經過呢個函數，所以唔會被重新處理。"""
+        score_fill  = PatternFill("solid", fgColor="E8F4FD")
+        header_fill = PatternFill("solid", fgColor="3F3F3F")
+        score_hdr   = PatternFill("solid", fgColor="1F4E79")
+        header_font = Font(name="Arial", size=11, bold=True, color="FFFFFF")
+        normal_font = Font(name="Arial", size=10)
+        thin_border = Border(
+            left=Side(style="thin",  color="E0E0E0"),
+            right=Side(style="thin", color="E0E0E0"),
+            top=Side(style="thin",   color="E0E0E0"),
+            bottom=Side(style="thin",color="E0E0E0"),
+        )
+        ncols = len(ALL_COLUMNS)
+    
+        ws.freeze_panes = "A2"
+        ws.views.sheetView[0].showGridLines = True
+        for col in range(1, ncols + 1):
+            c = ws.cell(1, col)
+            c.fill = score_hdr if col > len(STANDARD_COLUMNS) else header_fill
+            c.font = header_font
+            c.alignment = Alignment(horizontal="center", wrap_text=True)
+        for row in range(2, ws.max_row + 1):
+            for col in range(1, ncols + 1):
+                c = ws.cell(row, col)
+                c.font = normal_font; c.border = thin_border
+                if col > len(STANDARD_COLUMNS) and c.value is not None:
+                    c.fill = score_fill
+            ws.cell(row, 2).number_format = "#,##0.00"
+            ws.cell(row, 3).number_format = "#,##0"
+            for col in [5, 6, 7, 8]:    ws.cell(row, col).number_format = '0.00"%"'
+            for col in [9, 10, 11, 12]: ws.cell(row, col).number_format = "#,##0.00"
+        # 圖表
+        cats = Reference(ws, min_col=1, min_row=2, max_row=ws.max_row)
+        ch1 = LineChart()
+        ch1.title = f"{sn} 5年歷史股息率"
+        ch1.y_axis.title = "股息率 (%)"; ch1.width = 17; ch1.height = 10
+        ch1.add_data(Reference(ws, min_col=5, max_col=8,
+                               min_row=1, max_row=ws.max_row),
+                     titles_from_data=True)
+        ch1.set_categories(cats); ch1.x_axis.tickLblSkip = 120
+        for i, col_color in enumerate(["4F81BD","7F7F7F","27AE60","C0392B"]):
+            ch1.series[i].graphicalProperties.line.solidFill = col_color
+        ws.add_chart(ch1, "O2")
+    
+        ch2 = LineChart()
+        ch2.title = f"{sn} 5年歷史 PE"
+        ch2.y_axis.title = "PE 倍數"; ch2.width = 17; ch2.height = 10
+        ch2.add_data(Reference(ws, min_col=9, max_col=12,
+                               min_row=1, max_row=ws.max_row),
+                     titles_from_data=True)
+        ch2.set_categories(cats); ch2.x_axis.tickLblSkip = 120
+        for i, col_color in enumerate(["8E44AD","7F7F7F","27AE60","C0392B"]):
+            ch2.series[i].graphicalProperties.line.solidFill = col_color
+        ws.add_chart(ch2, "O18")
+    
+        for col in ws.columns:
+            ml = max(len(str(c.value or "")) for c in col)
+            ws.column_dimensions[
+                get_column_letter(col[0].column)].width = min(max(ml + 3, 10), 22)
+    
+    
+    def rebuild_summary(wb, market, smap, results):
+        """重建總覽分頁：呢次新處理嘅股票用 results 嗰份新鮮計算結果；
+        冇處理過（即係已經追蹤緊嘅舊股）就讀返佢自己 sheet 最後一行嘅快照 ──
+        同 daily_importer.py 嘅 rebuild_summary() 一模一樣嘅邏輯，
+        保證兩個腳本對「總覽」嘅理解永遠一致。"""
+        sum_name = f"{market} 總覽"
+    
+        if sum_name in wb.sheetnames: del wb[sum_name]
+        ws = wb.create_sheet(sum_name); ws.freeze_panes = "A2"
+    
+        THIN = Border(left=Side(style="thin", color="E0E0E0"), right=Side(style="thin", color="E0E0E0"),
+                      top=Side(style="thin", color="E0E0E0"), bottom=Side(style="thin", color="E0E0E0"))
+        HDR_FILL   = PatternFill("solid", fgColor="3F3F3F")
+        SCORE_HDR  = PatternFill("solid", fgColor="1F4E79")
+        SCORE_FILL = PatternFill("solid", fgColor="E8F4FD")
+        HDR_FONT   = Font(name="Arial", size=11, bold=True, color="FFFFFF")
+        NORM_FONT  = Font(name="Arial", size=10)
+        LINK_FONT  = Font(name="Arial", size=10, color="0000FF", underline="single")
+        ncols = len(SUMMARY_COLS)
+    
+        ws.append(SUMMARY_COLS)
+        for col in range(1, ncols + 1):
+            c = ws.cell(1, col)
+            c.fill = SCORE_HDR if col >= 22 else HDR_FILL
+            c.font = HDR_FONT; c.alignment = Alignment(horizontal="center", wrap_text=True)
+    
+        rows = []
+        for sn, (ticker, smap_name) in smap.items():
+            r = results.get(sn)
+            if r:
+                snap = r["snap"]
+                y_avg = r["y_avg"]; y_std = r["y_std"]
+                pe_avg = r["pe_avg"]; pe_std = r["pe_std"]
+                total = safe(snap.get("Score_總分_100"), 0)
+                name = r["name"] if r.get("name") else smap_name
+                rows.append((sn, ticker, name, r["close"], r["yield"], y_avg,
+                             y_avg + 1.5 * y_std, y_avg - 1.5 * y_std,
+                             r["pe"], pe_avg,
+                             max(0, pe_avg - 1.5 * pe_std), pe_avg + 1.5 * pe_std,
+                             snap, total))
+            else:
+                if sn not in wb.sheetnames: continue
+                ws_s = wb[sn]; last = ws_s.max_row
+                if last < 2: continue
+                snap = {SCORE_SNAPSHOT_COLS[i]: ws_s.cell(last, SCORE_COL_START + i).value
+                        for i in range(len(SCORE_SNAPSHOT_COLS))}
+                total = safe(snap.get("Score_總分_100"), 0)
+                rows.append((sn, ticker, smap_name,
+                    safe(ws_s.cell(last, 2).value, 0), safe(ws_s.cell(last, 6).value, 0),
+                    safe(ws_s.cell(last, 7).value, 0), safe(ws_s.cell(last, 8).value, 0), safe(ws_s.cell(last, 9).value, 0),
+                    safe(ws_s.cell(last, 10).value, 0), safe(ws_s.cell(last, 11).value, 0),
+                    safe(ws_s.cell(last, 12).value, 0), safe(ws_s.cell(last, 13).value, 0),
+                    snap, total))
+    
+        rows.sort(key=lambda x: x[13], reverse=True)
+    
+        for sn, ticker, company, close, cy, ya, yb, ys, pe, pa, pb2, ps, snap, total in rows:
+            ws.append([
+                ticker, company, round(close, 2),
+                round(cy, 2), round(ya, 2), round(yb, 2), round(ys, 2),
+                round(pe, 2), round(pa, 2), round(pb2, 2), round(ps, 2),
+                snap.get("Payout_Ratio_%"), snap.get("FCF_Coverage"),
+                snap.get("Net_Debt_EBITDA"), snap.get("Interest_Coverage"),
+                snap.get("Current_Ratio"), snap.get("PB_Ratio"),
+                snap.get("Yield_Spread_vs_Bond"), snap.get("DGR_3yr_%"),
+                snap.get("RSI_14"), snap.get("52W_Position_%"),
+                snap.get("Score_股息質量_30"), snap.get("Score_估值_25"),
+                snap.get("Score_財務健康_25"), snap.get("Score_增長潛力_10"),
+                snap.get("Score_技術面_10"), total, get_status(total),
+            ])
+            ridx = ws.max_row
+            rf = get_score_fill(total); rfont = get_score_font(total)
+    
+            for col in range(1, ncols + 1):
+                c = ws.cell(ridx, col); c.border = THIN
+                if col >= 22: c.fill = SCORE_FILL; c.font = NORM_FONT
+                else:         c.fill = rf;         c.font = NORM_FONT
+                if col == ncols - 1:
+                    c.fill = rf; c.font = rfont; c.number_format = "0.0"
+                    c.alignment = Alignment(horizontal="center")
+                if col == ncols:
+                    c.fill = rf; c.font = rfont
+                    c.alignment = Alignment(horizontal="center")
+                if col == 1:
+                    c.hyperlink = f"#'{sn}'!A1"; c.font = LINK_FONT
+                if col in [4, 5, 6, 7, 12, 17, 18]: c.number_format = "0.00"
+                if col in [3, 8, 9, 10, 11]:        c.number_format = "#,##0.00"
+                if col in [22, 23, 24, 25, 26]:     c.number_format = "0.0"
+    
+        for col in ws.columns:
+            ml = max(len(str(c.value or "")) for c in col)
+            ws.column_dimensions[get_column_letter(col[0].column)].width = min(max(ml + 3, 10), 22)
+    
+        # 總覽移至最前
+        sheets = wb._sheets
+        try:
+            idx = next(i for i, s in enumerate(sheets) if s.title == sum_name)
+            sheets.insert(0, sheets.pop(idx))
         except Exception:
             pass
-
-        # ── Current Yield % ───────────────────────────────
-        # A股年派一次用 400 日滾動，其他市場 252 日
-        rolling_window = 400 if market == "CN" else 252
-        rolling_div = df_stock["Dividend_Amount"].rolling(rolling_window, min_periods=1).sum()
-        hist_yield  = (rolling_div / df_stock["Close"].replace(0, np.nan)) * 100
-        hist_yield  = hist_yield.where((hist_yield > 0) & (hist_yield < 30))
-        df_stock["Current_Yield_%"] = hist_yield
-
-        # 最後一行：優先用過去 365 日實際除息記錄重新計算
-        # 比 dividendRate 更可靠：自動反映削息/加息，唔受格式問題影響
-        last_close  = df_stock["Close"].iloc[-1]
-        last_date   = df_stock.index[-1] if hasattr(df_stock.index[-1], "year")                       else pd.Timestamp(df_stock["Date"].iloc[-1] if "Date" in df_stock.columns else df_stock.index[-1])
-        cutoff      = last_date - pd.Timedelta(days=365)
-        recent_divs = df_stock["Dividend_Amount"][df_stock.index >= cutoff]                       if hasattr(df_stock.index[-1], "year")                       else df_stock["Dividend_Amount"].tail(252)
-        annual_div_actual = recent_divs.sum()
-
-        if annual_div_actual > 0 and last_close > 0:
-            c_yield_current = round(annual_div_actual / last_close * 100, 4)
-            print(f"  ✅ 實際除息計算息率: {c_yield_current:.2f}%  (年化股息={annual_div_actual:.4f})")
-        else:
-            # 後備：dividendRate（格式可能不一致，加合理性上限）
-            div_rate = safe(info.get("dividendRate") or info.get("trailingAnnualDividendRate"), 0)
-            # UK: dividendRate 有時係便士，需檢查
-            if market == "UK" and div_rate > last_close * 0.5 and div_rate > 1:
-                div_rate /= 100.0   # 疑似便士，換算英鎊
-            c_yield_current = round(div_rate / last_close * 100, 4) if last_close > 0 and div_rate > 0 else 0.0
-            if c_yield_current > 0:
-                print(f"  ℹ️  除息記錄不足，使用 dividendRate 後備: {c_yield_current:.2f}%")
-
-        # 合理性上限：>30% 視為異常（如除息記錄包含特別股息），改用 hist_yield 均值
-        if c_yield_current > 30:
-            c_yield_current = float(hist_yield.dropna().mean()) if hist_yield.dropna().any() else 0.0
-            print(f"  ⚠️  息率 >30% 異常，改用歷史均值: {c_yield_current:.2f}%")
-
-        if c_yield_current > 0:
-            df_stock.at[df_stock.index[-1], "Current_Yield_%"] = c_yield_current
-
-        yields = hist_yield.dropna().values
-        y_avg  = np.mean(yields) if len(yields) > 0 else 5.0
-        y_std  = np.std(yields)  if len(yields) > 1 else 1.0
-        if y_std == 0: y_std = 0.5
-
-        df_stock["Yield_5yr_Avg"]  = y_avg
-        df_stock["Yield_買入線"]   = y_avg + 1.5 * y_std
-        df_stock["Yield_賣出線"]   = y_avg - 1.5 * y_std
-
-        # ── EPS Fallback（基於股息反推）──────────────────
-        if not current_eps or current_eps <= 0 or np.isnan(current_eps):
-            safe_div    = df_stock["Close"].iloc[-1] * (y_avg / 100)
-            current_eps = safe_div / 0.8
-            if current_eps <= 0:
-                current_eps = df_stock["Close"].iloc[-1] / 12.0
-            print(f"  ℹ️  EPS fallback = {current_eps:.4f} (基於股息反推)")
-
-        # ── Current PE ────────────────────────────────────
-        df_stock["Current_PE"] = df_stock["Close"] / current_eps
-        df_stock.loc[df_stock["Current_PE"] > 80, "Current_PE"] = 80
-        df_stock.loc[df_stock["Current_PE"] < 0,  "Current_PE"] = 0
-
-        pes = df_stock["Current_PE"].dropna().values
-        pe_filtered = (
-            pes[(pes >= np.percentile(pes, 1)) & (pes <= np.percentile(pes, 99))]
-            if len(pes) > 20 else pes
-        )
-        pe_avg = np.mean(pe_filtered) if len(pe_filtered) > 0 else 12.0
-        pe_std = np.std(pe_filtered)  if len(pe_filtered) > 1 else 2.0
-        if pe_std == 0: pe_std = 1.5
-
-        df_stock["PE_5yr_Avg"]  = pe_avg
-        df_stock["PE_買入線"]   = pe_avg - 1.5 * pe_std
-        df_stock["PE_賣出線"]   = pe_avg + 1.5 * pe_std
-
-        # ── 評分（傳入市場對應利率）───────────────────────
-        rfr     = RISK_FREE_RATES.get(market, 4.3)
-        c_yield = df_stock["Current_Yield_%"].iloc[-1]
-        if c_yield is None or (isinstance(c_yield, float) and np.isnan(c_yield)):
-            c_yield = 0.0
-        c_pe    = df_stock["Current_PE"].iloc[-1]
-        snap    = get_score_snapshot(info, df_stock, c_yield, y_avg, y_std,
-                                     c_pe, pe_avg, pe_std,
-                                     risk_free_rate=rfr)
-
-        # ── 公司名稱 ──────────────────────────────────────
-        df_stock["Company_Name"] = None
-        df_stock.at[df_stock.index[-1], "Company_Name"] = name
-
-        # ── 寫入 df_stock ─────────────────────────────────
-        for col in SCORE_SNAPSHOT_COLS:
-            df_stock[col] = None
-        last_idx = df_stock.index[-1]
-        for col in SCORE_SNAPSHOT_COLS:
-            df_stock.at[last_idx, col] = snap.get(col)
-
-        stock_data_by_market[market][sheet_name] = df_stock[ALL_COLUMNS].copy()
-
-        results_by_market[market][sheet_name] = {
-            "snap": snap, "y_avg": y_avg, "y_std": y_std,
-            "pe_avg": pe_avg, "pe_std": pe_std, "name": name,
-            "close": df_stock["Close"].iloc[-1], "yield": c_yield, "pe": c_pe,
-        }
-
-        y_buy   = y_avg + 1.5 * y_std
-        y_sell  = y_avg - 1.5 * y_std
-        pe_buy  = pe_avg - 1.5 * pe_std
-        pe_sell = pe_avg + 1.5 * pe_std
-        total   = snap["Score_總分_100"]
-
-        summary_by_market[market].append({
-            "股票代號": ticker_id, "公司名稱": name,
-            "現價":     round(df_stock["Close"].iloc[-1], 2),
-            "最新股息率": round(c_yield, 2), "5年均息率": round(y_avg, 2),
-            "🟢 息率買入線": round(y_buy, 2),  "🔴 息率賣出線": round(y_sell, 2),
-            "最新 PE":  round(c_pe, 2),    "5年均 PE":  round(pe_avg, 2),
-            "🟢 PE買入線":  round(pe_buy, 2), "🔴 PE賣出線": round(pe_sell, 2),
-            "Payout_%":        snap["Payout_Ratio_%"],
-            "FCF覆蓋":         snap["FCF_Coverage"],
-            "Net_Debt/EBITDA": snap["Net_Debt_EBITDA"],
-            "利息覆蓋":        snap["Interest_Coverage"],
-            "流動比率":        snap["Current_Ratio"],
-            "P/B":             snap["PB_Ratio"],
-            "Yield_Spread":    snap["Yield_Spread_vs_Bond"],
-            "DGR_3yr%":        snap["DGR_3yr_%"],
-            "RSI_14":          snap["RSI_14"],
-            "52W位置%":        snap["52W_Position_%"],
-            "S_股息質量":      snap["Score_股息質量_30"],
-            "S_估值":          snap["Score_估值_25"],
-            "S_財務健康":      snap["Score_財務健康_25"],
-            "S_增長":          snap["Score_增長潛力_10"],
-            "S_技術":          snap["Score_技術面_10"],
-            "📊 總分_100":     total,
-            "📊 綜合診斷":     get_status(total),
-        })
-        print(f"  ✅ 總分: {total}  ({get_status(total)})")
-
-    except Exception as e:
-        import traceback
-        print(f"  ❌ 處理 {ticker_id} 時出錯: {e}")
-        print(f"     {traceback.format_exc()}")
-
-# ── 斷開 IBKR ────────────────────────────────────────────
-if USE_IBKR:
-    _ibkr_fetcher.disconnect()
-
-# ==========================================
-# 💾 寫入 3 個 Excel 文件
-# ==========================================
-print("\n💾 寫入3個Excel文件...")
-
-def write_df_to_new_sheet(wb, sheet_name, df):
-    """將 DataFrame 寫成一個全新嘅 sheet（唔會觸碰任何現存 sheet/工作簿其他內容）。
-    行為貼近 pandas .to_excel()：NaN → 空白格。"""
-    ws = wb.create_sheet(title=sheet_name)
-    ws.append(list(df.columns))
-    for row in df.itertuples(index=False):
-        vals = [None if (isinstance(v, float) and v != v) else v for v in row]
-        ws.append(vals)
-    return ws
-
-
-def style_one_stock_sheet(ws, sn):
-    """個股 sheet 美化＋圖表。只喺呢個 sheet 第一次建立時叫用一次，
-    現存（已經美化過）嗰啲 sheet 唔會經過呢個函數，所以唔會被重新處理。"""
-    score_fill  = PatternFill("solid", fgColor="E8F4FD")
-    header_fill = PatternFill("solid", fgColor="3F3F3F")
-    score_hdr   = PatternFill("solid", fgColor="1F4E79")
-    header_font = Font(name="Arial", size=11, bold=True, color="FFFFFF")
-    normal_font = Font(name="Arial", size=10)
-    thin_border = Border(
-        left=Side(style="thin",  color="E0E0E0"),
-        right=Side(style="thin", color="E0E0E0"),
-        top=Side(style="thin",   color="E0E0E0"),
-        bottom=Side(style="thin",color="E0E0E0"),
-    )
-    ncols = len(ALL_COLUMNS)
-
-    ws.freeze_panes = "A2"
-    ws.views.sheetView[0].showGridLines = True
-    for col in range(1, ncols + 1):
-        c = ws.cell(1, col)
-        c.fill = score_hdr if col > len(STANDARD_COLUMNS) else header_fill
-        c.font = header_font
-        c.alignment = Alignment(horizontal="center", wrap_text=True)
-    for row in range(2, ws.max_row + 1):
-        for col in range(1, ncols + 1):
-            c = ws.cell(row, col)
-            c.font = normal_font; c.border = thin_border
-            if col > len(STANDARD_COLUMNS) and c.value is not None:
-                c.fill = score_fill
-        ws.cell(row, 2).number_format = "#,##0.00"
-        ws.cell(row, 3).number_format = "#,##0"
-        for col in [5, 6, 7, 8]:    ws.cell(row, col).number_format = '0.00"%"'
-        for col in [9, 10, 11, 12]: ws.cell(row, col).number_format = "#,##0.00"
-    # 圖表
-    cats = Reference(ws, min_col=1, min_row=2, max_row=ws.max_row)
-    ch1 = LineChart()
-    ch1.title = f"{sn} 5年歷史股息率"
-    ch1.y_axis.title = "股息率 (%)"; ch1.width = 17; ch1.height = 10
-    ch1.add_data(Reference(ws, min_col=5, max_col=8,
-                           min_row=1, max_row=ws.max_row),
-                 titles_from_data=True)
-    ch1.set_categories(cats); ch1.x_axis.tickLblSkip = 120
-    for i, col_color in enumerate(["4F81BD","7F7F7F","27AE60","C0392B"]):
-        ch1.series[i].graphicalProperties.line.solidFill = col_color
-    ws.add_chart(ch1, "O2")
-
-    ch2 = LineChart()
-    ch2.title = f"{sn} 5年歷史 PE"
-    ch2.y_axis.title = "PE 倍數"; ch2.width = 17; ch2.height = 10
-    ch2.add_data(Reference(ws, min_col=9, max_col=12,
-                           min_row=1, max_row=ws.max_row),
-                 titles_from_data=True)
-    ch2.set_categories(cats); ch2.x_axis.tickLblSkip = 120
-    for i, col_color in enumerate(["8E44AD","7F7F7F","27AE60","C0392B"]):
-        ch2.series[i].graphicalProperties.line.solidFill = col_color
-    ws.add_chart(ch2, "O18")
-
-    for col in ws.columns:
-        ml = max(len(str(c.value or "")) for c in col)
-        ws.column_dimensions[
-            get_column_letter(col[0].column)].width = min(max(ml + 3, 10), 22)
-
-
-def rebuild_summary(wb, market, smap, results):
-    """重建總覽分頁：呢次新處理嘅股票用 results 嗰份新鮮計算結果；
-    冇處理過（即係已經追蹤緊嘅舊股）就讀返佢自己 sheet 最後一行嘅快照 ──
-    同 daily_importer.py 嘅 rebuild_summary() 一模一樣嘅邏輯，
-    保證兩個腳本對「總覽」嘅理解永遠一致。"""
-    sum_name = f"{market} 總覽"
-
-    if sum_name in wb.sheetnames: del wb[sum_name]
-    ws = wb.create_sheet(sum_name); ws.freeze_panes = "A2"
-
-    THIN = Border(left=Side(style="thin", color="E0E0E0"), right=Side(style="thin", color="E0E0E0"),
-                  top=Side(style="thin", color="E0E0E0"), bottom=Side(style="thin", color="E0E0E0"))
-    HDR_FILL   = PatternFill("solid", fgColor="3F3F3F")
-    SCORE_HDR  = PatternFill("solid", fgColor="1F4E79")
-    SCORE_FILL = PatternFill("solid", fgColor="E8F4FD")
-    HDR_FONT   = Font(name="Arial", size=11, bold=True, color="FFFFFF")
-    NORM_FONT  = Font(name="Arial", size=10)
-    LINK_FONT  = Font(name="Arial", size=10, color="0000FF", underline="single")
-    ncols = len(SUMMARY_COLS)
-
-    ws.append(SUMMARY_COLS)
-    for col in range(1, ncols + 1):
-        c = ws.cell(1, col)
-        c.fill = SCORE_HDR if col >= 22 else HDR_FILL
-        c.font = HDR_FONT; c.alignment = Alignment(horizontal="center", wrap_text=True)
-
-    rows = []
-    for sn, (ticker, smap_name) in smap.items():
-        r = results.get(sn)
-        if r:
-            snap = r["snap"]
-            y_avg = r["y_avg"]; y_std = r["y_std"]
-            pe_avg = r["pe_avg"]; pe_std = r["pe_std"]
-            total = safe(snap.get("Score_總分_100"), 0)
-            name = r["name"] if r.get("name") else smap_name
-            rows.append((sn, ticker, name, r["close"], r["yield"], y_avg,
-                         y_avg + 1.5 * y_std, y_avg - 1.5 * y_std,
-                         r["pe"], pe_avg,
-                         max(0, pe_avg - 1.5 * pe_std), pe_avg + 1.5 * pe_std,
-                         snap, total))
-        else:
-            if sn not in wb.sheetnames: continue
-            ws_s = wb[sn]; last = ws_s.max_row
-            if last < 2: continue
-            snap = {SCORE_SNAPSHOT_COLS[i]: ws_s.cell(last, SCORE_COL_START + i).value
-                    for i in range(len(SCORE_SNAPSHOT_COLS))}
-            total = safe(snap.get("Score_總分_100"), 0)
-            rows.append((sn, ticker, smap_name,
-                safe(ws_s.cell(last, 2).value, 0), safe(ws_s.cell(last, 6).value, 0),
-                safe(ws_s.cell(last, 7).value, 0), safe(ws_s.cell(last, 8).value, 0), safe(ws_s.cell(last, 9).value, 0),
-                safe(ws_s.cell(last, 10).value, 0), safe(ws_s.cell(last, 11).value, 0),
-                safe(ws_s.cell(last, 12).value, 0), safe(ws_s.cell(last, 13).value, 0),
-                snap, total))
-
-    rows.sort(key=lambda x: x[13], reverse=True)
-
-    for sn, ticker, company, close, cy, ya, yb, ys, pe, pa, pb2, ps, snap, total in rows:
-        ws.append([
-            ticker, company, round(close, 2),
-            round(cy, 2), round(ya, 2), round(yb, 2), round(ys, 2),
-            round(pe, 2), round(pa, 2), round(pb2, 2), round(ps, 2),
-            snap.get("Payout_Ratio_%"), snap.get("FCF_Coverage"),
-            snap.get("Net_Debt_EBITDA"), snap.get("Interest_Coverage"),
-            snap.get("Current_Ratio"), snap.get("PB_Ratio"),
-            snap.get("Yield_Spread_vs_Bond"), snap.get("DGR_3yr_%"),
-            snap.get("RSI_14"), snap.get("52W_Position_%"),
-            snap.get("Score_股息質量_30"), snap.get("Score_估值_25"),
-            snap.get("Score_財務健康_25"), snap.get("Score_增長潛力_10"),
-            snap.get("Score_技術面_10"), total, get_status(total),
-        ])
-        ridx = ws.max_row
-        rf = get_score_fill(total); rfont = get_score_font(total)
-
-        for col in range(1, ncols + 1):
-            c = ws.cell(ridx, col); c.border = THIN
-            if col >= 22: c.fill = SCORE_FILL; c.font = NORM_FONT
-            else:         c.fill = rf;         c.font = NORM_FONT
-            if col == ncols - 1:
-                c.fill = rf; c.font = rfont; c.number_format = "0.0"
-                c.alignment = Alignment(horizontal="center")
-            if col == ncols:
-                c.fill = rf; c.font = rfont
-                c.alignment = Alignment(horizontal="center")
-            if col == 1:
-                c.hyperlink = f"#'{sn}'!A1"; c.font = LINK_FONT
-            if col in [4, 5, 6, 7, 12, 17, 18]: c.number_format = "0.00"
-            if col in [3, 8, 9, 10, 11]:        c.number_format = "#,##0.00"
-            if col in [22, 23, 24, 25, 26]:     c.number_format = "0.0"
-
-    for col in ws.columns:
-        ml = max(len(str(c.value or "")) for c in col)
-        ws.column_dimensions[get_column_letter(col[0].column)].width = min(max(ml + 3, 10), 22)
-
-    # 總覽移至最前
-    sheets = wb._sheets
-    try:
-        idx = next(i for i, s in enumerate(sheets) if s.title == sum_name)
-        sheets.insert(0, sheets.pop(idx))
-    except Exception:
-        pass
-    print(f"  📊 總覽已重建: {sum_name}（共 {len(rows)} 隻，含 {len(results)} 隻新股）")
-
-
-for market, excel_file in EXCEL_FILES.items():
-    smap         = smap_by_market.get(market, {})
-    stock_sheets = stock_data_by_market[market]
-    results      = results_by_market[market]
-
-    if not smap:
-        print(f"  ⚠️  {market} 沒有任何追蹤股票，跳過"); continue
-
-    file_exists = existing_wb.get(market) is not None
-
-    if not stock_sheets:
+        print(f"  📊 總覽已重建: {sum_name}（共 {len(rows)} 隻，含 {len(results)} 隻新股）")
+    
+    
+    for market, excel_file in EXCEL_FILES.items():
+        smap         = smap_by_market.get(market, {})
+        stock_sheets = stock_data_by_market[market]
+        results      = results_by_market[market]
+    
+        if not smap:
+            print(f"  ⚠️  {market} 沒有任何追蹤股票，跳過"); continue
+    
+        file_exists = existing_wb.get(market) is not None
+    
+        if not stock_sheets:
+            if file_exists:
+                print(f"  ℹ️  {market}: 沒有新股票需要加入，{excel_file} 維持不變（歷史完整保留）")
+            else:
+                print(f"  ⚠️  {market}: 無數據（檔案不存在亦無新股可建立），跳過")
+            continue
+    
         if file_exists:
-            print(f"  ℹ️  {market}: 沒有新股票需要加入，{excel_file} 維持不變（歷史完整保留）")
+            wb = existing_wb[market]
+            try: os.chmod(excel_file, stat.S_IWRITE)
+            except Exception: pass
+            print(f"\n  📁 {excel_file}：新增 {len(stock_sheets)} 隻新股票"
+                  f"（現存 {len(existing_sheets.get(market, set()))} 隻 sheet 完全不變）...")
         else:
-            print(f"  ⚠️  {market}: 無數據（檔案不存在亦無新股可建立），跳過")
-        continue
-
-    if file_exists:
-        wb = existing_wb[market]
-        try: os.chmod(excel_file, stat.S_IWRITE)
+            wb = openpyxl.Workbook()
+            print(f"\n  📁 {excel_file}：全新建立（{len(stock_sheets)} 隻股票）...")
+    
+        print(f"  🎨 建立並美化 {len(stock_sheets)} 個新 sheet...")
+        for sn, df in stock_sheets.items():
+            ws_new = write_df_to_new_sheet(wb, sn, df)
+            style_one_stock_sheet(ws_new, sn)
+    
+        if not file_exists and "Sheet" in wb.sheetnames:
+            del wb["Sheet"]   # openpyxl 新工作簿預設帶嘅空白分頁
+    
+        rebuild_summary(wb, market, smap, results)
+    
+        wb.save(excel_file)
+        try: os.chmod(excel_file, stat.S_IREAD)
         except Exception: pass
-        print(f"\n  📁 {excel_file}：新增 {len(stock_sheets)} 隻新股票"
-              f"（現存 {len(existing_sheets.get(market, set()))} 隻 sheet 完全不變）...")
-    else:
-        wb = openpyxl.Workbook()
-        print(f"\n  📁 {excel_file}：全新建立（{len(stock_sheets)} 隻股票）...")
-
-    print(f"  🎨 建立並美化 {len(stock_sheets)} 個新 sheet...")
-    for sn, df in stock_sheets.items():
-        ws_new = write_df_to_new_sheet(wb, sn, df)
-        style_one_stock_sheet(ws_new, sn)
-
-    if not file_exists and "Sheet" in wb.sheetnames:
-        del wb["Sheet"]   # openpyxl 新工作簿預設帶嘅空白分頁
-
-    rebuild_summary(wb, market, smap, results)
-
-    wb.save(excel_file)
-    try: os.chmod(excel_file, stat.S_IREAD)
-    except Exception: pass
-    print(f"  ✅ {excel_file} 完成！")
-
-n_files = len([f for f in EXCEL_FILES.values() if os.path.exists(f)])
-print(f"\n🎯 全部完成！共生成 {n_files} 個文件：")
-for market, f in EXCEL_FILES.items():
-    status = "✅" if os.path.exists(f) else "⏭ (無數據)"
-    print(f"   {status} {market}: {f}")
+        print(f"  ✅ {excel_file} 完成！")
+    
+    n_files = len([f for f in EXCEL_FILES.values() if os.path.exists(f)])
+    print(f"\n🎯 全部完成！共生成 {n_files} 個文件：")
+    for market, f in EXCEL_FILES.items():
+        status = "✅" if os.path.exists(f) else "⏭ (無數據)"
+        print(f"   {status} {market}: {f}")
