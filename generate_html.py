@@ -1082,6 +1082,8 @@ function setLang(lang) {
   var chead=document.getElementById('contact-heading');if(chead)chead.childNodes[0].textContent=cl[0];
   var ctitle=document.getElementById('contact-title');if(ctitle)ctitle.textContent=cl[1];
   var cbody=document.getElementById('contact-body');if(cbody)cbody.textContent=cl[2];
+  document.querySelectorAll('.div-spark-desc-lbl[data-zh-hk]').forEach(function(el){el.textContent=el.getAttribute('data-'+lang)||el.getAttribute('data-zh-hk');});
+  document.querySelectorAll('.div-spark-leg[data-zh-hk]').forEach(function(el){var line=el.querySelector('.div-spark-leg-line');var lbl=el.getAttribute('data-'+lang)||el.getAttribute('data-zh-hk');el.innerHTML=(line?line.outerHTML:'')+lbl;});
 }
 """
 
@@ -1676,6 +1678,8 @@ function renderSparkline(p){{
     const ptBkg={{up:'#E6F1FB',down:'#FEF3F2',side:'#F1EFE8'}}[ptCls];
     const ptCol={{up:'#185FA5',down:'#B42318',side:'#5F5E5A'}}[ptCls];
     const psign=ppct>=0?'+':'';
+    const DTXT={{grow:{{hk:'股息 ↑ 持續增長',cn:'股息 ↑ 持续增长',en:'Div ↑ Growing'}},cut:{{hk:'股息 ⚠ 曾經減息',cn:'股息 ⚠ 曾经减息',en:'Div ⚠ Cut'}},flat:{{hk:'股息 → 稔定派息',cn:'股息 → 稳定派息',en:'Div → Stable'}}}};
+    const PTXT={{up:{{hk:'股價 ↑ 上升',cn:'股价 ↑ 上升',en:'Price ↑ Rising'}},down:{{hk:'股價 ↓ 下跌',cn:'股价 ↓ 下跌',en:'Price ↓ Falling'}},side:{{hk:'股價 → 橫行',cn:'股价 → 横行',en:'Price → Sideways'}}}};
 
     pSvg=`
     <path d="${{paPath}}" fill="${{PX_COL}}" fill-opacity="0.07"/>
@@ -1689,8 +1693,8 @@ function renderSparkline(p){{
 
     return `<div class="div-spark">
     <div class="div-spark-legend">
-      <span class="div-spark-leg"><span class="div-spark-leg-line" style="background:${{DIV_COL}}"></span>\u80a1\u606f</span>
-      <span class="div-spark-leg"><span class="div-spark-leg-line" style="background:${{PX_COL}};opacity:.7"></span>\u80a1\u50f9</span>
+      <span class="div-spark-leg" data-zh-hk="股息" data-zh-cn="股息" data-en="Div"><span class="div-spark-leg-line" style="background:${{DIV_COL}}"></span>\u80a1\u606f</span>
+      <span class="div-spark-leg" data-zh-hk="股價" data-zh-cn="股价" data-en="Price"><span class="div-spark-leg-line" style="background:${{PX_COL}};opacity:.7"></span>\u80a1\u50f9</span>
       <span style="font-size:9px;color:#aaa;margin-left:auto">${{divPts[0].y}} \u2192 ${{divPts[divPts.length-1].y}}</span>
     </div>
     <svg viewBox="0 0 ${{W}} ${{H}}" style="display:block;width:100%;height:${{H}}px;overflow:visible" aria-hidden="true">
@@ -1701,11 +1705,11 @@ function renderSparkline(p){{
     </svg>
     <div class="div-spark-desc">
       <div class="div-spark-desc-box" style="background:${{dtBkg}}">
-        <div class="div-spark-desc-lbl" style="color:${{dtCol}}">\u80a1\u606f ${{dtLbl}}</div>
+        <div class="div-spark-desc-lbl" data-zh-hk="${{DTXT[dtCls].hk}}" data-zh-cn="${{DTXT[dtCls].cn}}" data-en="${{DTXT[dtCls].en}}" style="color:${{dtCol}}">${{DTXT[dtCls].hk}}</div>
         <div class="div-spark-desc-val" style="color:${{dtCol}}">${{dvals[0].toFixed(2)}} \u2192 ${{dvals[dvals.length-1].toFixed(2)}}</div>
       </div>
       <div class="div-spark-desc-box" style="background:${{ptBkg}}">
-        <div class="div-spark-desc-lbl" style="color:${{ptCol}}">\u80a1\u50f9 ${{ptLbl}}</div>
+        <div class="div-spark-desc-lbl" data-zh-hk="${{PTXT[ptCls].hk}}" data-zh-cn="${{PTXT[ptCls].cn}}" data-en="${{PTXT[ptCls].en}}" style="color:${{ptCol}}">${{PTXT[ptCls].hk}}</div>
         <div class="div-spark-desc-val" style="color:${{ptCol}}">${{psign}}${{ppct.toFixed(0)}}%</div>
       </div>
     </div>
