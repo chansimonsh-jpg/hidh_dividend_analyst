@@ -4,65 +4,79 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>關於我們 | About Us | HiDH Dividend Analyst</title>
+<link rel="icon" type="image/png" href="/icon.png">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:system-ui,-apple-system,sans-serif;background:#f7f7f5;color:#333;line-height:1.8}
+a{color:#1D9E75;text-decoration:none}a:hover{text-decoration:underline}
 .header{background:#fff;border-bottom:1px solid #e5e5e5;padding:0 1.5rem}
 .header-inner{max-width:960px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:60px}
-.logo{font-size:18px;font-weight:600;color:#1D9E75;text-decoration:none}
-.logo span{color:#333}
-.nav{display:flex;gap:1.5rem;font-size:14px}
-.nav a{color:#555;text-decoration:none}.nav a:hover{color:#1D9E75}
+.logo{font-size:18px;font-weight:600;color:#1D9E75;text-decoration:none}.logo span{color:#333}
+.nav{display:flex;gap:1.5rem;font-size:14px}.nav a{color:#555;text-decoration:none}.nav a:hover{color:#1D9E75;text-decoration:none}
 .content{max-width:760px;margin:2.5rem auto;padding:0 1.5rem}
 .content h1{font-size:24px;font-weight:600;color:#222;margin-bottom:1.5rem}
 .content h2{font-size:16px;font-weight:600;color:#222;margin:2rem 0 .75rem}
 .content p{font-size:14px;color:#555;margin-bottom:1rem}
 .content ul{font-size:14px;color:#555;margin:.5rem 0 1rem 1.5rem}
 .content ul li{margin-bottom:.4rem}
-.content a{color:#1D9E75}
 .card{background:#fff;border:1px solid #e5e5e5;border-radius:12px;padding:1.5rem;margin-bottom:1rem}
 .contact-row{display:flex;align-items:center;gap:.75rem;font-size:14px;color:#555;padding:.5rem 0;border-bottom:1px solid #f0f0f0}
 .contact-row:last-child{border-bottom:none}
 .contact-label{font-weight:600;color:#333;min-width:80px}
+.avoid-badge{display:inline-block;background:#FEF3F2;color:#B42318;font-size:12px;font-weight:600;padding:2px 8px;border-radius:4px;margin-right:6px}
 .footer{background:#222;color:#aaa;padding:1.5rem;font-size:12px;margin-top:3rem}
 .footer-inner{max-width:960px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem}
 .footer-logo{color:#1D9E75;font-weight:600;font-size:14px}
 .footer a{color:#aaa;text-decoration:none}.footer a:hover{color:#fff}
-.lang-switcher{margin-bottom:1.5rem;display:flex;gap:.5rem}
-.lang-switcher button{padding:.3rem .9rem;cursor:pointer;border:1px solid #1D9E75;background:white;color:#1D9E75;border-radius:4px;font-size:14px}
-.lang-switcher button.active{background:#1D9E75;color:white}
-.lang-section{display:none}
-.lang-section.active{display:block}
+.lang-section{display:none}.lang-section.active{display:block}
 </style>
 </head>
 <body>
 
 <div class="header">
   <div class="header-inner">
-    <a href="index.html" class="logo">HiDH <span>Dividend Analyst</span></a>
+    <a href="/" class="logo">HiDH <span>Dividend Analyst</span></a>
     <nav class="nav">
-      <a href="index.html#about">選股方法</a>
-      <a href="index.html#charts">市場概覽</a>
-      <a href="index.html#picks">最新精選</a>
+      <a href="/#about"  data-zh-hk="選股方法" data-zh-cn="选股方法" data-en="Methodology">選股方法</a>
+      <a href="/#charts" data-zh-hk="市場概覽" data-zh-cn="市场概览" data-en="Markets">市場概覽</a>
+      <a href="/#picks"  data-zh-hk="最新精選" data-zh-cn="最新精选" data-en="Top Picks">最新精選</a>
+      <a href="/#avoid"  data-zh-hk="高危名單" data-zh-cn="高危名单" data-en="High-Risk">高危名單</a>
     </nav>
   </div>
 </div>
+<div style="display:flex;justify-content:flex-end;gap:6px;padding:.4rem 1.5rem;background:#fff;border-bottom:0.5px solid #e5e5e5">
+  <button id="btn-zh-hk" style="font-size:12px;padding:4px 12px;border-radius:20px;border:0.5px solid #1D9E75;background:#1D9E75;color:#fff;cursor:pointer" onclick="setLang('zh-hk')">繁體</button>
+  <button id="btn-zh-cn" style="font-size:12px;padding:4px 12px;border-radius:20px;border:0.5px solid #e5e5e5;background:transparent;color:#666;cursor:pointer" onclick="setLang('zh-cn')">简体</button>
+  <button id="btn-en"    style="font-size:12px;padding:4px 12px;border-radius:20px;border:0.5px solid #e5e5e5;background:transparent;color:#666;cursor:pointer" onclick="setLang('en')">English</button>
+</div>
 
 <div class="content">
-  <div class="lang-switcher">
-    <button class="active" onclick="switchLang('zh-hant', this)">繁體</button>
-    <button onclick="switchLang('zh-hans', this)">简体</button>
-    <button onclick="switchLang('en', this)">English</button>
-  </div>
 
   <!-- 繁體中文 -->
-  <div class="lang-section active" id="lang-zh-hant">
+  <div class="lang-section active" id="sec-zh-hk">
     <h1>關於我們</h1>
     <h2>關於 HiDH Dividend Analyst</h2>
-    <p>HiDH Dividend Analyst 是一個專注於全球高息股分析的獨立資訊平台，涵蓋香港、美國及英國三大市場，每個交易日自動更新數據，為投資者提供系統化的股息股篩選參考。</p>
+    <p>HiDH Dividend Analyst 是一個專注於全球高息股分析的獨立資訊平台，涵蓋香港、美國、英國及中國A股四大市場，每個交易日自動更新數據，為投資者提供系統化的股息股篩選參考。</p>
     <p>我們相信，長期穩定的股息收入是財富增長的重要基石。透過量化評分系統，我們對數百隻股票進行全面分析，幫助投資者發掘真正具備長線持有價值的優質高息股。</p>
     <h2>我們的分析方法</h2>
-    <p>每隻股票均以100分制進行綜合評分，涵蓋股息質量、估值、財務健康、增長潛力及技術走勢五大範疇，務求客觀、全面地評估每隻股票的投資價值。</p>
+    <p>每隻股票均以100分制進行綜合評分，涵蓋五大範疇：</p>
+    <ul>
+      <li><strong>股息質量（30分）</strong>：息率水平、派息穩定性及現金流覆蓋率</li>
+      <li><strong>估值（25分）</strong>：現價相對歷史息率及市場的吸引程度</li>
+      <li><strong>財務健康（25分）</strong>：資產負債、現金流及償債能力</li>
+      <li><strong>增長（10分）</strong>：股息增長趨勢及盈利前景</li>
+      <li><strong>技術走勢（10分）</strong>：RSI、52週位置等技術指標</li>
+    </ul>
+    <h2>評級說明</h2>
+    <p>根據總分，每隻股票會獲得以下評級：</p>
+    <ul>
+      <li><strong>🟢🟢 強力買入（75分以上）</strong>：各方面均表現優秀，值得重點關注</li>
+      <li><strong>🟢 值得關注（60–74分）</strong>：基本面良好，可納入觀察名單</li>
+      <li><strong>⚖️ 觀望（50–59分）</strong>：有一定吸引力，但需留意風險</li>
+    </ul>
+    <h2><span class="avoid-badge">🔴 高危</span>高危名單說明</h2>
+    <p>高危名單列出評分最低的股票，供投資者參考迴避。高危股通常具備以下特徵：派息比率過高甚至超過盈利、現金流無法支撐股息、財務槓桿過高、近期股息曾被削減，或估值嚴重偏高。</p>
+    <p>高危名單並非「沽出」建議，而是提示投資者相關股票存在較高風險，需作更深入研究才考慮持有。</p>
     <h2>免責聲明</h2>
     <div class="card">
       <p style="margin:0;font-size:13px;color:#777">本網站所有內容僅供參考及教育用途，不構成任何投資建議或買賣邀請。投資涉及風險，過往表現不代表未來回報。讀者應自行進行盡職審查，並在作出任何投資決定前諮詢持牌財務顧問。本站對因使用本站資料而引起的任何損失概不負責。</p>
@@ -77,13 +91,30 @@ body{font-family:system-ui,-apple-system,sans-serif;background:#f7f7f5;color:#33
   </div>
 
   <!-- 简体中文 -->
-  <div class="lang-section" id="lang-zh-hans">
+  <div class="lang-section" id="sec-zh-cn">
     <h1>关于我们</h1>
     <h2>关于 HiDH Dividend Analyst</h2>
-    <p>HiDH Dividend Analyst 是一个专注于全球高息股分析的独立资讯平台，涵盖香港、美国及英国三大市场，每个交易日自动更新数据，为投资者提供系统化的股息股筛选参考。</p>
+    <p>HiDH Dividend Analyst 是一个专注于全球高息股分析的独立资讯平台，涵盖香港、美国、英国及中国A股四大市场，每个交易日自动更新数据，为投资者提供系统化的股息股筛选参考。</p>
     <p>我们相信，长期稳定的股息收入是财富增长的重要基石。透过量化评分系统，我们对数百只股票进行全面分析，帮助投资者发掘真正具备长线持有价值的优质高息股。</p>
     <h2>我们的分析方法</h2>
-    <p>每只股票均以100分制进行综合评分，涵盖股息质量、估值、财务健康、增长潜力及技术走势五大范畴，务求客观、全面地评估每只股票的投资价值。</p>
+    <p>每只股票均以100分制进行综合评分，涵盖五大范畴：</p>
+    <ul>
+      <li><strong>股息质量（30分）</strong>：息率水平、派息稳定性及现金流覆盖率</li>
+      <li><strong>估值（25分）</strong>：现价相对历史息率及市场的吸引程度</li>
+      <li><strong>财务健康（25分）</strong>：资产负债、现金流及偿债能力</li>
+      <li><strong>增长（10分）</strong>：股息增长趋势及盈利前景</li>
+      <li><strong>技术走势（10分）</strong>：RSI、52周位置等技术指标</li>
+    </ul>
+    <h2>评级说明</h2>
+    <p>根据总分，每只股票会获得以下评级：</p>
+    <ul>
+      <li><strong>🟢🟢 强力买入（75分以上）</strong>：各方面均表现优秀，值得重点关注</li>
+      <li><strong>🟢 值得关注（60–74分）</strong>：基本面良好，可纳入观察名单</li>
+      <li><strong>⚖️ 观望（50–59分）</strong>：有一定吸引力，但需留意风险</li>
+    </ul>
+    <h2><span class="avoid-badge">🔴 高危</span>高危名单说明</h2>
+    <p>高危名单列出评分最低的股票，供投资者参考回避。高危股通常具备以下特征：派息比率过高甚至超过盈利、现金流无法支撑股息、财务杠杆过高、近期股息曾被削减，或估值严重偏高。</p>
+    <p>高危名单并非"沽出"建议，而是提示投资者相关股票存在较高风险，需作更深入研究才考虑持有。</p>
     <h2>免责声明</h2>
     <div class="card">
       <p style="margin:0;font-size:13px;color:#777">本网站所有内容仅供参考及教育用途，不构成任何投资建议或买卖邀请。投资涉及风险，过往表现不代表未来回报。读者应自行进行尽职审查，并在作出任何投资决定前咨询持牌财务顾问。本站对因使用本站资料而引起的任何损失概不负责。</p>
@@ -93,18 +124,35 @@ body{font-family:system-ui,-apple-system,sans-serif;background:#f7f7f5;color:#33
       <div class="contact-row"><span class="contact-label">网站</span><a href="https://prosynchk.com">prosynchk.com</a></div>
       <div class="contact-row"><span class="contact-label">电邮</span><a href="mailto:prosynchk@gmail.com">prosynchk@gmail.com</a></div>
       <div class="contact-row"><span class="contact-label">更新频率</span><span>每个交易日</span></div>
-      <div class="contact-row"><span class="contact-label">覆盖市场</span><span>香港、美国、英国及中国A股四大市场</span></div>
+      <div class="contact-row"><span class="contact-label">覆盖市场</span><span>香港 · 美国 · 英国 · 中国A股</span></div>
     </div>
   </div>
 
   <!-- English -->
-  <div class="lang-section" id="lang-en">
+  <div class="lang-section" id="sec-en">
     <h1>About Us</h1>
     <h2>About HiDH Dividend Analyst</h2>
-    <p>HiDH Dividend Analyst is an independent information platform focused on global high-dividend stock analysis, covering Hong Kong, US, and UK markets. Data is updated automatically every trading day to provide investors with a systematic dividend stock screening reference.</p>
-    <p>We believe that long-term stable dividend income is an important cornerstone of wealth growth. Through our quantitative scoring system, we comprehensively analyse hundreds of stocks to help investors identify quality high-dividend stocks truly worth holding for the long term.</p>
+    <p>HiDH Dividend Analyst is an independent platform focused on global high-dividend stock analysis, covering Hong Kong, US, UK, and China A-share markets. Data is updated every trading day to provide investors with a systematic dividend stock screening reference.</p>
+    <p>We believe that long-term stable dividend income is an important cornerstone of wealth growth. Through our quantitative scoring system, we comprehensively analyse hundreds of stocks to help investors identify quality high-dividend stocks truly worth holding long-term.</p>
     <h2>Our Methodology</h2>
-    <p>Each stock is scored on a 100-point scale across five dimensions: dividend quality, valuation, financial health, growth potential, and technical trends — providing an objective and comprehensive assessment of each stock's investment value.</p>
+    <p>Each stock is scored on a 100-point scale across five dimensions:</p>
+    <ul>
+      <li><strong>Dividend Quality (30pts)</strong>: Yield level, payout stability and free cash flow coverage</li>
+      <li><strong>Valuation (25pts)</strong>: Current price vs historical yield and attractiveness</li>
+      <li><strong>Financial Health (25pts)</strong>: Balance sheet, cash flow and debt coverage</li>
+      <li><strong>Growth (10pts)</strong>: Dividend growth trend and earnings outlook</li>
+      <li><strong>Technical (10pts)</strong>: RSI, 52-week position and other indicators</li>
+    </ul>
+    <h2>Rating Guide</h2>
+    <p>Each stock receives a rating based on its total score:</p>
+    <ul>
+      <li><strong>🟢🟢 Strong Buy (75+)</strong>: Excellent across all dimensions, high priority</li>
+      <li><strong>🟢 Watch (60–74)</strong>: Good fundamentals, worth monitoring</li>
+      <li><strong>⚖️ Hold (50–59)</strong>: Some appeal, monitor risks carefully</li>
+    </ul>
+    <h2><span class="avoid-badge">🔴 High-Risk</span>High-Risk List Explained</h2>
+    <p>The High-Risk List highlights the lowest-scoring stocks for investors to approach with caution. High-risk stocks typically exhibit: payout ratios exceeding earnings, cash flow unable to sustain dividends, excessive financial leverage, recent dividend cuts, or severely stretched valuations.</p>
+    <p>This list is not a sell recommendation — it flags stocks requiring deeper research before any investment decision.</p>
     <h2>Disclaimer</h2>
     <div class="card">
       <p style="margin:0;font-size:13px;color:#777">All content on this website is for reference and educational purposes only and does not constitute investment advice or an invitation to buy or sell. Investments involve risk and past performance is not indicative of future results. Readers should conduct their own due diligence and consult a licensed financial adviser before making any investment decisions. This site accepts no responsibility for any losses arising from use of the information provided.</p>
@@ -124,21 +172,49 @@ body{font-family:system-ui,-apple-system,sans-serif;background:#f7f7f5;color:#33
   <div class="footer-inner">
     <span class="footer-logo">HiDH Dividend Analyst</span>
     <span>
-      <a href="index.html">首頁 / Home</a> ·
-      <a href="privacy.html">私隱政策 / Privacy</a> ·
-      <a href="about.html">關於我們 / About</a>
+      <a href="/">首頁 / Home</a> ·
+      <a href="/about.html">關於我們 / About</a> ·
+      <a href="/privacy.html">私隱政策 / Privacy</a>
     </span>
     <span>© 2026 prosynchk.com · 僅供參考</span>
   </div>
 </div>
 
 <script>
-  function switchLang(lang, btn) {
-    document.querySelectorAll('.lang-section').forEach(el => el.classList.remove('active'));
-    document.querySelectorAll('.lang-switcher button').forEach(el => el.classList.remove('active'));
-    document.getElementById('lang-' + lang).classList.add('active');
-    btn.classList.add('active');
-  }
+var NAV = {
+  'zh-hk': ['選股方法','市場概覽','最新精選','高危名單'],
+  'zh-cn': ['选股方法','市场概览','最新精选','高危名单'],
+  'en':    ['Methodology','Markets','Top Picks','High-Risk']
+};
+var TITLE = {
+  'zh-hk': '關於我們',
+  'zh-cn': '关于我们',
+  'en':    'About Us'
+};
+
+function setLang(lang) {
+  // Button styles
+  ['btn-zh-hk','btn-zh-cn','btn-en'].forEach(function(id){
+    var b = document.getElementById(id);
+    if(b){b.style.background='transparent';b.style.color='#666';b.style.borderColor='#e5e5e5';}
+  });
+  var active = document.getElementById('btn-'+lang);
+  if(active){active.style.background='#1D9E75';active.style.color='#fff';active.style.borderColor='#1D9E75';}
+
+  // Nav labels
+  var navLinks = document.querySelectorAll('.nav a[data-zh-hk]');
+  var labels = NAV[lang] || NAV['zh-hk'];
+  navLinks.forEach(function(a, i){ if(labels[i]) a.textContent = labels[i]; });
+
+  // Page title
+  document.title = (TITLE[lang]||TITLE['zh-hk']) + ' | HiDH Dividend Analyst';
+
+  // Content sections
+  document.querySelectorAll('.lang-section').forEach(function(s){ s.classList.remove('active'); });
+  var secMap = {'zh-hk':'sec-zh-hk','zh-cn':'sec-zh-cn','en':'sec-en'};
+  var sec = document.getElementById(secMap[lang]||'sec-zh-hk');
+  if(sec) sec.classList.add('active');
+}
 </script>
 
 </body>
