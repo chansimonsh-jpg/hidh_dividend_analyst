@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-HK">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Privacy Policy – ProsyncHK</title>
+  <title>私隱政策 | Privacy Policy | HiDH Dividend Analyst</title>
   <style>
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -15,81 +15,165 @@
       background: #fff;
     }
     h1 { font-size: 28px; font-weight: 700; margin-bottom: 4px; }
-    h2 { font-size: 18px; font-weight: 600; margin-top: 36px; color: #185FA5; }
+    h2 { font-size: 18px; font-weight: 600; margin-top: 36px; color: #1D9E75; }
     p, li { font-size: 15px; color: #333; }
     ul { padding-left: 20px; }
     .updated { font-size: 13px; color: #888; margin-bottom: 32px; }
     .highlight {
-      background: #E6F1FB;
-      border-left: 4px solid #185FA5;
+      background: #E6F8F2;
+      border-left: 4px solid #1D9E75;
       padding: 14px 18px;
       border-radius: 6px;
       margin: 24px 0;
     }
-    a { color: #185FA5; }
+    a { color: #1D9E75; }
     hr { border: none; border-top: 1px solid #E0DED8; margin: 40px 0; }
+    .lang-switcher { margin-bottom: 2rem; display: flex; gap: .5rem; }
+    .lang-switcher button {
+      padding: .3rem .9rem; cursor: pointer;
+      border: 1px solid #1D9E75; background: white;
+      color: #1D9E75; border-radius: 4px; font-size: 14px;
+    }
+    .lang-switcher button.active { background: #1D9E75; color: white; }
+    .lang-section { display: none; }
+    .lang-section.active { display: block; }
   </style>
 </head>
 <body>
 
-  <h1>Privacy Policy</h1>
-  <p class="updated">Last updated: 28 June 2026 &nbsp;·&nbsp; App: <strong>ProsyncHK – Private Portfolio Tracker</strong></p>
-
-  <div class="highlight">
-    <strong>Short version:</strong> ProsyncHK does not collect, transmit, or store any of your personal or financial data on external servers. Everything stays on your device.
+  <div class="lang-switcher">
+    <button class="active" onclick="switchLang('zh-hant', this)">繁體</button>
+    <button onclick="switchLang('zh-hans', this)">简体</button>
+    <button onclick="switchLang('en', this)">English</button>
   </div>
 
-  <h2>1. Who We Are</h2>
-  <p>ProsyncHK – Private Portfolio Tracker ("the App") is developed and maintained by <strong>ProsyncHK Tech Company</strong>. If you have any questions about this policy, please contact us at <a href="mailto:prosynchk@gmail.com">prosynchk@gmail.com</a>.</p>
+  <!-- 繁體中文 -->
+  <div class="lang-section active" id="lang-zh-hant">
+    <h1>私隱政策</h1>
+    <p class="updated">最後更新：2026年6月29日</p>
+    <div class="highlight">
+      <strong>重點摘要：</strong>本網站不會主動收集任何個人識別資料。我們使用 Google Analytics 及 Google AdSense，該等服務可能透過 Cookies 收集匿名瀏覽數據。
+    </div>
 
-  <h2>2. Data We Do NOT Collect</h2>
-  <p>We do not collect, store, or transmit:</p>
-  <ul>
-    <li>Your name, email address, or any personal identifiers</li>
-    <li>Your portfolio holdings, transaction history, or financial data</li>
-    <li>Your device identifiers or location</li>
-    <li>Usage analytics or crash reports sent to our servers</li>
-  </ul>
+    <h2>1. 關於我們</h2>
+    <p>本私隱政策適用於 <strong>prosynchk.com</strong>（「本網站」），由 ProsyncHK Tech Company 營運。如有任何疑問，請電郵至 <a href="mailto:prosynchk@gmail.com">prosynchk@gmail.com</a>。</p>
 
-  <h2>3. Data Stored Locally on Your Device</h2>
-  <p>The following data is saved <strong>only on your device</strong> using Android's secure local storage (AsyncStorage). It never leaves your device unless you explicitly export it:</p>
-  <ul>
-    <li>Portfolio holdings, quantities, and costs you enter</li>
-    <li>Investment goals you set</li>
-    <li>App preferences (language, font size, display currency)</li>
-    <li>API keys you optionally provide (Claude / Gemini) — stored locally and used solely to make requests from your device to the respective AI provider</li>
-  </ul>
+    <h2>2. 我們收集的資料</h2>
+    <p>本網站本身不會主動收集任何個人識別資料。但以下第三方服務可能會透過本網站收集匿名數據：</p>
 
-  <h2>4. Third-Party Services</h2>
-  <p>The App optionally connects to the following third-party services. These connections are initiated directly from your device:</p>
-  <ul>
-    <li><strong>Yahoo Finance</strong> — to fetch live stock prices and dividend data. No personal data is sent; only stock ticker symbols are queried.</li>
-    <li><strong>Google Gemini API</strong> — if you choose to add a Gemini API key, your portfolio summary and questions are sent to Google's API for AI analysis. Please refer to <a href="https://policies.google.com/privacy" target="_blank">Google's Privacy Policy</a>.</li>
-    <li><strong>Anthropic Claude API</strong> — if you choose to add a Claude API key, your portfolio summary and questions are sent to Anthropic's API. Please refer to <a href="https://www.anthropic.com/privacy" target="_blank">Anthropic's Privacy Policy</a>.</li>
-    <li><strong>Google AdMob</strong> — the free version of the App displays advertisements served by Google AdMob, which may collect device identifiers for ad personalisation. Please refer to <a href="https://policies.google.com/privacy" target="_blank">Google's Privacy Policy</a>. You can opt out of personalised ads in your device settings.</li>
-  </ul>
+    <h2>3. Google Analytics (GA4)</h2>
+    <p>本網站使用 Google Analytics 4（追蹤 ID：G-P1VNXYE3FB）分析網站流量。Google Analytics 會收集匿名瀏覽數據，包括頁面瀏覽次數、瀏覽器類型、大概地理位置及使用裝置等資訊。這些數據以匿名形式收集，不會識別個別用戶。</p>
+    <p>如欲退出追蹤，可安裝 <a href="https://tools.google.com/dlpage/gaoptout" target="_blank">Google Analytics Opt-out Browser Add-on</a>。</p>
 
-  <h2>5. API Keys</h2>
-  <p>If you choose to enter an API key (Claude or Gemini), it is stored exclusively in your device's local storage. We never transmit your API key to our servers. The key is used solely to make API calls directly from your device to the respective provider.</p>
+    <h2>4. Google AdSense 廣告</h2>
+    <p>本網站使用 Google AdSense（發布商 ID：ca-pub-9533474113956980）顯示廣告。Google AdSense 會使用 Cookies 及類似技術，根據用戶的瀏覽行為投放相關廣告。</p>
+    <p>用戶可前往 <a href="https://www.google.com/settings/ads" target="_blank">Google 廣告設定</a> 退出個人化廣告，或前往 <a href="https://www.aboutads.info" target="_blank">aboutads.info</a> 退出第三方廣告個人化。</p>
 
-  <h2>6. Children's Privacy</h2>
-  <p>The App is not directed at children under the age of 13. We do not knowingly collect any data from children.</p>
+    <h2>5. Cookies</h2>
+    <p>本網站透過上述第三方服務使用 Cookies。您可以在瀏覽器設定中選擇拒絕所有 Cookies，但這可能影響部分網站功能。</p>
 
-  <h2>7. Data Security</h2>
-  <p>Since all data is stored locally on your device, security depends on your device's own protection (screen lock, encryption). We recommend keeping your device updated and secured.</p>
+    <h2>6. 外部連結</h2>
+    <p>本網站可能包含第三方網站連結。我們對該等網站的私隱慣例概不負責，建議您查閱各網站的私隱政策。</p>
 
-  <h2>8. Data Deletion</h2>
-  <p>To delete all App data, simply uninstall the App from your device. This will permanently remove all locally stored portfolio data, preferences, and API keys.</p>
+    <h2>7. 兒童私隱</h2>
+    <p>本網站不針對13歲以下兒童，亦不會故意收集兒童的個人資料。</p>
 
-  <h2>9. Changes to This Policy</h2>
-  <p>We may update this Privacy Policy from time to time. The updated date at the top of this page will reflect any changes. Continued use of the App after changes constitutes acceptance of the updated policy.</p>
+    <h2>8. 政策更新</h2>
+    <p>我們可能不時更新本私隱政策。更新後的版本將於本頁面頂部顯示最新日期。</p>
 
-  <h2>10. Contact Us</h2>
-  <p>If you have any questions or concerns about this Privacy Policy, please contact us at:<br />
-  <a href="mailto:prosynchk@gmail.com">prosynchk@gmail.com</a></p>
+    <h2>9. 聯絡我們</h2>
+    <p>如對本私隱政策有任何疑問，請電郵至：<a href="mailto:prosynchk@gmail.com">prosynchk@gmail.com</a></p>
+  </div>
+
+  <!-- 简体中文 -->
+  <div class="lang-section" id="lang-zh-hans">
+    <h1>隐私政策</h1>
+    <p class="updated">最后更新：2026年6月29日</p>
+    <div class="highlight">
+      <strong>重点摘要：</strong>本网站不会主动收集任何个人识别资料。我们使用 Google Analytics 及 Google AdSense，该等服务可能通过 Cookies 收集匿名浏览数据。
+    </div>
+
+    <h2>1. 关于我们</h2>
+    <p>本隐私政策适用于 <strong>prosynchk.com</strong>（"本网站"），由 ProsyncHK Tech Company 运营。如有任何疑问，请电邮至 <a href="mailto:prosynchk@gmail.com">prosynchk@gmail.com</a>。</p>
+
+    <h2>2. 我们收集的资料</h2>
+    <p>本网站本身不会主动收集任何个人识别资料。但以下第三方服务可能会通过本网站收集匿名数据：</p>
+
+    <h2>3. Google Analytics (GA4)</h2>
+    <p>本网站使用 Google Analytics 4（追踪 ID：G-P1VNXYE3FB）分析网站流量。Google Analytics 会收集匿名浏览数据，包括页面浏览次数、浏览器类型、大概地理位置及使用设备等信息。这些数据以匿名形式收集，不会识别个别用户。</p>
+    <p>如需退出追踪，可安装 <a href="https://tools.google.com/dlpage/gaoptout" target="_blank">Google Analytics Opt-out Browser Add-on</a>。</p>
+
+    <h2>4. Google AdSense 广告</h2>
+    <p>本网站使用 Google AdSense（发布商 ID：ca-pub-9533474113956980）显示广告。Google AdSense 会使用 Cookies 及类似技术，根据用户的浏览行为投放相关广告。</p>
+    <p>用户可前往 <a href="https://www.google.com/settings/ads" target="_blank">Google 广告设置</a> 退出个性化广告，或前往 <a href="https://www.aboutads.info" target="_blank">aboutads.info</a> 退出第三方广告个性化。</p>
+
+    <h2>5. Cookies</h2>
+    <p>本网站通过上述第三方服务使用 Cookies。您可以在浏览器设置中选择拒绝所有 Cookies，但这可能影响部分网站功能。</p>
+
+    <h2>6. 外部链接</h2>
+    <p>本网站可能包含第三方网站链接。我们对该等网站的隐私惯例概不负责，建议您查阅各网站的隐私政策。</p>
+
+    <h2>7. 儿童隐私</h2>
+    <p>本网站不针对13岁以下儿童，亦不会故意收集儿童的个人资料。</p>
+
+    <h2>8. 政策更新</h2>
+    <p>我们可能不时更新本隐私政策。更新后的版本将于本页面顶部显示最新日期。</p>
+
+    <h2>9. 联系我们</h2>
+    <p>如对本隐私政策有任何疑问，请电邮至：<a href="mailto:prosynchk@gmail.com">prosynchk@gmail.com</a></p>
+  </div>
+
+  <!-- English -->
+  <div class="lang-section" id="lang-en">
+    <h1>Privacy Policy</h1>
+    <p class="updated">Last updated: 29 June 2026</p>
+    <div class="highlight">
+      <strong>Short version:</strong> This website does not actively collect personally identifiable information. We use Google Analytics and Google AdSense, which may collect anonymous browsing data via cookies.
+    </div>
+
+    <h2>1. Who We Are</h2>
+    <p>This Privacy Policy applies to <strong>prosynchk.com</strong> ("the Website"), operated by ProsyncHK Tech Company. For any questions, please contact us at <a href="mailto:prosynchk@gmail.com">prosynchk@gmail.com</a>.</p>
+
+    <h2>2. Information We Collect</h2>
+    <p>This Website does not directly collect any personally identifiable information. However, the following third-party services may collect anonymous data through this Website:</p>
+
+    <h2>3. Google Analytics (GA4)</h2>
+    <p>This Website uses Google Analytics 4 (Tracking ID: G-P1VNXYE3FB) to analyse website traffic. Google Analytics collects anonymous browsing data including page views, browser type, approximate geographic location, and device type. This data is collected anonymously and cannot identify individual users.</p>
+    <p>To opt out of tracking, you may install the <a href="https://tools.google.com/dlpage/gaoptout" target="_blank">Google Analytics Opt-out Browser Add-on</a>.</p>
+
+    <h2>4. Google AdSense Advertising</h2>
+    <p>This Website uses Google AdSense (Publisher ID: ca-pub-9533474113956980) to display advertisements. Google AdSense uses cookies and similar technologies to serve ads based on users' browsing behaviour.</p>
+    <p>You may opt out of personalised advertising via <a href="https://www.google.com/settings/ads" target="_blank">Google Ad Settings</a>, or opt out of third-party ad personalisation via <a href="https://www.aboutads.info" target="_blank">aboutads.info</a>.</p>
+
+    <h2>5. Cookies</h2>
+    <p>This Website uses cookies through the third-party services described above. You may disable cookies in your browser settings, though this may affect certain website functionality.</p>
+
+    <h2>6. External Links</h2>
+    <p>This Website may contain links to third-party websites. We are not responsible for their privacy practices and recommend reviewing their respective privacy policies.</p>
+
+    <h2>7. Children's Privacy</h2>
+    <p>This Website is not directed at children under the age of 13, and we do not knowingly collect personal data from children.</p>
+
+    <h2>8. Changes to This Policy</h2>
+    <p>We may update this Privacy Policy from time to time. The updated date at the top of this page will reflect any changes.</p>
+
+    <h2>9. Contact Us</h2>
+    <p>For any questions about this Privacy Policy, please contact us at: <a href="mailto:prosynchk@gmail.com">prosynchk@gmail.com</a></p>
+  </div>
 
   <hr />
-  <p style="font-size:12px; color:#aaa; text-align:center;">© 2026 ProsyncHK Tech Company · <a href="https://prosynchk.com">prosynchk.com</a></p>
+  <p style="font-size:12px; color:#aaa; text-align:center;">
+    HiDH Dividend Analyst · <a href="https://prosynchk.com">首頁 / Home</a> · <a href="https://prosynchk.com/about.html">關於我們 / About</a> · © 2026 prosynchk.com
+  </p>
+
+  <script>
+    function switchLang(lang, btn) {
+      document.querySelectorAll('.lang-section').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.lang-switcher button').forEach(el => el.classList.remove('active'));
+      document.getElementById('lang-' + lang).classList.add('active');
+      btn.classList.add('active');
+    }
+  </script>
 
 </body>
 </html>
