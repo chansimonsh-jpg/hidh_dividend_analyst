@@ -193,6 +193,7 @@ var TITLE = {
 };
 
 function setLang(lang) {
+  try{localStorage.setItem('hidh_lang',lang);}catch(e){}
   // Button styles
   ['btn-zh-hk','btn-zh-cn','btn-en'].forEach(function(id){
     var b = document.getElementById(id);
@@ -215,6 +216,7 @@ function setLang(lang) {
   var sec = document.getElementById(secMap[lang]||'sec-zh-hk');
   if(sec) sec.classList.add('active');
 }
+(function(){var l=localStorage.getItem('hidh_lang');if(l&&l!=='zh-hk')setLang(l);})();
 </script>
 
 </body>

@@ -31,7 +31,7 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Run scoring tests
-        run: python -m pytest tests/test_scoring.py -q --tb=short
+        run: python -m pytest tests/test_scoring.py tests/test_html.py -q --tb=short
 
       - name: Run daily importer
         env:

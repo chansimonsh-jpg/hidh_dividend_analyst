@@ -147,6 +147,7 @@ def fmt(v, decimals=1, suffix=""):
 # ── 生成 HTML ─────────────────────────────────────────────
 SETLANG_JS = """
 function setLang(lang) {
+  try{localStorage.setItem('hidh_lang',lang);}catch(e){}
   ['#btn-zh-hk','#btn-zh-cn','#btn-en'].forEach(function(id){
     var el=document.querySelector(id);
     if(el){el.style.background='transparent';el.style.color='#666';el.style.borderColor='#e5e5e5';}
@@ -1031,6 +1032,7 @@ def calc_change(current, base):
 # ── 生成 HTML ─────────────────────────────────────────────
 SETLANG_JS = """
 function setLang(lang) {
+  try{localStorage.setItem('hidh_lang',lang);}catch(e){}
   ['#btn-zh-hk','#btn-zh-cn','#btn-en'].forEach(function(id){
     var el=document.querySelector(id);
     if(el){el.style.background='transparent';el.style.color='#666';el.style.borderColor='#e5e5e5';}
@@ -1085,6 +1087,7 @@ function setLang(lang) {
   document.querySelectorAll('.div-spark-desc-lbl[data-zh-hk]').forEach(function(el){el.textContent=el.getAttribute('data-'+lang)||el.getAttribute('data-zh-hk');});
   document.querySelectorAll('.div-spark-leg[data-zh-hk]').forEach(function(el){var line=el.querySelector('.div-spark-leg-line');var lbl=el.getAttribute('data-'+lang)||el.getAttribute('data-zh-hk');el.innerHTML=(line?line.outerHTML:'')+lbl;});
 }
+(function(){var l=localStorage.getItem('hidh_lang');if(l&&l!=='zh-hk')setLang(l);})();
 """
 
 
