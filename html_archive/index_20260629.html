@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>全球高息股分析 | HiDH Dividend Analyst</title>
+<link rel="icon" type="image/png" href="/icon.png">
+<link rel="apple-touch-icon" href="/icon.png">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9533474113956980" crossorigin="anonymous"></script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P1VNXYE3FB"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-P1VNXYE3FB');
+</script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,-apple-system,sans-serif;background:#f7f7f5;color:#333;line-height:1.7}
+a{color:#1D9E75;text-decoration:none}a:hover{text-decoration:underline}
+.header{background:#fff;border-bottom:1px solid #e5e5e5;padding:0 1.5rem}
+.header-inner{max-width:960px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:60px}
+.logo{font-size:18px;font-weight:600;color:#1D9E75}.logo span{color:#333}
+.nav{display:flex;gap:1.5rem;font-size:14px}.nav a{color:#555}.nav a:hover{color:#1D9E75;text-decoration:none}
+.hero{background:#fff;border-bottom:1px solid #e5e5e5;padding:2.5rem 1.5rem}
+.hero-inner{max-width:960px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:center}
+.hero-tag{font-size:11px;font-weight:600;color:#1D9E75;text-transform:uppercase;letter-spacing:.1em;margin-bottom:.5rem}
+.hero h1{font-size:26px;font-weight:600;line-height:1.35;margin-bottom:.75rem;color:#222}
+.hero-sub{font-size:15px;color:#666;margin-bottom:1.25rem}
+.hero-badges{display:flex;gap:8px;flex-wrap:wrap}
+.badge{font-size:11px;padding:4px 10px;border-radius:20px;font-weight:500}
+.badge-hk{background:#E1F5EE;color:#0F6E56}.badge-us{background:#E6F1FB;color:#185FA5}.badge-uk{background:#FAEEDA;color:#854F0B}.badge-cn{background:#FDECEA;color:#B71C1C}
+.hero-stats{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.stat-box{background:#f7f7f5;border-radius:10px;padding:1rem}
+.stat-val{font-size:24px;font-weight:600;color:#222}.stat-label{font-size:12px;color:#888;margin-top:2px}
+.section{max-width:960px;margin:0 auto;padding:2rem 1.5rem}
+.section-title{font-size:20px;font-weight:700;color:#222;text-transform:uppercase;letter-spacing:.02em;margin-bottom:1.25rem;display:flex;align-items:center;gap:10px}
+.section-title::after{content:'';flex:1;height:1px;background:#e5e5e5}
+.about-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:1.5rem}
+.about-card{background:#fff;border:1px solid #e5e5e5;border-radius:12px;padding:1.25rem}
+.about-icon{font-size:20px;margin-bottom:.5rem}
+.about-card h3{font-size:14px;font-weight:600;color:#222;margin-bottom:.4rem}
+.about-card p{font-size:13px;color:#666;line-height:1.6}
+.score-table{width:100%;border-collapse:collapse;font-size:13px;background:#fff;border-radius:12px;overflow:hidden;border:1px solid #e5e5e5}
+.score-table th{background:#f7f7f5;padding:10px 14px;text-align:left;font-weight:600;color:#555;font-size:12px}
+.score-table td{padding:10px 14px;border-top:1px solid #f0f0f0;color:#444}
+.r-strong{background:#E1F5EE;color:#0F6E56;padding:3px 8px;border-radius:4px;font-size:11px;font-weight:600;white-space:nowrap}
+.r-watch{background:#E6F1FB;color:#185FA5;padding:3px 8px;border-radius:4px;font-size:11px;font-weight:600;white-space:nowrap}
+.r-hold{background:#FAEEDA;color:#854F0B;padding:3px 8px;border-radius:4px;font-size:11px;font-weight:600;white-space:nowrap}
+.r-avoid{background:#FDECEA;color:#B71C1C;padding:3px 8px;border-radius:4px;font-size:11px;font-weight:600;white-space:nowrap}
+.top-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.chart-card{background:#fff;border:1px solid #e5e5e5;border-radius:12px;padding:16px}
+.chart-title{font-size:13px;font-weight:600;color:#444;margin-bottom:8px}
+.legend{display:flex;gap:10px;margin-bottom:8px;font-size:11px;color:#666;flex-wrap:wrap}
+.ld{width:10px;height:10px;border-radius:2px;display:inline-block;margin-right:3px;vertical-align:2px}
+.chart-sub{text-align:center;font-size:11px;color:#888;margin-top:6px}
+svg text{font-family:system-ui,sans-serif}
+.picks-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+.pick-card{background:#fff;border:1px solid #e5e5e5;border-radius:12px;padding:1.1rem}
+.pick-card.top{border:2px solid #1D9E75}
+.pick-card.avoid{border:2px solid #B71C1C}
+.pick-header{display:block;margin-bottom:.5rem}
+.pick-ticker{font-size:15px;font-weight:600;color:#222}
+.pick-name{font-size:12px;color:#888;margin-bottom:.75rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pick-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:.75rem}
+.pick-stat{background:#f7f7f5;border-radius:6px;padding:6px 8px}
+.pick-stat-label{font-size:10px;color:#999}.pick-stat-val{font-size:13px;font-weight:600;color:#222}
+.pick-track{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:.75rem 0;padding:.6rem 0;border-top:1px dashed #eee;border-bottom:1px dashed #eee}
+.pick-track-item{text-align:center}
+.pick-track-label{font-size:9px;color:#999;margin-bottom:2px}
+.pick-track-val{font-size:12px;font-weight:600;color:#222;white-space:nowrap}
+.score-track{height:4px;background:#f0f0f0;border-radius:2px;overflow:hidden;margin-top:.5rem}
+.score-fill{height:100%;border-radius:2px;background:#1D9E75}
+.score-fill.avoid{background:#B71C1C}
+.score-row{display:flex;justify-content:space-between;font-size:10px;color:#aaa;margin-top:3px}
+.pros-cons{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:8px;margin-bottom:6px}
+.pros{background:#F0FBF5;border-radius:6px;padding:6px 8px;font-size:11px;color:#0F6E56}
+.cons{background:#FEF3F2;border-radius:6px;padding:6px 8px;font-size:11px;color:#B42318}
+.pros-label,.cons-label{font-weight:600;margin-bottom:2px;font-size:10px}
+.risk-box{background:#FEF3F2;border-radius:6px;padding:8px 10px;font-size:11px;color:#B42318;margin-top:8px;margin-bottom:6px}
+.risk-label{font-weight:600;margin-bottom:3px;font-size:10px}
+.div-spark{margin-top:8px;margin-bottom:2px}
+.div-spark-row{display:flex;align-items:center;gap:6px;margin-bottom:4px}
+.div-trend-badge{font-size:10px;font-weight:600;padding:2px 7px;border-radius:3px;white-space:nowrap}
+.div-trend-grow{background:#E1F5EE;color:#0F6E56}
+.div-trend-cut{background:#FEF3F2;color:#B42318}
+.div-trend-flat{background:#FAEEDA;color:#854F0B}
+.div-spark svg{display:block;width:100%;overflow:visible}
+.div-spark-legend{display:flex;gap:10px;margin-bottom:4px;align-items:center}
+.div-spark-leg{display:flex;align-items:center;gap:4px;font-size:9px;color:#888}
+.div-spark-leg-line{width:12px;height:2px;border-radius:1px;display:inline-block}
+.div-spark-desc{display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-top:6px}
+.div-spark-desc-box{border-radius:4px;padding:4px 7px}
+.div-spark-desc-lbl{font-size:9px;font-weight:600;margin-bottom:1px}
+.div-spark-desc-val{font-size:10px}
+.disclaimer{background:#fff;border-top:1px solid #e5e5e5;padding:1.5rem;margin-top:2rem}
+.disclaimer-inner{max-width:960px;margin:0 auto;font-size:12px;color:#aaa;line-height:1.7}
+.disclaimer-inner strong{color:#888}
+.footer{background:#222;color:#aaa;padding:1.5rem;font-size:12px}
+.footer-inner{max-width:960px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem}
+.footer-logo{color:#1D9E75;font-weight:600;font-size:14px}
+@media(max-width:640px){.hero-inner{grid-template-columns:1fr}.hero-stats{display:none}.top-row{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-inner">
+    <div class="logo">HiDH <span>Dividend Analyst</span></div>
+    <nav class="nav">
+      <a href="#about" data-zh-hk="選股方法" data-zh-cn="选股方法" data-en="Methodology">選股方法</a>
+      <a href="#charts" data-zh-hk="市場概覽" data-zh-cn="市场概览" data-en="Markets">市場概覽</a>
+      <a href="#picks" data-zh-hk="最新精選" data-zh-cn="最新精选" data-en="Top Picks">最新精選</a>
+      <a href="#avoid" data-zh-hk="高危名單" data-zh-cn="高危名单" data-en="High-Risk List">高危名單</a>
+    </nav>
+  </div>
+</div>
+<div style="display:flex;justify-content:flex-end;gap:6px;padding:.4rem 1.5rem;background:#fff;border-bottom:0.5px solid #e5e5e5">
+  <button id="btn-zh-hk" style="font-size:12px;padding:4px 12px;border-radius:20px;border:0.5px solid #1D9E75;background:#1D9E75;color:#fff;cursor:pointer" onclick="setLang('zh-hk')">繁體</button>
+  <button id="btn-zh-cn" style="font-size:12px;padding:4px 12px;border-radius:20px;border:0.5px solid #e5e5e5;background:transparent;color:#666;cursor:pointer" onclick="setLang('zh-cn')">简体</button>
+  <button id="btn-en"    style="font-size:12px;padding:4px 12px;border-radius:20px;border:0.5px solid #e5e5e5;background:transparent;color:#666;cursor:pointer" onclick="setLang('en')">English</button>
+</div>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-tag">每日更新 · 2026-06-29</div>
+      <h1>全球高息股<br>每日精選分析</h1>
+      <p class="hero-sub">覆蓋香港、美國、英國及A股四大市場，以系統化評分篩選出具備穩定派息能力的優質股票。</p>
+      <div class="hero-badges">
+        <span class="badge badge-hk">港股 HK</span>
+        <span class="badge badge-us">美股 US</span>
+        <span class="badge badge-uk">英股 UK</span>
+        <span class="badge badge-cn">A股 CN</span>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-box"><div class="stat-val">413</div><div class="stat-label">今日追蹤股票數</div></div>
+      <div class="stat-box"><div class="stat-val">88</div><div class="stat-label">入圍股票（≥60分）</div></div>
+      <div class="stat-box"><div class="stat-val">12</div><div class="stat-label">強力買入</div></div>
+      <div class="stat-box"><div class="stat-val">82</div><div class="stat-label">今日最高分 (601766.SS)</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="section" id="about">
+  <div class="section-title">選股理念與方法</div>
+  <div class="about-grid" id="about-grid">
+    <div class="about-card">
+      <div class="about-icon">💡</div>
+      <h3>選股理念</h3>
+      <p>長期穩定的股息收入是財富增長的重要基石。我們不單看當前息率高低，更重視企業的派息可持續性、財務健康狀況及估值合理性。</p>
+    </div>
+    <div class="about-card">
+      <div class="about-icon">🌍</div>
+      <h3>四大市場</h3>
+      <p>同步覆蓋香港、美國、英國及A股四大市場，以統一標準進行跨市場比較，讓投資者掌握全球高息機會。</p>
+    </div>
+    <div class="about-card">
+      <div class="about-icon">📊</div>
+      <h3>系統化篩選</h3>
+      <p>每日自動更新數據，以量化評分模型對數百隻股票進行排名，過濾雜訊，聚焦真正值得關注的機會。</p>
+    </div>
+    <div class="about-card">
+      <div class="about-icon">🔄</div>
+      <h3>每日更新</h3>
+      <p>每個交易日收市後自動重新評分，確保推介反映最新的估值及財務狀況。</p>
+    </div>
+  </div>
+
+  <div class="section-title" style="margin-top:2rem">評分系統</div>
+  <p id="score-intro" style="font-size:14px;color:#666;margin-bottom:1rem">每隻股票以100分制進行綜合評分，涵蓋五個範疇：</p>
+  <table class="score-table" style="margin-bottom:1.25rem">
+    <thead><tr><th>評分範疇</th><th>滿分</th><th>主要考量</th></tr></thead>
+    <tbody>
+      <tr><td>股息質量</td><td>30分</td><td>息率水平、派息穩定性及覆蓋率</td></tr>
+      <tr><td>估值</td><td>25分</td><td>現價相對歷史息率及市場的吸引程度</td></tr>
+      <tr><td>財務健康</td><td>25分</td><td>資產負債、現金流及償債能力</td></tr>
+      <tr><td>增長</td><td>10分</td><td>股息增長趨勢及盈利前景</td></tr>
+      <tr><td>技術走勢</td><td>10分</td><td>RSI、52週位置等技術指標</td></tr>
+    </tbody>
+  </table>
+  <table class="score-table">
+    <thead><tr><th>評級</th><th>分數</th><th>意義</th></tr></thead>
+    <tbody>
+      <tr><td><span class="r-strong" data-rating="strong">🟢🟢 強力買入</span></td><td data-zh-hk="75分以上" data-zh-cn="75分以上" data-en="75+">75分以上</td><td>各方面均表現優秀，值得重點關注</td></tr>
+      <tr><td><span class="r-watch" data-rating="watch">🟢 值得關注</span></td><td data-zh-hk="60–74分" data-zh-cn="60–74分" data-en="60–74">60–74分</td><td>基本面良好，可納入觀察名單</td></tr>
+      <tr><td><span class="r-hold" data-rating="hold">⚖️ 觀望</span></td><td data-zh-hk="40–49分" data-zh-cn="40–49分" data-en="40–49">40–49分</td><td>有一定吸引力，但需留意風險</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="section" id="charts">
+  <div class="section-title">市場概覽 — 2026-06-29</div>
+  <div class="top-row">
+    <div class="chart-card">
+      <div class="chart-title">美股 US</div>
+      <div class="legend">
+        <span data-zh-hk="強力買入"><span class="ld" style="background:#1D9E75"></span>強力買入 <strong>0</strong></span>
+        <span data-zh-hk="值得關注"><span class="ld" style="background:#378ADD"></span>值得關注 <strong>6</strong></span>
+        <span data-zh-hk="觀望"><span class="ld" style="background:#EF9F27"></span>觀望 <strong>137</strong></span>
+      </div>
+      <svg id="us" viewBox="0 0 180 160" width="100%" height="160"></svg>
+      <div class="chart-sub" data-zh-hk="143隻 · 均分 41.7 · 最高 70" data-zh-cn="143只 · 均分 41.7 · 最高 70" data-en="143 stks · Avg 41.7 · High 70">143隻 · 均分 41.7 · 最高 70</div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">港股 HK</div>
+      <div class="legend">
+        <span data-zh-hk="強力買入"><span class="ld" style="background:#1D9E75"></span>強力買入 <strong>3</strong></span>
+        <span data-zh-hk="值得關注"><span class="ld" style="background:#378ADD"></span>值得關注 <strong>31</strong></span>
+        <span data-zh-hk="觀望"><span class="ld" style="background:#EF9F27"></span>觀望 <strong>60</strong></span>
+      </div>
+      <svg id="hk" viewBox="0 0 180 160" width="100%" height="160"></svg>
+      <div class="chart-sub" data-zh-hk="94隻 · 均分 52.8 · 最高 79" data-zh-cn="94只 · 均分 52.8 · 最高 79" data-en="94 stks · Avg 52.8 · High 79">94隻 · 均分 52.8 · 最高 79</div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">英股 UK</div>
+      <div class="legend">
+        <span data-zh-hk="強力買入"><span class="ld" style="background:#1D9E75"></span>強力買入 <strong>1</strong></span>
+        <span data-zh-hk="值得關注"><span class="ld" style="background:#378ADD"></span>值得關注 <strong>6</strong></span>
+        <span data-zh-hk="觀望"><span class="ld" style="background:#EF9F27"></span>觀望 <strong>53</strong></span>
+      </div>
+      <svg id="uk" viewBox="0 0 180 160" width="100%" height="160"></svg>
+      <div class="chart-sub" data-zh-hk="60隻 · 均分 43.6 · 最高 78" data-zh-cn="60只 · 均分 43.6 · 最高 78" data-en="60 stks · Avg 43.6 · High 78">60隻 · 均分 43.6 · 最高 78</div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">A股 CN</div>
+      <div class="legend">
+        <span data-zh-hk="強力買入"><span class="ld" style="background:#1D9E75"></span>強力買入 <strong>8</strong></span>
+        <span data-zh-hk="值得關注"><span class="ld" style="background:#378ADD"></span>值得關注 <strong>33</strong></span>
+        <span data-zh-hk="觀望"><span class="ld" style="background:#EF9F27"></span>觀望 <strong>75</strong></span>
+      </div>
+      <svg id="cn" viewBox="0 0 180 160" width="100%" height="160"></svg>
+      <div class="chart-sub" data-zh-hk="116隻 · 均分 54.4 · 最高 82" data-zh-cn="116只 · 均分 54.4 · 最高 82" data-en="116 stks · Avg 54.4 · High 82">116隻 · 均分 54.4 · 最高 82</div>
+    </div>
+  </div>
+  <div class="chart-card">
+    <div class="chart-title">前10名評分分佈</div>
+    <div class="legend">
+      <span data-zh-hk="強力買入"><span class="ld" style="background:#1D9E75"></span>強力買入</span>
+      <span data-zh-hk="值得關注"><span class="ld" style="background:#378ADD"></span>值得關注</span>
+      <span data-zh-hk="觀望"><span class="ld" style="background:#EF9F27"></span>觀望</span>
+    </div>
+    <svg id="bar" viewBox="0 0 900 240" width="100%" height="240"></svg>
+  </div>
+</div>
+
+<div class="section" id="picks">
+  <div class="section-title">最新精選推介 — 2026-06-29</div>
+  <p id="picks-note" style="font-size:13px;color:#999;margin-bottom:1.25rem">以下為今日評分最高股票（≥50分），綠框為強力買入。</p>
+  <div class="picks-grid" id="picksGrid"></div>
+</div>
+
+<div class="section" id="avoid">
+  <div class="section-title">高危名單 — 2026-06-29</div>
+  <p id="avoid-note" style="font-size:13px;color:#999;margin-bottom:1.25rem">以下為今日評分最低的股票（最多10隻），紅框代表高危股票，數據與上方推介股一致。</p>
+  <div class="picks-grid" id="avoidGrid"></div>
+</div>
+
+<div class="section" id="contact">
+  <div class="section-title" id="contact-heading">合作機會</div>
+  <div style="background:#fff;border-radius:16px;padding:2rem;text-align:center;border:1px solid #e5e5e5">
+    <div style="font-size:2rem;margin-bottom:1rem">🤝</div>
+    <h3 style="font-size:18px;font-weight:600;color:#222;margin-bottom:.75rem" id="contact-title">歡迎合作</h3>
+    <p style="font-size:14px;color:#555;line-height:1.7;margin-bottom:1.5rem" id="contact-body">如您有興趣進行廣告合作、內容授權、數據合作或其他商業合作，歡迎透過以下方式聯絡我們。</p>
+    <a href="mailto:prosynchk@gmail.com" style="display:inline-flex;align-items:center;gap:8px;background:#1D9E75;color:#fff;padding:10px 24px;border-radius:8px;text-decoration:none;font-size:14px;font-weight:600">
+      <span>✉️</span>
+      <span>prosynchk@gmail.com</span>
+    </a>
+  </div>
+</div>
+
+<div class="disclaimer">
+  <div class="disclaimer-inner">
+    <strong>免責聲明：</strong>本網站所有內容僅供參考及教育用途，不構成任何投資建議或買賣邀請。投資涉及風險，過往表現不代表未來回報。讀者應自行進行盡職審查，並在作出任何投資決定前諮詢持牌財務顧問。本站對因使用本站資料而引起的任何損失概不負責。
+  </div>
+</div>
+
+<div class="footer">
+  <div class="footer-inner">
+    <span class="footer-logo">HiDH Dividend Analyst</span>
+    <span>
+      <a href="about.html" style="color:#aaa;text-decoration:none" data-zh-hk="關於我們" data-zh-cn="关于我们" data-en="About">關於我們</a> ·
+      <a href="privacy.html" style="color:#aaa;text-decoration:none" data-zh-hk="私隱政策" data-zh-cn="隐私政策" data-en="Privacy">私隱政策</a>
+    </span>
+    <span>© 2026 prosynchk.com · 每個交易日更新 · 資料來源：Yahoo Finance · 僅供參考</span>
+  </div>
+</div>
+
+<script>
+const US_STATS = {"total": 143, "strong": 0, "watch": 6, "hold": 137, "avg": 41.7, "max": 70};
+const HK_STATS = {"total": 94, "strong": 3, "watch": 31, "hold": 60, "avg": 52.8, "max": 79};
+const UK_STATS = {"total": 60, "strong": 1, "watch": 6, "hold": 53, "avg": 43.6, "max": 78};
+const CN_STATS = {"total": 116, "strong": 8, "watch": 33, "hold": 75, "avg": 54.4, "max": 82};
+const TOP10    = [{"label": "601766.SS", "score": 82, "mkt": "CN", "rating": "strong"}, {"label": "601816.SS", "score": 81, "mkt": "CN", "rating": "strong"}, {"label": "000963.SZ", "score": 80, "mkt": "CN", "rating": "strong"}, {"label": "2600.HK", "score": 79, "mkt": "HK", "rating": "strong"}, {"label": "600809.SS", "score": 79, "mkt": "CN", "rating": "strong"}, {"label": "TW.L", "score": 78, "mkt": "UK", "rating": "strong"}, {"label": "000001.SZ", "score": 78, "mkt": "CN", "rating": "strong"}, {"label": "000538.SZ", "score": 77, "mkt": "CN", "rating": "strong"}, {"label": "600018.SS", "score": 76, "mkt": "CN", "rating": "strong"}, {"label": "0168.HK", "score": 75, "mkt": "HK", "rating": "strong"}];
+const PICKS    = [{"ticker": "601766.SS", "name": "CRRC Corporation Limited", "mkt": "CN", "score": 82, "rating": "strong", "yield_": "6.1", "pe": "11.1", "pb": "0.85", "pro_zh_hk": "\u9ad8\u606f\u7387 6.1%\uff0c\u73fe\u91d1\u56de\u5831\u5438\u5f15", "con_zh_hk": "\u9700\u7559\u610f\u5e02\u5834\u98a8\u96aa\u53ca\u884c\u696d\u6ce2\u52d5", "pro_zh_cn": "\u9ad8\u80a1\u606f\u7387 6.1%\uff0c\u73b0\u91d1\u56de\u62a5\u5438\u5f15", "con_zh_cn": "\u9700\u7559\u610f\u5e02\u573a\u98ce\u9669\u53ca\u884c\u4e1a\u6ce2\u52a8", "pro_en": "High yield 6.1%, attractive income", "con_en": "Monitor market and sector risks", "first_date": "2026-06-16", "first_price": "5.76", "price": "5.22", "chg_text": "-9.4%", "chg_color": "#B42318", "div_pts": [{"y": 2021, "v": 0.18}, {"y": 2022, "v": 0.18}, {"y": 2023, "v": 0.2}, {"y": 2024, "v": 0.2}, {"y": 2025, "v": 0.32}], "div_trend": "flat", "px_pts": [{"v": 5.42}, {"v": 5.32}, {"v": 4.71}, {"v": 4.54}, {"v": 4.24}, {"v": 4.62}, {"v": 5.54}, {"v": 5.88}, {"v": 5.45}, {"v": 4.91}, {"v": 6.36}, {"v": 7.01}, {"v": 7.83}, {"v": 8.03}, {"v": 6.76}, {"v": 6.74}, {"v": 7.36}, {"v": 6.82}, {"v": 6.34}, {"v": 5.22}]}, {"ticker": "601816.SS", "name": "Beijing-Shanghai High-Speed Railway Co., Ltd.", "mkt": "CN", "score": 81, "rating": "strong", "yield_": "3.5", "pe": "16.8", "pb": "1.05", "pro_zh_hk": "\u80a1\u606f\u8cea\u91cf\u9ad8\uff0c\u6d3e\u606f\u7a69\u5b9a\u53ef\u9760", "con_zh_hk": "\u9700\u7559\u610f\u5e02\u5834\u98a8\u96aa\u53ca\u884c\u696d\u6ce2\u52d5", "pro_zh_cn": "\u80a1\u606f\u8d28\u91cf\u9ad8\uff0c\u6d3e\u606f\u7a33\u5b9a\u53ef\u9760", "con_zh_cn": "\u9700\u7559\u610f\u5e02\u573a\u98ce\u9669\u53ca\u884c\u4e1a\u6ce2\u52a8", "pro_en": "High dividend quality, stable payout", "con_en": "Monitor market and sector risks", "first_date": "2026-06-16", "first_price": "4.87", "price": "4.53", "chg_text": "-7.0%", "chg_color": "#B42318", "div_pts": [{"y": 2021, "v": 0.0329}, {"y": 2024, "v": 0.1116}, {"y": 2025, "v": 0.1567}], "div_trend": "grow", "px_pts": [{"v": 4.47}, {"v": 4.54}, {"v": 4.49}, {"v": 4.72}, {"v": 4.29}, {"v": 4.67}, {"v": 4.96}, {"v": 5.0}, {"v": 4.88}, {"v": 4.68}, {"v": 4.78}, {"v": 5.22}, {"v": 5.87}, {"v": 5.99}, {"v": 5.41}, {"v": 5.59}, {"v": 5.09}, {"v": 5.15}, {"v": 5.06}, {"v": 4.53}]}, {"ticker": "000963.SZ", "name": "Huadong Medicine Co., Ltd", "mkt": "CN", "score": 80, "rating": "strong", "yield_": "5.7", "pe": "13.2", "pb": "1.80", "pro_zh_hk": "\u606f\u7387 5.7%\uff0c\u512a\u65bc\u5e02\u5834\u5e73\u5747", "con_zh_hk": "\u9700\u7559\u610f\u5e02\u5834\u98a8\u96aa\u53ca\u884c\u696d\u6ce2\u52d5", "pro_zh_cn": "\u80a1\u606f\u7387 5.7%\uff0c\u4f18\u4e8e\u5e02\u573a\u5e73\u5747", "con_zh_cn": "\u9700\u7559\u610f\u5e02\u573a\u98ce\u9669\u53ca\u884c\u4e1a\u6ce2\u52a8", "pro_en": "Yield 5.7%, above market average", "con_en": "Monitor market and sector risks", "first_date": "2026-06-16", "first_price": "29.00", "price": "26.41", "chg_text": "-8.9%", "chg_color": "#B42318", "div_pts": [{"y": 2022, "v": 0.29}, {"y": 2023, "v": 0.29}, {"y": 2024, "v": 0.93}, {"y": 2025, "v": 0.93}], "div_trend": "flat", "px_pts": [{"v": 27.19}, {"v": 36.82}, {"v": 30.61}, {"v": 41.66}, {"v": 37.01}, {"v": 43.17}, {"v": 42.75}, {"v": 40.3}, {"v": 39.25}, {"v": 38.52}, {"v": 28.8}, {"v": 26.32}, {"v": 33.54}, {"v": 33.16}, {"v": 35.18}, {"v": 39.19}, {"v": 40.69}, {"v": 38.63}, {"v": 34.59}, {"v": 26.41}]}, {"ticker": "2600.HK", "name": "Aluminum Corporation of China Limited", "mkt": "HK", "score": 79, "rating": "strong", "yield_": "3.7", "pe": "7.7", "pb": "1.41", "pro_zh_hk": "\u80a1\u606f\u8cea\u91cf\u9ad8\uff0c\u6d3e\u606f\u7a69\u5b9a\u53ef\u9760", "con_zh_hk": "\u4f30\u503c\u504f\u9ad8\uff0c\u4e0a\u5347\u7a7a\u9593\u6709\u9650", "pro_zh_cn": "\u80a1\u606f\u8d28\u91cf\u9ad8\uff0c\u6d3e\u606f\u7a33\u5b9a\u53ef\u9760", "con_zh_cn": "\u4f30\u503c\u504f\u9ad8\uff0c\u4e0a\u5347\u7a7a\u95f4\u6709\u9650", "pro_en": "High dividend quality, stable payout", "con_en": "Rich valuation limits upside", "first_date": "2026-06-16", "first_price": "9.45", "price": "7.64", "chg_text": "-19.2%", "chg_color": "#B42318", "div_pts": [{"y": 2022, "v": 0.0372}, {"y": 2023, "v": 0.0394}, {"y": 2024, "v": 0.1764}, {"y": 2025, "v": 0.2827}], "div_trend": "grow", "px_pts": [{"v": 5.303}, {"v": 3.881}, {"v": 4.142}, {"v": 2.706}, {"v": 2.342}, {"v": 3.025}, {"v": 3.627}, {"v": 3.106}, {"v": 4.037}, {"v": 3.594}, {"v": 4.581}, {"v": 4.994}, {"v": 5.79}, {"v": 4.302}, {"v": 4.645}, {"v": 5.176}, {"v": 8.07}, {"v": 12.18}, {"v": 11.25}, {"v": 7.64}]}, {"ticker": "600809.SS", "name": "Shanxi Xinghuacun Fen Wine Factory Co.,Ltd.", "mkt": "CN", "score": 79, "rating": "strong", "yield_": "5.6", "pe": "12.0", "pb": "2.93", "pro_zh_hk": "\u606f\u7387 5.6%\uff0c\u512a\u65bc\u5e02\u5834\u5e73\u5747", "con_zh_hk": "\u9700\u7559\u610f\u5e02\u5834\u98a8\u96aa\u53ca\u884c\u696d\u6ce2\u52d5", "pro_zh_cn": "\u80a1\u606f\u7387 5.6%\uff0c\u4f18\u4e8e\u5e02\u573a\u5e73\u5747", "con_zh_cn": "\u9700\u7559\u610f\u5e02\u573a\u98ce\u9669\u53ca\u884c\u4e1a\u6ce2\u52a8", "pro_en": "Yield 5.6%, above market average", "con_en": "Monitor market and sector risks", "first_date": "2026-06-18", "first_price": "113.28", "price": "108.10", "chg_text": "-4.6%", "chg_color": "#B42318", "div_pts": [{"y": 2021, "v": 0.2}, {"y": 2022, "v": 1.8}, {"y": 2023, "v": 3.32}, {"y": 2024, "v": 4.37}, {"y": 2025, "v": 6.06}], "div_trend": "grow", "px_pts": [{"v": 291.61}, {"v": 291.87}, {"v": 235.6}, {"v": 301.91}, {"v": 281.55}, {"v": 264.91}, {"v": 253.2}, {"v": 174.88}, {"v": 226.31}, {"v": 218.03}, {"v": 231.59}, {"v": 199.27}, {"v": 211.43}, {"v": 177.93}, {"v": 209.89}, {"v": 172.78}, {"v": 194.01}, {"v": 171.7}, {"v": 143.06}, {"v": 108.1}]}, {"ticker": "TW.L", "name": "Taylor Wimpey plc", "mkt": "UK", "score": 78, "rating": "strong", "yield_": "9.1", "pe": "27.9", "pb": "0.71", "pro_zh_hk": "\u9ad8\u606f\u7387 9.1%\uff0c\u73fe\u91d1\u56de\u5831\u5438\u5f15", "con_zh_hk": "\u80a1\u606f\u589e\u9577\u52d5\u529b\u4e0d\u8db3", "pro_zh_cn": "\u9ad8\u80a1\u606f\u7387 9.1%\uff0c\u73b0\u91d1\u56de\u62a5\u5438\u5f15", "con_zh_cn": "\u80a1\u606f\u589e\u957f\u52a8\u529b\u4e0d\u8db3", "pro_en": "High yield 9.1%, attractive income", "con_en": "Limited dividend growth momentum", "first_date": "2026-06-16", "first_price": "0.77", "price": "0.84", "chg_text": "+9.1%", "chg_color": "#0F6E56", "div_pts": [{"y": 2021, "v": 0.0414}, {"y": 2022, "v": 0.0906}, {"y": 2023, "v": 0.0957}, {"y": 2024, "v": 0.0959}, {"y": 2025, "v": 0.0933}], "div_trend": "flat", "px_pts": [{"v": 1.552}, {"v": 1.749}, {"v": 1.303}, {"v": 1.163}, {"v": 0.88}, {"v": 1.014}, {"v": 1.187}, {"v": 1.025}, {"v": 1.17}, {"v": 1.468}, {"v": 1.368}, {"v": 1.419}, {"v": 1.641}, {"v": 1.22}, {"v": 1.08}, {"v": 1.187}, {"v": 1.03}, {"v": 1.075}, {"v": 0.887}, {"v": 0.838}]}, {"ticker": "000001.SZ", "name": "Ping An Bank Co., Ltd.", "mkt": "CN", "score": 78, "rating": "strong", "yield_": "9.4", "pe": "4.8", "pb": "0.43", "pro_zh_hk": "\u9ad8\u606f\u7387 9.4%\uff0c\u73fe\u91d1\u56de\u5831\u5438\u5f15", "con_zh_hk": "\u8ca1\u52d9\u5065\u5eb7\u5ea6\u4e00\u822c\uff0c\u9700\u95dc\u6ce8\u8ca0\u50b5", "pro_zh_cn": "\u9ad8\u80a1\u606f\u7387 9.4%\uff0c\u73b0\u91d1\u56de\u62a5\u5438\u5f15", "con_zh_cn": "\u8d22\u52a1\u5065\u5eb7\u5ea6\u4e00\u822c\uff0c\u9700\u5173\u6ce8\u8d1f\u503a", "pro_en": "High yield 9.4%, attractive income", "con_en": "Moderate financials, watch debt levels", "first_date": "2026-06-17", "first_price": "10.78", "price": "10.23", "chg_text": "-5.1%", "chg_color": "#B42318", "div_pts": [{"y": 2022, "v": 0.228}, {"y": 2023, "v": 0.285}, {"y": 2024, "v": 0.965}, {"y": 2025, "v": 0.598}], "div_trend": "cut", "px_pts": [{"v": 14.44}, {"v": 13.27}, {"v": 12.39}, {"v": 12.07}, {"v": 9.71}, {"v": 10.79}, {"v": 10.27}, {"v": 9.43}, {"v": 9.41}, {"v": 7.89}, {"v": 8.84}, {"v": 9.14}, {"v": 10.99}, {"v": 10.76}, {"v": 10.35}, {"v": 11.45}, {"v": 10.75}, {"v": 11.05}, {"v": 10.73}, {"v": 10.23}]}, {"ticker": "000538.SZ", "name": "Yunnan Baiyao Group Co.,Ltd", "mkt": "CN", "score": 77, "rating": "strong", "yield_": "10.6", "pe": "15.9", "pb": "1.99", "pro_zh_hk": "\u9ad8\u606f\u7387 10.6%\uff0c\u73fe\u91d1\u56de\u5831\u5438\u5f15", "con_zh_hk": "\u9700\u7559\u610f\u5e02\u5834\u98a8\u96aa\u53ca\u884c\u696d\u6ce2\u52d5", "pro_zh_cn": "\u9ad8\u80a1\u606f\u7387 10.6%\uff0c\u73b0\u91d1\u56de\u62a5\u5438\u5f15", "con_zh_cn": "\u9700\u7559\u610f\u5e02\u573a\u98ce\u9669\u53ca\u884c\u4e1a\u6ce2\u52a8", "pro_en": "High yield 10.6%, attractive income", "con_en": "Monitor market and sector risks", "first_date": "2026-06-20", "first_price": "48.43", "price": "47.00", "chg_text": "-3.0%", "chg_color": "#B42318", "div_pts": [{"y": 2022, "v": 1.6}, {"y": 2023, "v": 1.52}, {"y": 2024, "v": 3.29}, {"y": 2025, "v": 2.204}], "div_trend": "cut", "px_pts": [{"v": 58.67}, {"v": 62.78}, {"v": 49.09}, {"v": 51.81}, {"v": 44.91}, {"v": 46.64}, {"v": 46.93}, {"v": 46.25}, {"v": 46.97}, {"v": 43.31}, {"v": 44.77}, {"v": 46.79}, {"v": 55.81}, {"v": 56.01}, {"v": 53.07}, {"v": 53.22}, {"v": 55.11}, {"v": 55.12}, {"v": 53.27}, {"v": 47.0}]}, {"ticker": "600018.SS", "name": "Shanghai International Port (Group) Co., Ltd.", "mkt": "CN", "score": 76, "rating": "strong", "yield_": "5.2", "pe": "8.1", "pb": "0.76", "pro_zh_hk": "\u606f\u7387 5.2%\uff0c\u512a\u65bc\u5e02\u5834\u5e73\u5747", "con_zh_hk": "\u80a1\u606f\u589e\u9577\u52d5\u529b\u4e0d\u8db3", "pro_zh_cn": "\u80a1\u606f\u7387 5.2%\uff0c\u4f18\u4e8e\u5e02\u573a\u5e73\u5747", "con_zh_cn": "\u80a1\u606f\u589e\u957f\u52a8\u529b\u4e0d\u8db3", "pro_en": "Yield 5.2%, above market average", "con_en": "Limited dividend growth momentum", "first_date": "2026-06-18", "first_price": "4.89", "price": "4.76", "chg_text": "-2.7%", "chg_color": "#B42318", "div_pts": [{"y": 2021, "v": 0.128}, {"y": 2022, "v": 0.19}, {"y": 2023, "v": 0.14}, {"y": 2024, "v": 0.222}, {"y": 2025, "v": 0.145}], "div_trend": "cut", "px_pts": [{"v": 5.32}, {"v": 4.79}, {"v": 4.78}, {"v": 5.09}, {"v": 5.03}, {"v": 4.83}, {"v": 5.02}, {"v": 4.75}, {"v": 4.79}, {"v": 4.55}, {"v": 4.99}, {"v": 5.54}, {"v": 6.23}, {"v": 5.91}, {"v": 5.6}, {"v": 5.52}, {"v": 5.4}, {"v": 5.37}, {"v": 5.09}, {"v": 4.76}]}, {"ticker": "0168.HK", "name": "Tsingtao Brewery Company Limited", "mkt": "HK", "score": 75, "rating": "strong", "yield_": "5.8", "pe": "11.5", "pb": "1.66", "pro_zh_hk": "\u606f\u7387 5.8%\uff0c\u512a\u65bc\u5e02\u5834\u5e73\u5747", "con_zh_hk": "\u9700\u7559\u610f\u5e02\u5834\u98a8\u96aa\u53ca\u884c\u696d\u6ce2\u52d5", "pro_zh_cn": "\u80a1\u606f\u7387 5.8%\uff0c\u4f18\u4e8e\u5e02\u573a\u5e73\u5747", "con_zh_cn": "\u9700\u7559\u610f\u5e02\u573a\u98ce\u9669\u53ca\u884c\u4e1a\u6ce2\u52a8", "pro_en": "Yield 5.8%, above market average", "con_en": "Monitor market and sector risks", "first_date": "2026-06-16", "first_price": "48.34", "price": "45.58", "chg_text": "-5.7%", "chg_color": "#B42318", "div_pts": [{"y": 2021, "v": 0.9}, {"y": 2022, "v": 1.288}, {"y": 2023, "v": 1.98}, {"y": 2024, "v": 2.19}, {"y": 2025, "v": 2.38}], "div_trend": "grow", "px_pts": [{"v": 53.475}, {"v": 63.994}, {"v": 54.614}, {"v": 71.533}, {"v": 66.312}, {"v": 68.672}, {"v": 76.332}, {"v": 65.2}, {"v": 58.699}, {"v": 47.984}, {"v": 49.266}, {"v": 47.71}, {"v": 58.214}, {"v": 54.575}, {"v": 53.618}, {"v": 51.25}, {"v": 53.0}, {"v": 48.92}, {"v": 48.48}, {"v": 45.58}]}, {"ticker": "0027.HK", "name": "Galaxy Entertainment Group Limited", "mkt": "HK", "score": 75, "rating": "strong", "yield_": "5.1", "pe": "12.0", "pb": "1.54", "pro_zh_hk": "\u606f\u7387 5.1%\uff0c\u512a\u65bc\u5e02\u5834\u5e73\u5747", "con_zh_hk": "\u9700\u7559\u610f\u5e02\u5834\u98a8\u96aa\u53ca\u884c\u696d\u6ce2\u52d5", "pro_zh_cn": "\u80a1\u606f\u7387 5.1%\uff0c\u4f18\u4e8e\u5e02\u573a\u5e73\u5747", "con_zh_cn": "\u9700\u7559\u610f\u5e02\u573a\u98ce\u9669\u53ca\u884c\u4e1a\u6ce2\u52a8", "pro_en": "Yield 5.1%, above market average", "con_en": "Monitor market and sector risks", "first_date": "2026-06-23", "first_price": "29.64", "price": "29.20", "chg_text": "-1.5%", "chg_color": "#B42318", "div_pts": [{"y": 2022, "v": 0.3}, {"y": 2023, "v": 0.2}, {"y": 2024, "v": 0.8}, {"y": 2025, "v": 1.2}], "div_trend": "cut", "px_pts": [{"v": 36.49}, {"v": 36.855}, {"v": 43.155}, {"v": 42.971}, {"v": 42.604}, {"v": 47.379}, {"v": 48.159}, {"v": 45.634}, {"v": 43.461}, {"v": 40.327}, {"v": 36.494}, {"v": 33.801}, {"v": 36.859}, {"v": 31.149}, {"v": 28.694}, {"v": 33.419}, {"v": 41.824}, {"v": 37.279}, {"v": 34.138}, {"v": 29.2}]}, {"ticker": "600219.SS", "name": "Shandong Nanshan Aluminium Co.,Ltd.", "mkt": "CN", "score": 75, "rating": "strong", "yield_": "13.8", "pe": "11.4", "pb": "0.88", "pro_zh_hk": "\u9ad8\u606f\u7387 13.8%\uff0c\u73fe\u91d1\u56de\u5831\u5438\u5f15", "con_zh_hk": "\u9700\u7559\u610f\u5e02\u5834\u98a8\u96aa\u53ca\u884c\u696d\u6ce2\u52d5", "pro_zh_cn": "\u9ad8\u80a1\u606f\u7387 13.8%\uff0c\u73b0\u91d1\u56de\u62a5\u5438\u5f15", "con_zh_cn": "\u9700\u7559\u610f\u5e02\u573a\u98ce\u9669\u53ca\u884c\u4e1a\u6ce2\u52a8", "pro_en": "High yield 13.8%, attractive income", "con_en": "Monitor market and sector risks", "first_date": "2026-06-25", "first_price": "4.38", "price": "4.09", "chg_text": "-6.6%", "chg_color": "#B42318", "div_pts": [{"y": 2021, "v": 0.055}, {"y": 2022, "v": 0.063}, {"y": 2023, "v": 0.04}, {"y": 2024, "v": 0.2}, {"y": 2025, "v": 0.3884}], "div_trend": "cut", "px_pts": [{"v": 3.58}, {"v": 3.86}, {"v": 3.34}, {"v": 3.08}, {"v": 2.51}, {"v": 2.73}, {"v": 2.83}, {"v": 2.55}, {"v": 2.65}, {"v": 2.48}, {"v": 2.87}, {"v": 3.33}, {"v": 3.83}, {"v": 3.49}, {"v": 3.4}, {"v": 3.5}, {"v": 3.66}, {"v": 5.24}, {"v": 5.97}, {"v": 4.09}]}];
+const AVOID    = [{"ticker": "NNN", "name": "NNN REIT, Inc.", "mkt": "US", "score": 8, "yield_": "5.1", "pe": "23.2", "pb": "2.05", "risk_zh_hk": "\u80a1\u606f\u8cea\u91cf\u4e00\u822c\uff0c\u9700\u7559\u610f\u6d3e\u606f\u6301\u7e8c\u6027\uff1b\u4f30\u503c\u504f\u9ad8\uff0c\u4e0a\u5347\u7a7a\u9593\u6709\u9650\uff1b\u8ca1\u52d9\u5065\u5eb7\u5ea6\u4e00\u822c\uff0c\u9700\u95dc\u6ce8\u8ca0\u50b5\uff1b\u80a1\u606f\u589e\u9577\u52d5\u529b\u4e0d\u8db3", "risk_zh_cn": "\u80a1\u606f\u8d28\u91cf\u4e00\u822c\uff0c\u9700\u7559\u610f\u6d3e\u606f\u6301\u7eed\u6027\uff1b\u4f30\u503c\u504f\u9ad8\uff0c\u4e0a\u5347\u7a7a\u95f4\u6709\u9650\uff1b\u8d22\u52a1\u5065\u5eb7\u5ea6\u4e00\u822c\uff0c\u9700\u5173\u6ce8\u8d1f\u503a\uff1b\u80a1\u606f\u589e\u957f\u52a8\u529b\u4e0d\u8db3", "risk_en": "Moderate dividend quality, sustainability risk; Rich valuation limits upside; Moderate financials, watch debt levels; Limited dividend growth momentum", "first_date": "2026-06-16", "first_price": "45.93", "price": "47.47", "chg_text": "+3.4%", "chg_color": "#0F6E56", "div_pts": [{"y": 2021, "v": 1.06}, {"y": 2022, "v": 2.16}, {"y": 2023, "v": 2.23}, {"y": 2024, "v": 2.29}, {"y": 2025, "v": 2.36}], "div_trend": "grow", "px_pts": [{"v": 33.506}, {"v": 37.722}, {"v": 35.707}, {"v": 34.569}, {"v": 32.423}, {"v": 37.72}, {"v": 36.817}, {"v": 36.151}, {"v": 30.249}, {"v": 37.494}, {"v": 37.694}, {"v": 38.098}, {"v": 43.919}, {"v": 37.472}, {"v": 39.703}, {"v": 40.768}, {"v": 40.773}, {"v": 38.523}, {"v": 41.451}, {"v": 47.47}]}, {"ticker": "SO", "name": "The Southern Company", "mkt": "US", "score": 12, "yield_": "3.1", "pe": "24.9", "pb": "2.95", "risk_zh_hk": "\u80a1\u606f\u8cea\u91cf\u4e00\u822c\uff0c\u9700\u7559\u610f\u6d3e\u606f\u6301\u7e8c\u6027\uff1b\u4f30\u503c\u504f\u9ad8\uff0c\u4e0a\u5347\u7a7a\u9593\u6709\u9650\uff1b\u8ca1\u52d9\u5065\u5eb7\u5ea6\u4e00\u822c\uff0c\u9700\u95dc\u6ce8\u8ca0\u50b5\uff1b\u80a1\u606f\u589e\u9577\u52d5\u529b\u4e0d\u8db3", "risk_zh_cn": "\u80a1\u606f\u8d28\u91cf\u4e00\u822c\uff0c\u9700\u7559\u610f\u6d3e\u606f\u6301\u7eed\u6027\uff1b\u4f30\u503c\u504f\u9ad8\uff0c\u4e0a\u5347\u7a7a\u95f4\u6709\u9650\uff1b\u8d22\u52a1\u5065\u5eb7\u5ea6\u4e00\u822c\uff0c\u9700\u5173\u6ce8\u8d1f\u503a\uff1b\u80a1\u606f\u589e\u957f\u52a8\u529b\u4e0d\u8db3", "risk_en": "Moderate dividend quality, sustainability risk; Rich valuation limits upside; Moderate financials, watch debt levels; Limited dividend growth momentum", "first_date": "2026-06-16", "first_price": "93.82", "price": "97.16", "chg_text": "+3.6%", "chg_color": "#0F6E56", "div_pts": [{"y": 2021, "v": 1.32}, {"y": 2022, "v": 2.7}, {"y": 2023, "v": 2.78}, {"y": 2024, "v": 2.86}, {"y": 2025, "v": 2.94}], "div_trend": "grow", "px_pts": [{"v": 52.046}, {"v": 58.206}, {"v": 62.175}, {"v": 61.713}, {"v": 59.367}, {"v": 63.004}, {"v": 62.029}, {"v": 63.22}, {"v": 58.847}, {"v": 64.398}, {"v": 66.583}, {"v": 72.653}, {"v": 85.166}, {"v": 78.385}, {"v": 88.297}, {"v": 88.924}, {"v": 92.498}, {"v": 85.81}, {"v": 95.727}, {"v": 97.16}]}, {"ticker": "D", "name": "Dominion Energy, Inc.", "mkt": "US", "score": 13, "yield_": "3.9", "pe": "20.5", "pb": "2.17", "risk_zh_hk": "\u80a1\u606f\u8cea\u91cf\u4e00\u822c\uff0c\u9700\u7559\u610f\u6d3e\u606f\u6301\u7e8c\u6027\uff1b\u4f30\u503c\u504f\u9ad8\uff0c\u4e0a\u5347\u7a7a\u9593\u6709\u9650\uff1b\u8ca1\u52d9\u5065\u5eb7\u5ea6\u4e00\u822c\uff0c\u9700\u95dc\u6ce8\u8ca0\u50b5\uff1b\u80a1\u606f\u589e\u9577\u52d5\u529b\u4e0d\u8db3", "risk_zh_cn": "\u80a1\u606f\u8d28\u91cf\u4e00\u822c\uff0c\u9700\u7559\u610f\u6d3e\u606f\u6301\u7eed\u6027\uff1b\u4f30\u503c\u504f\u9ad8\uff0c\u4e0a\u5347\u7a7a\u95f4\u6709\u9650\uff1b\u8d22\u52a1\u5065\u5eb7\u5ea6\u4e00\u822c\uff0c\u9700\u5173\u6ce8\u8d1f\u503a\uff1b\u80a1\u606f\u589e\u957f\u52a8\u529b\u4e0d\u8db3", "risk_en": "Moderate dividend quality, sustainability risk; Rich valuation limits upside; Moderate financials, watch debt levels; Limited dividend growth momentum", "first_date": "2026-06-16", "first_price": "68.15", "price": "69.39", "chg_text": "+1.8%", "chg_color": "#0F6E56", "div_pts": [{"y": 2021, "v": 1.26}, {"y": 2022, "v": 2.672}, {"y": 2023, "v": 2.672}, {"y": 2024, "v": 2.672}, {"y": 2025, "v": 2.672}], "div_trend": "flat", "px_pts": [{"v": 58.894}, {"v": 63.931}, {"v": 69.729}, {"v": 66.021}, {"v": 57.64}, {"v": 51.709}, {"v": 47.729}, {"v": 44.807}, {"v": 39.176}, {"v": 41.817}, {"v": 44.379}, {"v": 44.766}, {"v": 53.433}, {"v": 50.362}, {"v": 53.056}, {"v": 54.129}, {"v": 59.256}, {"v": 57.397}, {"v": 61.207}, {"v": 69.39}]}, {"ticker": "WEC", "name": "WEC Energy Group, Inc.", "mkt": "US", "score": 14, "yield_": "3.1", "pe": "23.8", "pb": "2.84", "risk_zh_hk": "\u80a1\u606f\u8cea\u91cf\u4e00\u822c\uff0c\u9700\u7559\u610f\u6d3e\u606f\u6301\u7e8c\u6027\uff1b\u4f30\u503c\u504f\u9ad8\uff0c\u4e0a\u5347\u7a7a\u9593\u6709\u9650\uff1b\u8ca1\u52d9\u5065\u5eb7\u5ea6\u4e00\u822c\uff0c\u9700\u95dc\u6ce8\u8ca0\u50b5\uff1b\u80a1\u606f\u589e\u9577\u52d5\u529b\u4e0d\u8db3", "risk_zh_cn": "\u80a1\u606f\u8d28\u91cf\u4e00\u822c\uff0c\u9700\u7559\u610f\u6d3e\u606f\u6301\u7eed\u6027\uff1b\u4f30\u503c\u504f\u9ad8\uff0c\u4e0a\u5347\u7a7a\u95f4\u6709\u9650\uff1b\u8d22\u52a1\u5065\u5eb7\u5ea6\u4e00\u822c\uff0c\u9700\u5173\u6ce8\u8d1f\u503a\uff1b\u80a1\u606f\u589e\u957f\u52a8\u529b\u4e0d\u8db3", "risk_en": "Moderate dividend quality, sustainability risk; Rich valuation limits upside; Moderate financials, watch debt levels; Limited dividend growth momentum", "first_date": "2026-06-20", "first_price": "112.54", "price": "118.85", "chg_text": "+5.6%", "chg_color": "#0F6E56", "div_pts": [{"y": 2021, "v": 1.356}, {"y": 2022, "v": 2.912}, {"y": 2023, "v": 3.12}, {"y": 2024, "v": 3.34}, {"y": 2025, "v": 3.572}], "div_trend": "grow", "px_pts": [{"v": 75.008}, {"v": 83.18}, {"v": 86.21}, {"v": 87.553}, {"v": 78.343}, {"v": 82.803}, {"v": 84.419}, {"v": 79.233}, {"v": 72.982}, {"v": 77.01}, {"v": 75.943}, {"v": 73.275}, {"v": 90.67}, {"v": 89.417}, {"v": 104.522}, {"v": 100.807}, {"v": 111.767}, {"v": 103.69}, {"v": 114.787}, {"v": 118.85}]}, {"ticker": "XEL", "name": "Xcel Energy Inc.", "mkt": "US", "score": 14, "yield_": "2.1", "pe": "23.7", "pb": "2.17", "risk_zh_hk": "\u606f\u7387\u504f\u4f4e\uff0c\u6536\u606f\u5438\u5f15\u529b\u6709\u9650\uff1b\u80a1\u606f\u8cea\u91cf\u4e00\u822c\uff0c\u9700\u7559\u610f\u6d3e\u606f\u6301\u7e8c\u6027\uff1b\u4f30\u503c\u504f\u9ad8\uff0c\u4e0a\u5347\u7a7a\u9593\u6709\u9650\uff1b\u8ca1\u52d9\u5065\u5eb7\u5ea6\u4e00\u822c\uff0c\u9700\u95dc\u6ce8\u8ca0\u50b5\uff1b\u80a1\u606f\u589e\u9577\u52d5\u529b\u4e0d\u8db3", "risk_zh_cn": "\u80a1\u606f\u7387\u504f\u4f4e\uff0c\u6536\u606f\u5438\u5f15\u529b\u6709\u9650\uff1b\u80a1\u606f\u8d28\u91cf\u4e00\u822c\uff0c\u9700\u7559\u610f\u6d3e\u606f\u6301\u7eed\u6027\uff1b\u4f30\u503c\u504f\u9ad8\uff0c\u4e0a\u5347\u7a7a\u95f4\u6709\u9650\uff1b\u8d22\u52a1\u5065\u5eb7\u5ea6\u4e00\u822c\uff0c\u9700\u5173\u6ce8\u8d1f\u503a\uff1b\u80a1\u606f\u589e\u957f\u52a8\u529b\u4e0d\u8db3", "risk_en": "Low yield limits income appeal; Moderate dividend quality, sustainability risk; Rich valuation limits upside; Moderate financials, watch debt levels; Limited dividend growth momentum", "first_date": "2026-06-16", "first_price": "79.35", "price": "82.23", "chg_text": "+3.6%", "chg_color": "#0F6E56", "div_pts": [{"y": 2021, "v": 1.374}, {"y": 2022, "v": 1.952}, {"y": 2023, "v": 2.08}, {"y": 2024, "v": 1.644}, {"y": 2025, "v": 2.828}], "div_trend": "cut", "px_pts": [{"v": 54.056}, {"v": 58.956}, {"v": 63.287}, {"v": 62.497}, {"v": 56.896}, {"v": 62.756}, {"v": 60.85}, {"v": 56.561}, {"v": 52.528}, {"v": 57.312}, {"v": 50.293}, {"v": 50.484}, {"v": 62.257}, {"v": 64.373}, {"v": 68.619}, {"v": 66.561}, {"v": 79.445}, {"v": 73.318}, {"v": 79.44}, {"v": 82.23}]}, {"ticker": "VTR", "name": "Ventas, Inc.", "mkt": "US", "score": 16, "yield_": "2.2", "pe": "161.9", "pb": "3.30", "risk_zh_hk": "\u606f\u7387\u504f\u4f4e\uff0c\u6536\u606f\u5438\u5f15\u529b\u6709\u9650\uff1b\u80a1\u606f\u8cea\u91cf\u4e00\u822c\uff0c\u9700\u7559\u610f\u6d3e\u606f\u6301\u7e8c\u6027\uff1b\u4f30\u503c\u504f\u9ad8\uff0c\u4e0a\u5347\u7a7a\u9593\u6709\u9650\uff1b\u8ca1\u52d9\u5065\u5eb7\u5ea6\u4e00\u822c\uff0c\u9700\u95dc\u6ce8\u8ca0\u50b5\uff1b\u80a1\u606f\u589e\u9577\u52d5\u529b\u4e0d\u8db3\uff1bPE 161.9x\uff0c\u4f30\u503c\u504f\u8cb4", "risk_zh_cn": "\u80a1\u606f\u7387\u504f\u4f4e\uff0c\u6536\u606f\u5438\u5f15\u529b\u6709\u9650\uff1b\u80a1\u606f\u8d28\u91cf\u4e00\u822c\uff0c\u9700\u7559\u610f\u6d3e\u606f\u6301\u7eed\u6027\uff1b\u4f30\u503c\u504f\u9ad8\uff0c\u4e0a\u5347\u7a7a\u95f4\u6709\u9650\uff1b\u8d22\u52a1\u5065\u5eb7\u5ea6\u4e00\u822c\uff0c\u9700\u5173\u6ce8\u8d1f\u503a\uff1b\u80a1\u606f\u589e\u957f\u52a8\u529b\u4e0d\u8db3\uff1bPE 161.9x\uff0c\u4f30\u503c\u504f\u8d35", "risk_en": "Low yield limits income appeal; Moderate dividend quality, sustainability risk; Rich valuation limits upside; Moderate financials, watch debt levels; Limited dividend growth momentum; High PE of 161.9x", "first_date": "2026-06-24", "first_price": "85.37", "price": "89.05", "chg_text": "+4.3%", "chg_color": "#0F6E56", "div_pts": [{"y": 2021, "v": 1.35}, {"y": 2022, "v": 1.8}, {"y": 2023, "v": 1.8}, {"y": 2024, "v": 1.8}, {"y": 2025, "v": 1.92}], "div_trend": "flat", "px_pts": [{"v": 47.357}, {"v": 44.236}, {"v": 53.829}, {"v": 45.22}, {"v": 35.725}, {"v": 40.465}, {"v": 39.336}, {"v": 43.302}, {"v": 39.01}, {"v": 46.56}, {"v": 41.099}, {"v": 48.386}, {"v": 61.07}, {"v": 56.914}, {"v": 66.92}, {"v": 61.933}, {"v": 69.121}, {"v": 76.887}, {"v": 81.78}, {"v": 89.05}]}, {"ticker": "WELL", "name": "Welltower Inc.", "mkt": "US", "score": 16, "yield_": "1.3", "pe": "109.8", "pb": "3.76", "risk_zh_hk": "\u606f\u7387\u504f\u4f4e\uff0c\u6536\u606f\u5438\u5f15\u529b\u6709\u9650\uff1b\u80a1\u606f\u8cea\u91cf\u4e00\u822c\uff0c\u9700\u7559\u610f\u6d3e\u606f\u6301\u7e8c\u6027\uff1b\u4f30\u503c\u504f\u9ad8\uff0c\u4e0a\u5347\u7a7a\u9593\u6709\u9650\uff1b\u8ca1\u52d9\u5065\u5eb7\u5ea6\u4e00\u822c\uff0c\u9700\u95dc\u6ce8\u8ca0\u50b5\uff1b\u80a1\u606f\u589e\u9577\u52d5\u529b\u4e0d\u8db3\uff1bPE 109.8x\uff0c\u4f30\u503c\u504f\u8cb4", "risk_zh_cn": "\u80a1\u606f\u7387\u504f\u4f4e\uff0c\u6536\u606f\u5438\u5f15\u529b\u6709\u9650\uff1b\u80a1\u606f\u8d28\u91cf\u4e00\u822c\uff0c\u9700\u7559\u610f\u6d3e\u606f\u6301\u7eed\u6027\uff1b\u4f30\u503c\u504f\u9ad8\uff0c\u4e0a\u5347\u7a7a\u95f4\u6709\u9650\uff1b\u8d22\u52a1\u5065\u5eb7\u5ea6\u4e00\u822c\uff0c\u9700\u5173\u6ce8\u8d1f\u503a\uff1b\u80a1\u606f\u589e\u957f\u52a8\u529b\u4e0d\u8db3\uff1bPE 109.8x\uff0c\u4f30\u503c\u504f\u8d35", "risk_en": "Low yield limits income appeal; Moderate dividend quality, sustainability risk; Rich valuation limits upside; Moderate financials, watch debt levels; Limited dividend growth momentum; High PE of 109.8x", "first_date": "2026-06-23", "first_price": "211.45", "price": "227.33", "chg_text": "+7.5%", "chg_color": "#0F6E56", "div_pts": [{"y": 2021, "v": 1.22}, {"y": 2022, "v": 2.44}, {"y": 2023, "v": 2.44}, {"y": 2024, "v": 2.56}, {"y": 2025, "v": 2.82}], "div_trend": "flat", "px_pts": [{"v": 73.375}, {"v": 76.924}, {"v": 86.853}, {"v": 74.914}, {"v": 58.964}, {"v": 60.634}, {"v": 66.858}, {"v": 76.023}, {"v": 77.552}, {"v": 85.973}, {"v": 89.671}, {"v": 100.664}, {"v": 124.336}, {"v": 122.999}, {"v": 150.194}, {"v": 151.402}, {"v": 176.218}, {"v": 184.324}, {"v": 197.037}, {"v": 227.33}]}, {"ticker": "STAG", "name": "STAG Industrial, Inc.", "mkt": "US", "score": 17, "yield_": "3.2", "pe": "30.6", "pb": "2.09", "risk_zh_hk": "\u80a1\u606f\u8cea\u91cf\u4e00\u822c\uff0c\u9700\u7559\u610f\u6d3e\u606f\u6301\u7e8c\u6027\uff1b\u4f30\u503c\u504f\u9ad8\uff0c\u4e0a\u5347\u7a7a\u9593\u6709\u9650\uff1b\u8ca1\u52d9\u5065\u5eb7\u5ea6\u4e00\u822c\uff0c\u9700\u95dc\u6ce8\u8ca0\u50b5\uff1b\u80a1\u606f\u589e\u9577\u52d5\u529b\u4e0d\u8db3\uff1bPE 30.6x\uff0c\u4f30\u503c\u504f\u8cb4", "risk_zh_cn": "\u80a1\u606f\u8d28\u91cf\u4e00\u822c\uff0c\u9700\u7559\u610f\u6d3e\u606f\u6301\u7eed\u6027\uff1b\u4f30\u503c\u504f\u9ad8\uff0c\u4e0a\u5347\u7a7a\u95f4\u6709\u9650\uff1b\u8d22\u52a1\u5065\u5eb7\u5ea6\u4e00\u822c\uff0c\u9700\u5173\u6ce8\u8d1f\u503a\uff1b\u80a1\u606f\u589e\u957f\u52a8\u529b\u4e0d\u8db3\uff1bPE 30.6x\uff0c\u4f30\u503c\u504f\u8d35", "risk_en": "Moderate dividend quality, sustainability risk; Rich valuation limits upside; Moderate financials, watch debt levels; Limited dividend growth momentum; High PE of 30.6x", "first_date": "2026-06-23", "first_price": "38.58", "price": "39.42", "chg_text": "+2.2%", "chg_color": "#0F6E56", "div_pts": [{"y": 2021, "v": 0.847}, {"y": 2022, "v": 1.464}, {"y": 2023, "v": 1.476}, {"y": 2024, "v": 1.476}, {"y": 2025, "v": 1.488}], "div_trend": "flat", "px_pts": [{"v": 32.593}, {"v": 40.151}, {"v": 34.933}, {"v": 26.367}, {"v": 24.566}, {"v": 28.247}, {"v": 29.887}, {"v": 32.052}, {"v": 31.146}, {"v": 35.803}, {"v": 35.402}, {"v": 33.565}, {"v": 36.723}, {"v": 32.098}, {"v": 34.645}, {"v": 35.172}, {"v": 34.573}, {"v": 36.365}, {"v": 36.06}, {"v": 39.42}]}, {"ticker": "AEP", "name": "American Electric Power Company, Inc.", "mkt": "US", "score": 17, "yield_": "2.7", "pe": "20.6", "pb": "2.37", "risk_zh_hk": "\u606f\u7387\u504f\u4f4e\uff0c\u6536\u606f\u5438\u5f15\u529b\u6709\u9650\uff1b\u80a1\u606f\u8cea\u91cf\u4e00\u822c\uff0c\u9700\u7559\u610f\u6d3e\u606f\u6301\u7e8c\u6027\uff1b\u4f30\u503c\u504f\u9ad8\uff0c\u4e0a\u5347\u7a7a\u9593\u6709\u9650\uff1b\u8ca1\u52d9\u5065\u5eb7\u5ea6\u4e00\u822c\uff0c\u9700\u95dc\u6ce8\u8ca0\u50b5\uff1b\u80a1\u606f\u589e\u9577\u52d5\u529b\u4e0d\u8db3", "risk_zh_cn": "\u80a1\u606f\u7387\u504f\u4f4e\uff0c\u6536\u606f\u5438\u5f15\u529b\u6709\u9650\uff1b\u80a1\u606f\u8d28\u91cf\u4e00\u822c\uff0c\u9700\u7559\u610f\u6d3e\u606f\u6301\u7eed\u6027\uff1b\u4f30\u503c\u504f\u9ad8\uff0c\u4e0a\u5347\u7a7a\u95f4\u6709\u9650\uff1b\u8d22\u52a1\u5065\u5eb7\u5ea6\u4e00\u822c\uff0c\u9700\u5173\u6ce8\u8d1f\u503a\uff1b\u80a1\u606f\u589e\u957f\u52a8\u529b\u4e0d\u8db3", "risk_en": "Low yield limits income appeal; Moderate dividend quality, sustainability risk; Rich valuation limits upside; Moderate financials, watch debt levels; Limited dividend growth momentum", "first_date": "2026-06-23", "first_price": "130.30", "price": "138.69", "chg_text": "+6.4%", "chg_color": "#0F6E56", "div_pts": [{"y": 2021, "v": 1.52}, {"y": 2022, "v": 3.17}, {"y": 2023, "v": 3.37}, {"y": 2024, "v": 3.57}, {"y": 2025, "v": 3.74}], "div_trend": "grow", "px_pts": [{"v": 68.334}, {"v": 75.594}, {"v": 85.509}, {"v": 82.876}, {"v": 75.264}, {"v": 83.441}, {"v": 80.702}, {"v": 75.358}, {"v": 68.02}, {"v": 74.282}, {"v": 79.651}, {"v": 81.965}, {"v": 96.715}, {"v": 87.787}, {"v": 104.979}, {"v": 100.575}, {"v": 109.946}, {"v": 113.581}, {"v": 130.135}, {"v": 138.69}]}, {"ticker": "SPG", "name": "Simon Property Group, Inc.", "mkt": "US", "score": 18, "yield_": "3.9", "pe": "15.8", "pb": "15.27", "risk_zh_hk": "\u80a1\u606f\u8cea\u91cf\u4e00\u822c\uff0c\u9700\u7559\u610f\u6d3e\u606f\u6301\u7e8c\u6027\uff1b\u4f30\u503c\u504f\u9ad8\uff0c\u4e0a\u5347\u7a7a\u9593\u6709\u9650\uff1b\u8ca1\u52d9\u5065\u5eb7\u5ea6\u4e00\u822c\uff0c\u9700\u95dc\u6ce8\u8ca0\u50b5\uff1b\u80a1\u606f\u589e\u9577\u52d5\u529b\u4e0d\u8db3", "risk_zh_cn": "\u80a1\u606f\u8d28\u91cf\u4e00\u822c\uff0c\u9700\u7559\u610f\u6d3e\u606f\u6301\u7eed\u6027\uff1b\u4f30\u503c\u504f\u9ad8\uff0c\u4e0a\u5347\u7a7a\u95f4\u6709\u9650\uff1b\u8d22\u52a1\u5065\u5eb7\u5ea6\u4e00\u822c\uff0c\u9700\u5173\u6ce8\u8d1f\u503a\uff1b\u80a1\u606f\u589e\u957f\u52a8\u529b\u4e0d\u8db3", "risk_en": "Moderate dividend quality, sustainability risk; Rich valuation limits upside; Moderate financials, watch debt levels; Limited dividend growth momentum", "first_date": "2026-06-26", "first_price": "225.49", "price": "226.89", "chg_text": "+0.6%", "chg_color": "#0F6E56", "div_pts": [{"y": 2021, "v": 4.55}, {"y": 2022, "v": 6.9}, {"y": 2023, "v": 7.45}, {"y": 2024, "v": 8.1}, {"y": 2025, "v": 8.55}], "div_trend": "grow", "px_pts": [{"v": 100.711}, {"v": 125.113}, {"v": 104.333}, {"v": 76.433}, {"v": 73.513}, {"v": 97.704}, {"v": 94.514}, {"v": 99.104}, {"v": 94.257}, {"v": 126.276}, {"v": 140.334}, {"v": 137.922}, {"v": 155.505}, {"v": 160.271}, {"v": 156.487}, {"v": 153.462}, {"v": 181.286}, {"v": 181.012}, {"v": 184.506}, {"v": 226.89}]}];
+
+function drawDonut(svgId, strong, watch, hold) {
+  const svg = document.getElementById(svgId);
+  if(!svg) return;
+  const values=[strong,watch,hold], colors=['#1D9E75','#378ADD','#EF9F27'];
+  const cx=90,cy=80,R=65,r=42;
+  const total=values.reduce((a,b)=>a+b,0);
+  if(total===0) return;
+  let angle=-Math.PI/2;
+  values.forEach((v,i)=>{
+    if(v===0) return;
+    const sweep=(v/total)*2*Math.PI;
+    const x1=cx+R*Math.cos(angle),y1=cy+R*Math.sin(angle);
+    const x2=cx+R*Math.cos(angle+sweep),y2=cy+R*Math.sin(angle+sweep);
+    const ix1=cx+r*Math.cos(angle),iy1=cy+r*Math.sin(angle);
+    const ix2=cx+r*Math.cos(angle+sweep),iy2=cy+r*Math.sin(angle+sweep);
+    const large=sweep>Math.PI?1:0;
+    const path=document.createElementNS('http://www.w3.org/2000/svg','path');
+    path.setAttribute('d',`M ${x1} ${y1} A ${R} ${R} 0 ${large} 1 ${x2} ${y2} L ${ix2} ${iy2} A ${r} ${r} 0 ${large} 0 ${ix1} ${iy1} Z`);
+    path.setAttribute('fill',colors[i]);
+    svg.appendChild(path);
+    if(v/total>0.03){
+      const mid=angle+sweep/2;
+      const lx=cx+(R+r)/2*Math.cos(mid),ly=cy+(R+r)/2*Math.sin(mid);
+      const t=document.createElementNS('http://www.w3.org/2000/svg','text');
+      t.setAttribute('x',lx);t.setAttribute('y',ly+4);
+      t.setAttribute('text-anchor','middle');t.setAttribute('font-size','11');
+      t.setAttribute('fill','#fff');t.setAttribute('font-weight','600');
+      t.textContent=v;svg.appendChild(t);
+    }
+    angle+=sweep;
+  });
+  const ct=document.createElementNS('http://www.w3.org/2000/svg','text');
+  ct.setAttribute('x',cx);ct.setAttribute('y',cy+5);
+  ct.setAttribute('text-anchor','middle');ct.setAttribute('font-size','13');
+  ct.setAttribute('fill','#555');ct.setAttribute('font-weight','600');
+  ct.textContent=total+'隻';svg.appendChild(ct);
+}
+
+drawDonut('us',US_STATS.strong,US_STATS.watch,US_STATS.hold);
+drawDonut('hk',HK_STATS.strong,HK_STATS.watch,HK_STATS.hold);
+drawDonut('uk',UK_STATS.strong,UK_STATS.watch,UK_STATS.hold);
+drawDonut('cn',CN_STATS.strong,CN_STATS.watch,CN_STATS.hold);
+
+const RATING_COLOR={strong:'#1D9E75',watch:'#378ADD',hold:'#EF9F27'};
+const MKT_STYLE={
+  US:{bg:'#E6F1FB',text:'#185FA5'},
+  HK:{bg:'#E1F5EE',text:'#0F6E56'},
+  UK:{bg:'#FAEEDA',text:'#854F0B'},
+  CN:{bg:'#FDECEA',text:'#B71C1C'},
+};
+const svg=document.getElementById('bar');
+const W=900,H=240,padL=36,padB=46,padT=10,padR=10;
+const chartW=W-padL-padR,chartH=H-padB-padT;
+const scores=TOP10.map(s=>s.score);
+const minScore=Math.max(40,Math.min(...scores)-5);
+const maxScore=Math.min(100,Math.max(...scores)+5);
+const barW=chartW/TOP10.length,gap=barW*0.22;
+
+[...Array(6)].map((_,i)=>Math.round(minScore+i*(maxScore-minScore)/5)).forEach(v=>{
+  const y=padT+chartH-((v-minScore)/(maxScore-minScore))*chartH;
+  const line=document.createElementNS('http://www.w3.org/2000/svg','line');
+  line.setAttribute('x1',padL);line.setAttribute('x2',W-padR);
+  line.setAttribute('y1',y);line.setAttribute('y2',y);
+  line.setAttribute('stroke',v===Math.round(minScore)?'#ccc':'#eee');line.setAttribute('stroke-width','1');
+  svg.appendChild(line);
+  const t=document.createElementNS('http://www.w3.org/2000/svg','text');
+  t.setAttribute('x',padL-4);t.setAttribute('y',y+4);
+  t.setAttribute('text-anchor','end');t.setAttribute('font-size','10');
+  t.setAttribute('fill','#999');t.textContent=v;svg.appendChild(t);
+});
+
+TOP10.forEach((s,i)=>{
+  const barH=((s.score-minScore)/(maxScore-minScore))*chartH;
+  const x=padL+i*barW+gap/2,y=padT+chartH-barH,w=barW-gap;
+  const rect=document.createElementNS('http://www.w3.org/2000/svg','rect');
+  rect.setAttribute('x',x);rect.setAttribute('y',y);
+  rect.setAttribute('width',w);rect.setAttribute('height',barH);
+  rect.setAttribute('fill',RATING_COLOR[s.rating]);rect.setAttribute('rx','3');
+  svg.appendChild(rect);
+  const ts=document.createElementNS('http://www.w3.org/2000/svg','text');
+  ts.setAttribute('x',x+w/2);ts.setAttribute('y',y-4);
+  ts.setAttribute('text-anchor','middle');ts.setAttribute('font-size','10');
+  ts.setAttribute('fill','#555');ts.setAttribute('font-weight','600');
+  ts.textContent=s.score;svg.appendChild(ts);
+  const tl=document.createElementNS('http://www.w3.org/2000/svg','text');
+  tl.setAttribute('x',x+w/2);tl.setAttribute('y',H-padB+14);
+  tl.setAttribute('text-anchor','middle');tl.setAttribute('font-size','10');
+  tl.setAttribute('fill','#777');tl.textContent=s.label;svg.appendChild(tl);
+  const ms=MKT_STYLE[s.mkt];
+  const bw=24,bh=13,bx=x+w/2-bw/2,by=H-padB+18;
+  const brect=document.createElementNS('http://www.w3.org/2000/svg','rect');
+  brect.setAttribute('x',bx);brect.setAttribute('y',by);
+  brect.setAttribute('width',bw);brect.setAttribute('height',bh);
+  brect.setAttribute('fill',ms.bg);brect.setAttribute('rx','3');
+  svg.appendChild(brect);
+  const bt=document.createElementNS('http://www.w3.org/2000/svg','text');
+  bt.setAttribute('x',bx+bw/2);bt.setAttribute('y',by+9);
+  bt.setAttribute('text-anchor','middle');bt.setAttribute('font-size','9');
+  bt.setAttribute('fill',ms.text);bt.setAttribute('font-weight','600');
+  bt.textContent=s.mkt;svg.appendChild(bt);
+});
+
+
+function renderSparkline(p){
+  const divPts=p.div_pts, pxPts=p.px_pts||[];
+  const hasPx=pxPts.length>1;
+  const W=200,H=90,pL=4,pR=4,pT=10,pB=10;
+  const cW=W-pL-pR,cH=H-pT-pB;
+  const ff='system-ui,-apple-system,sans-serif';
+  const DIV_COL='#1D9E75',PX_COL='#378ADD';
+  const FSIZE=10,GAP=13;
+
+  function norm(pts,mn,rng){return pts.map(d=>pT+cH*(1-(d.v-mn)/rng));}
+  function separate(a,b,mn,mx){
+    if(Math.abs(a-b)>=GAP)return [a,b];
+    const mid=(a+b)/2;let lo=mid-GAP/2,hi=mid+GAP/2;
+    if(lo<mn){lo=mn;hi=lo+GAP;}if(hi>mx){hi=mx;lo=hi-GAP;}
+    return a<=b?[lo,hi]:[hi,lo];
+  }
+
+  const dvals=divPts.map(d=>d.v);
+  const dmn=Math.min(...dvals),dmx=Math.max(...dvals),drng=dmx-dmn||dmx*0.3||0.1;
+  const dxs=divPts.map((_,i)=>pL+i*cW/(divPts.length-1));
+  const dys=norm(divPts,dmn,drng);
+  let dpath=`M${dxs[0].toFixed(1)},${dys[0].toFixed(1)}`;
+  for(let i=1;i<dxs.length;i++) dpath+=` L${dxs[i].toFixed(1)},${dys[i].toFixed(1)}`;
+
+  let pSvg='';
+  if(hasPx){
+    const pvals=pxPts.map(d=>d.v);
+    const pmn=Math.min(...pvals),pmx=Math.max(...pvals),prng=pmx-pmn||pmx*0.3||0.1;
+    const pxs=pxPts.map((_,i)=>pL+i*cW/(pxPts.length-1));
+    const pys=norm(pxPts,pmn,prng);
+    let ppath=`M${pxs[0].toFixed(1)},${pys[0].toFixed(1)}`;
+    for(let i=1;i<pxs.length;i++) ppath+=` L${pxs[i].toFixed(1)},${pys[i].toFixed(1)}`;
+    const paPath=ppath+` L${pxs[pxs.length-1].toFixed(1)},${H-pB} L${pxs[0].toFixed(1)},${H-pB} Z`;
+
+    // labels: dot position → separate if overlap
+    const rd0=dys[0]+FSIZE*0.35, rp0=pys[0]+FSIZE*0.35;
+    const rdL=dys[dys.length-1]+FSIZE*0.35, rpL=pys[pys.length-1]+FSIZE*0.35;
+    const [ld0,lp0]=separate(rd0,rp0,pT+FSIZE,H-pB);
+    const [ldL,lpL]=separate(rdL,rpL,pT+FSIZE,H-pB);
+    const d0v=dvals[0].toFixed(2),dLv=dvals[dvals.length-1].toFixed(2);
+    const p0v=pvals[0].toFixed(2),pLv=pvals[pvals.length-1].toFixed(2);
+
+    // trend descriptions
+    const dpct=(dvals[dvals.length-1]-dvals[0])/dvals[0]*100;
+    const dcuts=divPts.filter((d,i)=>i>0&&d.v<divPts[i-1].v*0.95).length;
+    const dtLbl=dcuts>0?'⚠ 曾經減息':dpct>5?'↑ 持續增長':'→ 穩定派息';
+    const dtCls=dcuts>0?'cut':dpct>5?'grow':'flat';
+    const dtBkg={grow:'#E1F5EE',cut:'#FEF3F2',flat:'#FAEEDA'}[dtCls];
+    const dtCol={grow:'#0F6E56',cut:'#B42318',flat:'#854F0B'}[dtCls];
+    const ppct=(pvals[pvals.length-1]-pvals[0])/pvals[0]*100;
+    const ptLbl=ppct>10?'↑ 股價上升':ppct<-10?'↓ 股價下跌':'→ 股價橫行';
+    const ptCls=ppct>10?'up':ppct<-10?'down':'side';
+    const ptBkg={up:'#E6F1FB',down:'#FEF3F2',side:'#F1EFE8'}[ptCls];
+    const ptCol={up:'#185FA5',down:'#B42318',side:'#5F5E5A'}[ptCls];
+    const psign=ppct>=0?'+':'';
+    const DTXT={grow:{hk:'股息 ↑ 持續增長',cn:'股息 ↑ 持续增长',en:'Div ↑ Growing'},cut:{hk:'股息 ⚠ 曾經減息',cn:'股息 ⚠ 曾经减息',en:'Div ⚠ Cut'},flat:{hk:'股息 → 稔定派息',cn:'股息 → 稳定派息',en:'Div → Stable'}};
+    const PTXT={up:{hk:'股價 ↑ 上升',cn:'股价 ↑ 上升',en:'Price ↑ Rising'},down:{hk:'股價 ↓ 下跌',cn:'股价 ↓ 下跌',en:'Price ↓ Falling'},side:{hk:'股價 → 橫行',cn:'股价 → 横行',en:'Price → Sideways'}};
+
+    pSvg=`
+    <path d="${paPath}" fill="${PX_COL}" fill-opacity="0.07"/>
+    <path d="${ppath}" stroke="${PX_COL}" stroke-width="1.5" fill="none" stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="3 2"/>
+    <circle cx="${pxs[0].toFixed(1)}" cy="${pys[0].toFixed(1)}" r="2.5" fill="${PX_COL}"/>
+    <circle cx="${pxs[pxs.length-1].toFixed(1)}" cy="${pys[pys.length-1].toFixed(1)}" r="2.5" fill="${PX_COL}"/>
+    <text x="${(dxs[0]-6).toFixed(1)}" y="${ld0.toFixed(1)}" font-size="${FSIZE}" font-family="${ff}" fill="${DIV_COL}" font-weight="600" text-anchor="end">${d0v}</text>
+    <text x="${(pxs[0]-6).toFixed(1)}" y="${lp0.toFixed(1)}" font-size="${FSIZE}" font-family="${ff}" fill="${PX_COL}" font-weight="600" text-anchor="end">${p0v}</text>
+    <text x="${(dxs[dxs.length-1]+6).toFixed(1)}" y="${ldL.toFixed(1)}" font-size="${FSIZE}" font-family="${ff}" fill="${DIV_COL}" font-weight="600" text-anchor="start">${dLv}</text>
+    <text x="${(pxs[pxs.length-1]+6).toFixed(1)}" y="${lpL.toFixed(1)}" font-size="${FSIZE}" font-family="${ff}" fill="${PX_COL}" font-weight="600" text-anchor="start">${pLv}</text>`;
+
+    return `<div class="div-spark">
+    <div class="div-spark-legend">
+      <span class="div-spark-leg" data-zh-hk="股息" data-zh-cn="股息" data-en="Div"><span class="div-spark-leg-line" style="background:${DIV_COL}"></span>股息</span>
+      <span class="div-spark-leg" data-zh-hk="股價" data-zh-cn="股价" data-en="Price"><span class="div-spark-leg-line" style="background:${PX_COL};opacity:.7"></span>股價</span>
+      <span style="font-size:9px;color:#aaa;margin-left:auto">${divPts[0].y} → ${divPts[divPts.length-1].y}</span>
+    </div>
+    <svg viewBox="0 0 ${W} ${H}" style="display:block;width:100%;height:${H}px;overflow:visible" aria-hidden="true">
+      ${pSvg}
+      <path d="${dpath}" stroke="${DIV_COL}" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+      <circle cx="${dxs[0].toFixed(1)}" cy="${dys[0].toFixed(1)}" r="3" fill="${DIV_COL}"/>
+      <circle cx="${dxs[dxs.length-1].toFixed(1)}" cy="${dys[dys.length-1].toFixed(1)}" r="3" fill="${DIV_COL}"/>
+    </svg>
+    <div class="div-spark-desc">
+      <div class="div-spark-desc-box" style="background:${dtBkg}">
+        <div class="div-spark-desc-lbl" data-zh-hk="${DTXT[dtCls].hk}" data-zh-cn="${DTXT[dtCls].cn}" data-en="${DTXT[dtCls].en}" style="color:${dtCol}">${DTXT[dtCls].hk}</div>
+        <div class="div-spark-desc-val" style="color:${dtCol}">${dvals[0].toFixed(2)} → ${dvals[dvals.length-1].toFixed(2)}</div>
+      </div>
+      <div class="div-spark-desc-box" style="background:${ptBkg}">
+        <div class="div-spark-desc-lbl" data-zh-hk="${PTXT[ptCls].hk}" data-zh-cn="${PTXT[ptCls].cn}" data-en="${PTXT[ptCls].en}" style="color:${ptCol}">${PTXT[ptCls].hk}</div>
+        <div class="div-spark-desc-val" style="color:${ptCol}">${psign}${ppct.toFixed(0)}%</div>
+      </div>
+    </div>
+  </div>`;
+  }
+
+  // fallback: div only (no price data)
+  const col=p.div_trend==='grow'?DIV_COL:p.div_trend==='cut'?'#B71C1C':'#BA7517';
+  const badgeTxt=p.div_trend==='grow'?'↑ 持續增長':p.div_trend==='cut'?'⚠ 曾經減息':'→ 穩定派息';
+  const badgeCls=p.div_trend==='grow'?'div-trend-grow':p.div_trend==='cut'?'div-trend-cut':'div-trend-flat';
+  return `<div class="div-spark">
+    <div class="div-spark-row"><span class="div-trend-badge ${badgeCls}">${badgeTxt}</span></div>
+    <svg viewBox="0 0 ${W} ${H}" style="display:block;width:100%;height:${H}px" aria-hidden="true">
+      <path d="${dpath}" stroke="${col}" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+      <circle cx="${dxs[0].toFixed(1)}" cy="${dys[0].toFixed(1)}" r="3" fill="${col}"/>
+      <circle cx="${dxs[dxs.length-1].toFixed(1)}" cy="${dys[dys.length-1].toFixed(1)}" r="3" fill="${col}"/>
+    </svg>
+  </div>`;
+}
+
+const RATING_LABEL={strong:'🟢🟢 強力買入',watch:'🟢 值得關注',hold:'⚖️ 觀望'};
+const RATING_CLASS={strong:'r-strong',watch:'r-watch',hold:'r-hold'};
+const MKT_BADGE={
+  HK:'<span class="badge badge-hk">HK</span>',
+  US:'<span class="badge badge-us">US</span>',
+  UK:'<span class="badge badge-uk">UK</span>',
+  CN:'<span class="badge badge-cn">CN</span>',
+};
+document.getElementById('picksGrid').innerHTML=PICKS.map(p=>`
+  <div class="pick-card${p.rating==='strong'?' top':''}">
+    <div class="pick-header">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:4px;margin-bottom:4px">
+        <div style="display:flex;align-items:center;gap:5px">
+          <span style="font-size:14px;font-weight:600;color:#222;white-space:nowrap">${p.ticker}</span>
+          ${MKT_BADGE[p.mkt]}
+        </div>
+        <span class="${RATING_CLASS[p.rating]}" style="white-space:nowrap;flex-shrink:0" data-rating="${p.rating}">${RATING_LABEL[p.rating]}</span>
+      </div>
+      <div class="pick-name">${p.name}</div>
+    </div>
+    <div class="pick-stats">
+      <div class="pick-stat"><div class="pick-stat-label" data-zh-hk="股息率" data-zh-cn="股息率" data-en="Yield">股息率</div><div class="pick-stat-val">${p.yield_}%</div></div>
+      <div class="pick-stat"><div class="pick-stat-label">PE</div><div class="pick-stat-val">${p.pe}x</div></div>
+      <div class="pick-stat"><div class="pick-stat-label">P/B</div><div class="pick-stat-val">${p.pb}</div></div>
+    </div>
+    <div class="pick-track">
+      <div class="pick-track-item"><div class="pick-track-label" data-zh-hk="推介日期" data-zh-cn="推介日期" data-en="Picked On">推介日期</div><div class="pick-track-val">${p.first_date}</div></div>
+      <div class="pick-track-item"><div class="pick-track-label" data-zh-hk="漲跌" data-zh-cn="涨跌" data-en="Change">漲跌</div><div class="pick-track-val" style="color:${p.chg_color}">${p.chg_text}</div></div>
+      <div class="pick-track-item"><div class="pick-track-label" data-zh-hk="推介價" data-zh-cn="推介价" data-en="Then">推介價</div><div class="pick-track-val">${p.first_price}</div></div>
+      <div class="pick-track-item"><div class="pick-track-label" data-zh-hk="現價" data-zh-cn="现价" data-en="Now">現價</div><div class="pick-track-val">${p.price}</div></div>
+    </div>
+    <div class="pros-cons">
+      <div class="pros"><div class="pros-label">✅ 優點</div><div class="pros-text" data-zh-hk="${p.pro_zh_hk}" data-zh-cn="${p.pro_zh_cn}" data-en="${p.pro_en}">${p.pro_zh_hk}</div></div>
+      <div class="cons"><div class="cons-label">⚠️ 缺點</div><div class="cons-text" data-zh-hk="${p.con_zh_hk}" data-zh-cn="${p.con_zh_cn}" data-en="${p.con_en}">${p.con_zh_hk}</div></div>
+    </div>
+    <div class="score-track"><div class="score-fill" style="width:${p.score}%"></div></div>
+    <div class="score-row"><span>評分</span><span>${p.score}/100</span></div>
+    ${p.div_pts&&p.div_pts.length>1?renderSparkline(p):''}
+  </div>
+`).join('');
+
+document.getElementById('avoidGrid').innerHTML=AVOID.map(p=>`
+  <div class="pick-card avoid">
+    <div class="pick-header">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:4px;margin-bottom:4px">
+        <div style="display:flex;align-items:center;gap:5px">
+          <span style="font-size:14px;font-weight:600;color:#222;white-space:nowrap">${p.ticker}</span>
+          ${MKT_BADGE[p.mkt]}
+        </div>
+        <span class="r-avoid" style="white-space:nowrap;flex-shrink:0" data-zh-hk="🔴 高危" data-zh-cn="🔴 高危" data-en="🔴 High Risk">🔴 高危</span>
+      </div>
+      <div class="pick-name">${p.name}</div>
+    </div>
+    <div class="pick-stats">
+      <div class="pick-stat"><div class="pick-stat-label" data-zh-hk="股息率" data-zh-cn="股息率" data-en="Yield">股息率</div><div class="pick-stat-val">${p.yield_}%</div></div>
+      <div class="pick-stat"><div class="pick-stat-label">PE</div><div class="pick-stat-val">${p.pe}x</div></div>
+      <div class="pick-stat"><div class="pick-stat-label">P/B</div><div class="pick-stat-val">${p.pb}</div></div>
+    </div>
+    <div class="pick-track">
+      <div class="pick-track-item"><div class="pick-track-label" data-zh-hk="避開日期" data-zh-cn="避开日期" data-en="Flagged On">避開日期</div><div class="pick-track-val">${p.first_date}</div></div>
+      <div class="pick-track-item"><div class="pick-track-label" data-zh-hk="漲跌" data-zh-cn="涨跌" data-en="Change">漲跌</div><div class="pick-track-val" style="color:${p.chg_color}">${p.chg_text}</div></div>
+      <div class="pick-track-item"><div class="pick-track-label" data-zh-hk="避開價" data-zh-cn="避开价" data-en="Then">避開價</div><div class="pick-track-val">${p.first_price}</div></div>
+      <div class="pick-track-item"><div class="pick-track-label" data-zh-hk="現價" data-zh-cn="现价" data-en="Now">現價</div><div class="pick-track-val">${p.price}</div></div>
+    </div>
+    <div class="risk-box">
+      <div class="risk-label" data-zh-hk="⚠️ 高危原因" data-zh-cn="⚠️ 高危原因" data-en="⚠️ Risk Factors">⚠️ 高危原因</div>
+      <div class="risk-text" data-zh-hk="${p.risk_zh_hk}" data-zh-cn="${p.risk_zh_cn}" data-en="${p.risk_en}">${p.risk_zh_hk}</div>
+    </div>
+    <div class="score-track"><div class="score-fill avoid" style="width:${p.score}%"></div></div>
+    <div class="score-row"><span>評分</span><span>${p.score}/100</span></div>
+  </div>
+`).join('');
+</script>
+
+<script>
+function setLang(lang) {
+  ['#btn-zh-hk','#btn-zh-cn','#btn-en'].forEach(function(id){
+    var el=document.querySelector(id);
+    if(el){el.style.background='transparent';el.style.color='#666';el.style.borderColor='#e5e5e5';}
+  });
+  var ab=document.querySelector({'zh-hk':'#btn-zh-hk','zh-cn':'#btn-zh-cn','en':'#btn-en'}[lang]);
+  if(ab){ab.style.background='#1D9E75';ab.style.color='#fff';ab.style.borderColor='#1D9E75';}
+  var T={
+    'zh-hk':{heroTitle:'全球高息股<br>每日精選分析',heroSub:'覆蓋香港、美國、英國及A股四大市場，以系統化評分篩選出具備穩定派息能力的優質股票。',heroTag:'每日更新',stat1:'今日追蹤股票數',stat2:'入圍股票（≥60分）',stat3:'強力買入',stat4:'今日最高分',mktHK:'港股 HK',mktUS:'美股 US',mktUK:'英股 UK',mktCN:'A股 CN',cUS:'美股 US',cHK:'港股 HK',cUK:'英股 UK',cCN:'A股 CN',top10:'前10名評分分佈',sec0:'選股理念與方法',sec1:'評分系統',sec2:'市場概覽',sec3:'最新精選推介',sec4:'高危名單',ah:['選股理念','四大市場','系統化篩選','每日更新'],ap:['長期穩定的股息收入是財富增長的重要基石。我們不單看當前息率高低，更重視企業的派息可持續性、財務健康狀況及估值合理性。','同步覆蓋香港、美國、英國及A股四大市場，以統一標準進行跨市場比較，讓投資者掌握全球高息機會。','每日自動更新數據，以量化評分模型對數百隻股票進行排名，過濾雜訊，聚焦真正值得關注的機會。','每個交易日收市後自動重新評分，確保推介反映最新的估值及財務狀況。'],scoreIntro:'每隻股票以100分制進行綜合評分，涵蓋五個範疇：',th:['評分範疇','滿分','主要考量'],rows:[['股息質量','30分','息率水平、派息穩定性及覆蓋率'],['估值','25分','現價相對歷史息率及市場的吸引程度'],['財務健康','25分','資產負債、現金流及償債能力'],['增長','10分','股息增長趨勢及盈利前景'],['技術走勢','10分','RSI、52週位置等技術指標']],rth:['評級','分數','意義'],rmean:['各方面均表現優秀，值得重點關注','基本面良好，可納入觀察名單','有一定吸引力，但需留意風險'],ll:['強力買入','值得關注','觀望'],unit:'隻',rl:{'strong':'🟢🟢 強力買入','watch':'🟢 值得關注','hold':'⚖️ 觀望'},picksNote:'以下為今日評分最高股票（≥50分），綠框為強力買入。',avoidNote:'以下為今日評分最低的股票（最多10隻），紅框代表高危股票，數據與上方推介股一致。',pros:'✅ 優點',cons:'⚠️ 缺點',score:'評分',yieldLbl:'股息率',discLabel:'免責聲明',disc:'本網站所有內容僅供參考及教育用途，不構成任何投資建議或買賣邀請。投資涉及風險，過往表現不代表未來回報。讀者應自行進行盡職審查，並在作出任何投資決定前諮詢持牌財務顧問。',f2:'每個交易日更新',f3:'資料來源：Yahoo Finance · 僅供參考'},
+    'zh-cn':{heroTitle:'全球高息股<br>每日精选分析',heroSub:'覆盖香港、美国、英国及A股四大市场，以系统化评分筛选出具备稳定派息能力的优质股票。',heroTag:'每日更新',stat1:'今日追踪股票数',stat2:'入围股票（≥60分）',stat3:'强力买入',stat4:'今日最高分',mktHK:'港股 HK',mktUS:'美股 US',mktUK:'英股 UK',mktCN:'A股 CN',cUS:'美股 US',cHK:'港股 HK',cUK:'英股 UK',cCN:'A股 CN',top10:'前10名评分分布',sec0:'选股理念与方法',sec1:'评分系统',sec2:'市场概览',sec3:'最新精选推介',sec4:'高危名单',ah:['选股理念','四大市场','系统化筛选','每日更新'],ap:['长期稳定的股息收入是财富增长的重要基石。我们不单看当前息率高低，更重视企业的派息可持续性、财务健康状况及估值合理性。','同步覆盖香港、美国、英国及A股四大市场，以统一标准进行跨市场比较，让投资者掌握全球高息机会。','每日自动更新数据，以量化评分模型对数百只股票进行排名，过滤杂讯，聚焦真正值得关注的机会。','每个交易日收市后自动重新评分，确保推介反映最新的估值及财务状况。'],scoreIntro:'每只股票以100分制进行综合评分，涵盖五个范畴：',th:['评分范畴','满分','主要考量'],rows:[['股息质量','30分','息率水平、派息稳定性及覆盖率'],['估值','25分','现价相对历史息率及市场的吸引程度'],['财务健康','25分','资产负债、现金流及偿债能力'],['增长','10分','股息增长趋势及盈利前景'],['技术走势','10分','RSI、52周位置等技术指标']],rth:['评级','分数','意义'],rmean:['各方面均表现优秀，值得重点关注','基本面良好，可纳入观察名单','有一定吸引力，但需留意风险'],ll:['强力买入','值得关注','观望'],unit:'只',rl:{'strong':'🟢🟢 强力买入','watch':'🟢 值得关注','hold':'⚖️ 观望'},picksNote:'以下为今日评分最高股票（≥50分），绿框为强力买入。',avoidNote:'以下为今日评分最低的股票（最多10只），红框代表高危股票，数据与上方推介股一致。',pros:'✅ 优点',cons:'⚠️ 缺点',score:'评分',yieldLbl:'股息率',discLabel:'免责声明',disc:'本网站所有内容仅供参考及教育用途，不构成任何投资建议或买卖邀请。投资涉及风险，过往表现不代表未来回报。读者应自行进行尽职审查，并在作出任何投资决定前咨询持牌财务顾问。',f2:'每个交易日更新',f3:'资料来源：Yahoo Finance · 仅供参考'},
+    'en':{heroTitle:'Global Dividend Stocks<br>Daily Analysis',heroSub:'Covering HK, US, UK and China A-shares with systematic scoring to identify quality dividend stocks.',heroTag:'Daily Update',stat1:'Stocks Tracked',stat2:'Qualified (≥60pts)',stat3:'Strong Buy',stat4:"Today's High",mktHK:'HK Stocks',mktUS:'US Stocks',mktUK:'UK Stocks',mktCN:'China A-Shares',cUS:'US Stocks',cHK:'HK Stocks',cUK:'UK Stocks',cCN:'China A-Shares',top10:'Top 10 Score Distribution',sec0:'Investment Philosophy',sec1:'Scoring System',sec2:'Market Overview',sec3:'Top Picks',sec4:'High-Risk List',ah:['Philosophy','4 Markets','Systematic Screening','Daily Update'],ap:['We focus not just on yield but on dividend sustainability, financial health and valuation to find quality long-term holdings.','Covering HK, US, UK and China A-shares with a unified scoring framework for cross-market comparison.','Daily automated updates with quantitative scoring to rank hundreds of stocks and surface the best opportunities.','Re-scored every trading day after market close to reflect the latest valuations and conditions.'],scoreIntro:'Each stock is scored on a 100-point scale across five dimensions:',th:['Category','Max','Key Criteria'],rows:[['Dividend Quality','30pts','Yield level, payout stability & coverage'],['Valuation','25pts','Current price vs historical yield & attractiveness'],['Financial Health','25pts','Balance sheet, cash flow & debt coverage'],['Growth','10pts','Dividend growth trend & earnings outlook'],['Technical','10pts','RSI, 52-week position & other indicators']],rth:['Rating','Score','Meaning'],rmean:['Excellent across all dimensions, high priority','Good fundamentals, worth monitoring','Some appeal, monitor risks'],ll:['Strong Buy','Watch','Hold'],unit:'stk',rl:{'strong':'🟢🟢 Strong Buy','watch':'🟢 Watch','hold':'⚖️ Hold'},picksNote:'Top-rated stocks today (≥50pts). Green border = Strong Buy.',avoidNote:'Lowest-scoring stocks today (up to 10). Red border = high risk. Same data fields as the picks above.',pros:'✅ Pro',cons:'⚠️ Con',score:'Score',yieldLbl:'Yield',discLabel:'Disclaimer',disc:'All content is for reference and educational purposes only. Not investment advice. Investing involves risk. Past performance does not guarantee future results.',f2:'Updated every trading day',f3:'Data: Yahoo Finance · For reference only'},
+  };
+  var t=T[lang]||T['zh-hk'];
+  document.title=(lang==='en'?'Global Dividend Analysis':'全球高息股分析')+' | HiDH Dividend Analyst';
+  document.querySelectorAll('a[data-zh-hk]').forEach(function(el){el.textContent=el.getAttribute('data-'+lang)||el.getAttribute('data-zh-hk');});
+  var h1=document.querySelector('.hero h1');if(h1)h1.innerHTML=t.heroTitle;
+  var hs=document.querySelector('.hero-sub');if(hs)hs.textContent=t.heroSub;
+  var ht=document.querySelector('.hero-tag');if(ht){var p=ht.textContent.split('·');ht.textContent=t.heroTag+' · '+(p[1]||'').trim();}
+  var sl=document.querySelectorAll('.stat-label');[t.stat1,t.stat2,t.stat3,t.stat4].forEach(function(s,i){if(sl[i])sl[i].textContent=s;});
+  var hb=document.querySelectorAll('.hero-badges .badge');[t.mktHK,t.mktUS,t.mktUK,t.mktCN].forEach(function(s,i){if(hb[i])hb[i].textContent=s;});
+  var ct=document.querySelectorAll('.chart-title');[t.cUS,t.cHK,t.cUK,t.cCN,t.top10].forEach(function(s,i){if(ct[i])ct[i].firstChild.textContent=s;});
+  var st=document.querySelectorAll('.section-title');
+  if(st[0])st[0].childNodes[0].textContent=t.sec0;
+  if(st[1])st[1].childNodes[0].textContent=t.sec1;
+  if(st[2]){var d2=st[2].textContent.match(/[0-9]{4}-[0-9]{2}-[0-9]{2}/);st[2].childNodes[0].textContent=t.sec2+(d2?' — '+d2[0]:'');}
+  if(st[3]){var d3=st[3].textContent.match(/[0-9]{4}-[0-9]{2}-[0-9]{2}/);st[3].childNodes[0].textContent=t.sec3+(d3?' — '+d3[0]:'');}
+  if(st[4]){var d4=st[4].textContent.match(/[0-9]{4}-[0-9]{2}-[0-9]{2}/);st[4].childNodes[0].textContent=t.sec4+(d4?' — '+d4[0]:'');}
+  var ag=document.getElementById('about-grid');
+  if(ag){ag.querySelectorAll('h3').forEach(function(el,i){if(t.ah[i])el.textContent=t.ah[i];});ag.querySelectorAll('p').forEach(function(el,i){if(t.ap[i])el.textContent=t.ap[i];});}
+  var si=document.getElementById('score-intro');if(si)si.textContent=t.scoreIntro;
+  var tbls=document.querySelectorAll('.score-table');
+  if(tbls[0]){tbls[0].querySelectorAll('th').forEach(function(el,i){if(t.th[i])el.textContent=t.th[i];});tbls[0].querySelectorAll('tbody tr').forEach(function(tr,i){if(t.rows[i]){var tds=tr.querySelectorAll('td');tds.forEach(function(td,j){if(t.rows[i][j])td.textContent=t.rows[i][j];});}});}
+  if(tbls[1]){tbls[1].querySelectorAll('th').forEach(function(el,i){if(t.rth[i])el.textContent=t.rth[i];});tbls[1].querySelectorAll('tbody tr').forEach(function(tr,i){var tds=tr.querySelectorAll('td');if(tds[1])tds[1].textContent=tds[1].getAttribute('data-'+lang)||tds[1].getAttribute('data-zh-hk')||tds[1].textContent;if(tds[2]&&t.rmean[i])tds[2].textContent=t.rmean[i];});}
+  document.querySelectorAll('[data-rating]').forEach(function(el){var r=el.getAttribute('data-rating');if(t.rl[r])el.textContent=t.rl[r];});
+  document.querySelectorAll('.legend span[data-zh-hk]').forEach(function(el){var k=el.getAttribute('data-zh-hk'),strong=el.querySelector('strong'),ldEl=el.querySelector('.ld'),ld=ldEl?ldEl.outerHTML:'',idx=['強力買入','值得關注','觀望'].indexOf(k);if(idx>=0)el.innerHTML=ld+t.ll[idx]+(strong?' '+strong.outerHTML:'');});
+  document.querySelectorAll('.chart-sub[data-zh-hk]').forEach(function(el){el.textContent=el.getAttribute('data-'+lang)||el.getAttribute('data-zh-hk');});
+  document.querySelectorAll('svg[id]').forEach(function(svg){var texts=svg.querySelectorAll('text'),last=texts[texts.length-1];if(last){var m=last.textContent.match(/^([0-9]+)/);if(m)last.textContent=m[1]+t.unit;}});
+  var pn=document.getElementById('picks-note');if(pn)pn.textContent=t.picksNote;
+  var an=document.getElementById('avoid-note');if(an)an.textContent=t.avoidNote;
+  document.querySelectorAll('.pros-label').forEach(function(el){el.textContent=t.pros;});
+  document.querySelectorAll('.cons-label').forEach(function(el){el.textContent=t.cons;});
+  document.querySelectorAll('.score-row span:first-child').forEach(function(el){el.textContent=t.score;});
+  document.querySelectorAll('.pick-stat-label[data-zh-hk], .pick-track-label[data-zh-hk], .r-avoid[data-zh-hk], .risk-label[data-zh-hk], .risk-text[data-zh-hk]').forEach(function(el){el.textContent=el.getAttribute('data-'+lang)||el.getAttribute('data-zh-hk');});
+  document.querySelectorAll('.pros-text').forEach(function(el){el.textContent=el.getAttribute('data-'+lang)||el.getAttribute('data-zh-hk');});
+  document.querySelectorAll('.cons-text').forEach(function(el){el.textContent=el.getAttribute('data-'+lang)||el.getAttribute('data-zh-hk');});
+  var fi=document.querySelectorAll('.footer-inner span');if(fi[2])fi[2].textContent='© 2026 prosynchk.com · '+t.f2+' · '+t.f3;
+  var disc=document.querySelector('.disclaimer-inner');if(disc)disc.innerHTML='<strong>'+t.discLabel+'：</strong>'+t.disc;
+  var ch={'zh-hk':['合作機會','歡迎合作','如您有興趣進行廣告合作、內容授權、數據合作或其他商業合作，歡迎透過以下方式聯絡我們。'],'zh-cn':['合作机会','欢迎合作','如您有兴趣进行广告合作、内容授权、数据合作或其他商业合作，欢迎通过以下方式联系我们。'],'en':['Partnership','Work With Us','Interested in advertising, content licensing, data collaboration or other business opportunities? Get in touch.']};
+  var cl=ch[lang]||ch['zh-hk'];
+  var chead=document.getElementById('contact-heading');if(chead)chead.childNodes[0].textContent=cl[0];
+  var ctitle=document.getElementById('contact-title');if(ctitle)ctitle.textContent=cl[1];
+  var cbody=document.getElementById('contact-body');if(cbody)cbody.textContent=cl[2];
+  document.querySelectorAll('.div-spark-desc-lbl[data-zh-hk]').forEach(function(el){el.textContent=el.getAttribute('data-'+lang)||el.getAttribute('data-zh-hk');});
+  document.querySelectorAll('.div-spark-leg[data-zh-hk]').forEach(function(el){var line=el.querySelector('.div-spark-leg-line');var lbl=el.getAttribute('data-'+lang)||el.getAttribute('data-zh-hk');el.innerHTML=(line?line.outerHTML:'')+lbl;});
+}
+</script></body>
+</html>
