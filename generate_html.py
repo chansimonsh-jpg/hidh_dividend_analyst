@@ -2015,7 +2015,10 @@ a{{color:#1D9E75;text-decoration:none}}a:hover{{text-decoration:underline}}
 <div class="footer">
   <div class="footer-inner">
     <span class="footer-logo">HiDH Dividend Analyst</span>
-    <span style="font-size:11px">{nav_others} · <a href="/" class="footer-nav-home" style="color:#aaa">主頁</a> · <a href="/about.html" class="footer-nav-about" style="color:#aaa">關於</a></span>
+    <span>
+      <a href="/about.html" style="color:#aaa;text-decoration:none" class="footer-nav-about">關於我們</a> ·
+      <a href="/privacy.html" style="color:#aaa;text-decoration:none">私隱政策</a>
+    </span>
     <span>© {datetime.date.today().year} prosynchk.com · 僅供參考</span>
   </div>
 </div>

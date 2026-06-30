@@ -108,9 +108,11 @@ class TestMarketPageBuilder:
         assert 'class="no-picks"' in self.src
         assert 'class="no-avoid"' in self.src
 
-    def test_footer_link_classes(self):
-        assert 'class="footer-nav-home"'  in self.src
-        assert 'class="footer-nav-about"' in self.src
+    def test_footer_has_about_and_privacy(self):
+        """Market page footer must have About and Privacy links (matching main page)."""
+        tmpl = self._get_builder_template()
+        assert '/about.html'   in tmpl, "footer missing about.html link"
+        assert '/privacy.html' in tmpl, "footer missing privacy.html link"
 
     def test_mkt_i18n_ext_constant_defined(self):
         """MKT_I18N_EXT must be a module-level constant (not inside f-string)."""
