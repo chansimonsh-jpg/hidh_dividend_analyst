@@ -1879,8 +1879,10 @@ MKT_I18N_EXT = (
     "var _o=typeof setLang!=='undefined'?setLang:function(){};"
     "window.setLang=function(lang){_o(lang);"
     "var t=MKT_I18N[lang]||MKT_I18N['zh-hk'];"
-    "var wt=document.getElementById('watch-title');if(wt&&wt.childNodes[0])wt.childNodes[0].textContent=t.watchTitle;"
-    "var at=document.getElementById('avoid-title');if(at&&at.childNodes[0])at.childNodes[0].textContent=t.avoidTitle;"
+    "var wt=document.getElementById('watch-title');"
+    "if(wt&&wt.childNodes[0]){var wd=wt.getAttribute('data-date');wt.childNodes[0].textContent=t.watchTitle+(wd?' — '+wd:'');}"
+    "var at=document.getElementById('avoid-title');"
+    "if(at&&at.childNodes[0]){var ad=at.getAttribute('data-date');at.childNodes[0].textContent=t.avoidTitle+(ad?' — '+ad:'');}"
     "document.querySelectorAll('.stat-strong').forEach(function(el){el.textContent=t.strong;});"
     "document.querySelectorAll('.stat-watch').forEach(function(el){el.textContent=t.watch;});"
     "document.querySelectorAll('.stat-unit').forEach(function(el){el.textContent=t.tracked;});"
@@ -2010,11 +2012,11 @@ a{{color:#1D9E75;text-decoration:none}}a:hover{{text-decoration:underline}}
   </div>
 </div>
 <div class="section">
-  <div class="section-title" id="watch-title">精選推介（≥60分）— {report_date}</div>
+  <div class="section-title" id="watch-title" data-date="{report_date}">精選推介（≥60分）— {report_date}</div>
   <div class="picks-grid" id="picksGrid"></div>
 </div>
 <div class="section" style="padding-top:0">
-  <div class="section-title" id="avoid-title">高危名單（&lt;30分）</div>
+  <div class="section-title" id="avoid-title" data-date="{report_date}">高危名單（&lt;30分）— {report_date}</div>
   <div class="picks-grid" id="avoidGrid"></div>
 </div>
 <div class="disclaimer">
