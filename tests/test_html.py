@@ -133,6 +133,62 @@ class TestMarketPageBuilder:
         """renderSparkline must be included in the market page template."""
         assert "renderSparkline" in self.src
 
+    # ── Market page structure completeness ────────────────────────────────
+
+    def _get_builder_template(self):
+        """Return the full _build_market_html function body."""
+        idx = self.src.find("def _build_market_html(")
+        assert idx != -1, "_build_market_html not found"
+        return self.src[idx:idx + 20000]
+
+    def test_market_page_has_header(self):
+        """Market pages must have a proper header."""
+        tmpl = self._get_builder_template()
+        assert 'class="header"'       in tmpl
+        assert 'class="header-inner"' in tmpl
+        assert 'class="logo"'         in tmpl
+
+    def test_market_page_has_footer(self):
+        """Market pages must have a dark footer."""
+        tmpl = self._get_builder_template()
+        assert 'class="footer"'       in tmpl
+        assert 'class="footer-inner"' in tmpl
+
+    def test_market_page_has_lang_switcher(self):
+        """Market pages must have the 繁體/简体/English language buttons."""
+        tmpl = self._get_builder_template()
+        assert 'btn-zh-hk' in tmpl
+        assert 'btn-zh-cn' in tmpl
+        assert 'btn-en'    in tmpl
+        assert 'setLang'   in tmpl
+
+    def test_market_page_nav_back_to_index(self):
+        """Market pages must have a nav link back to the main page (/)."""
+        tmpl = self._get_builder_template()
+        assert 'href="/"' in tmpl     # the Home link in nav
+        assert '主頁'     in tmpl
+
+    def test_market_page_nav_links_to_other_markets(self):
+        """Market pages must link to all 4 market pages (including itself)."""
+        tmpl = self._get_builder_template()
+        for mkt in ["us", "hk", "uk", "cn"]:
+            assert f"/{mkt}_market_info.html" in tmpl, \
+                f"No nav link to /{mkt}_market_info.html in market page template"
+
+    def test_index_to_market_page_links_exist(self):
+        """Main page must have visible <a> links to all 4 market pages.
+        These are the explicit button row below the donut charts.
+        """
+        for mkt in ["us", "hk", "uk", "cn"]:
+            assert f'<a href="/{mkt}_market_info.html"' in self.src, \
+                f"No <a> link to /{mkt}_market_info.html found in main page template"
+
+    def test_chart_cards_have_onclick(self):
+        """Donut chart cards must also have onclick for click-anywhere convenience."""
+        for mkt in ["us", "hk", "uk", "cn"]:
+            assert f"onclick=\"location.href='/{mkt}_market_info.html'\"" in self.src, \
+                f"onclick missing from {mkt} chart card"
+
 
 # ══════════════════════════════════════════════════════════════════════════
 # 2. about.html — header, nav, persistence

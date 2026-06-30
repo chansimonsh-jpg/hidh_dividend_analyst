@@ -1491,6 +1491,12 @@ svg text{{font-family:system-ui,sans-serif}}
       <div class="chart-sub" data-zh-hk="{stats['CN']['total']}隻 · 均分 {stats['CN']['avg']} · 最高 {stats['CN']['max']}" data-zh-cn="{stats['CN']['total']}只 · 均分 {stats['CN']['avg']} · 最高 {stats['CN']['max']}" data-en="{stats['CN']['total']} stks · Avg {stats['CN']['avg']} · High {stats['CN']['max']}">{stats['CN']['total']}隻 · 均分 {stats['CN']['avg']} · 最高 {stats['CN']['max']}</div>
     </div>
   </div>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:12px">
+    <a href="/us_market_info.html" style="display:flex;align-items:center;justify-content:center;gap:6px;background:#E6F1FB;color:#185FA5;border:1px solid #b8d4f0;border-radius:8px;padding:10px 8px;font-size:13px;font-weight:600;text-decoration:none" data-zh-hk="美股精選" data-zh-cn="美股精选" data-en="US Picks">🇺🇸 美股 US →</a>
+    <a href="/hk_market_info.html" style="display:flex;align-items:center;justify-content:center;gap:6px;background:#E1F5EE;color:#0F6E56;border:1px solid #a8dece;border-radius:8px;padding:10px 8px;font-size:13px;font-weight:600;text-decoration:none" data-zh-hk="港股精選" data-zh-cn="港股精选" data-en="HK Picks">🇭🇰 港股 HK →</a>
+    <a href="/uk_market_info.html" style="display:flex;align-items:center;justify-content:center;gap:6px;background:#FAEEDA;color:#854F0B;border:1px solid #f0d4a0;border-radius:8px;padding:10px 8px;font-size:13px;font-weight:600;text-decoration:none" data-zh-hk="英股精選" data-zh-cn="英股精选" data-en="UK Picks">🇬🇧 英股 UK →</a>
+    <a href="/cn_market_info.html" style="display:flex;align-items:center;justify-content:center;gap:6px;background:#FDECEA;color:#B71C1C;border:1px solid #f0beba;border-radius:8px;padding:10px 8px;font-size:13px;font-weight:600;text-decoration:none" data-zh-hk="A股精選" data-zh-cn="A股精选" data-en="CN Picks">🇨🇳 A股 CN →</a>
+  </div>
   <div class="chart-card">
     <div class="chart-title">前{TOP_N}名評分分佈</div>
     <div class="legend">
