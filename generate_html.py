@@ -1076,7 +1076,7 @@ function setLang(lang) {
   document.querySelectorAll('.pros-label').forEach(function(el){el.textContent=t.pros;});
   document.querySelectorAll('.cons-label').forEach(function(el){el.textContent=t.cons;});
   document.querySelectorAll('.score-row span:first-child').forEach(function(el){el.textContent=t.score;});
-  document.querySelectorAll('.pick-stat-label[data-zh-hk], .pick-track-label[data-zh-hk], .r-avoid[data-zh-hk], .risk-label[data-zh-hk], .risk-text[data-zh-hk]').forEach(function(el){el.textContent=el.getAttribute('data-'+lang)||el.getAttribute('data-zh-hk');});
+  document.querySelectorAll('.pick-stat-label[data-zh-hk], .pick-track-label[data-zh-hk], .r-avoid[data-zh-hk], .risk-label[data-zh-hk], .risk-text[data-zh-hk], .chart-detail-hint[data-zh-hk]').forEach(function(el){el.textContent=el.getAttribute('data-'+lang)||el.getAttribute('data-zh-hk');});
   document.querySelectorAll('.pros-text').forEach(function(el){el.textContent=el.getAttribute('data-'+lang)||el.getAttribute('data-zh-hk');});
   document.querySelectorAll('.cons-text').forEach(function(el){el.textContent=el.getAttribute('data-'+lang)||el.getAttribute('data-zh-hk');});
   var fi=document.querySelectorAll('.footer-inner span');if(fi[2])fi[2].textContent='© 2026 prosynchk.com · '+t.f2+' · '+t.f3;
@@ -1452,7 +1452,7 @@ svg text{{font-family:system-ui,sans-serif}}
   <div class="top-row">
     <a href="/us_market_info.html" style="display:block;text-decoration:none;color:inherit" title="美股精選推介">
     <div class="chart-card clickable">
-      <div class="chart-title"><span data-zh-hk="美股 US" data-zh-cn="美股 US" data-en="US Stocks">美股 US</span> <span style="float:right;font-size:11px;color:#1D9E75">詳情 →</span></div>
+      <div class="chart-title"><span data-zh-hk="美股 US" data-zh-cn="美股 US" data-en="US Stocks">美股 US</span> <span class="chart-detail-hint" data-zh-hk="詳情 →" data-zh-cn="详情 →" data-en="Details →" style="float:right;font-size:11px;color:#1D9E75">詳情 →</span></div>
       <div class="legend">
         <span data-zh-hk="強力買入"><span class="ld" style="background:#1D9E75"></span>強力買入 <strong>{stats['US']['strong']}</strong></span>
         <span data-zh-hk="值得關注"><span class="ld" style="background:#378ADD"></span>值得關注 <strong>{stats['US']['watch']}</strong></span>
@@ -1464,7 +1464,7 @@ svg text{{font-family:system-ui,sans-serif}}
     </a>
     <a href="/hk_market_info.html" style="display:block;text-decoration:none;color:inherit" title="港股精選推介">
     <div class="chart-card clickable">
-      <div class="chart-title"><span data-zh-hk="港股 HK" data-zh-cn="港股 HK" data-en="HK Stocks">港股 HK</span> <span style="float:right;font-size:11px;color:#1D9E75">詳情 →</span></div>
+      <div class="chart-title"><span data-zh-hk="港股 HK" data-zh-cn="港股 HK" data-en="HK Stocks">港股 HK</span> <span class="chart-detail-hint" data-zh-hk="詳情 →" data-zh-cn="详情 →" data-en="Details →" style="float:right;font-size:11px;color:#1D9E75">詳情 →</span></div>
       <div class="legend">
         <span data-zh-hk="強力買入"><span class="ld" style="background:#1D9E75"></span>強力買入 <strong>{stats['HK']['strong']}</strong></span>
         <span data-zh-hk="值得關注"><span class="ld" style="background:#378ADD"></span>值得關注 <strong>{stats['HK']['watch']}</strong></span>
@@ -1476,7 +1476,7 @@ svg text{{font-family:system-ui,sans-serif}}
     </a>
     <a href="/uk_market_info.html" style="display:block;text-decoration:none;color:inherit" title="英股精選推介">
     <div class="chart-card clickable">
-      <div class="chart-title"><span data-zh-hk="英股 UK" data-zh-cn="英股 UK" data-en="UK Stocks">英股 UK</span> <span style="float:right;font-size:11px;color:#1D9E75">詳情 →</span></div>
+      <div class="chart-title"><span data-zh-hk="英股 UK" data-zh-cn="英股 UK" data-en="UK Stocks">英股 UK</span> <span class="chart-detail-hint" data-zh-hk="詳情 →" data-zh-cn="详情 →" data-en="Details →" style="float:right;font-size:11px;color:#1D9E75">詳情 →</span></div>
       <div class="legend">
         <span data-zh-hk="強力買入"><span class="ld" style="background:#1D9E75"></span>強力買入 <strong>{stats['UK']['strong']}</strong></span>
         <span data-zh-hk="值得關注"><span class="ld" style="background:#378ADD"></span>值得關注 <strong>{stats['UK']['watch']}</strong></span>
@@ -1488,7 +1488,7 @@ svg text{{font-family:system-ui,sans-serif}}
     </a>
     <a href="/cn_market_info.html" style="display:block;text-decoration:none;color:inherit" title="A股精選推介">
     <div class="chart-card clickable">
-      <div class="chart-title"><span data-zh-hk="A股 CN" data-zh-cn="A股 CN" data-en="China A-Shares">A股 CN</span> <span style="float:right;font-size:11px;color:#1D9E75">詳情 →</span></div>
+      <div class="chart-title"><span data-zh-hk="A股 CN" data-zh-cn="A股 CN" data-en="China A-Shares">A股 CN</span> <span class="chart-detail-hint" data-zh-hk="詳情 →" data-zh-cn="详情 →" data-en="Details →" style="float:right;font-size:11px;color:#1D9E75">詳情 →</span></div>
       <div class="legend">
         <span data-zh-hk="強力買入"><span class="ld" style="background:#1D9E75"></span>強力買入 <strong>{stats['CN']['strong']}</strong></span>
         <span data-zh-hk="值得關注"><span class="ld" style="background:#378ADD"></span>值得關注 <strong>{stats['CN']['watch']}</strong></span>
@@ -1856,21 +1856,21 @@ MKT_I18N_EXT = (
     "(function(){"
     "var MKT_I18N={"
     "'zh-hk':{watchTitle:'精選推介（≥60分）',avoidTitle:'高危名單（<30分）',"
-    "strong:'強力買入',watch:'値得關注',tracked:'隻',"
+    "strong:'強力買入',watch:'値得關注',tracked:'隻',trackedLbl:'追蹤',"
     "noWatch:'暫無符合條件的推介股票（≥60分）',"
     "noAvoid:'暫無高危股票（<30分）',"
     "home:'主頁',about:'關於',"
     "mktLabel:'── 市場 ──',"
     "optUS:'美股 US',optHK:'港股 HK',optUK:'英股 UK',optCN:'A股 CN'},"
     "'zh-cn':{watchTitle:'精选推介（≥60分）',avoidTitle:'高危名单（<30分）',"
-    "strong:'强力买入',watch:'値得关注',tracked:'只',"
+    "strong:'强力买入',watch:'値得关注',tracked:'只',trackedLbl:'追踪',"
     "noWatch:'暂无符合条件的推介股票（≥60分）',"
     "noAvoid:'暂无高危股票（<30分）',"
     "home:'主页',about:'关于',"
     "mktLabel:'── 市场 ──',"
     "optUS:'美股 US',optHK:'港股 HK',optUK:'英股 UK',optCN:'A股 CN'},"
     "'en':{watchTitle:'Top Picks (≥60pts)',avoidTitle:'High-Risk List (<30pts)',"
-    "strong:'Strong Buy',watch:'Watch',tracked:'stocks',"
+    "strong:'Strong Buy',watch:'Watch',tracked:'stocks',trackedLbl:'Tracked',"
     "noWatch:'No qualifying picks (≥60pts)',"
     "noAvoid:'No high-risk stocks (<30pts)',"
     "home:'Home',about:'About',"
@@ -1884,6 +1884,8 @@ MKT_I18N_EXT = (
     "document.querySelectorAll('.stat-strong').forEach(function(el){el.textContent=t.strong;});"
     "document.querySelectorAll('.stat-watch').forEach(function(el){el.textContent=t.watch;});"
     "document.querySelectorAll('.stat-unit').forEach(function(el){el.textContent=t.tracked;});"
+    "document.querySelectorAll('.stat-tracked').forEach(function(el){el.textContent=t.trackedLbl;});"
+    "document.querySelectorAll('.stat-mkt-name[data-zh-hk]').forEach(function(el){el.textContent=el.getAttribute('data-'+lang)||el.getAttribute('data-zh-hk');});"
     "document.querySelectorAll('.no-picks').forEach(function(el){el.textContent=t.noWatch;});"
     "document.querySelectorAll('.no-avoid').forEach(function(el){el.textContent=t.noAvoid;});"
     "document.querySelectorAll('.footer-nav-home').forEach(function(el){el.textContent=t.home;});"
@@ -1998,10 +2000,10 @@ a{{color:#1D9E75;text-decoration:none}}a:hover{{text-decoration:underline}}
 </div>
 <div class="stat-strip">
   <div class="stat-strip-inner">
-    <span><strong>{lbl_hk}</strong> · {report_date}</span>
+    <span><strong class="stat-mkt-name" data-zh-hk="{lbl_hk}" data-zh-cn="{lbl_cn}" data-en="{lbl_en}">{lbl_hk}</strong> · {report_date}</span>
     <span>\U0001f7e2\U0001f7e2 <span class="stat-strong">強力買入</span> <span class="stat-num">{s.get('strong',0)}</span></span>
     <span>\U0001f7e2 <span class="stat-watch">值得關注</span> <span class="stat-num">{s.get('watch',0)}</span></span>
-    <span>追蹤 <span class="stat-num">{s.get('total',0)}</span> <span class="stat-unit">隻</span></span>
+    <span><span class="stat-tracked">追蹤</span> <span class="stat-num">{s.get('total',0)}</span> <span class="stat-unit">隻</span></span>
   </div>
 </div>
 <div class="section">

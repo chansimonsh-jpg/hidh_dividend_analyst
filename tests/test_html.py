@@ -192,6 +192,28 @@ class TestMarketPageBuilder:
         for lang_key in ["optUS", "optHK", "optUK", "optCN"]:
             assert lang_key in src, f"{lang_key} translation missing from MKT_I18N_EXT"
 
+    def test_stat_strip_tracked_label_translates(self):
+        """'追蹤' label must be in a .stat-tracked span and translated."""
+        src = self.src
+        assert 'class="stat-tracked"' in src,      ".stat-tracked span missing"
+        assert "trackedLbl:'追蹤'"    in src,      "zh-hk trackedLbl missing"
+        assert "trackedLbl:'追踪'"    in src,      "zh-cn trackedLbl missing"
+        assert "trackedLbl:'Tracked'" in src,      "en trackedLbl missing"
+
+    def test_stat_strip_market_name_translates(self):
+        """Market name in stat strip must have data-* attrs for translation."""
+        src = self.src
+        assert 'class="stat-mkt-name"' in src,     ".stat-mkt-name class missing"
+        assert 'data-zh-hk="{lbl_hk}"' in src,    "data-zh-hk on market name missing"
+        assert 'data-en="{lbl_en}"'    in src,     "data-en on market name missing"
+
+    def test_chart_detail_hint_translates(self):
+        """'詳情 →' hint in main page chart cards must translate."""
+        src = self.src
+        assert 'class="chart-detail-hint"'       in src, ".chart-detail-hint class missing"
+        assert 'data-en="Details →"'             in src, "en translation for Details → missing"
+        assert 'chart-detail-hint[data-zh-hk]'   in src, "SETLANG_JS selector for chart-detail-hint missing"
+
     def test_index_chart_cards_are_links(self):
         """The 4 donut chart cards must be wrapped in <a> tags pointing to market pages.
         This is a true link (keyboard nav, right-click, mobile-friendly).
