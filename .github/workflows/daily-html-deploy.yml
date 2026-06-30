@@ -75,6 +75,10 @@ jobs:
         run: |
           mkdir -p _pages_site
           cp "${{ steps.find_html.outputs.html_dir }}/index.html" _pages_site/index.html
+          for mkt in us hk uk cn; do
+            src="${{ steps.find_html.outputs.html_dir }}/${mkt}_market_info.html"
+            [ -f "$src" ] && cp "$src" "_pages_site/${mkt}_market_info.html"
+          done
           for f in CNAME about.html privacy.html ads.txt sitemap.xml robots.txt icon.png; do
             [ -f "$f" ] && cp "$f" _pages_site/
           done

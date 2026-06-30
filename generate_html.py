@@ -1224,6 +1224,32 @@ def generate_html(stocks, stats, report_date, div_hist=None):
         **get_div_data(s),
     } for s in avoided])
 
+    # ── Per-market pages (us/hk/uk/cn.html) ──────────────────────────────────
+    _out_dir = os.path.dirname(OUTPUT_FILE)
+    for _mkt in ["US", "HK", "UK", "CN"]:
+        _ms = [s for s in stocks if s["mkt"] == _mkt]
+        _watch = [s for s in sorted(_ms, key=lambda x: -x["score"]) if s["score"] >= 60][:5]
+        _avoid = [s for s in sorted(_ms, key=lambda x:  x["score"]) if s["score"] <  30][:5]
+        _wjs = json.dumps([{
+            "ticker": s["ticker"], "name": s["name"], "mkt": s["mkt"],
+            "score": int(s["score"]), "rating": get_rating_key(s["score"]),
+            "yield_": fmt(s["yield"]), "pe": fmt(s["pe"]), "pb": fmt(s["pb"], 2),
+            **get_pros_cons(s), **get_track_record(s, "pick"), **get_div_data(s),
+        } for s in _watch])
+        _ajs = json.dumps([{
+            "ticker": s["ticker"], "name": s["name"], "mkt": s["mkt"],
+            "score": int(s["score"]),
+            "yield_": fmt(s["yield"]), "pe": fmt(s["pe"]), "pb": fmt(s["pb"], 2),
+            **get_risk_reasons(s), **get_track_record(s, "avoid"), **get_div_data(s),
+        } for s in _avoid])
+        _mhtml = _build_market_html(_mkt, _wjs, _ajs, report_date, stats)
+        _mhtml = _mhtml.replace("</body>", f"<script>{SETLANG_JS}\n{MKT_I18N_EXT}</script></body>")
+        _mp = os.path.join(_out_dir, f"{_mkt.lower()}_market_info.html")
+        os.makedirs(_out_dir, exist_ok=True)
+        with open(_mp, "w", encoding="utf-8") as _f:
+            _f.write(_mhtml)
+        print(f"  ✅ {_mkt}: {_mp} (推介{len(_watch)}，高危{len(_avoid)})")
+
     html = f"""<!DOCTYPE html>
 <html lang="zh-HK">
 <head>
@@ -1812,6 +1838,301 @@ document.getElementById('avoidGrid').innerHTML=AVOID.map(p=>`
     html = html.replace("</body>", "<script>" + SETLANG_JS + "</script></body>")
     return html
 
+
+# Market page i18n extension string (regular Python string, not f-string)
+MKT_I18N_EXT = (
+    "(function(){"
+    "var MKT_I18N={'zh-hk':{watchTitle:'精選推介（≥60分）',avoidTitle:'高危名單（<30分）',"
+    "strong:'強力買入',watch:'值得關注',tracked:'隻',"
+    "noWatch:'暫無符合條件的推介股票（≥60分）',noAvoid:'暫無高危股票（<30分）',home:'主頁',about:'關於'},"
+    "'zh-cn':{watchTitle:'精選推介（≥60分）',avoidTitle:'高危名單（<30分）',"
+    "strong:'强力买入',watch:'值得关注',tracked:'只',"
+    "noWatch:'暂无符合条件的推介股票（≥60分）',noAvoid:'暂无高危股票（<30分）',home:'主页',about:'关于'},"
+    "'en':{watchTitle:'Top Picks (≥60pts)',avoidTitle:'High-Risk List (<30pts)',"
+    "strong:'Strong Buy',watch:'Watch',tracked:'stocks',"
+    "noWatch:'No qualifying picks (≥60pts)',noAvoid:'No high-risk stocks (<30pts)',"
+    "home:'Home',about:'About'}};"
+    "var _o=typeof setLang!=='undefined'?setLang:function(){};"
+    "window.setLang=function(lang){_o(lang);"
+    "var t=MKT_I18N[lang]||MKT_I18N['zh-hk'];"
+    "var wt=document.getElementById('watch-title');if(wt&&wt.childNodes[0])wt.childNodes[0].textContent=t.watchTitle;"
+    "var at=document.getElementById('avoid-title');if(at&&at.childNodes[0])at.childNodes[0].textContent=t.avoidTitle;"
+    "document.querySelectorAll('.stat-strong').forEach(function(el){el.textContent=t.strong;});"
+    "document.querySelectorAll('.stat-watch').forEach(function(el){el.textContent=t.watch;});"
+    "document.querySelectorAll('.stat-unit').forEach(function(el){el.textContent=t.tracked;});"
+    "document.querySelectorAll('.no-picks').forEach(function(el){el.textContent=t.noWatch;});"
+    "document.querySelectorAll('.no-avoid').forEach(function(el){el.textContent=t.noAvoid;});"
+    "document.querySelectorAll('.footer-nav-home').forEach(function(el){el.textContent=t.home;});"
+    "document.querySelectorAll('.footer-nav-about').forEach(function(el){el.textContent=t.about;});};"
+    "try{var l=localStorage.getItem('hidh_lang');if(l&&l!=='zh-hk')window.setLang(l);}catch(e){}})()"
+)
+
+
+# ── Per-market page builder ─────────────────────────────────────────────────
+_MKT_LABEL = {"US":("美股","US Stocks","美股"), "HK":("港股","HK Stocks","港股"),
+               "UK":("英股","UK Stocks","英股"), "CN":("A股","China A-Shares","A股")}
+
+def _build_market_html(mkt, picks_js, avoid_js, report_date, stats):
+    lbl_hk, lbl_en, lbl_cn = _MKT_LABEL[mkt]
+    s = stats.get(mkt, {})
+    nav_others = " · ".join(
+        f'<a href="{m.lower()}_market_info.html" style="color:#aaa;text-decoration:none">{_MKT_LABEL[m][0]}</a>'
+        for m in ["US","HK","UK","CN"] if m != mkt
+    )
+    active = {m: ("active" if m == mkt else "") for m in ["US","HK","UK","CN"]}
+    return f"""<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{lbl_hk} 精選 | HiDH Dividend Analyst</title>
+<link rel="icon" type="image/png" href="/icon.png">
+<style>
+*{{box-sizing:border-box;margin:0;padding:0}}
+body{{font-family:system-ui,-apple-system,sans-serif;background:#f7f7f5;color:#333;line-height:1.7}}
+a{{color:#1D9E75;text-decoration:none}}a:hover{{text-decoration:underline}}
+.header{{background:#fff;border-bottom:1px solid #e5e5e5;padding:0 1.5rem}}
+.header-inner{{max-width:960px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:60px}}
+.logo{{font-size:18px;font-weight:600;color:#1D9E75}}.logo span{{color:#333}}
+.nav{{display:flex;gap:1.5rem;font-size:14px}}.nav a{{color:#555}}.nav a:hover{{color:#1D9E75;text-decoration:none}}
+.nav a.active{{color:#1D9E75;font-weight:600}}
+.section{{max-width:960px;margin:0 auto;padding:1.5rem 1.5rem}}
+.section-title{{font-size:13px;font-weight:600;color:#999;text-transform:uppercase;letter-spacing:.08em;margin-bottom:1.25rem;display:flex;align-items:center;gap:10px}}
+.section-title::after{{content:'';flex:1;height:1px;background:#e5e5e5}}
+.picks-grid{{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}}
+.pick-card{{background:#fff;border:1px solid #e5e5e5;border-radius:12px;padding:1rem}}
+.pick-card.top{{border-color:#1D9E75;border-width:2px}}
+.pick-card.avoid{{border-color:#f5c6c6}}
+.badge{{font-size:11px;padding:2px 7px;border-radius:20px;font-weight:500}}
+.badge-hk{{background:#E1F5EE;color:#0F6E56}}.badge-us{{background:#E6F1FB;color:#185FA5}}
+.badge-uk{{background:#FAEEDA;color:#854F0B}}.badge-cn{{background:#FDECEA;color:#B71C1C}}
+.r-strong{{font-size:11px;color:#0F6E56;font-weight:600}}.r-watch{{font-size:11px;color:#185FA5;font-weight:600}}
+.r-hold{{font-size:11px;color:#854F0B;font-weight:600}}.r-avoid{{font-size:11px;color:#B42318;font-weight:600}}
+.pick-name{{font-size:12px;color:#888;margin-bottom:.75rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}}
+.pick-stats{{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:.75rem}}
+.pick-stat{{background:#f7f7f5;border-radius:6px;padding:6px 8px}}
+.pick-stat-label{{font-size:10px;color:#999}}.pick-stat-val{{font-size:13px;font-weight:600;color:#222}}
+.pick-track{{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:.75rem 0;padding:.6rem 0;border-top:1px dashed #eee;border-bottom:1px dashed #eee}}
+.pick-track-item{{text-align:center}}
+.pick-track-label{{font-size:9px;color:#999;margin-bottom:2px}}
+.pick-track-val{{font-size:12px;font-weight:600;color:#222;white-space:nowrap}}
+.score-track{{height:4px;background:#f0f0f0;border-radius:2px;overflow:hidden;margin-top:.5rem}}
+.score-fill{{height:100%;border-radius:2px;background:#1D9E75}}
+.score-fill.avoid{{background:#B71C1C}}
+.score-row{{display:flex;justify-content:space-between;font-size:10px;color:#aaa;margin-top:3px}}
+.pros-cons{{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:8px;margin-bottom:6px}}
+.pros{{background:#F0FBF5;border-radius:6px;padding:6px 8px;font-size:11px;color:#0F6E56}}
+.cons{{background:#FEF3F2;border-radius:6px;padding:6px 8px;font-size:11px;color:#B42318}}
+.pros-label,.cons-label{{font-weight:600;margin-bottom:2px;font-size:10px}}
+.risk-box{{background:#FEF3F2;border-radius:6px;padding:8px 10px;font-size:11px;color:#B42318;margin-top:8px;margin-bottom:6px}}
+.risk-label{{font-weight:600;margin-bottom:3px;font-size:10px}}
+.div-spark{{margin-top:8px;margin-bottom:2px}}
+.div-spark-row{{display:flex;align-items:center;gap:6px;margin-bottom:4px}}
+.div-trend-badge{{font-size:10px;font-weight:600;padding:2px 7px;border-radius:3px;white-space:nowrap}}
+.div-trend-grow{{background:#E1F5EE;color:#0F6E56}}.div-trend-cut{{background:#FEF3F2;color:#B42318}}.div-trend-flat{{background:#FAEEDA;color:#854F0B}}
+.div-spark svg{{display:block;width:100%;overflow:visible}}
+.div-spark-legend{{display:flex;gap:10px;margin-bottom:4px;align-items:center}}
+.div-spark-leg{{display:flex;align-items:center;gap:4px;font-size:9px;color:#888}}
+.div-spark-leg-line{{width:12px;height:2px;border-radius:1px;display:inline-block}}
+.div-spark-desc{{display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-top:6px}}
+.div-spark-desc-box{{border-radius:4px;padding:4px 7px}}
+.div-spark-desc-lbl{{font-size:9px;font-weight:600;margin-bottom:1px}}
+.div-spark-desc-val{{font-size:10px}}
+.stat-strip{{background:#fff;border-bottom:1px solid #e5e5e5;padding:.75rem 1.5rem}}
+.stat-strip-inner{{max-width:960px;margin:0 auto;display:flex;flex-wrap:wrap;gap:1.5rem;font-size:13px;color:#555}}
+.stat-num{{font-weight:700;color:#222;margin-right:3px}}
+.footer{{background:#222;color:#aaa;padding:1.5rem;font-size:12px;margin-top:2rem}}
+.footer-inner{{max-width:960px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem}}
+.footer-logo{{color:#1D9E75;font-weight:600;font-size:14px}}
+@media(max-width:600px){{.picks-grid{{grid-template-columns:1fr}}}}
+</style>
+</head>
+<body>
+<div class="header">
+  <div class="header-inner">
+    <a href="/" class="logo">HiDH <span>Dividend Analyst</span></a>
+    <nav class="nav">
+      <a href="/" data-zh-hk="主頁" data-zh-cn="主页" data-en="Home">主頁</a>
+      <a href="/us_market_info.html" class="{active['US']}" data-zh-hk="美股" data-zh-cn="美股" data-en="US">美股</a>
+      <a href="/hk_market_info.html" class="{active['HK']}" data-zh-hk="港股" data-zh-cn="港股" data-en="HK">港股</a>
+      <a href="/uk_market_info.html" class="{active['UK']}" data-zh-hk="英股" data-zh-cn="英股" data-en="UK">英股</a>
+      <a href="/cn_market_info.html" class="{active['CN']}" data-zh-hk="A股" data-zh-cn="A股" data-en="CN">A股</a>
+    </nav>
+  </div>
+</div>
+<div style="display:flex;justify-content:flex-end;gap:6px;padding:.4rem 1.5rem;background:#fff;border-bottom:0.5px solid #e5e5e5">
+  <button id="btn-zh-hk" style="font-size:12px;padding:4px 12px;border-radius:20px;border:0.5px solid #1D9E75;background:#1D9E75;color:#fff;cursor:pointer" onclick="setLang('zh-hk')">繁體</button>
+  <button id="btn-zh-cn" style="font-size:12px;padding:4px 12px;border-radius:20px;border:0.5px solid #e5e5e5;background:transparent;color:#666;cursor:pointer" onclick="setLang('zh-cn')">简体</button>
+  <button id="btn-en"    style="font-size:12px;padding:4px 12px;border-radius:20px;border:0.5px solid #e5e5e5;background:transparent;color:#666;cursor:pointer" onclick="setLang('en')">English</button>
+</div>
+<div class="stat-strip">
+  <div class="stat-strip-inner">
+    <span><strong>{lbl_hk}</strong> · {report_date}</span>
+    <span>\U0001f7e2\U0001f7e2 <span class="stat-strong">強力買入</span> <span class="stat-num">{s.get('strong',0)}</span></span>
+    <span>\U0001f7e2 <span class="stat-watch">值得關注</span> <span class="stat-num">{s.get('watch',0)}</span></span>
+    <span>追蹤 <span class="stat-num">{s.get('total',0)}</span> <span class="stat-unit">隻</span></span>
+  </div>
+</div>
+<div class="section">
+  <div class="section-title" id="watch-title">精選推介（≥60分）— {report_date}</div>
+  <div class="picks-grid" id="picksGrid"></div>
+</div>
+<div class="section" style="padding-top:0">
+  <div class="section-title" id="avoid-title">高危名單（&lt;30分）</div>
+  <div class="picks-grid" id="avoidGrid"></div>
+</div>
+<div class="footer">
+  <div class="footer-inner">
+    <span class="footer-logo">HiDH Dividend Analyst</span>
+    <span style="font-size:11px">{nav_others} · <a href="/" class="footer-nav-home" style="color:#aaa">主頁</a> · <a href="/about.html" class="footer-nav-about" style="color:#aaa">關於</a></span>
+    <span>© {datetime.date.today().year} prosynchk.com · 僅供參考</span>
+  </div>
+</div>
+<script>
+const PICKS={picks_js};
+const AVOID={avoid_js};
+const RATING_LABEL={{strong:'\U0001f7e2\U0001f7e2 強力買入',watch:'\U0001f7e2 值得關注',hold:'⚖️ 觀望'}};
+const RATING_CLASS={{strong:'r-strong',watch:'r-watch',hold:'r-hold'}};
+const MKT_BADGE={{HK:'<span class="badge badge-hk">HK</span>',US:'<span class="badge badge-us">US</span>',UK:'<span class="badge badge-uk">UK</span>',CN:'<span class="badge badge-cn">CN</span>'}};
+function renderSparkline(p){{
+  const divPts=p.div_pts,pxPts=p.px_pts||[];
+  const hasPx=pxPts.length>1;
+  const W=200,H=90,pL=4,pR=4,pT=10,pB=10,cW=W-pL-pR,cH=H-pT-pB;
+  const ff='system-ui,-apple-system,sans-serif',DIV_COL='#1D9E75',PX_COL='#378ADD',FSIZE=10,GAP=13;
+  function norm(pts,mn,rng){{return pts.map(d=>pT+cH*(1-(d.v-mn)/rng));}}
+  function sep(a,b,mn,mx){{
+    if(Math.abs(a-b)>=GAP)return [a,b];
+    const mid=(a+b)/2;let lo=mid-GAP/2,hi=mid+GAP/2;
+    if(lo<mn){{lo=mn;hi=lo+GAP;}}if(hi>mx){{hi=mx;lo=hi-GAP;}}
+    return a<=b?[lo,hi]:[hi,lo];
+  }}
+  const dvals=divPts.map(d=>d.v);
+  const dmn=Math.min(...dvals),dmx=Math.max(...dvals),drng=dmx-dmn||dmx*0.3||0.1;
+  const dxs=divPts.map((_,i)=>pL+i*cW/(divPts.length-1));
+  const dys=norm(divPts,dmn,drng);
+  let dpath=`M${{dxs[0].toFixed(1)}},${{dys[0].toFixed(1)}}`;
+  for(let i=1;i<dxs.length;i++)dpath+=` L${{dxs[i].toFixed(1)}},${{dys[i].toFixed(1)}}`;
+  if(hasPx){{
+    const pvals=pxPts.map(d=>d.v);
+    const pmn=Math.min(...pvals),pmx=Math.max(...pvals),prng=pmx-pmn||pmx*0.3||0.1;
+    const pxs=pxPts.map((_,i)=>pL+i*cW/(pxPts.length-1));
+    const pys=norm(pxPts,pmn,prng);
+    let ppath=`M${{pxs[0].toFixed(1)}},${{pys[0].toFixed(1)}}`;
+    for(let i=1;i<pxs.length;i++)ppath+=` L${{pxs[i].toFixed(1)}},${{pys[i].toFixed(1)}}`;
+    const paPath=ppath+` L${{pxs[pxs.length-1].toFixed(1)}},${{H-pB}} L${{pxs[0].toFixed(1)}},${{H-pB}} Z`;
+    const rd0=dys[0]+FSIZE*0.35,rp0=pys[0]+FSIZE*0.35;
+    const rdL=dys[dys.length-1]+FSIZE*0.35,rpL=pys[pys.length-1]+FSIZE*0.35;
+    const [ld0,lp0]=sep(rd0,rp0,pT+FSIZE,H-pB),[ldL,lpL]=sep(rdL,rpL,pT+FSIZE,H-pB);
+    const d0v=dvals[0].toFixed(2),dLv=dvals[dvals.length-1].toFixed(2);
+    const p0v=pvals[0].toFixed(2),pLv=pvals[pvals.length-1].toFixed(2);
+    const dpct=(dvals[dvals.length-1]-dvals[0])/dvals[0]*100;
+    const dcuts=divPts.filter((d,i)=>i>0&&d.v<divPts[i-1].v*0.95).length;
+    const dtCls=dcuts>0?'cut':dpct>5?'grow':'flat';
+    const dtBkg={{grow:'#E1F5EE',cut:'#FEF3F2',flat:'#FAEEDA'}}[dtCls];
+    const dtCol={{grow:'#0F6E56',cut:'#B42318',flat:'#854F0B'}}[dtCls];
+    const DTXT={{grow:{{hk:'股息↑增長',cn:'股息↑增长',en:'Div Growing'}},cut:{{hk:'股息⚠減息',cn:'股息⚠减息',en:'Div Cut'}},flat:{{hk:'股息→穩定',cn:'股息→稳定',en:'Div Stable'}}}};
+    const ppct=(pvals[pvals.length-1]-pvals[0])/pvals[0]*100;
+    const ptCls=ppct>10?'up':ppct<-10?'down':'side';
+    const ptBkg={{up:'#E6F1FB',down:'#FEF3F2',side:'#F1EFE8'}}[ptCls];
+    const ptCol={{up:'#185FA5',down:'#B42318',side:'#5F5E5A'}}[ptCls];
+    const PTXT={{up:{{hk:'股價↑上升',cn:'股价↑上升',en:'Price Rising'}},down:{{hk:'股價↓下跌',cn:'股价↓下跌',en:'Price Falling'}},side:{{hk:'股價→橫行',cn:'股价→橫行',en:'Price Sideways'}}}};
+    const psign=ppct>=0?'+':'';
+    return `<div class="div-spark"><div class="div-spark-legend">
+      <span class="div-spark-leg" data-zh-hk="股息" data-zh-cn="股息" data-en="Div"><span class="div-spark-leg-line" style="background:${{DIV_COL}}"></span>股息</span>
+      <span class="div-spark-leg" data-zh-hk="股價" data-zh-cn="股价" data-en="Price"><span class="div-spark-leg-line" style="background:${{PX_COL}};opacity:.7"></span>股價</span>
+      <span style="font-size:9px;color:#aaa;margin-left:auto">${{divPts[0].y}}→${{divPts[divPts.length-1].y}}</span></div>
+    <svg viewBox="0 0 ${{W}} ${{H}}" style="display:block;width:100%;height:${{H}}px;overflow:visible">
+      <path d="${{paPath}}" fill="${{PX_COL}}" fill-opacity="0.07"/>
+      <path d="${{ppath}}" stroke="${{PX_COL}}" stroke-width="1.5" fill="none" stroke-dasharray="3 2"/>
+      <circle cx="${{pxs[0].toFixed(1)}}" cy="${{pys[0].toFixed(1)}}" r="2.5" fill="${{PX_COL}}"/>
+      <circle cx="${{pxs[pxs.length-1].toFixed(1)}}" cy="${{pys[pys.length-1].toFixed(1)}}" r="2.5" fill="${{PX_COL}}"/>
+      <text x="${{(dxs[0]-6).toFixed(1)}}" y="${{ld0.toFixed(1)}}" font-size="${{FSIZE}}" font-family="${{ff}}" fill="${{DIV_COL}}" font-weight="600" text-anchor="end">${{d0v}}</text>
+      <text x="${{(pxs[0]-6).toFixed(1)}}" y="${{lp0.toFixed(1)}}" font-size="${{FSIZE}}" font-family="${{ff}}" fill="${{PX_COL}}" font-weight="600" text-anchor="end">${{p0v}}</text>
+      <text x="${{(dxs[dxs.length-1]+6).toFixed(1)}}" y="${{ldL.toFixed(1)}}" font-size="${{FSIZE}}" font-family="${{ff}}" fill="${{DIV_COL}}" font-weight="600" text-anchor="start">${{dLv}}</text>
+      <text x="${{(pxs[pxs.length-1]+6).toFixed(1)}}" y="${{lpL.toFixed(1)}}" font-size="${{FSIZE}}" font-family="${{ff}}" fill="${{PX_COL}}" font-weight="600" text-anchor="start">${{pLv}}</text>
+      <path d="${{dpath}}" stroke="${{DIV_COL}}" stroke-width="2" fill="none"/>
+      <circle cx="${{dxs[0].toFixed(1)}}" cy="${{dys[0].toFixed(1)}}" r="3" fill="${{DIV_COL}}"/>
+      <circle cx="${{dxs[dxs.length-1].toFixed(1)}}" cy="${{dys[dys.length-1].toFixed(1)}}" r="3" fill="${{DIV_COL}}"/>
+    </svg>
+    <div class="div-spark-desc">
+      <div class="div-spark-desc-box" style="background:${{dtBkg}}">
+        <div class="div-spark-desc-lbl" data-zh-hk="${{DTXT[dtCls].hk}}" data-zh-cn="${{DTXT[dtCls].cn}}" data-en="${{DTXT[dtCls].en}}" style="color:${{dtCol}}">${{DTXT[dtCls].hk}}</div>
+        <div class="div-spark-desc-val" style="color:${{dtCol}}">${{d0v}}→${{dLv}}</div>
+      </div>
+      <div class="div-spark-desc-box" style="background:${{ptBkg}}">
+        <div class="div-spark-desc-lbl" data-zh-hk="${{PTXT[ptCls].hk}}" data-zh-cn="${{PTXT[ptCls].cn}}" data-en="${{PTXT[ptCls].en}}" style="color:${{ptCol}}">${{PTXT[ptCls].hk}}</div>
+        <div class="div-spark-desc-val" style="color:${{ptCol}}">${{psign}}${{ppct.toFixed(0)}}%</div>
+      </div>
+    </div></div>`;
+  }}
+  const col=p.div_trend==='grow'?DIV_COL:p.div_trend==='cut'?'#B71C1C':'#BA7517';
+  const badgeTxt=p.div_trend==='grow'?'↑ 持續增長':p.div_trend==='cut'?'⚠ 曾減息':'→ 穩定';
+  const badgeCls=p.div_trend==='grow'?'div-trend-grow':p.div_trend==='cut'?'div-trend-cut':'div-trend-flat';
+  return `<div class="div-spark"><div class="div-spark-row"><span class="div-trend-badge ${{badgeCls}}">${{badgeTxt}}</span></div>
+    <svg viewBox="0 0 ${{W}} ${{H}}" style="display:block;width:100%;height:${{H}}px"><path d="${{dpath}}" stroke="${{col}}" stroke-width="2" fill="none"/>
+    <circle cx="${{dxs[0].toFixed(1)}}" cy="${{dys[0].toFixed(1)}}" r="3" fill="${{col}}"/>
+    <circle cx="${{dxs[dxs.length-1].toFixed(1)}}" cy="${{dys[dys.length-1].toFixed(1)}}" r="3" fill="${{col}}"/>
+    </svg></div>`;
+}}
+document.getElementById('picksGrid').innerHTML=PICKS.length?PICKS.map(p=>`
+  <div class="pick-card${{p.rating==='strong'?' top':''}}">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:4px;margin-bottom:4px">
+      <div style="display:flex;align-items:center;gap:5px">
+        <span style="font-size:14px;font-weight:600;color:#222">${{p.ticker}}</span>${{MKT_BADGE[p.mkt]}}
+      </div>
+      <span class="${{RATING_CLASS[p.rating]}}" data-rating="${{p.rating}}">${{RATING_LABEL[p.rating]}}</span>
+    </div>
+    <div class="pick-name">${{p.name}}</div>
+    <div class="pick-stats">
+      <div class="pick-stat"><div class="pick-stat-label" data-zh-hk="股息率" data-zh-cn="股息率" data-en="Yield">股息率</div><div class="pick-stat-val">${{p.yield_}}%</div></div>
+      <div class="pick-stat"><div class="pick-stat-label">PE</div><div class="pick-stat-val">${{p.pe}}x</div></div>
+      <div class="pick-stat"><div class="pick-stat-label">P/B</div><div class="pick-stat-val">${{p.pb}}</div></div>
+    </div>
+    <div class="pick-track">
+      <div class="pick-track-item"><div class="pick-track-label" data-zh-hk="推介日期" data-zh-cn="推介日期" data-en="Picked On">推介日期</div><div class="pick-track-val">${{p.first_date}}</div></div>
+      <div class="pick-track-item"><div class="pick-track-label" data-zh-hk="漲跌" data-zh-cn="涨跌" data-en="Change">漲跌</div><div class="pick-track-val" style="color:${{p.chg_color}}">${{p.chg_text}}</div></div>
+      <div class="pick-track-item"><div class="pick-track-label" data-zh-hk="推介價" data-zh-cn="推介价" data-en="Then">推介價</div><div class="pick-track-val">${{p.first_price}}</div></div>
+      <div class="pick-track-item"><div class="pick-track-label" data-zh-hk="現價" data-zh-cn="现价" data-en="Now">現價</div><div class="pick-track-val">${{p.price}}</div></div>
+    </div>
+    <div class="pros-cons">
+      <div class="pros"><div class="pros-label">✅ 優點</div><div class="pros-text" data-zh-hk="${{p.pro_zh_hk}}" data-zh-cn="${{p.pro_zh_cn}}" data-en="${{p.pro_en}}">${{p.pro_zh_hk}}</div></div>
+      <div class="cons"><div class="cons-label">⚠️ 缺點</div><div class="cons-text" data-zh-hk="${{p.con_zh_hk}}" data-zh-cn="${{p.con_zh_cn}}" data-en="${{p.con_en}}">${{p.con_zh_hk}}</div></div>
+    </div>
+    <div class="score-track"><div class="score-fill" style="width:${{p.score}}%"></div></div>
+    <div class="score-row"><span>評分</span><span>${{p.score}}/100</span></div>
+    ${{p.div_pts&&p.div_pts.length>1?renderSparkline(p):''}}
+  </div>`).join(''):'<p class="no-picks" style="color:#aaa;font-size:13px">暫無符合條件的推介股票（≥60分）</p>';
+document.getElementById('avoidGrid').innerHTML=AVOID.length?AVOID.map(p=>`
+  <div class="pick-card avoid">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:4px;margin-bottom:4px">
+      <div style="display:flex;align-items:center;gap:5px">
+        <span style="font-size:14px;font-weight:600;color:#222">${{p.ticker}}</span>${{MKT_BADGE[p.mkt]}}
+      </div>
+      <span class="r-avoid" data-zh-hk="\U0001f534 高危" data-zh-cn="\U0001f534 高危" data-en="\U0001f534 High Risk">\U0001f534 高危</span>
+    </div>
+    <div class="pick-name">${{p.name}}</div>
+    <div class="pick-stats">
+      <div class="pick-stat"><div class="pick-stat-label" data-zh-hk="股息率" data-zh-cn="股息率" data-en="Yield">股息率</div><div class="pick-stat-val">${{p.yield_}}%</div></div>
+      <div class="pick-stat"><div class="pick-stat-label">PE</div><div class="pick-stat-val">${{p.pe}}x</div></div>
+      <div class="pick-stat"><div class="pick-stat-label">P/B</div><div class="pick-stat-val">${{p.pb}}</div></div>
+    </div>
+    <div class="pick-track">
+      <div class="pick-track-item"><div class="pick-track-label" data-zh-hk="避開日期" data-zh-cn="避开日期" data-en="Flagged On">避開日期</div><div class="pick-track-val">${{p.first_date}}</div></div>
+      <div class="pick-track-item"><div class="pick-track-label" data-zh-hk="漲跌" data-zh-cn="涨跌" data-en="Change">漲跌</div><div class="pick-track-val" style="color:${{p.chg_color}}">${{p.chg_text}}</div></div>
+      <div class="pick-track-item"><div class="pick-track-label" data-zh-hk="避開價" data-zh-cn="避开价" data-en="Then">避開價</div><div class="pick-track-val">${{p.first_price}}</div></div>
+      <div class="pick-track-item"><div class="pick-track-label" data-zh-hk="現價" data-zh-cn="现价" data-en="Now">現價</div><div class="pick-track-val">${{p.price}}</div></div>
+    </div>
+    <div class="risk-box">
+      <div class="risk-label" data-zh-hk="⚠️ 高危原因" data-zh-cn="⚠️ 高危原因" data-en="⚠️ Risk Factors">⚠️ 高危原因</div>
+      <div class="risk-text" data-zh-hk="${{p.risk_zh_hk}}" data-zh-cn="${{p.risk_zh_cn}}" data-en="${{p.risk_en}}">${{p.risk_zh_hk}}</div>
+    </div>
+    <div class="score-track"><div class="score-fill avoid" style="width:${{p.score}}%"></div></div>
+    <div class="score-row"><span>評分</span><span>${{p.score}}/100</span></div>
+  </div>`).join(''):'<p class="no-avoid" style="color:#aaa;font-size:13px">暫無高危股票（&lt;30分）</p>';
+</script>
+</body>
+</html>"""
+
 # ── 主程式 ────────────────────────────────────────────────
 def main():
     print("=" * 50)
@@ -1852,3 +2173,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

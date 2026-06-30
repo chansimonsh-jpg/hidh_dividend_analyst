@@ -68,6 +68,73 @@ class TestMainPageLangPersistence:
 
 
 # ══════════════════════════════════════════════════════════════════════════
+# 1b. generate_html.py — market page builder
+# ══════════════════════════════════════════════════════════════════════════
+
+class TestMarketPageBuilder:
+    """_build_market_html() must produce fully i18n-ready market pages."""
+
+    def setup_method(self):
+        self.src = _read("generate_html.py")
+
+    def test_builder_function_exists(self):
+        assert "_build_market_html(" in self.src
+
+    def test_market_files_named_market_info(self):
+        """Generated files must use the *_market_info.html naming convention."""
+        assert "_market_info.html" in self.src
+        # Old bare names must not appear as output filenames
+        assert '"us.html"' not in self.src or "us_market_info" in self.src
+
+    def test_nav_links_use_market_info_names(self):
+        """Nav hrefs inside the HTML template must use *_market_info.html."""
+        for mkt in ["us", "hk", "uk", "cn"]:
+            assert f"/{mkt}_market_info.html" in self.src, \
+                f"Nav link for {mkt}_market_info.html missing"
+
+    def test_section_title_ids_present(self):
+        """Section titles need id= for the i18n extension to target them."""
+        assert 'id="watch-title"' in self.src
+        assert 'id="avoid-title"' in self.src
+
+    def test_stat_semantic_classes(self):
+        """Stat strip elements need classes so MKT_I18N_EXT can translate them."""
+        assert 'class="stat-strong"' in self.src
+        assert 'class="stat-watch"'  in self.src
+        assert 'class="stat-unit"'   in self.src
+
+    def test_empty_state_classes(self):
+        """Empty-state paragraphs need classes for translation."""
+        assert 'class="no-picks"' in self.src
+        assert 'class="no-avoid"' in self.src
+
+    def test_footer_link_classes(self):
+        assert 'class="footer-nav-home"'  in self.src
+        assert 'class="footer-nav-about"' in self.src
+
+    def test_mkt_i18n_ext_constant_defined(self):
+        """MKT_I18N_EXT must be a module-level constant (not inside f-string)."""
+        assert "MKT_I18N_EXT" in self.src
+
+    def test_generation_loop_injects_ext(self):
+        """The per-market generation loop must inject both SETLANG_JS and MKT_I18N_EXT."""
+        assert "MKT_I18N_EXT}" in self.src   # f-string: {MKT_I18N_EXT}
+
+    def test_workflow_deploys_market_pages(self):
+        """HTML-deploy workflows must copy market pages to _pages_site/.
+        (daily-data-update.yml only updates Excel — no HTML deploy needed there.)
+        """
+        for wf in ["daily-html-deploy.yml", "daily-dividend-update.yml"]:
+            wf_src = _read(f".github/workflows/{wf}")
+            assert "market_info.html" in wf_src, \
+                f"{wf} does not deploy market_info pages"
+
+    def test_sparkline_included_in_builder(self):
+        """renderSparkline must be included in the market page template."""
+        assert "renderSparkline" in self.src
+
+
+# ══════════════════════════════════════════════════════════════════════════
 # 2. about.html — header, nav, persistence
 # ══════════════════════════════════════════════════════════════════════════
 
