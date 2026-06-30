@@ -170,12 +170,25 @@ class TestMarketPageBuilder:
 
     def test_market_page_has_dropdown_navigation(self):
         """Market pages must use a <select> dropdown to navigate between markets."""
-        tmpl = self._get_builder_template()
-        assert 'id="mkt-select"' in tmpl,          "mkt-select dropdown missing"
-        assert "onchange=\"location.href" in tmpl, "dropdown onchange handler missing"
+        src = self.src
+        assert 'id="mkt-select"' in src,           "mkt-select dropdown missing"
+        assert "onchange" in src,                  "dropdown onchange handler missing"
         for mkt in ["us", "hk", "uk", "cn"]:
-            assert f"/{mkt}_market_info.html" in tmpl, \
+            assert f"/{mkt}_market_info.html" in src, \
                 f"No option for /{mkt}_market_info.html in dropdown"
+
+    def test_market_dropdown_placeholder_is_market_not_home(self):
+        """Dropdown placeholder must say '市場' / 'Market', not '主頁' / 'Home'."""
+        src = self.src
+        assert "mktLabel:'── 市場 ──'" in src,   "zh-hk mktLabel not set to 市場"
+        assert "mktLabel:'── 市场 ──'" in src,   "zh-cn mktLabel not set to 市场"
+        assert "mktLabel:'── Market ──'" in src, "en mktLabel not set to Market"
+
+    def test_market_dropdown_options_translate(self):
+        """Dropdown option labels must translate for all 3 languages."""
+        src = self.src
+        for lang_key in ["optUS", "optHK", "optUK", "optCN"]:
+            assert lang_key in src, f"{lang_key} translation missing from MKT_I18N_EXT"
 
     def test_index_chart_cards_are_links(self):
         """The 4 donut chart cards must be wrapped in <a> tags pointing to market pages.

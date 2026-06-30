@@ -1854,16 +1854,28 @@ document.getElementById('avoidGrid').innerHTML=AVOID.map(p=>`
 # Market page i18n extension string (regular Python string, not f-string)
 MKT_I18N_EXT = (
     "(function(){"
-    "var MKT_I18N={'zh-hk':{watchTitle:'精選推介（≥60分）',avoidTitle:'高危名單（<30分）',"
-    "strong:'強力買入',watch:'值得關注',tracked:'隻',"
-    "noWatch:'暫無符合條件的推介股票（≥60分）',noAvoid:'暫無高危股票（<30分）',home:'主頁',about:'關於'},"
-    "'zh-cn':{watchTitle:'精選推介（≥60分）',avoidTitle:'高危名單（<30分）',"
-    "strong:'强力买入',watch:'值得关注',tracked:'只',"
-    "noWatch:'暂无符合条件的推介股票（≥60分）',noAvoid:'暂无高危股票（<30分）',home:'主页',about:'关于'},"
+    "var MKT_I18N={"
+    "'zh-hk':{watchTitle:'精選推介（≥60分）',avoidTitle:'高危名單（<30分）',"
+    "strong:'強力買入',watch:'値得關注',tracked:'隻',"
+    "noWatch:'暫無符合條件的推介股票（≥60分）',"
+    "noAvoid:'暫無高危股票（<30分）',"
+    "home:'主頁',about:'關於',"
+    "mktLabel:'── 市場 ──',"
+    "optUS:'美股 US',optHK:'港股 HK',optUK:'英股 UK',optCN:'A股 CN'},"
+    "'zh-cn':{watchTitle:'精选推介（≥60分）',avoidTitle:'高危名单（<30分）',"
+    "strong:'强力买入',watch:'値得关注',tracked:'只',"
+    "noWatch:'暂无符合条件的推介股票（≥60分）',"
+    "noAvoid:'暂无高危股票（<30分）',"
+    "home:'主页',about:'关于',"
+    "mktLabel:'── 市场 ──',"
+    "optUS:'美股 US',optHK:'港股 HK',optUK:'英股 UK',optCN:'A股 CN'},"
     "'en':{watchTitle:'Top Picks (≥60pts)',avoidTitle:'High-Risk List (<30pts)',"
     "strong:'Strong Buy',watch:'Watch',tracked:'stocks',"
-    "noWatch:'No qualifying picks (≥60pts)',noAvoid:'No high-risk stocks (<30pts)',"
-    "home:'Home',about:'About'}};"
+    "noWatch:'No qualifying picks (≥60pts)',"
+    "noAvoid:'No high-risk stocks (<30pts)',"
+    "home:'Home',about:'About',"
+    "mktLabel:'── Market ──',"
+    "optUS:'US Stocks',optHK:'HK Stocks',optUK:'UK Stocks',optCN:'China A-Shares'}};"
     "var _o=typeof setLang!=='undefined'?setLang:function(){};"
     "window.setLang=function(lang){_o(lang);"
     "var t=MKT_I18N[lang]||MKT_I18N['zh-hk'];"
@@ -1875,7 +1887,11 @@ MKT_I18N_EXT = (
     "document.querySelectorAll('.no-picks').forEach(function(el){el.textContent=t.noWatch;});"
     "document.querySelectorAll('.no-avoid').forEach(function(el){el.textContent=t.noAvoid;});"
     "document.querySelectorAll('.footer-nav-home').forEach(function(el){el.textContent=t.home;});"
-    "document.querySelectorAll('.footer-nav-about').forEach(function(el){el.textContent=t.about;});};"
+    "document.querySelectorAll('.footer-nav-about').forEach(function(el){el.textContent=t.about;});"
+    "var ms=document.getElementById('mkt-select');"
+    "if(ms&&ms.options[0])ms.options[0].text=t.mktLabel;"
+    "var opMap=[null,t.optUS,t.optHK,t.optUK,t.optCN];"
+    "opMap.forEach(function(txt,i){if(txt&&ms&&ms.options[i])ms.options[i].text=txt;});};"
     "try{var l=localStorage.getItem('hidh_lang');if(l&&l!=='zh-hk')window.setLang(l);}catch(e){}})()"
 )
 
@@ -1965,12 +1981,12 @@ a{{color:#1D9E75;text-decoration:none}}a:hover{{text-decoration:underline}}
     <a href="/" class="logo">HiDH <span>Dividend Analyst</span></a>
     <nav class="nav">
       <a href="/" data-zh-hk="主頁" data-zh-cn="主页" data-en="Home">主頁</a>
-      <select id="mkt-select" onchange="location.href=this.value" style="font-size:13px;padding:4px 8px;border:1px solid #e5e5e5;border-radius:6px;color:#555;background:#fff;cursor:pointer;outline:none">
-        <option value="/" data-zh-hk="── 主頁 ──" data-zh-cn="── 主页 ──" data-en="── Home ──">── 主頁 ──</option>
-        <option value="/us_market_info.html" {{'selected' if mkt=='US' else ''}} data-zh-hk="美股 US" data-zh-cn="美股 US" data-en="US Stocks">美股 US</option>
-        <option value="/hk_market_info.html" {{'selected' if mkt=='HK' else ''}} data-zh-hk="港股 HK" data-zh-cn="港股 HK" data-en="HK Stocks">港股 HK</option>
-        <option value="/uk_market_info.html" {{'selected' if mkt=='UK' else ''}} data-zh-hk="英股 UK" data-zh-cn="英股 UK" data-en="UK Stocks">英股 UK</option>
-        <option value="/cn_market_info.html" {{'selected' if mkt=='CN' else ''}} data-zh-hk="A股 CN" data-zh-cn="A股 CN" data-en="China A-Shares">A股 CN</option>
+      <select id="mkt-select" onchange="if(this.value)location.href=this.value" style="font-size:13px;padding:4px 8px;border:1px solid #e5e5e5;border-radius:6px;color:#555;background:#fff;cursor:pointer;outline:none">
+        <option value="" id="mkt-label">── 市場 ──</option>
+        <option value="/us_market_info.html" {{'selected' if mkt=='US' else ''}}>美股 US</option>
+        <option value="/hk_market_info.html" {{'selected' if mkt=='HK' else ''}}>港股 HK</option>
+        <option value="/uk_market_info.html" {{'selected' if mkt=='UK' else ''}}>英股 UK</option>
+        <option value="/cn_market_info.html" {{'selected' if mkt=='CN' else ''}}>A股 CN</option>
       </select>
     </nav>
   </div>
