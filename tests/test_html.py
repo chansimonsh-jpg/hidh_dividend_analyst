@@ -175,19 +175,22 @@ class TestMarketPageBuilder:
             assert f"/{mkt}_market_info.html" in tmpl, \
                 f"No nav link to /{mkt}_market_info.html in market page template"
 
-    def test_index_to_market_page_links_exist(self):
-        """Main page must have visible <a> links to all 4 market pages.
-        These are the explicit button row below the donut charts.
+    def test_index_chart_cards_link_to_market_pages(self):
+        """The 4 donut chart cards must be clickable (onclick) to navigate to market pages.
+        No separate button row — the cards themselves are the navigation.
         """
-        for mkt in ["us", "hk", "uk", "cn"]:
-            assert f'<a href="/{mkt}_market_info.html"' in self.src, \
-                f"No <a> link to /{mkt}_market_info.html found in main page template"
-
-    def test_chart_cards_have_onclick(self):
-        """Donut chart cards must also have onclick for click-anywhere convenience."""
         for mkt in ["us", "hk", "uk", "cn"]:
             assert f"onclick=\"location.href='/{mkt}_market_info.html'\"" in self.src, \
                 f"onclick missing from {mkt} chart card"
+
+    def test_market_page_section_title_matches_main(self):
+        """Market page .section-title CSS must match the main page style
+        (font-size:20px, font-weight:700, color:#222).
+        """
+        tmpl = self._get_builder_template()
+        assert "font-size:20px" in tmpl,    "Market page section-title font-size should be 20px"
+        assert "font-weight:700" in tmpl,   "Market page section-title font-weight should be 700"
+        assert "color:#222" in tmpl,        "Market page section-title color should be #222"
 
 
 # ══════════════════════════════════════════════════════════════════════════
