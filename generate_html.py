@@ -1859,21 +1859,21 @@ MKT_I18N_EXT = (
     "strong:'強力買入',watch:'値得關注',tracked:'隻',trackedLbl:'追蹤',"
     "noWatch:'暫無符合條件的推介股票（≥60分）',"
     "noAvoid:'暫無高危股票（<30分）',"
-    "home:'主頁',about:'關於',"
+    "home:'主頁',about:'關於',discLabel:'免責聲明',disc:'本網站所有內容僅供參考及教育用途，不構成任何投資建議或買賣邀請。投資涉及風險，過往表現不代表未來回報。讀者應自行進行盡職審查，並在作出任何投資決定前諮詢持牌財務顧問。本站對因使用本站資料而引起的任何損失概不負責。',"
     "mktLabel:'── 市場 ──',"
     "optUS:'美股 US',optHK:'港股 HK',optUK:'英股 UK',optCN:'A股 CN'},"
     "'zh-cn':{watchTitle:'精选推介（≥60分）',avoidTitle:'高危名单（<30分）',"
     "strong:'强力买入',watch:'値得关注',tracked:'只',trackedLbl:'追踪',"
     "noWatch:'暂无符合条件的推介股票（≥60分）',"
     "noAvoid:'暂无高危股票（<30分）',"
-    "home:'主页',about:'关于',"
+    "home:'主页',about:'关于',discLabel:'免责声明',disc:'本网站所有内容仅供参考及教育用途，不构成任何投资建议或买卖邀请。投资涉及风险，过往表现不代表未来回报。读者应自行进行尽职审查，并在作出任何投资决定前咨询持牌财务顾问。本站对因使用本站资料而引起的任何损失概不负责。',"
     "mktLabel:'── 市场 ──',"
     "optUS:'美股 US',optHK:'港股 HK',optUK:'英股 UK',optCN:'A股 CN'},"
     "'en':{watchTitle:'Top Picks (≥60pts)',avoidTitle:'High-Risk List (<30pts)',"
     "strong:'Strong Buy',watch:'Watch',tracked:'stocks',trackedLbl:'Tracked',"
     "noWatch:'No qualifying picks (≥60pts)',"
     "noAvoid:'No high-risk stocks (<30pts)',"
-    "home:'Home',about:'About',"
+    "home:'Home',about:'About',discLabel:'Disclaimer',disc:'All content on this website is for reference and educational purposes only and does not constitute investment advice or an invitation to buy or sell. Investments involve risk and past performance is not indicative of future results. Readers should conduct their own due diligence and consult a licensed financial adviser before making any investment decisions. This site accepts no responsibility for any losses arising from use of the information provided.',"
     "mktLabel:'── Market ──',"
     "optUS:'US Stocks',optHK:'HK Stocks',optUK:'UK Stocks',optCN:'China A-Shares'}};"
     "var _o=typeof setLang!=='undefined'?setLang:function(){};"
@@ -1889,7 +1889,7 @@ MKT_I18N_EXT = (
     "document.querySelectorAll('.no-picks').forEach(function(el){el.textContent=t.noWatch;});"
     "document.querySelectorAll('.no-avoid').forEach(function(el){el.textContent=t.noAvoid;});"
     "document.querySelectorAll('.footer-nav-home').forEach(function(el){el.textContent=t.home;});"
-    "document.querySelectorAll('.footer-nav-about').forEach(function(el){el.textContent=t.about;});"
+    "document.querySelectorAll('.footer-nav-about').forEach(function(el){el.textContent=t.about;});var disc=document.querySelector('.disclaimer-inner');if(disc)disc.innerHTML='<strong>'+t.discLabel+'：</strong>'+t.disc;"
     "var ms=document.getElementById('mkt-select');"
     "if(ms&&ms.options[0])ms.options[0].text=t.mktLabel;"
     "var opMap=[null,t.optUS,t.optHK,t.optUK,t.optCN];"
@@ -1971,7 +1971,10 @@ a{{color:#1D9E75;text-decoration:none}}a:hover{{text-decoration:underline}}
 .stat-strip{{background:#fff;border-bottom:1px solid #e5e5e5;padding:.75rem 1.5rem}}
 .stat-strip-inner{{max-width:960px;margin:0 auto;display:flex;flex-wrap:wrap;gap:1.5rem;font-size:13px;color:#555}}
 .stat-num{{font-weight:700;color:#222;margin-right:3px}}
-.footer{{background:#222;color:#aaa;padding:1.5rem;font-size:12px;margin-top:2rem}}
+.disclaimer{{background:#fff;border-top:1px solid #e5e5e5;padding:1.5rem;margin-top:2rem}}
+.disclaimer-inner{{max-width:960px;margin:0 auto;font-size:12px;color:#aaa;line-height:1.7}}
+.disclaimer-inner strong{{color:#888}}
+.footer{{background:#222;color:#aaa;padding:1.5rem;font-size:12px}}
 .footer-inner{{max-width:960px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem}}
 .footer-logo{{color:#1D9E75;font-weight:600;font-size:14px}}
 @media(max-width:600px){{.picks-grid{{grid-template-columns:1fr}}}}
@@ -2013,6 +2016,11 @@ a{{color:#1D9E75;text-decoration:none}}a:hover{{text-decoration:underline}}
 <div class="section" style="padding-top:0">
   <div class="section-title" id="avoid-title">高危名單（&lt;30分）</div>
   <div class="picks-grid" id="avoidGrid"></div>
+</div>
+<div class="disclaimer">
+  <div class="disclaimer-inner">
+    <strong>免責聲明：</strong>本網站所有內容僅供參考及教育用途，不構成任何投資建議或買賣邀請。投資涉及風險，過往表現不代表未來回報。讀者應自行進行盡職審查，並在作出任何投資決定前諮詢持牌財務顧問。本站對因使用本站資料而引起的任何損失概不負責。
+  </div>
 </div>
 <div class="footer">
   <div class="footer-inner">

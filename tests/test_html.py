@@ -214,6 +214,22 @@ class TestMarketPageBuilder:
         assert 'data-en="Details →"'             in src, "en translation for Details → missing"
         assert 'chart-detail-hint[data-zh-hk]'   in src, "SETLANG_JS selector for chart-detail-hint missing"
 
+    def test_market_page_has_disclaimer(self):
+        """Market pages must have a disclaimer section matching the main page."""
+        tmpl = self._get_builder_template()
+        assert 'class="disclaimer"'        in tmpl, ".disclaimer div missing"
+        assert 'class="disclaimer-inner"'  in tmpl, ".disclaimer-inner div missing"
+        assert "免責聲明"                  in tmpl, "Disclaimer text missing"
+
+    def test_market_page_disclaimer_translates(self):
+        """Disclaimer text must translate via MKT_I18N_EXT."""
+        src = self.src
+        assert "discLabel:'免責聲明'"   in src, "zh-hk discLabel missing"
+        assert "discLabel:'免责声明'"   in src, "zh-cn discLabel missing"
+        assert "discLabel:'Disclaimer'" in src, "en discLabel missing"
+        assert "disclaimer-inner" in src and "disc.innerHTML" in src, \
+            "Disclaimer translation handler missing from MKT_I18N_EXT"
+
     def test_index_chart_cards_are_links(self):
         """The 4 donut chart cards must be wrapped in <a> tags pointing to market pages.
         This is a true link (keyboard nav, right-click, mobile-friendly).
