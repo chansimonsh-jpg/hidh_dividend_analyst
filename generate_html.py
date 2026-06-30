@@ -1450,8 +1450,9 @@ svg text{{font-family:system-ui,sans-serif}}
 <div class="section" id="charts">
   <div class="section-title">市場概覽 — {report_date}</div>
   <div class="top-row">
-    <div class="chart-card">
-      <div class="chart-title">美股 US</div>
+    <a href="/us_market_info.html" style="display:block;text-decoration:none;color:inherit" title="美股精選推介">
+    <div class="chart-card clickable">
+      <div class="chart-title"><span data-zh-hk="美股 US" data-zh-cn="美股 US" data-en="US Stocks">美股 US</span> <span style="float:right;font-size:11px;color:#1D9E75">詳情 →</span></div>
       <div class="legend">
         <span data-zh-hk="強力買入"><span class="ld" style="background:#1D9E75"></span>強力買入 <strong>{stats['US']['strong']}</strong></span>
         <span data-zh-hk="值得關注"><span class="ld" style="background:#378ADD"></span>值得關注 <strong>{stats['US']['watch']}</strong></span>
@@ -1460,8 +1461,10 @@ svg text{{font-family:system-ui,sans-serif}}
       <svg id="us" viewBox="0 0 180 160" width="100%" height="160"></svg>
       <div class="chart-sub" data-zh-hk="{stats['US']['total']}隻 · 均分 {stats['US']['avg']} · 最高 {stats['US']['max']}" data-zh-cn="{stats['US']['total']}只 · 均分 {stats['US']['avg']} · 最高 {stats['US']['max']}" data-en="{stats['US']['total']} stks · Avg {stats['US']['avg']} · High {stats['US']['max']}">{stats['US']['total']}隻 · 均分 {stats['US']['avg']} · 最高 {stats['US']['max']}</div>
     </div>
-    <div class="chart-card">
-      <div class="chart-title">港股 HK</div>
+    </a>
+    <a href="/hk_market_info.html" style="display:block;text-decoration:none;color:inherit" title="港股精選推介">
+    <div class="chart-card clickable">
+      <div class="chart-title"><span data-zh-hk="港股 HK" data-zh-cn="港股 HK" data-en="HK Stocks">港股 HK</span> <span style="float:right;font-size:11px;color:#1D9E75">詳情 →</span></div>
       <div class="legend">
         <span data-zh-hk="強力買入"><span class="ld" style="background:#1D9E75"></span>強力買入 <strong>{stats['HK']['strong']}</strong></span>
         <span data-zh-hk="值得關注"><span class="ld" style="background:#378ADD"></span>值得關注 <strong>{stats['HK']['watch']}</strong></span>
@@ -1470,8 +1473,10 @@ svg text{{font-family:system-ui,sans-serif}}
       <svg id="hk" viewBox="0 0 180 160" width="100%" height="160"></svg>
       <div class="chart-sub" data-zh-hk="{stats['HK']['total']}隻 · 均分 {stats['HK']['avg']} · 最高 {stats['HK']['max']}" data-zh-cn="{stats['HK']['total']}只 · 均分 {stats['HK']['avg']} · 最高 {stats['HK']['max']}" data-en="{stats['HK']['total']} stks · Avg {stats['HK']['avg']} · High {stats['HK']['max']}">{stats['HK']['total']}隻 · 均分 {stats['HK']['avg']} · 最高 {stats['HK']['max']}</div>
     </div>
-    <div class="chart-card">
-      <div class="chart-title">英股 UK</div>
+    </a>
+    <a href="/uk_market_info.html" style="display:block;text-decoration:none;color:inherit" title="英股精選推介">
+    <div class="chart-card clickable">
+      <div class="chart-title"><span data-zh-hk="英股 UK" data-zh-cn="英股 UK" data-en="UK Stocks">英股 UK</span> <span style="float:right;font-size:11px;color:#1D9E75">詳情 →</span></div>
       <div class="legend">
         <span data-zh-hk="強力買入"><span class="ld" style="background:#1D9E75"></span>強力買入 <strong>{stats['UK']['strong']}</strong></span>
         <span data-zh-hk="值得關注"><span class="ld" style="background:#378ADD"></span>值得關注 <strong>{stats['UK']['watch']}</strong></span>
@@ -1480,8 +1485,10 @@ svg text{{font-family:system-ui,sans-serif}}
       <svg id="uk" viewBox="0 0 180 160" width="100%" height="160"></svg>
       <div class="chart-sub" data-zh-hk="{stats['UK']['total']}隻 · 均分 {stats['UK']['avg']} · 最高 {stats['UK']['max']}" data-zh-cn="{stats['UK']['total']}只 · 均分 {stats['UK']['avg']} · 最高 {stats['UK']['max']}" data-en="{stats['UK']['total']} stks · Avg {stats['UK']['avg']} · High {stats['UK']['max']}">{stats['UK']['total']}隻 · 均分 {stats['UK']['avg']} · 最高 {stats['UK']['max']}</div>
     </div>
-    <div class="chart-card">
-      <div class="chart-title">A股 CN</div>
+    </a>
+    <a href="/cn_market_info.html" style="display:block;text-decoration:none;color:inherit" title="A股精選推介">
+    <div class="chart-card clickable">
+      <div class="chart-title"><span data-zh-hk="A股 CN" data-zh-cn="A股 CN" data-en="China A-Shares">A股 CN</span> <span style="float:right;font-size:11px;color:#1D9E75">詳情 →</span></div>
       <div class="legend">
         <span data-zh-hk="強力買入"><span class="ld" style="background:#1D9E75"></span>強力買入 <strong>{stats['CN']['strong']}</strong></span>
         <span data-zh-hk="值得關注"><span class="ld" style="background:#378ADD"></span>值得關注 <strong>{stats['CN']['watch']}</strong></span>
@@ -1490,6 +1497,7 @@ svg text{{font-family:system-ui,sans-serif}}
       <svg id="cn" viewBox="0 0 180 160" width="100%" height="160"></svg>
       <div class="chart-sub" data-zh-hk="{stats['CN']['total']}隻 · 均分 {stats['CN']['avg']} · 最高 {stats['CN']['max']}" data-zh-cn="{stats['CN']['total']}只 · 均分 {stats['CN']['avg']} · 最高 {stats['CN']['max']}" data-en="{stats['CN']['total']} stks · Avg {stats['CN']['avg']} · High {stats['CN']['max']}">{stats['CN']['total']}隻 · 均分 {stats['CN']['avg']} · 最高 {stats['CN']['max']}</div>
     </div>
+    </a>
   </div>
   <div class="chart-card">
     <div class="chart-title">前{TOP_N}名評分分佈</div>
@@ -1957,10 +1965,13 @@ a{{color:#1D9E75;text-decoration:none}}a:hover{{text-decoration:underline}}
     <a href="/" class="logo">HiDH <span>Dividend Analyst</span></a>
     <nav class="nav">
       <a href="/" data-zh-hk="主頁" data-zh-cn="主页" data-en="Home">主頁</a>
-      <a href="/us_market_info.html" class="{active['US']}" data-zh-hk="美股" data-zh-cn="美股" data-en="US">美股</a>
-      <a href="/hk_market_info.html" class="{active['HK']}" data-zh-hk="港股" data-zh-cn="港股" data-en="HK">港股</a>
-      <a href="/uk_market_info.html" class="{active['UK']}" data-zh-hk="英股" data-zh-cn="英股" data-en="UK">英股</a>
-      <a href="/cn_market_info.html" class="{active['CN']}" data-zh-hk="A股" data-zh-cn="A股" data-en="CN">A股</a>
+      <select id="mkt-select" onchange="location.href=this.value" style="font-size:13px;padding:4px 8px;border:1px solid #e5e5e5;border-radius:6px;color:#555;background:#fff;cursor:pointer;outline:none">
+        <option value="/" data-zh-hk="── 主頁 ──" data-zh-cn="── 主页 ──" data-en="── Home ──">── 主頁 ──</option>
+        <option value="/us_market_info.html" {{'selected' if mkt=='US' else ''}} data-zh-hk="美股 US" data-zh-cn="美股 US" data-en="US Stocks">美股 US</option>
+        <option value="/hk_market_info.html" {{'selected' if mkt=='HK' else ''}} data-zh-hk="港股 HK" data-zh-cn="港股 HK" data-en="HK Stocks">港股 HK</option>
+        <option value="/uk_market_info.html" {{'selected' if mkt=='UK' else ''}} data-zh-hk="英股 UK" data-zh-cn="英股 UK" data-en="UK Stocks">英股 UK</option>
+        <option value="/cn_market_info.html" {{'selected' if mkt=='CN' else ''}} data-zh-hk="A股 CN" data-zh-cn="A股 CN" data-en="China A-Shares">A股 CN</option>
+      </select>
     </nav>
   </div>
 </div>

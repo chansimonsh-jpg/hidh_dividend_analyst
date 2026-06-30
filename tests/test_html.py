@@ -168,20 +168,22 @@ class TestMarketPageBuilder:
         assert 'href="/"' in tmpl     # the Home link in nav
         assert '主頁'     in tmpl
 
-    def test_market_page_nav_links_to_other_markets(self):
-        """Market pages must link to all 4 market pages (including itself)."""
+    def test_market_page_has_dropdown_navigation(self):
+        """Market pages must use a <select> dropdown to navigate between markets."""
         tmpl = self._get_builder_template()
+        assert 'id="mkt-select"' in tmpl,          "mkt-select dropdown missing"
+        assert "onchange=\"location.href" in tmpl, "dropdown onchange handler missing"
         for mkt in ["us", "hk", "uk", "cn"]:
             assert f"/{mkt}_market_info.html" in tmpl, \
-                f"No nav link to /{mkt}_market_info.html in market page template"
+                f"No option for /{mkt}_market_info.html in dropdown"
 
-    def test_index_chart_cards_link_to_market_pages(self):
-        """The 4 donut chart cards must be clickable (onclick) to navigate to market pages.
-        No separate button row — the cards themselves are the navigation.
+    def test_index_chart_cards_are_links(self):
+        """The 4 donut chart cards must be wrapped in <a> tags pointing to market pages.
+        This is a true link (keyboard nav, right-click, mobile-friendly).
         """
         for mkt in ["us", "hk", "uk", "cn"]:
-            assert f"onclick=\"location.href='/{mkt}_market_info.html'\"" in self.src, \
-                f"onclick missing from {mkt} chart card"
+            assert f'<a href="/{mkt}_market_info.html"' in self.src, \
+                f"<a> link missing for {mkt} chart card"
 
     def test_market_page_section_title_matches_main(self):
         """Market page .section-title CSS must match the main page style
