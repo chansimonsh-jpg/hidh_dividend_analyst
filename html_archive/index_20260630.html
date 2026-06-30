@@ -198,7 +198,7 @@ svg text{font-family:system-ui,sans-serif}
   <div class="top-row">
     <a href="/us_market_info.html" style="display:block;text-decoration:none;color:inherit" title="美股精選推介">
     <div class="chart-card clickable">
-      <div class="chart-title"><span data-zh-hk="美股 US" data-zh-cn="美股 US" data-en="US Stocks">美股 US</span> <span style="float:right;font-size:11px;color:#1D9E75">詳情 →</span></div>
+      <div class="chart-title"><span data-zh-hk="美股 US" data-zh-cn="美股 US" data-en="US Stocks">美股 US</span> <span class="chart-detail-hint" data-zh-hk="詳情 →" data-zh-cn="详情 →" data-en="Details →" style="float:right;font-size:11px;color:#1D9E75">詳情 →</span></div>
       <div class="legend">
         <span data-zh-hk="強力買入"><span class="ld" style="background:#1D9E75"></span>強力買入 <strong>0</strong></span>
         <span data-zh-hk="值得關注"><span class="ld" style="background:#378ADD"></span>值得關注 <strong>8</strong></span>
@@ -210,7 +210,7 @@ svg text{font-family:system-ui,sans-serif}
     </a>
     <a href="/hk_market_info.html" style="display:block;text-decoration:none;color:inherit" title="港股精選推介">
     <div class="chart-card clickable">
-      <div class="chart-title"><span data-zh-hk="港股 HK" data-zh-cn="港股 HK" data-en="HK Stocks">港股 HK</span> <span style="float:right;font-size:11px;color:#1D9E75">詳情 →</span></div>
+      <div class="chart-title"><span data-zh-hk="港股 HK" data-zh-cn="港股 HK" data-en="HK Stocks">港股 HK</span> <span class="chart-detail-hint" data-zh-hk="詳情 →" data-zh-cn="详情 →" data-en="Details →" style="float:right;font-size:11px;color:#1D9E75">詳情 →</span></div>
       <div class="legend">
         <span data-zh-hk="強力買入"><span class="ld" style="background:#1D9E75"></span>強力買入 <strong>3</strong></span>
         <span data-zh-hk="值得關注"><span class="ld" style="background:#378ADD"></span>值得關注 <strong>32</strong></span>
@@ -222,7 +222,7 @@ svg text{font-family:system-ui,sans-serif}
     </a>
     <a href="/uk_market_info.html" style="display:block;text-decoration:none;color:inherit" title="英股精選推介">
     <div class="chart-card clickable">
-      <div class="chart-title"><span data-zh-hk="英股 UK" data-zh-cn="英股 UK" data-en="UK Stocks">英股 UK</span> <span style="float:right;font-size:11px;color:#1D9E75">詳情 →</span></div>
+      <div class="chart-title"><span data-zh-hk="英股 UK" data-zh-cn="英股 UK" data-en="UK Stocks">英股 UK</span> <span class="chart-detail-hint" data-zh-hk="詳情 →" data-zh-cn="详情 →" data-en="Details →" style="float:right;font-size:11px;color:#1D9E75">詳情 →</span></div>
       <div class="legend">
         <span data-zh-hk="強力買入"><span class="ld" style="background:#1D9E75"></span>強力買入 <strong>1</strong></span>
         <span data-zh-hk="值得關注"><span class="ld" style="background:#378ADD"></span>值得關注 <strong>6</strong></span>
@@ -234,7 +234,7 @@ svg text{font-family:system-ui,sans-serif}
     </a>
     <a href="/cn_market_info.html" style="display:block;text-decoration:none;color:inherit" title="A股精選推介">
     <div class="chart-card clickable">
-      <div class="chart-title"><span data-zh-hk="A股 CN" data-zh-cn="A股 CN" data-en="China A-Shares">A股 CN</span> <span style="float:right;font-size:11px;color:#1D9E75">詳情 →</span></div>
+      <div class="chart-title"><span data-zh-hk="A股 CN" data-zh-cn="A股 CN" data-en="China A-Shares">A股 CN</span> <span class="chart-detail-hint" data-zh-hk="詳情 →" data-zh-cn="详情 →" data-en="Details →" style="float:right;font-size:11px;color:#1D9E75">詳情 →</span></div>
       <div class="legend">
         <span data-zh-hk="強力買入"><span class="ld" style="background:#1D9E75"></span>強力買入 <strong>8</strong></span>
         <span data-zh-hk="值得關注"><span class="ld" style="background:#378ADD"></span>值得關注 <strong>34</strong></span>
@@ -635,7 +635,7 @@ function setLang(lang) {
   document.querySelectorAll('.pros-label').forEach(function(el){el.textContent=t.pros;});
   document.querySelectorAll('.cons-label').forEach(function(el){el.textContent=t.cons;});
   document.querySelectorAll('.score-row span:first-child').forEach(function(el){el.textContent=t.score;});
-  document.querySelectorAll('.pick-stat-label[data-zh-hk], .pick-track-label[data-zh-hk], .r-avoid[data-zh-hk], .risk-label[data-zh-hk], .risk-text[data-zh-hk]').forEach(function(el){el.textContent=el.getAttribute('data-'+lang)||el.getAttribute('data-zh-hk');});
+  document.querySelectorAll('.pick-stat-label[data-zh-hk], .pick-track-label[data-zh-hk], .r-avoid[data-zh-hk], .risk-label[data-zh-hk], .risk-text[data-zh-hk], .chart-detail-hint[data-zh-hk]').forEach(function(el){el.textContent=el.getAttribute('data-'+lang)||el.getAttribute('data-zh-hk');});
   document.querySelectorAll('.pros-text').forEach(function(el){el.textContent=el.getAttribute('data-'+lang)||el.getAttribute('data-zh-hk');});
   document.querySelectorAll('.cons-text').forEach(function(el){el.textContent=el.getAttribute('data-'+lang)||el.getAttribute('data-zh-hk');});
   var fi=document.querySelectorAll('.footer-inner span');if(fi[2])fi[2].textContent='© 2026 prosynchk.com · '+t.f2+' · '+t.f3;
