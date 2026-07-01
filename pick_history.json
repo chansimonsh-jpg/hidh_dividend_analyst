@@ -149,6 +149,11 @@
       "date": "2026-06-18",
       "price": 140.54,
       "end_date": "2026-06-26"
+    },
+    {
+      "date": "2026-07-01",
+      "price": 135.47,
+      "end_date": null
     }
   ],
   "avoid:US:WEC": [
@@ -215,7 +220,7 @@
     {
       "date": "2026-06-23",
       "price": 38.58,
-      "end_date": null
+      "end_date": "2026-07-01"
     }
   ],
   "pick:HK:0168.HK": [
