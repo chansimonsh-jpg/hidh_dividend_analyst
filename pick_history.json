@@ -184,7 +184,7 @@
     {
       "date": "2026-06-23",
       "price": 211.45,
-      "end_date": null
+      "end_date": "2026-07-02"
     }
   ],
   "avoid:US:SPG": [
@@ -298,6 +298,13 @@
     {
       "date": "2026-07-01",
       "price": 9.17,
+      "end_date": null
+    }
+  ],
+  "avoid:US:DUK": [
+    {
+      "date": "2026-07-02",
+      "price": 129.6,
       "end_date": null
     }
   ]
