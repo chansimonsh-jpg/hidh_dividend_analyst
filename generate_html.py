@@ -1859,21 +1859,21 @@ MKT_I18N_EXT = (
     "strong:'強力買入',watch:'値得關注',tracked:'隻',trackedLbl:'追蹤',"
     "noWatch:'暫無符合條件的推介股票（≥60分）',"
     "noAvoid:'暫無高危股票（<30分）',"
-    "home:'主頁',about:'關於',discLabel:'免責聲明',disc:'本網站所有內容僅供參考及教育用途，不構成任何投資建議或買賣邀請。投資涉及風險，過往表現不代表未來回報。讀者應自行進行盡職審查，並在作出任何投資決定前諮詢持牌財務顧問。本站對因使用本站資料而引起的任何損失概不負責。',"
+    "home:'主頁',about:'關於',privacy:'私隱政策',discLabel:'免責聲明',disc:'本網站所有內容僅供參考及教育用途，不構成任何投資建議或買賣邀請。投資涉及風險，過往表現不代表未來回報。讀者應自行進行盡職審查，並在作出任何投資決定前諮詢持牌財務顧問。本站對因使用本站資料而引起的任何損失概不負責。',"
     "mktLabel:'── 市場 ──',"
     "optUS:'美股 US',optHK:'港股 HK',optUK:'英股 UK',optCN:'A股 CN'},"
     "'zh-cn':{watchTitle:'精选推介（≥60分）',avoidTitle:'高危名单（<30分）',"
     "strong:'强力买入',watch:'値得关注',tracked:'只',trackedLbl:'追踪',"
     "noWatch:'暂无符合条件的推介股票（≥60分）',"
     "noAvoid:'暂无高危股票（<30分）',"
-    "home:'主页',about:'关于',discLabel:'免责声明',disc:'本网站所有内容仅供参考及教育用途，不构成任何投资建议或买卖邀请。投资涉及风险，过往表现不代表未来回报。读者应自行进行尽职审查，并在作出任何投资决定前咨询持牌财务顾问。本站对因使用本站资料而引起的任何损失概不负责。',"
+    "home:'主页',about:'关于',privacy:'隐私政策',discLabel:'免责声明',disc:'本网站所有内容仅供参考及教育用途，不构成任何投资建议或买卖邀请。投资涉及风险，过往表现不代表未来回报。读者应自行进行尽职审查，并在作出任何投资决定前咨询持牌财务顾问。本站对因使用本站资料而引起的任何损失概不负责。',"
     "mktLabel:'── 市场 ──',"
     "optUS:'美股 US',optHK:'港股 HK',optUK:'英股 UK',optCN:'A股 CN'},"
     "'en':{watchTitle:'Top Picks (≥60pts)',avoidTitle:'High-Risk List (<30pts)',"
     "strong:'Strong Buy',watch:'Watch',tracked:'stocks',trackedLbl:'Tracked',"
     "noWatch:'No qualifying picks (≥60pts)',"
     "noAvoid:'No high-risk stocks (<30pts)',"
-    "home:'Home',about:'About',discLabel:'Disclaimer',disc:'All content on this website is for reference and educational purposes only and does not constitute investment advice or an invitation to buy or sell. Investments involve risk and past performance is not indicative of future results. Readers should conduct their own due diligence and consult a licensed financial adviser before making any investment decisions. This site accepts no responsibility for any losses arising from use of the information provided.',"
+    "home:'Home',about:'About',privacy:'Privacy',discLabel:'Disclaimer',disc:'All content on this website is for reference and educational purposes only and does not constitute investment advice or an invitation to buy or sell. Investments involve risk and past performance is not indicative of future results. Readers should conduct their own due diligence and consult a licensed financial adviser before making any investment decisions. This site accepts no responsibility for any losses arising from use of the information provided.',"
     "mktLabel:'── Market ──',"
     "optUS:'US Stocks',optHK:'HK Stocks',optUK:'UK Stocks',optCN:'China A-Shares'}};"
     "var _o=typeof setLang!=='undefined'?setLang:function(){};"
@@ -1891,7 +1891,8 @@ MKT_I18N_EXT = (
     "document.querySelectorAll('.no-picks').forEach(function(el){el.textContent=t.noWatch;});"
     "document.querySelectorAll('.no-avoid').forEach(function(el){el.textContent=t.noAvoid;});"
     "document.querySelectorAll('.footer-nav-home').forEach(function(el){el.textContent=t.home;});"
-    "document.querySelectorAll('.footer-nav-about').forEach(function(el){el.textContent=t.about;});var disc=document.querySelector('.disclaimer-inner');if(disc)disc.innerHTML='<strong>'+t.discLabel+'：</strong>'+t.disc;"
+    "document.querySelectorAll('.footer-nav-about').forEach(function(el){el.textContent=t.about;});"
+    "document.querySelectorAll('.footer-nav-privacy').forEach(function(el){el.textContent=t.privacy;});var disc=document.querySelector('.disclaimer-inner');if(disc)disc.innerHTML='<strong>'+t.discLabel+'：</strong>'+t.disc;"
     "var ms=document.getElementById('mkt-select');"
     "if(ms&&ms.options[0])ms.options[0].text=t.mktLabel;"
     "var opMap=[null,t.optUS,t.optHK,t.optUK,t.optCN];"
@@ -2029,7 +2030,7 @@ a{{color:#1D9E75;text-decoration:none}}a:hover{{text-decoration:underline}}
     <span class="footer-logo">HiDH Dividend Analyst</span>
     <span>
       <a href="/about.html" style="color:#aaa;text-decoration:none" class="footer-nav-about">關於我們</a> ·
-      <a href="/privacy.html" style="color:#aaa;text-decoration:none">私隱政策</a>
+      <a href="/privacy.html" style="color:#aaa;text-decoration:none" class="footer-nav-privacy">私隱政策</a>
     </span>
     <span>© {datetime.date.today().year} prosynchk.com · 僅供參考</span>
   </div>

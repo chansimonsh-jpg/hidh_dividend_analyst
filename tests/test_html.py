@@ -230,6 +230,16 @@ class TestMarketPageBuilder:
         assert "disclaimer-inner" in src and "disc.innerHTML" in src, \
             "Disclaimer translation handler missing from MKT_I18N_EXT"
 
+    def test_footer_privacy_link_translates(self):
+        """Privacy link in market page footer must translate via MKT_I18N_EXT."""
+        src = self.src
+        assert 'class="footer-nav-privacy"'  in src, ".footer-nav-privacy class missing from footer"
+        assert "privacy:'私隱政策'"           in src, "zh-hk privacy label missing"
+        assert "privacy:'隐私政策'"           in src, "zh-cn privacy label missing"
+        assert "privacy:'Privacy'"            in src, "en privacy label missing"
+        assert "footer-nav-privacy" in src and "t.privacy" in src, \
+            "MKT_I18N_EXT handler for footer-nav-privacy missing"
+
     def test_index_chart_cards_are_links(self):
         """The 4 donut chart cards must be wrapped in <a> tags pointing to market pages.
         This is a true link (keyboard nav, right-click, mobile-friendly).
