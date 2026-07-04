@@ -1105,11 +1105,26 @@ def generate_html(stocks, stats, report_date, div_hist=None):
     max_score  = int(stocks[0]["score"]) if stocks else 0
     max_ticker = stocks[0]["ticker"] if stocks else ""
 
-    # 載入歷史記錄：推介、避開各自校對一次 —
-    # 封存跌出名單的舊期間、為新入選/重新入選的股票開新期間
+    # 計算每個 market page 實際會顯示的股票（top-5 watch ≥60, worst-5 avoid <30）
+    _mkt_watch_all, _mkt_avoid_all = [], []
+    for _m in ["US", "HK", "UK", "CN"]:
+        _ms = [s for s in stocks if s["mkt"] == _m]
+        _mkt_watch_all += [s for s in sorted(_ms, key=lambda x: -x["score"]) if s["score"] >= 60][:5]
+        _mkt_avoid_all += [s for s in sorted(_ms, key=lambda x:  x["score"]) if s["score"] <  30][:5]
+
+    # 合併 index picks ∪ market page stocks，只追蹤真正顯示的股票
+    _seen_p = set(); _hist_picks = []
+    for s in picks + _mkt_watch_all:
+        if s["ticker"] not in _seen_p:
+            _hist_picks.append(s); _seen_p.add(s["ticker"])
+    _seen_a = set(); _hist_avoids = []
+    for s in avoided + _mkt_avoid_all:
+        if s["ticker"] not in _seen_a:
+            _hist_avoids.append(s); _seen_a.add(s["ticker"])
+
     history = load_history()
-    op, cp = reconcile_history(history, picks,   report_date, kind="pick")
-    oa, ca = reconcile_history(history, avoided, report_date, kind="avoid")
+    op, cp = reconcile_history(history, _hist_picks,  report_date, kind="pick")
+    oa, ca = reconcile_history(history, _hist_avoids, report_date, kind="avoid")
     if op or cp or oa or ca:
         save_history(history)
         parts = []
