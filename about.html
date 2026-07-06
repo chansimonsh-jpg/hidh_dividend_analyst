@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>關於我們 | About Us | HiDH Dividend Analyst</title>
+<title>關於我們 | About HiDH Dividend Analyst</title>
+<meta name="description" content="HiDH Dividend Analyst 是專注全球高息股分析的獨立平台，以量化評分系統每日篩選港美英A股，幫助投資者發掘優質股息股。">
 <link rel="icon" type="image/png" href="/icon.png">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
@@ -14,16 +15,42 @@ a{color:#1D9E75;text-decoration:none}a:hover{text-decoration:underline}
 .logo{font-size:18px;font-weight:600;color:#1D9E75;text-decoration:none}.logo span{color:#333}
 .nav{display:flex;gap:1.5rem;font-size:14px}.nav a{color:#555;text-decoration:none}.nav a:hover{color:#1D9E75;text-decoration:none}
 .content{max-width:760px;margin:2.5rem auto;padding:0 1.5rem}
-.content h1{font-size:24px;font-weight:600;color:#222;margin-bottom:1.5rem}
-.content h2{font-size:16px;font-weight:600;color:#222;margin:2rem 0 .75rem}
+.content h1{font-size:26px;font-weight:700;color:#222;margin-bottom:1.5rem;border-bottom:2px solid #1D9E75;padding-bottom:.5rem}
+.content h2{font-size:17px;font-weight:700;color:#1D9E75;margin:2.5rem 0 .75rem}
+.content h3{font-size:15px;font-weight:600;color:#333;margin:1.5rem 0 .5rem}
 .content p{font-size:14px;color:#555;margin-bottom:1rem}
 .content ul{font-size:14px;color:#555;margin:.5rem 0 1rem 1.5rem}
-.content ul li{margin-bottom:.4rem}
+.content ul li{margin-bottom:.5rem}
+.content ol{font-size:14px;color:#555;margin:.5rem 0 1rem 1.5rem}
+.content ol li{margin-bottom:.5rem}
 .card{background:#fff;border:1px solid #e5e5e5;border-radius:12px;padding:1.5rem;margin-bottom:1rem}
+.card-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem}
+@media(max-width:600px){.card-grid{grid-template-columns:1fr}}
+.dim-card{background:#fff;border:1px solid #e5e5e5;border-radius:10px;padding:1.2rem}
+.dim-score{font-size:22px;font-weight:700;color:#1D9E75}
+.dim-title{font-size:14px;font-weight:600;color:#222;margin:.2rem 0 .4rem}
+.dim-desc{font-size:13px;color:#666;line-height:1.6}
+.mkt-card{background:#fff;border:1px solid #e5e5e5;border-radius:10px;padding:1.2rem;margin-bottom:.75rem}
+.mkt-tag{display:inline-block;font-size:12px;font-weight:700;padding:2px 10px;border-radius:4px;margin-bottom:.5rem}
+.mkt-us{background:#EBF5FF;color:#1D4ED8}
+.mkt-hk{background:#FFF7ED;color:#C2410C}
+.mkt-uk{background:#F0FDF4;color:#166534}
+.mkt-cn{background:#FEF2F2;color:#991B1B}
+.rating-row{display:flex;align-items:baseline;gap:.75rem;padding:.6rem 0;border-bottom:1px solid #f0f0f0}
+.rating-row:last-child{border-bottom:none}
+.rating-badge{font-size:12px;font-weight:700;min-width:70px;text-align:center;padding:3px 8px;border-radius:4px}
+.rb-strong{background:#D1FAE5;color:#065F46}
+.rb-watch{background:#DCFCE7;color:#166534}
+.rb-hold{background:#FEF9C3;color:#854D0E}
 .contact-row{display:flex;align-items:center;gap:.75rem;font-size:14px;color:#555;padding:.5rem 0;border-bottom:1px solid #f0f0f0}
 .contact-row:last-child{border-bottom:none}
-.contact-label{font-weight:600;color:#333;min-width:80px}
+.contact-label{font-weight:600;color:#333;min-width:90px}
 .avoid-badge{display:inline-block;background:#FEF3F2;color:#B42318;font-size:12px;font-weight:600;padding:2px 8px;border-radius:4px;margin-right:6px}
+.faq-item{background:#fff;border:1px solid #e5e5e5;border-radius:10px;padding:1.2rem;margin-bottom:.75rem}
+.faq-q{font-size:14px;font-weight:600;color:#222;margin-bottom:.4rem}
+.faq-a{font-size:13px;color:#555;line-height:1.7}
+.highlight-box{background:#F0FDF4;border:1px solid #BBF7D0;border-radius:10px;padding:1.2rem;margin-bottom:1.5rem}
+.highlight-box p{font-size:14px;color:#166534;margin:0}
 .footer{background:#222;color:#aaa;padding:1.5rem;font-size:12px;margin-top:3rem}
 .footer-inner{max-width:960px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem}
 .footer-logo{color:#1D9E75;font-weight:600;font-size:14px}
@@ -52,121 +79,444 @@ a{color:#1D9E75;text-decoration:none}a:hover{text-decoration:underline}
 
 <div class="content">
 
-  <!-- 繁體中文 -->
-  <div class="lang-section active" id="sec-zh-hk">
-    <h1>關於我們</h1>
-    <h2>關於 HiDH Dividend Analyst</h2>
-    <p>HiDH Dividend Analyst 是一個專注於全球高息股分析的獨立資訊平台，涵蓋香港、美國、英國及中國A股四大市場，每個交易日自動更新數據，為投資者提供系統化的股息股篩選參考。</p>
-    <p>我們相信，長期穩定的股息收入是財富增長的重要基石。透過量化評分系統，我們對數百隻股票進行全面分析，幫助投資者發掘真正具備長線持有價值的優質高息股。</p>
-    <h2>我們的分析方法</h2>
-    <p>每隻股票均以100分制進行綜合評分，涵蓋五大範疇：</p>
-    <ul>
-      <li><strong>股息質量（30分）</strong>：息率水平、派息穩定性及現金流覆蓋率</li>
-      <li><strong>估值（25分）</strong>：現價相對歷史息率及市場的吸引程度</li>
-      <li><strong>財務健康（25分）</strong>：資產負債、現金流及償債能力</li>
-      <li><strong>增長（10分）</strong>：股息增長趨勢及盈利前景</li>
-      <li><strong>技術走勢（10分）</strong>：RSI、52週位置等技術指標</li>
-    </ul>
-    <h2>評級說明</h2>
-    <p>根據總分，每隻股票會獲得以下評級：</p>
-    <ul>
-      <li><strong>🟢🟢 強力買入（75分以上）</strong>：各方面均表現優秀，值得重點關注</li>
-      <li><strong>🟢 值得關注（60–74分）</strong>：基本面良好，可納入觀察名單</li>
-      <li><strong>⚖️ 觀望（50–59分）</strong>：有一定吸引力，但需留意風險</li>
-    </ul>
-    <h2><span class="avoid-badge">🔴 高危</span>高危名單說明</h2>
-    <p>高危名單列出評分最低的股票，供投資者參考迴避。高危股通常具備以下特徵：派息比率過高甚至超過盈利、現金流無法支撐股息、財務槓桿過高、近期股息曾被削減，或估值嚴重偏高。</p>
-    <p>高危名單並非「沽出」建議，而是提示投資者相關股票存在較高風險，需作更深入研究才考慮持有。</p>
-    <h2>免責聲明</h2>
-    <div class="card">
-      <p style="margin:0;font-size:13px;color:#777">本網站所有內容僅供參考及教育用途，不構成任何投資建議或買賣邀請。投資涉及風險，過往表現不代表未來回報。讀者應自行進行盡職審查，並在作出任何投資決定前諮詢持牌財務顧問。本站對因使用本站資料而引起的任何損失概不負責。</p>
+<!-- ══════════════════════════════════════════
+     繁體中文
+══════════════════════════════════════════ -->
+<div class="lang-section active" id="sec-zh-hk">
+  <h1>關於我們</h1>
+
+  <div class="highlight-box">
+    <p>HiDH Dividend Analyst 每個交易日自動分析逾300隻全球高息股，以量化評分幫助投資者識別優質股息股及規避高危股票。</p>
+  </div>
+
+  <h2>平台簡介</h2>
+  <p>HiDH Dividend Analyst 是一個專注於全球高息股分析的獨立資訊平台，由一位香港個人投資者創立，旨在以系統化、量化的方式，協助散戶投資者篩選具備長線持有價值的優質股息股。</p>
+  <p>平台涵蓋四大市場：香港（恒指成份股及主要藍籌）、美國（標普500高息股及REITs）、英國（富時100高息股及基礎建設信託）、中國A股（滬深300高息藍籌）。每個交易日收市後，系統自動透過公開金融數據源抓取最新數據，完成重新評分並更新網站。</p>
+  <p>我們相信，長期穩定的股息收入是財富增長的重要基石。股息投資不僅能提供定期現金流，複息再投資效應更能大幅提升長期回報。然而，並非所有高息股都值得持有——部分高息率只是反映市場對公司前景的疑慮，或派息難以持續。本平台的核心任務，就是幫助投資者區分「真正的高質素高息股」與「高息陷阱」。</p>
+
+  <h2>五維量化評分方法</h2>
+  <p>每隻股票均以100分制進行綜合評分，由五個維度構成，分別針對股息的可持續性、估值吸引力、財務穩健度、增長潛力及技術走勢進行量化評估：</p>
+
+  <div class="card-grid">
+    <div class="dim-card">
+      <div class="dim-score">30分</div>
+      <div class="dim-title">股息質量</div>
+      <div class="dim-desc">評估息率水平、派息比率（Payout Ratio）、過去5年派息紀錄的穩定性，以及自由現金流能否支撐現有股息。若派息比率超過100%或自由現金流為負，會顯著扣分。</div>
     </div>
-    <h2>聯絡我們</h2>
-    <div class="card">
-      <div class="contact-row"><span class="contact-label">網站</span><a href="https://prosynchk.com">prosynchk.com</a></div>
-      <div class="contact-row"><span class="contact-label">電郵</span><a href="mailto:prosynchk@gmail.com">prosynchk@gmail.com</a></div>
-      <div class="contact-row"><span class="contact-label">更新頻率</span><span>每個交易日</span></div>
-      <div class="contact-row"><span class="contact-label">覆蓋市場</span><span>香港 · 美國 · 英國 · 中國A股</span></div>
+    <div class="dim-card">
+      <div class="dim-score">25分</div>
+      <div class="dim-title">估值</div>
+      <div class="dim-desc">透過市盈率（PE）、市帳率（PB）及相對歷史息率，評估股票現價是否具吸引力。估值過高的股票即使息率不錯，上升空間亦受限。</div>
+    </div>
+    <div class="dim-card">
+      <div class="dim-score">25分</div>
+      <div class="dim-title">財務健康</div>
+      <div class="dim-desc">審視資產負債表的穩健程度，包括負債比率、流動比率、利息保障倍數及自由現金流。財務脆弱的公司在經濟逆境中容易削減股息。</div>
+    </div>
+    <div class="dim-card">
+      <div class="dim-score">10分</div>
+      <div class="dim-title">增長</div>
+      <div class="dim-desc">分析過去3至5年的股息增長趨勢及盈利增長前景。持續增長的股息不僅帶來更高的未來息率，亦反映公司盈利能力的持續改善。</div>
+    </div>
+  </div>
+  <div class="dim-card" style="margin-bottom:1.5rem">
+    <div class="dim-score">10分</div>
+    <div class="dim-title">技術走勢</div>
+    <div class="dim-desc">參考RSI相對強弱指數、股價相對52週高低位的位置，以及短中期移動平均線的走勢，評估股票目前的技術面是否有利入市。技術走勢僅作輔助參考，不作主要決策依據。</div>
+  </div>
+
+  <h2>評級說明</h2>
+  <p>根據總評分，每隻股票獲得以下評級，幫助投資者快速識別投資機會及風險：</p>
+  <div class="card" style="padding:1rem 1.5rem">
+    <div class="rating-row">
+      <span class="rating-badge rb-strong">強力買入</span>
+      <span style="font-size:14px;color:#555"><strong>75分以上</strong>：各維度均表現優秀，具備高質素、可持續股息的特徵，值得重點納入投資組合考慮。</span>
+    </div>
+    <div class="rating-row">
+      <span class="rating-badge rb-watch">值得關注</span>
+      <span style="font-size:14px;color:#555"><strong>60–74分</strong>：基本面良好，股息質素及財務健康度達標，可納入觀察名單，等待合適入市時機。</span>
+    </div>
+    <div class="rating-row">
+      <span class="rating-badge rb-hold">觀望</span>
+      <span style="font-size:14px;color:#555"><strong>50–59分</strong>：部分指標有吸引力，但亦有明顯弱點，需更深入研究，不宜輕率入市。</span>
     </div>
   </div>
 
-  <!-- 简体中文 -->
-  <div class="lang-section" id="sec-zh-cn">
-    <h1>关于我们</h1>
-    <h2>关于 HiDH Dividend Analyst</h2>
-    <p>HiDH Dividend Analyst 是一个专注于全球高息股分析的独立资讯平台，涵盖香港、美国、英国及中国A股四大市场，每个交易日自动更新数据，为投资者提供系统化的股息股筛选参考。</p>
-    <p>我们相信，长期稳定的股息收入是财富增长的重要基石。透过量化评分系统，我们对数百只股票进行全面分析，帮助投资者发掘真正具备长线持有价值的优质高息股。</p>
-    <h2>我们的分析方法</h2>
-    <p>每只股票均以100分制进行综合评分，涵盖五大范畴：</p>
-    <ul>
-      <li><strong>股息质量（30分）</strong>：息率水平、派息稳定性及现金流覆盖率</li>
-      <li><strong>估值（25分）</strong>：现价相对历史息率及市场的吸引程度</li>
-      <li><strong>财务健康（25分）</strong>：资产负债、现金流及偿债能力</li>
-      <li><strong>增长（10分）</strong>：股息增长趋势及盈利前景</li>
-      <li><strong>技术走势（10分）</strong>：RSI、52周位置等技术指标</li>
-    </ul>
-    <h2>评级说明</h2>
-    <p>根据总分，每只股票会获得以下评级：</p>
-    <ul>
-      <li><strong>🟢🟢 强力买入（75分以上）</strong>：各方面均表现优秀，值得重点关注</li>
-      <li><strong>🟢 值得关注（60–74分）</strong>：基本面良好，可纳入观察名单</li>
-      <li><strong>⚖️ 观望（50–59分）</strong>：有一定吸引力，但需留意风险</li>
-    </ul>
-    <h2><span class="avoid-badge">🔴 高危</span>高危名单说明</h2>
-    <p>高危名单列出评分最低的股票，供投资者参考回避。高危股通常具备以下特征：派息比率过高甚至超过盈利、现金流无法支撑股息、财务杠杆过高、近期股息曾被削减，或估值严重偏高。</p>
-    <p>高危名单并非"沽出"建议，而是提示投资者相关股票存在较高风险，需作更深入研究才考虑持有。</p>
-    <h2>免责声明</h2>
-    <div class="card">
-      <p style="margin:0;font-size:13px;color:#777">本网站所有内容仅供参考及教育用途，不构成任何投资建议或买卖邀请。投资涉及风险，过往表现不代表未来回报。读者应自行进行尽职审查，并在作出任何投资决定前咨询持牌财务顾问。本站对因使用本站资料而引起的任何损失概不负责。</p>
-    </div>
-    <h2>联系我们</h2>
-    <div class="card">
-      <div class="contact-row"><span class="contact-label">网站</span><a href="https://prosynchk.com">prosynchk.com</a></div>
-      <div class="contact-row"><span class="contact-label">电邮</span><a href="mailto:prosynchk@gmail.com">prosynchk@gmail.com</a></div>
-      <div class="contact-row"><span class="contact-label">更新频率</span><span>每个交易日</span></div>
-      <div class="contact-row"><span class="contact-label">覆盖市场</span><span>香港 · 美国 · 英国 · 中国A股</span></div>
-    </div>
+  <h2>四大市場覆蓋</h2>
+
+  <div class="mkt-card">
+    <span class="mkt-tag mkt-hk">🇭🇰 香港股市</span>
+    <p style="font-size:14px;color:#555;margin:0">覆蓋恒生指數成份股、主要REITs（領展、冠君等）、公用事業股（電能、中電）、本港銀行及內銀H股、電訊股，以及部分優質國企藍籌。港股高息股歷來是亞洲收息投資者的首選，惟需留意人民幣匯率風險及內地政策影響。</p>
+  </div>
+  <div class="mkt-card">
+    <span class="mkt-tag mkt-us">🇺🇸 美國股市</span>
+    <p style="font-size:14px;color:#555;margin:0">涵蓋標普500高息股、美國REITs（Realty Income、Prologis等）、公用事業（NextEra、Duke Energy）、消費品龍頭（Coca-Cola、P&G）、藥業（J&amp;J、AbbVie）及高息ETF（SCHD、VYM、JEPI）。美股市場流動性高，股息增長紀錄較佳，但估值偏高需注意。</p>
+  </div>
+  <div class="mkt-card">
+    <span class="mkt-tag mkt-uk">🇬🇧 英國股市</span>
+    <p style="font-size:14px;color:#555;margin:0">重點覆蓋富時100（FTSE 100）高息藍籌，包括電訊股（Vodafone、BT）、能源股（BP、Shell）、銀行股（Barclays、Lloyds）、基礎建設信託（National Grid）及可再生能源投資信託。英股普遍息率較高，適合收息投資者，惟英鎊匯率波動需納入考量。</p>
+  </div>
+  <div class="mkt-card">
+    <span class="mkt-tag mkt-cn">🇨🇳 中國A股</span>
+    <p style="font-size:14px;color:#555;margin:0">聚焦滬深300高息藍籌，包括國有大型銀行（工行、建行、農行）、能源股（中國神華、長江電力）、保險股（中國平安、中國太保）及白酒龍頭（貴州茅台）。A股市場近年積極推動提升股息派發，為收息投資者提供更多選擇，惟需留意政策風險及人民幣資本管制。</p>
   </div>
 
-  <!-- English -->
-  <div class="lang-section" id="sec-en">
-    <h1>About Us</h1>
-    <h2>About HiDH Dividend Analyst</h2>
-    <p>HiDH Dividend Analyst is an independent platform focused on global high-dividend stock analysis, covering Hong Kong, US, UK, and China A-share markets. Data is updated every trading day to provide investors with a systematic dividend stock screening reference.</p>
-    <p>We believe that long-term stable dividend income is an important cornerstone of wealth growth. Through our quantitative scoring system, we comprehensively analyse hundreds of stocks to help investors identify quality high-dividend stocks truly worth holding long-term.</p>
-    <h2>Our Methodology</h2>
-    <p>Each stock is scored on a 100-point scale across five dimensions:</p>
-    <ul>
-      <li><strong>Dividend Quality (30pts)</strong>: Yield level, payout stability and free cash flow coverage</li>
-      <li><strong>Valuation (25pts)</strong>: Current price vs historical yield and attractiveness</li>
-      <li><strong>Financial Health (25pts)</strong>: Balance sheet, cash flow and debt coverage</li>
-      <li><strong>Growth (10pts)</strong>: Dividend growth trend and earnings outlook</li>
-      <li><strong>Technical (10pts)</strong>: RSI, 52-week position and other indicators</li>
-    </ul>
-    <h2>Rating Guide</h2>
-    <p>Each stock receives a rating based on its total score:</p>
-    <ul>
-      <li><strong>🟢🟢 Strong Buy (75+)</strong>: Excellent across all dimensions, high priority</li>
-      <li><strong>🟢 Watch (60–74)</strong>: Good fundamentals, worth monitoring</li>
-      <li><strong>⚖️ Hold (50–59)</strong>: Some appeal, monitor risks carefully</li>
-    </ul>
-    <h2><span class="avoid-badge">🔴 High-Risk</span>High-Risk List Explained</h2>
-    <p>The High-Risk List highlights the lowest-scoring stocks for investors to approach with caution. High-risk stocks typically exhibit: payout ratios exceeding earnings, cash flow unable to sustain dividends, excessive financial leverage, recent dividend cuts, or severely stretched valuations.</p>
-    <p>This list is not a sell recommendation — it flags stocks requiring deeper research before any investment decision.</p>
-    <h2>Disclaimer</h2>
-    <div class="card">
-      <p style="margin:0;font-size:13px;color:#777">All content on this website is for reference and educational purposes only and does not constitute investment advice or an invitation to buy or sell. Investments involve risk and past performance is not indicative of future results. Readers should conduct their own due diligence and consult a licensed financial adviser before making any investment decisions. This site accepts no responsibility for any losses arising from use of the information provided.</p>
-    </div>
-    <h2>Contact Us</h2>
-    <div class="card">
-      <div class="contact-row"><span class="contact-label">Website</span><a href="https://prosynchk.com">prosynchk.com</a></div>
-      <div class="contact-row"><span class="contact-label">Email</span><a href="mailto:prosynchk@gmail.com">prosynchk@gmail.com</a></div>
-      <div class="contact-row"><span class="contact-label">Updates</span><span>Every trading day</span></div>
-      <div class="contact-row"><span class="contact-label">Markets</span><span>Hong Kong · US · UK · China A-share</span></div>
-    </div>
+  <h2><span class="avoid-badge">🔴 高危</span>高危名單說明</h2>
+  <p>高危名單列出評分低於30分的股票，作為投資者的參考警示。高危股通常同時具備以下多項特徵：</p>
+  <ul>
+    <li>派息比率遠超100%，即以借貸或變賣資產支付股息</li>
+    <li>自由現金流為負，公司本身現金創造能力不足</li>
+    <li>過去數年曾削減或暫停股息，派息紀錄欠穩定</li>
+    <li>財務槓桿過高，負債比率令公司脆弱</li>
+    <li>估值嚴重偏高，息率被高股價壓低至不吸引水平</li>
+    <li>盈利持續倒退，股息難以為繼</li>
+  </ul>
+  <p>高危名單並非「沽出」建議，亦不代表相關公司必然出現問題。它是一個提醒工具，提示投資者在考慮持有或增持相關股票前，需進行更深入的獨立研究，充分了解風險所在。</p>
+
+  <h2>數據來源與更新機制</h2>
+  <p>本平台使用多個公開金融數據源，確保數據的覆蓋面與準確性：</p>
+  <ul>
+    <li><strong>Yahoo Finance</strong>：港股、美股、英股的價格、基本面及股息數據</li>
+    <li><strong>AKShare</strong>：中國A股的歷史股價及除息記錄</li>
+    <li><strong>靜態備用數據</strong>：當即時數據源出現異常時，系統自動切換至審核過的備用數值</li>
+  </ul>
+  <p>每個交易日完結後，系統自動執行數據更新流程：抓取最新收市價格及基本面數據 → 重新計算五維評分 → 更新網站並記錄追蹤歷史。整個流程無需人手介入，確保資訊的時效性。</p>
+
+  <h2>追蹤歷史與表現記錄</h2>
+  <p>平台會自動記錄每隻股票首次進入推介名單或高危名單的日期及當時股價。用戶可在每張股票卡片上看到：</p>
+  <ul>
+    <li><strong>推介日期</strong>：股票首次被列入推介名單的日期</li>
+    <li><strong>推介價</strong>：入選時的股價</li>
+    <li><strong>漲跌幅</strong>：自推介日期至今的股價變動百分比</li>
+  </ul>
+  <p>此追蹤功能旨在提升透明度，讓用戶能客觀評估本平台評分系統的參考價值。</p>
+
+  <h2>常見問題</h2>
+
+  <div class="faq-item">
+    <div class="faq-q">本網站的投資建議是否由持牌人士提供？</div>
+    <div class="faq-a">否。本網站的所有內容均由系統自動生成，基於公開數據的量化分析，並非由持牌投資顧問提供的個人化投資建議。所有資訊僅供參考及教育用途。</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">評分系統多久更新一次？</div>
+    <div class="faq-a">系統每個交易日（港股、美股、英股、A股各自的交易日）收市後自動更新。週末及公眾假期不更新。網站頂部會顯示最新的數據更新日期。</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">高分股票是否一定值得買入？</div>
+    <div class="faq-a">不一定。高評分表示該股票在量化指標上表現良好，但並不能替代個人的深入研究。投資者應考慮自身的風險承受能力、投資目標及組合分散程度，並在必要時諮詢持牌財務顧問。</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">為何某些股票的息率很高，但評分卻很低？</div>
+    <div class="faq-a">高息率並非高評分的充分條件。若一家公司的派息比率超過盈利、現金流為負、財務槓桿過高或股息紀錄不穩定，即使息率吸引，整體評分仍會偏低，反映股息的可持續性存疑。這正是本平台提醒「高息陷阱」的核心功能。</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">如何使用本網站的資訊？</div>
+    <div class="faq-a">建議將本網站作為初步篩選工具，識別值得進一步研究的候選股票。確定感興趣的股票後，應進一步閱讀公司財務報表、年報及分析師報告，並結合個人投資目標作出決定。</div>
   </div>
 
+  <h2>免責聲明</h2>
+  <div class="card">
+    <p style="margin:0;font-size:13px;color:#777;line-height:1.8">本網站所有內容僅供參考及教育用途，不構成任何投資建議、認購邀請或買賣邀請。本網站的分析及評分均基於公開數據及量化模型，可能存在誤差或滯後，不應被視為完整或準確的投資分析。投資涉及風險，包括可能損失全部本金。過往表現不代表未來回報。讀者應自行進行盡職審查，並在作出任何投資決定前諮詢持牌財務顧問。本站對因使用本站資料而直接或間接引起的任何損失概不負責。</p>
+  </div>
+
+  <h2>聯絡我們</h2>
+  <div class="card">
+    <div class="contact-row"><span class="contact-label">網站</span><a href="https://prosynchk.com">prosynchk.com</a></div>
+    <div class="contact-row"><span class="contact-label">電郵</span><a href="mailto:prosynchk@gmail.com">prosynchk@gmail.com</a></div>
+    <div class="contact-row"><span class="contact-label">更新頻率</span><span>每個交易日自動更新</span></div>
+    <div class="contact-row"><span class="contact-label">覆蓋市場</span><span>香港 · 美國 · 英國 · 中國A股</span></div>
+    <div class="contact-row"><span class="contact-label">分析股票數</span><span>逾300隻</span></div>
+  </div>
 </div>
+
+<!-- ══════════════════════════════════════════
+     简体中文
+══════════════════════════════════════════ -->
+<div class="lang-section" id="sec-zh-cn">
+  <h1>关于我们</h1>
+
+  <div class="highlight-box">
+    <p>HiDH Dividend Analyst 每个交易日自动分析逾300只全球高息股，以量化评分帮助投资者识别优质股息股及规避高危股票。</p>
+  </div>
+
+  <h2>平台简介</h2>
+  <p>HiDH Dividend Analyst 是一个专注于全球高息股分析的独立资讯平台，由一位香港个人投资者创立，旨在以系统化、量化的方式，协助散户投资者筛选具备长线持有价值的优质股息股。</p>
+  <p>平台涵盖四大市场：香港（恒指成份股及主要蓝筹）、美国（标普500高息股及REITs）、英国（富时100高息股及基础建设信托）、中国A股（沪深300高息蓝筹）。每个交易日收市后，系统自动透过公开金融数据源抓取最新数据，完成重新评分并更新网站。</p>
+  <p>我们相信，长期稳定的股息收入是财富增长的重要基石。股息投资不仅能提供定期现金流，复息再投资效应更能大幅提升长期回报。然而，并非所有高息股都值得持有——部分高息率只是反映市场对公司前景的疑虑，或派息难以持续。本平台的核心任务，就是帮助投资者区分「真正的高质素高息股」与「高息陷阱」。</p>
+
+  <h2>五维量化评分方法</h2>
+  <p>每只股票均以100分制进行综合评分，由五个维度构成，分别针对股息的可持续性、估值吸引力、财务稳健度、增长潜力及技术走势进行量化评估：</p>
+
+  <div class="card-grid">
+    <div class="dim-card">
+      <div class="dim-score">30分</div>
+      <div class="dim-title">股息质量</div>
+      <div class="dim-desc">评估息率水平、派息比率（Payout Ratio）、过去5年派息记录的稳定性，以及自由现金流能否支撑现有股息。若派息比率超过100%或自由现金流为负，会显著扣分。</div>
+    </div>
+    <div class="dim-card">
+      <div class="dim-score">25分</div>
+      <div class="dim-title">估值</div>
+      <div class="dim-desc">透过市盈率（PE）、市账率（PB）及相对历史息率，评估股票现价是否具吸引力。估值过高的股票即使息率不错，上升空间亦受限。</div>
+    </div>
+    <div class="dim-card">
+      <div class="dim-score">25分</div>
+      <div class="dim-title">财务健康</div>
+      <div class="dim-desc">审视资产负债表的稳健程度，包括负债比率、流动比率、利息保障倍数及自由现金流。财务脆弱的公司在经济逆境中容易削减股息。</div>
+    </div>
+    <div class="dim-card">
+      <div class="dim-score">10分</div>
+      <div class="dim-title">增长</div>
+      <div class="dim-desc">分析过去3至5年的股息增长趋势及盈利增长前景。持续增长的股息不仅带来更高的未来息率，亦反映公司盈利能力的持续改善。</div>
+    </div>
+  </div>
+  <div class="dim-card" style="margin-bottom:1.5rem">
+    <div class="dim-score">10分</div>
+    <div class="dim-title">技术走势</div>
+    <div class="dim-desc">参考RSI相对强弱指数、股价相对52周高低位的位置，以及短中期移动平均线的走势，评估股票目前的技术面是否有利入市。技术走势仅作辅助参考，不作主要决策依据。</div>
+  </div>
+
+  <h2>评级说明</h2>
+  <p>根据总评分，每只股票获得以下评级：</p>
+  <div class="card" style="padding:1rem 1.5rem">
+    <div class="rating-row">
+      <span class="rating-badge rb-strong">强力买入</span>
+      <span style="font-size:14px;color:#555"><strong>75分以上</strong>：各维度均表现优秀，具备高质素、可持续股息的特征，值得重点纳入投资组合考虑。</span>
+    </div>
+    <div class="rating-row">
+      <span class="rating-badge rb-watch">值得关注</span>
+      <span style="font-size:14px;color:#555"><strong>60–74分</strong>：基本面良好，股息质素及财务健康度达标，可纳入观察名单。</span>
+    </div>
+    <div class="rating-row">
+      <span class="rating-badge rb-hold">观望</span>
+      <span style="font-size:14px;color:#555"><strong>50–59分</strong>：部分指标有吸引力，但亦有明显弱点，需更深入研究。</span>
+    </div>
+  </div>
+
+  <h2>四大市场覆盖</h2>
+  <div class="mkt-card">
+    <span class="mkt-tag mkt-hk">🇭🇰 香港股市</span>
+    <p style="font-size:14px;color:#555;margin:0">覆盖恒生指数成份股、主要REITs（领展、冠君等）、公用事业股（电能、中电）、本港银行及内银H股、电讯股，以及部分优质国企蓝筹。</p>
+  </div>
+  <div class="mkt-card">
+    <span class="mkt-tag mkt-us">🇺🇸 美国股市</span>
+    <p style="font-size:14px;color:#555;margin:0">涵盖标普500高息股、美国REITs、公用事业、消费品龙头、药业及高息ETF（SCHD、VYM、JEPI）。美股市场流动性高，股息增长记录较佳。</p>
+  </div>
+  <div class="mkt-card">
+    <span class="mkt-tag mkt-uk">🇬🇧 英国股市</span>
+    <p style="font-size:14px;color:#555;margin:0">重点覆盖富时100高息蓝筹，包括电讯股、能源股、银行股、基础建设信托及可再生能源投资信托。英股普遍息率较高，适合收息投资者。</p>
+  </div>
+  <div class="mkt-card">
+    <span class="mkt-tag mkt-cn">🇨🇳 中国A股</span>
+    <p style="font-size:14px;color:#555;margin:0">聚焦沪深300高息蓝筹，包括国有大型银行、能源股、保险股及白酒龙头。A股市场近年积极推动提升股息派发，为收息投资者提供更多选择。</p>
+  </div>
+
+  <h2><span class="avoid-badge">🔴 高危</span>高危名单说明</h2>
+  <p>高危名单列出评分低于30分的股票，作为投资者的参考警示。高危股通常同时具备以下多项特征：</p>
+  <ul>
+    <li>派息比率远超100%，即以借贷或变卖资产支付股息</li>
+    <li>自由现金流为负，公司本身现金创造能力不足</li>
+    <li>过去数年曾削减或暂停股息，派息记录欠稳定</li>
+    <li>财务杠杆过高，负债比率令公司脆弱</li>
+    <li>估值严重偏高，息率被高股价压低至不吸引水平</li>
+    <li>盈利持续倒退，股息难以为继</li>
+  </ul>
+  <p>高危名单并非「沽出」建议，而是提示投资者在考虑持有相关股票前，需进行更深入的独立研究，充分了解风险所在。</p>
+
+  <h2>数据来源与更新机制</h2>
+  <p>本平台使用多个公开金融数据源，确保数据的覆盖面与准确性：</p>
+  <ul>
+    <li><strong>Yahoo Finance</strong>：港股、美股、英股的价格、基本面及股息数据</li>
+    <li><strong>AKShare</strong>：中国A股的历史股价及除息记录</li>
+    <li><strong>静态备用数据</strong>：当即时数据源出现异常时，系统自动切换至审核过的备用数值</li>
+  </ul>
+  <p>每个交易日完结后，系统自动执行数据更新流程，整个流程无需人手介入，确保资讯的时效性。</p>
+
+  <h2>常见问题</h2>
+  <div class="faq-item">
+    <div class="faq-q">本网站的投资建议是否由持牌人士提供？</div>
+    <div class="faq-a">否。本网站的所有内容均由系统自动生成，基于公开数据的量化分析，并非由持牌投资顾问提供的个人化投资建议。所有资讯仅供参考及教育用途。</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">评分系统多久更新一次？</div>
+    <div class="faq-a">系统每个交易日收市后自动更新。周末及公众假期不更新。网站顶部会显示最新的数据更新日期。</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">为何某些股票的息率很高，但评分却很低？</div>
+    <div class="faq-a">高息率并非高评分的充分条件。若一家公司的派息比率超过盈利、现金流为负、财务杠杆过高或股息记录不稳定，即使息率吸引，整体评分仍会偏低，反映股息的可持续性存疑。这正是本平台提醒「高息陷阱」的核心功能。</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">如何使用本网站的资讯？</div>
+    <div class="faq-a">建议将本网站作为初步筛选工具，识别值得进一步研究的候选股票。确定感兴趣的股票后，应进一步阅读公司财务报表、年报及分析师报告，并结合个人投资目标作出决定。</div>
+  </div>
+
+  <h2>免责声明</h2>
+  <div class="card">
+    <p style="margin:0;font-size:13px;color:#777;line-height:1.8">本网站所有内容仅供参考及教育用途，不构成任何投资建议、认购邀请或买卖邀请。本网站的分析及评分均基于公开数据及量化模型，可能存在误差或滞后，不应被视为完整或准确的投资分析。投资涉及风险，包括可能损失全部本金。过往表现不代表未来回报。读者应自行进行尽职审查，并在作出任何投资决定前咨询持牌财务顾问。本站对因使用本站资料而直接或间接引起的任何损失概不负责。</p>
+  </div>
+
+  <h2>联系我们</h2>
+  <div class="card">
+    <div class="contact-row"><span class="contact-label">网站</span><a href="https://prosynchk.com">prosynchk.com</a></div>
+    <div class="contact-row"><span class="contact-label">电邮</span><a href="mailto:prosynchk@gmail.com">prosynchk@gmail.com</a></div>
+    <div class="contact-row"><span class="contact-label">更新频率</span><span>每个交易日自动更新</span></div>
+    <div class="contact-row"><span class="contact-label">覆盖市场</span><span>香港 · 美国 · 英国 · 中国A股</span></div>
+    <div class="contact-row"><span class="contact-label">分析股票数</span><span>逾300只</span></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     English
+══════════════════════════════════════════ -->
+<div class="lang-section" id="sec-en">
+  <h1>About Us</h1>
+
+  <div class="highlight-box">
+    <p>HiDH Dividend Analyst automatically analyses over 300 global high-dividend stocks every trading day, using a quantitative scoring system to help investors identify quality income stocks and avoid high-risk traps.</p>
+  </div>
+
+  <h2>About the Platform</h2>
+  <p>HiDH Dividend Analyst is an independent financial information platform focused on global high-dividend stock analysis. Founded by a Hong Kong individual investor, the platform aims to provide retail investors with a systematic, data-driven approach to screening quality dividend stocks worth holding for the long term.</p>
+  <p>The platform covers four major markets: Hong Kong (Hang Seng constituents and major blue chips), United States (S&amp;P 500 high-yield stocks and REITs), United Kingdom (FTSE 100 high-yield stocks and infrastructure trusts), and China A-shares (CSI 300 high-dividend blue chips). After each trading session, the system automatically fetches the latest data from public financial sources, recalculates all scores, and updates the website — no manual intervention required.</p>
+  <p>We believe that long-term, stable dividend income is a cornerstone of wealth building. Dividend investing provides regular cash flow, and the compounding effect of reinvested dividends significantly boosts long-term returns. However, not all high-yield stocks are worth holding. Some high yields simply reflect the market's concern about a company's outlook or an unsustainable payout. The core mission of this platform is to help investors distinguish between genuine quality dividend stocks and "yield traps."</p>
+
+  <h2>Five-Dimension Quantitative Scoring</h2>
+  <p>Every stock is scored on a 100-point scale across five dimensions, each targeting a different aspect of dividend sustainability, valuation, financial strength, growth potential, and technical momentum:</p>
+
+  <div class="card-grid">
+    <div class="dim-card">
+      <div class="dim-score">30pts</div>
+      <div class="dim-title">Dividend Quality</div>
+      <div class="dim-desc">Assesses yield level, payout ratio, dividend stability over 5 years, and whether free cash flow adequately covers the dividend. Payout ratios above 100% or negative free cash flow result in significant score deductions.</div>
+    </div>
+    <div class="dim-card">
+      <div class="dim-score">25pts</div>
+      <div class="dim-title">Valuation</div>
+      <div class="dim-desc">Uses Price-to-Earnings (PE), Price-to-Book (PB) and yield-vs-history comparisons to assess whether the current price offers attractive entry. Even a decent yield is less valuable at an overvalued price.</div>
+    </div>
+    <div class="dim-card">
+      <div class="dim-score">25pts</div>
+      <div class="dim-title">Financial Health</div>
+      <div class="dim-desc">Examines balance sheet robustness: debt ratios, current ratio, interest coverage and free cash flow generation. Financially fragile companies are more likely to cut dividends during economic downturns.</div>
+    </div>
+    <div class="dim-card">
+      <div class="dim-score">10pts</div>
+      <div class="dim-title">Growth</div>
+      <div class="dim-desc">Analyses 3–5 year dividend growth trends and earnings outlook. Consistently growing dividends not only deliver higher future yields but also signal improving business fundamentals.</div>
+    </div>
+  </div>
+  <div class="dim-card" style="margin-bottom:1.5rem">
+    <div class="dim-score">10pts</div>
+    <div class="dim-title">Technical Momentum</div>
+    <div class="dim-desc">References RSI (Relative Strength Index), the stock's position relative to its 52-week high/low, and short-to-medium term moving average trends to assess whether current technicals favour entry. Used as a secondary factor only.</div>
+  </div>
+
+  <h2>Rating Guide</h2>
+  <p>Based on the total score, each stock receives one of the following ratings to help investors quickly identify opportunities and risks:</p>
+  <div class="card" style="padding:1rem 1.5rem">
+    <div class="rating-row">
+      <span class="rating-badge rb-strong">Strong Buy</span>
+      <span style="font-size:14px;color:#555"><strong>75+ points</strong>: Excellent across all dimensions. Strong dividend quality, sustainable payout and sound financials make this a high-priority candidate for portfolio consideration.</span>
+    </div>
+    <div class="rating-row">
+      <span class="rating-badge rb-watch">Watch</span>
+      <span style="font-size:14px;color:#555"><strong>60–74 points</strong>: Good fundamentals. Dividend quality and financial health meet the bar — worth adding to a watchlist and monitoring for an entry point.</span>
+    </div>
+    <div class="rating-row">
+      <span class="rating-badge rb-hold">Hold</span>
+      <span style="font-size:14px;color:#555"><strong>50–59 points</strong>: Mixed signals. Some attractive metrics but notable weaknesses — deeper research required before committing.</span>
+    </div>
+  </div>
+
+  <h2>Market Coverage</h2>
+  <div class="mkt-card">
+    <span class="mkt-tag mkt-hk">🇭🇰 Hong Kong</span>
+    <p style="font-size:14px;color:#555;margin:0">Covers Hang Seng Index constituents, major REITs (Link REIT, Champion REIT), utilities (Power Assets, CLP), local and mainland Chinese banks (H-shares), telecoms, and selected state-owned enterprise blue chips. Note: investors should be aware of RMB exchange rate and mainland policy risks.</p>
+  </div>
+  <div class="mkt-card">
+    <span class="mkt-tag mkt-us">🇺🇸 United States</span>
+    <p style="font-size:14px;color:#555;margin:0">Covers S&amp;P 500 high-yield stocks, US REITs (Realty Income, Prologis), utilities (NextEra, Duke Energy), consumer staples (Coca-Cola, P&amp;G), healthcare (J&amp;J, AbbVie) and high-yield ETFs (SCHD, VYM, JEPI). The US market offers strong liquidity and an excellent track record of dividend growth.</p>
+  </div>
+  <div class="mkt-card">
+    <span class="mkt-tag mkt-uk">🇬🇧 United Kingdom</span>
+    <p style="font-size:14px;color:#555;margin:0">Focuses on FTSE 100 high-yield blue chips including telecoms (Vodafone, BT), energy majors (BP, Shell), banks (Barclays, Lloyds), infrastructure (National Grid) and renewable energy investment trusts. UK stocks historically offer higher yields than US counterparts; GBP currency risk should be considered.</p>
+  </div>
+  <div class="mkt-card">
+    <span class="mkt-tag mkt-cn">🇨🇳 China A-Shares</span>
+    <p style="font-size:14px;color:#555;margin:0">Covers CSI 300 high-dividend blue chips including major state-owned banks (ICBC, CCB, ABC), energy companies (China Shenhua, Yangtze Power), insurers (Ping An, China Pacific) and consumer leaders. China's market regulators have increasingly encouraged higher dividend payouts in recent years.</p>
+  </div>
+
+  <h2><span class="avoid-badge">🔴 High-Risk</span>High-Risk List Explained</h2>
+  <p>The High-Risk List highlights stocks scoring below 30 points as a reference warning for investors. High-risk stocks typically exhibit several of the following characteristics simultaneously:</p>
+  <ul>
+    <li>Payout ratio far exceeding 100% — dividends are effectively funded by debt or asset sales</li>
+    <li>Negative free cash flow — the company cannot self-fund its dividend from operations</li>
+    <li>Dividend cuts or suspensions in recent years — an unreliable income track record</li>
+    <li>Excessive financial leverage — high debt levels make the company vulnerable in a downturn</li>
+    <li>Severely stretched valuation — the high price has compressed the yield to unattractive levels</li>
+    <li>Persistent earnings decline — the financial basis for maintaining dividends is eroding</li>
+  </ul>
+  <p>The High-Risk List is not a sell recommendation, nor does it imply that a company will definitely face problems. It is an alert tool that flags stocks requiring deeper independent research before any investment decision is made.</p>
+
+  <h2>Data Sources &amp; Update Process</h2>
+  <p>The platform uses multiple public financial data sources to ensure broad coverage and data accuracy:</p>
+  <ul>
+    <li><strong>Yahoo Finance</strong>: Prices, fundamentals and dividend data for HK, US and UK stocks</li>
+    <li><strong>AKShare</strong>: Historical price and ex-dividend records for China A-shares</li>
+    <li><strong>Static fallback data</strong>: When a live data source is unavailable or returns anomalous values, the system automatically falls back to pre-verified reference values</li>
+  </ul>
+  <p>After each trading session, the system automatically executes the full update pipeline: fetching the latest closing prices and fundamental data → recalculating all five-dimension scores → updating the website and recording pick history. The entire process is fully automated with no manual steps required.</p>
+
+  <h2>Pick Tracking &amp; Performance Record</h2>
+  <p>The platform automatically records the date and price at which each stock first enters the recommendation list or high-risk list. Each stock card displays:</p>
+  <ul>
+    <li><strong>Picked On</strong>: The date the stock was first added to the recommendation list</li>
+    <li><strong>Then Price</strong>: The stock price at the time of entry</li>
+    <li><strong>Change</strong>: Percentage price change from the pick date to today</li>
+  </ul>
+  <p>This tracking feature is designed to enhance transparency and allow users to objectively assess the reference value of the platform's scoring system over time.</p>
+
+  <h2>Frequently Asked Questions</h2>
+  <div class="faq-item">
+    <div class="faq-q">Is the investment information provided by a licensed adviser?</div>
+    <div class="faq-a">No. All content on this website is automatically generated by the system based on quantitative analysis of publicly available data. It is not personalised investment advice from a licensed investment adviser. All information is for reference and educational purposes only.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">How often is the scoring system updated?</div>
+    <div class="faq-a">The system updates automatically after each trading day (following the respective market's closing time for HK, US, UK and A-share markets). No updates on weekends or public holidays. The most recent data update date is displayed at the top of the website.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">Does a high score mean I should definitely buy the stock?</div>
+    <div class="faq-a">Not necessarily. A high score indicates the stock performs well on quantitative metrics, but it cannot replace your own in-depth research. You should consider your personal risk tolerance, investment objectives and portfolio diversification, and consult a licensed financial adviser if needed.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">Why does a stock with a very high yield still receive a low score?</div>
+    <div class="faq-a">A high yield is not sufficient for a high score. If a company's payout ratio exceeds its earnings, its cash flow is negative, its leverage is excessive, or its dividend history is unreliable, the overall score will remain low — reflecting doubts about the sustainability of that dividend. This is precisely the platform's core function: warning investors about yield traps.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">How should I use the information on this website?</div>
+    <div class="faq-a">Use this platform as an initial screening tool to identify stocks worth researching further. Once you have identified candidates of interest, you should read the company's financial statements, annual reports and analyst research, and combine those findings with your own investment objectives before making any decision.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q">Which markets and stocks are covered?</div>
+    <div class="faq-a">The platform currently tracks over 300 stocks across four markets: Hong Kong (Hang Seng constituents and major blue chips), United States (S&amp;P 500 income stocks, REITs and high-yield ETFs), United Kingdom (FTSE 100 high-yield stocks and investment trusts), and China A-shares (CSI 300 high-dividend blue chips). The coverage list is periodically reviewed and updated.</div>
+  </div>
+
+  <h2>Disclaimer</h2>
+  <div class="card">
+    <p style="margin:0;font-size:13px;color:#777;line-height:1.8">All content on this website is for reference and educational purposes only and does not constitute investment advice, an offer to subscribe, or an invitation to buy or sell any securities. The analysis and scores on this website are based on publicly available data and quantitative models, which may contain errors or lags, and should not be treated as complete or accurate investment analysis. Investments involve risk, including the possible loss of the entire principal invested. Past performance is not indicative of future results. Readers should conduct their own due diligence and consult a licensed financial adviser before making any investment decisions. This site accepts no responsibility for any losses, direct or indirect, arising from the use of the information provided.</p>
+  </div>
+
+  <h2>Contact Us</h2>
+  <div class="card">
+    <div class="contact-row"><span class="contact-label">Website</span><a href="https://prosynchk.com">prosynchk.com</a></div>
+    <div class="contact-row"><span class="contact-label">Email</span><a href="mailto:prosynchk@gmail.com">prosynchk@gmail.com</a></div>
+    <div class="contact-row"><span class="contact-label">Updates</span><span>Automatically updated every trading day</span></div>
+    <div class="contact-row"><span class="contact-label">Markets</span><span>Hong Kong · US · UK · China A-share</span></div>
+    <div class="contact-row"><span class="contact-label">Stocks Tracked</span><span>300+ stocks</span></div>
+  </div>
+</div>
+
+</div><!-- .content -->
 
 <div class="footer">
   <div class="footer-inner">
@@ -194,23 +544,16 @@ var TITLE = {
 
 function setLang(lang) {
   try{localStorage.setItem('hidh_lang',lang);}catch(e){}
-  // Button styles
   ['btn-zh-hk','btn-zh-cn','btn-en'].forEach(function(id){
     var b = document.getElementById(id);
     if(b){b.style.background='transparent';b.style.color='#666';b.style.borderColor='#e5e5e5';}
   });
   var active = document.getElementById('btn-'+lang);
   if(active){active.style.background='#1D9E75';active.style.color='#fff';active.style.borderColor='#1D9E75';}
-
-  // Nav labels
   var navLinks = document.querySelectorAll('.nav a[data-zh-hk]');
   var labels = NAV[lang] || NAV['zh-hk'];
   navLinks.forEach(function(a, i){ if(labels[i]) a.textContent = labels[i]; });
-
-  // Page title
   document.title = (TITLE[lang]||TITLE['zh-hk']) + ' | HiDH Dividend Analyst';
-
-  // Content sections
   document.querySelectorAll('.lang-section').forEach(function(s){ s.classList.remove('active'); });
   var secMap = {'zh-hk':'sec-zh-hk','zh-cn':'sec-zh-cn','en':'sec-en'};
   var sec = document.getElementById(secMap[lang]||'sec-zh-hk');
