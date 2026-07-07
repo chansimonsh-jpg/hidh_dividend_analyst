@@ -447,7 +447,7 @@
     {
       "date": "2026-07-04",
       "price": 7.83,
-      "end_date": null
+      "end_date": "2026-07-07"
     }
   ],
   "pick:CN:600600.SS": [
@@ -482,6 +482,13 @@
     {
       "date": "2026-07-06",
       "price": 30.02,
+      "end_date": "2026-07-07"
+    }
+  ],
+  "avoid:UK:UU.L": [
+    {
+      "date": "2026-07-07",
+      "price": 13.45,
       "end_date": null
     }
   ]
