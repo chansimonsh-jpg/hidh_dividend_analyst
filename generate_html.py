@@ -1380,10 +1380,11 @@ svg text{{font-family:system-ui,sans-serif}}
   <div class="header-inner">
     <div class="logo">HiDH <span>Dividend Analyst</span></div>
     <nav class="nav">
-      <a href="#about" data-zh-hk="選股方法" data-zh-cn="选股方法" data-en="Methodology">選股方法</a>
-      <a href="#charts" data-zh-hk="市場概覽" data-zh-cn="市场概览" data-en="Markets">市場概覽</a>
-      <a href="#picks" data-zh-hk="最新精選" data-zh-cn="最新精选" data-en="Top Picks">最新精選</a>
-      <a href="#avoid" data-zh-hk="高危名單" data-zh-cn="高危名单" data-en="High-Risk List">高危名單</a>
+      <a href="#about"       data-zh-hk="選股方法" data-zh-cn="选股方法" data-en="Methodology">選股方法</a>
+      <a href="#charts"      data-zh-hk="市場概覽" data-zh-cn="市场概览" data-en="Markets">市場概覽</a>
+      <a href="#picks"       data-zh-hk="最新精選" data-zh-cn="最新精选" data-en="Top Picks">最新精選</a>
+      <a href="#avoid"       data-zh-hk="高危名單" data-zh-cn="高危名单" data-en="High-Risk List">高危名單</a>
+      <a href="articles.html" data-zh-hk="投資學堂" data-zh-cn="投资学堂" data-en="Learn">投資學堂</a>
     </nav>
   </div>
 </div>
@@ -1560,8 +1561,9 @@ svg text{{font-family:system-ui,sans-serif}}
   <div class="footer-inner">
     <span class="footer-logo">HiDH Dividend Analyst</span>
     <span>
-      <a href="about.html" style="color:#aaa;text-decoration:none" data-zh-hk="關於我們" data-zh-cn="关于我们" data-en="About">關於我們</a> ·
-      <a href="privacy.html" style="color:#aaa;text-decoration:none" data-zh-hk="私隱政策" data-zh-cn="隐私政策" data-en="Privacy">私隱政策</a>
+      <a href="about.html"    style="color:#aaa;text-decoration:none" data-zh-hk="關於我們" data-zh-cn="关于我们" data-en="About">關於我們</a> ·
+      <a href="articles.html" style="color:#aaa;text-decoration:none" data-zh-hk="投資學堂" data-zh-cn="投资学堂" data-en="Learn">投資學堂</a> ·
+      <a href="privacy.html"  style="color:#aaa;text-decoration:none" data-zh-hk="私隱政策" data-zh-cn="隐私政策" data-en="Privacy">私隱政策</a>
     </span>
     <span>© {datetime.date.today().year} prosynchk.com · 每個交易日更新 · 資料來源：Yahoo Finance · 僅供參考</span>
   </div>
