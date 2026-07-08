@@ -344,3 +344,56 @@ class TestPrivacyHtml:
 
     def test_has_footer(self):
         assert 'class="footer"' in self.src
+
+
+# ══════════════════════════════════════════════════════════════════════════
+# 4. articles.html — content, nav, persistence
+# ══════════════════════════════════════════════════════════════════════════
+
+class TestArticlesHtml:
+    def setup_method(self):
+        self.src = _read("articles.html")
+
+    def test_has_header_with_logo(self):
+        assert 'class="header"' in self.src
+        assert 'class="logo"' in self.src
+
+    def test_has_three_content_sections(self):
+        for sec_id in ["sec-zh-hk", "sec-zh-cn", "sec-en"]:
+            assert f'id="{sec_id}"' in self.src, f"Missing content section id={sec_id}"
+
+    def test_has_five_articles_per_language(self):
+        """Each language section must have at least 5 article anchors."""
+        for i in range(1, 6):
+            assert f'id="hk-art{i}-zh-hk"' in self.src, f"zh-hk article {i} anchor missing"
+        for i in range(1, 6):
+            assert f'id="en-art{i}"' in self.src, f"en article {i} anchor missing"
+
+    def test_lang_buttons_use_setlang(self):
+        assert "onclick=\"setLang('zh-hk')\"" in self.src
+        assert "onclick=\"setLang('en')\"" in self.src
+
+    def test_setlang_saves_to_localstorage(self):
+        assert "localStorage.setItem('hidh_lang'" in self.src
+
+    def test_setlang_restores_on_load(self):
+        assert "localStorage.getItem('hidh_lang')" in self.src
+
+    def test_has_footer(self):
+        assert 'class="footer"' in self.src
+
+    def test_articles_linked_from_about_nav(self):
+        """about.html nav must include a link to articles.html."""
+        about_src = _read("about.html")
+        assert '/articles.html' in about_src, "about.html nav missing link to articles.html"
+
+    def test_articles_in_sitemap(self):
+        """sitemap.xml must include articles.html."""
+        sitemap = _read("sitemap.xml")
+        assert 'articles.html' in sitemap, "articles.html missing from sitemap.xml"
+
+    def test_workflow_deploys_articles(self):
+        """Deploy workflows must copy articles.html to _pages_site."""
+        for wf in ["daily-html-deploy.yml", "daily-dividend-update.yml"]:
+            wf_src = _read(f".github/workflows/{wf}")
+            assert "articles.html" in wf_src, f"{wf} does not deploy articles.html"

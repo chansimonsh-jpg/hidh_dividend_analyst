@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>股息投資學堂 | Dividend Investing Guide | HiDH Dividend Analyst</title>
+<meta name="description" content="股息投資教育文章：高息陷阱識別、港股選股指南、美國REITs入門、派息比率解讀、建立股息組合策略。三語版本。">
+<link rel="icon" type="image/png" href="/icon.png">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,-apple-system,sans-serif;background:#f7f7f5;color:#333;line-height:1.8}
+a{color:#1D9E75;text-decoration:none}a:hover{text-decoration:underline}
+.header{background:#fff;border-bottom:1px solid #e5e5e5;padding:0 1.5rem}
+.header-inner{max-width:960px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:60px}
+.logo{font-size:18px;font-weight:600;color:#1D9E75;text-decoration:none}.logo span{color:#333}
+.nav{display:flex;gap:1.5rem;font-size:14px}.nav a{color:#555;text-decoration:none}.nav a:hover{color:#1D9E75}
+.content{max-width:780px;margin:2.5rem auto;padding:0 1.5rem}
+.page-title{font-size:26px;font-weight:700;color:#222;margin-bottom:.5rem;border-bottom:2px solid #1D9E75;padding-bottom:.5rem}
+.page-sub{font-size:14px;color:#888;margin-bottom:2rem}
+/* Article index */
+.article-index{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:2.5rem}
+@media(max-width:600px){.article-index{grid-template-columns:1fr}}
+.article-card{background:#fff;border:1px solid #e5e5e5;border-radius:10px;padding:1.2rem;transition:box-shadow .2s}
+.article-card:hover{box-shadow:0 4px 16px rgba(0,0,0,.08)}
+.article-card a{text-decoration:none}
+.ac-num{font-size:11px;font-weight:700;color:#1D9E75;text-transform:uppercase;letter-spacing:.05em}
+.ac-title{font-size:15px;font-weight:600;color:#222;margin:.3rem 0 .4rem;line-height:1.4}
+.ac-desc{font-size:13px;color:#888;line-height:1.5}
+/* Article body */
+.article{background:#fff;border:1px solid #e5e5e5;border-radius:12px;padding:2rem;margin-bottom:2rem}
+.article h2{font-size:20px;font-weight:700;color:#222;margin-bottom:.5rem;padding-top:1rem}
+.article h3{font-size:15px;font-weight:700;color:#1D9E75;margin:1.5rem 0 .4rem}
+.article p{font-size:14px;color:#555;margin-bottom:.9rem;line-height:1.8}
+.article ul,.article ol{font-size:14px;color:#555;margin:.4rem 0 .9rem 1.5rem}
+.article ul li,.article ol li{margin-bottom:.45rem;line-height:1.7}
+.article-meta{font-size:12px;color:#aaa;margin-bottom:1.2rem}
+.key-box{background:#F0FDF4;border:1px solid #BBF7D0;border-radius:8px;padding:1rem 1.2rem;margin:1.2rem 0}
+.key-box p{font-size:13px;color:#166534;margin:0;font-weight:500}
+.warn-box{background:#FEF3F2;border:1px solid #FECACA;border-radius:8px;padding:1rem 1.2rem;margin:1.2rem 0}
+.warn-box p{font-size:13px;color:#B42318;margin:0}
+.data-table{width:100%;border-collapse:collapse;font-size:13px;margin:1rem 0}
+.data-table th{background:#f0fdf4;color:#166534;font-weight:600;padding:.5rem .75rem;text-align:left;border:1px solid #d1fae5}
+.data-table td{padding:.5rem .75rem;border:1px solid #e5e5e5;color:#555}
+.data-table tr:nth-child(even) td{background:#fafafa}
+.divider{border:none;border-top:1px solid #e5e5e5;margin:2rem 0}
+.back-top{display:inline-block;font-size:12px;color:#aaa;margin-top:.5rem}
+.back-top:hover{color:#1D9E75}
+.footer{background:#222;color:#aaa;padding:1.5rem;font-size:12px;margin-top:3rem}
+.footer-inner{max-width:960px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem}
+.footer-logo{color:#1D9E75;font-weight:600;font-size:14px}
+.footer a{color:#aaa;text-decoration:none}.footer a:hover{color:#fff}
+.lang-section{display:none}.lang-section.active{display:block}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-inner">
+    <a href="/" class="logo">HiDH <span>Dividend Analyst</span></a>
+    <nav class="nav">
+      <a href="/" data-zh-hk="主頁" data-zh-cn="主页" data-en="Home">主頁</a>
+      <a href="/about.html" data-zh-hk="關於我們" data-zh-cn="关于我们" data-en="About">關於我們</a>
+      <a href="/articles.html" data-zh-hk="投資學堂" data-zh-cn="投资学堂" data-en="Learn">投資學堂</a>
+    </nav>
+  </div>
+</div>
+<div style="display:flex;justify-content:flex-end;gap:6px;padding:.4rem 1.5rem;background:#fff;border-bottom:0.5px solid #e5e5e5">
+  <button id="btn-zh-hk" style="font-size:12px;padding:4px 12px;border-radius:20px;border:0.5px solid #1D9E75;background:#1D9E75;color:#fff;cursor:pointer" onclick="setLang('zh-hk')">繁體</button>
+  <button id="btn-zh-cn" style="font-size:12px;padding:4px 12px;border-radius:20px;border:0.5px solid #e5e5e5;background:transparent;color:#666;cursor:pointer" onclick="setLang('zh-cn')">简体</button>
+  <button id="btn-en"    style="font-size:12px;padding:4px 12px;border-radius:20px;border:0.5px solid #e5e5e5;background:transparent;color:#666;cursor:pointer" onclick="setLang('en')">English</button>
+</div>
+
+<div class="content">
+
+<!-- ═══════════════════════════════════════════════
+     繁體中文
+═══════════════════════════════════════════════ -->
+<div class="lang-section active" id="sec-zh-hk">
+  <div class="page-title">股息投資學堂</div>
+  <p class="page-sub">深入淺出的股息投資教育文章，幫助你成為更聰明的收息投資者。</p>
+
+  <div class="article-index">
+    <a href="#hk-art1-zh-hk" class="article-card">
+      <div class="ac-num">文章一</div>
+      <div class="ac-title">高息陷阱：5個警示訊號</div>
+      <div class="ac-desc">高息率並非總是好事。學識辨別可持續股息與危險陷阱。</div>
+    </a>
+    <a href="#hk-art2-zh-hk" class="article-card">
+      <div class="ac-num">文章二</div>
+      <div class="ac-title">港股高息股選股指南</div>
+      <div class="ac-desc">從REITs到公用股，如何在香港市場找到優質收息標的。</div>
+    </a>
+    <a href="#hk-art3-zh-hk" class="article-card">
+      <div class="ac-num">文章三</div>
+      <div class="ac-title">美國REITs入門指南</div>
+      <div class="ac-desc">房地產投資信託的運作原理，及如何評估其投資價值。</div>
+    </a>
+    <a href="#hk-art4-zh-hk" class="article-card">
+      <div class="ac-num">文章四</div>
+      <div class="ac-title">派息比率超過100%代表什麼？</div>
+      <div class="ac-desc">深入解讀這個關鍵財務指標，以及它對股息可持續性的影響。</div>
+    </a>
+    <a href="#hk-art5-zh-hk" class="article-card">
+      <div class="ac-num">文章五</div>
+      <div class="ac-title">如何建立股息投資組合</div>
+      <div class="ac-desc">從零開始的收息組合構建策略：分散市場、選股原則與再投資。</div>
+    </a>
+  </div>
+
+  <hr class="divider">
+
+  <!-- 文章一 -->
+  <div class="article" id="hk-art1-zh-hk">
+    <div class="ac-num">文章一</div>
+    <h2>高息陷阱：5個必須警惕的訊號</h2>
+    <p class="article-meta">股息投資 · 風險管理</p>
+    <p>在股息投資的世界裡，沒有什麼比「高息陷阱」（Dividend Yield Trap）更讓投資者吃虧。表面上看，一隻股票的息率高達8%、10%甚至15%，似乎是難得的收息機會。然而，這些超高息率背後，往往隱藏著嚴重的基本面問題，最終導致股息被削減，甚至股價暴跌，令投資者損失慘重。</p>
+    <p>本文歸納出5個最常見的高息陷阱警示訊號，幫助你在買入前先做好功課。</p>
+
+    <h3>訊號一：派息比率遠超100%</h3>
+    <p>派息比率（Payout Ratio）= 每股股息 ÷ 每股盈利，反映公司用多少盈利來支付股息。正常情況下，健康的公司派息比率在40%至70%之間，既有足夠現金回報股東，又能保留盈餘再投資業務。</p>
+    <p>當派息比率超過100%時，代表公司派出的股息超過其盈利。這意味著公司需要動用儲備、舉債或變賣資產來維持股息。這種情況短期或能維持，但長期必然不可持續，遲早要削減派息。</p>
+    <div class="warn-box"><p>警示：若一間公司的派息比率持續超過100%，又無特別充裕的現金儲備，削息風險極高。</p></div>
+
+    <h3>訊號二：自由現金流為負</h3>
+    <p>盈利可以透過會計手法「美化」，但現金流難以造假。自由現金流（Free Cash Flow）= 營業現金流 - 資本開支，直接反映公司實際能用於派息的現金。若自由現金流持續為負，即使盈利數字好看，股息亦缺乏真實現金支撐。</p>
+    <p>檢視方法：在公司年報或財務數據平台，找到「自由現金流」一欄，連續兩三年均為負數的公司需特別警惕。</p>
+
+    <h3>訊號三：股息近年曾被削減或暫停</h3>
+    <p>歷史是最誠實的老師。一間公司若曾在過去5至10年內削減或暫停股息，說明管理層願意在困難時放棄維持派息的承諾。相反，能夠連續10年以上穩定或持續增加派息的公司（如美國的「股息貴族」），其派息可靠性遠高於前者。</p>
+    <p>在HiDH的評分系統中，派息歷史穩定性是股息質量維度的重要組成部分。連續多年穩定派息的股票會獲得更高分數。</p>
+
+    <h3>訊號四：股息增長靠股價下跌推高</h3>
+    <p>這是最具欺騙性的陷阱。有時候，一隻股票的息率從4%急升至8%，並非因為公司增加了股息，而是因為股價腰斬了。股價下跌本身就是市場對公司前景的負面投票，高息率只是下跌後的「假象」。</p>
+    <p>辨別方法：查看股票過去一年的股價走勢，若股價大幅下跌而息率急升，需深入了解股價下跌的根本原因。</p>
+
+    <h3>訊號五：財務槓桿過高</h3>
+    <p>高負債的公司在利率上升或業務下滑時首當其衝。當還款壓力增大，管理層往往被迫優先償債而非維持股息。負債比率（Debt-to-Equity）持續偏高、利息保障倍數（Interest Coverage Ratio）低於2倍的公司，都應提高警惕。</p>
+
+    <div class="key-box"><p>核心原則：高息率是吸引你注意的訊號，而非買入的理由。真正值得持有的高息股，應具備可持續的派息比率、正面的自由現金流、穩定的派息歷史及健康的資產負債表。</p></div>
+    <a href="#" class="back-top">↑ 返回目錄</a>
+  </div>
+
+  <!-- 文章二 -->
+  <div class="article" id="hk-art2-zh-hk">
+    <div class="ac-num">文章二</div>
+    <h2>港股高息股選股指南：從REITs到公用股</h2>
+    <p class="article-meta">香港市場 · 選股策略</p>
+    <p>香港股市長期以來是亞太區最重要的收息投資市場之一。港股市場上市公司包括本地藍籌、國企H股及紅籌股，涵蓋金融、地產、公用事業、電訊、能源等多個板塊，整體派息文化濃厚，平均息率在全球主要市場中位居前列。</p>
+    <p>然而，港股市場近年受到地緣政治、利率環境及內地經濟週期等多重因素影響，不同板塊的表現分化明顯。如何在眾多港股中篩選真正優質的收息標的，是每位收息投資者必須掌握的功課。</p>
+
+    <h3>板塊一：香港REITs（房地產投資信託）</h3>
+    <p>REITs（Real Estate Investment Trusts）必須將絕大部分可分派收入（通常不低於90%）以股息形式分派給投資者，因此天然是高息投資工具。香港上市的主要REITs包括：</p>
+    <ul>
+      <li><strong>領展房產基金（0823.HK）</strong>：管理香港公共屋邨商場及停車場，資產質素高，是亞洲最大的零售REITs之一。</li>
+      <li><strong>冠君產業信託（2778.HK）</strong>：持有甲級寫字樓及商場，位於香港核心商業區。</li>
+      <li><strong>越秀房產信託（0405.HK）</strong>：投資廣州優質商業物業，息率相對較高。</li>
+    </ul>
+    <p>評估REITs時，應特別關注：分派單位數量是否持續增加（攤薄效應）、物業出租率、租約到期時間表，以及負債比率是否在監管上限（香港REITs負債比率不得超過45%）以內。</p>
+
+    <h3>板塊二：公用事業股</h3>
+    <p>公用事業股以穩定的盈利和現金流見稱，派息穩定性高，適合追求穩健收入的投資者。主要標的包括：</p>
+    <ul>
+      <li><strong>電能實業（0006.HK）</strong>：業務多元化，持有多個海外公用事業資產，過去數十年派息紀錄良好。</li>
+      <li><strong>中電控股（0002.HK）</strong>：香港兩大電力供應商之一，受政府「利潤管制計劃」監管，盈利穩定可預測。</li>
+      <li><strong>香港煤氣（0003.HK）</strong>：百年老店，業務橫跨港澳及內地，派息紀錄穩定。</li>
+    </ul>
+
+    <h3>板塊三：金融股（銀行及保險）</h3>
+    <p>在利率環境正常化後，銀行股的淨息差（Net Interest Margin）改善，派息能力回升。主要港股銀行包括滙豐控股（0005.HK）、東亞銀行（0023.HK）及中銀香港（2388.HK）。保險股方面，友邦保險（1299.HK）及中國平安（2318.HK）亦是常見收息選擇。</p>
+    <p>評估銀行股時，核心比率（Core Tier 1 Ratio）及貸款損失準備金是重要指標，反映銀行在不良貸款壓力下維持股息的能力。</p>
+
+    <h3>選股三大原則</h3>
+    <ol>
+      <li><strong>息率不是唯一標準</strong>：優先考慮股息的可持續性，而非追逐最高息率。</li>
+      <li><strong>分散板塊</strong>：避免過度集中於單一行業，建議組合涵蓋REITs、公用股及金融股。</li>
+      <li><strong>留意貨幣風險</strong>：港元與美元掛鈎，港股收入不存在匯率問題，但內銀H股涉及人民幣業務，匯率波動或影響實際股息收益。</li>
+    </ol>
+    <div class="key-box"><p>港股收息投資的核心邏輯：選擇具備穩定現金流、受監管保護或具壟斷性業務的企業，而非單純追逐高息率。</p></div>
+    <a href="#" class="back-top">↑ 返回目錄</a>
+  </div>
+
+  <!-- 文章三 -->
+  <div class="article" id="hk-art3-zh-hk">
+    <div class="ac-num">文章三</div>
+    <h2>美國REITs入門：原理、評估與主要類別</h2>
+    <p class="article-meta">美國市場 · 房地產投資信託</p>
+    <p>美國是全球REITs市場最成熟、規模最大的地區，有超過200隻公開上市的REITs，市值逾1.5萬億美元，涵蓋辦公室、零售、工業、住宅、醫療保健、數據中心等幾乎所有類型的房地產。對於追求定期收息的投資者而言，美國REITs是極具吸引力的資產類別。</p>
+
+    <h3>REITs的基本運作原理</h3>
+    <p>根據美國稅法，符合資格的REITs必須將至少90%的應課稅收入以股息形式分配給股東，以換取在企業層面的稅務豁免（即只在投資者層面課稅，避免雙重徵稅）。這個規定確保了REITs天然的高息率特性。</p>
+    <p>REITs的收入主要來源於租金收入，因此評估REITs的核心指標並非傳統的每股盈利（EPS），而是「可供分派資金」（Funds From Operations，簡稱FFO）。FFO = 淨利潤 + 折舊及攤銷 - 物業出售收益，更準確反映REITs的實際現金創造能力。</p>
+
+    <h3>主要REITs類別及代表性標的</h3>
+    <table class="data-table">
+      <tr><th>類別</th><th>特點</th><th>代表性標的</th></tr>
+      <tr><td>零售REITs</td><td>持有購物中心及商業地產</td><td>Simon Property (SPG)</td></tr>
+      <tr><td>工業REITs</td><td>持有物流倉庫及工業用地</td><td>Prologis (PLD)、STAG Industrial (STAG)</td></tr>
+      <tr><td>醫療保健REITs</td><td>持有療養院、醫療大廈</td><td>Welltower (WELL)、Ventas (VTR)</td></tr>
+      <tr><td>淨租賃REITs</td><td>長期租約、租客負責維修</td><td>Realty Income (O)、NNN REIT (NNN)</td></tr>
+      <tr><td>數據中心REITs</td><td>雲端及AI基礎設施需求帶動</td><td>American Tower (AMT)</td></tr>
+    </table>
+
+    <h3>評估REITs的5個關鍵指標</h3>
+    <ol>
+      <li><strong>FFO派息覆蓋率</strong>：股息 ÷ FFO，應低於85%，確保有足夠緩衝。</li>
+      <li><strong>出租率（Occupancy Rate）</strong>：一般應維持在90%以上。</li>
+      <li><strong>加權平均租約年期（WALE）</strong>：年期越長，租金收入越穩定。</li>
+      <li><strong>負債比率</strong>：槓桿式REITs在利率上升時壓力更大，淨負債÷EBITDA宜低於6倍。</li>
+      <li><strong>股息增長歷史</strong>：Realty Income已連續超過25年每月派息並持續增加，是「月息股」的經典代表。</li>
+    </ol>
+
+    <h3>利率與REITs的關係</h3>
+    <p>REITs對利率敏感，原因有二：其一，高負債的REITs在利率上升時借貸成本增加；其二，當無風險利率（如美國國債）上升，投資者要求REITs提供更高息率，導致REITs估值受壓、股價下跌。因此，利率下降週期通常對REITs股價有正面支撐。</p>
+    <div class="key-box"><p>REITs投資要點：聚焦FFO派息覆蓋率及出租率，而非單看息率。選擇有穩定租約及優質物業組合的REITs，可在利率週期波動中保持較強韌性。</p></div>
+    <a href="#" class="back-top">↑ 返回目錄</a>
+  </div>
+
+  <!-- 文章四 -->
+  <div class="article" id="hk-art4-zh-hk">
+    <div class="ac-num">文章四</div>
+    <h2>派息比率超過100%：這意味著什麼？</h2>
+    <p class="article-meta">財務分析 · 股息可持續性</p>
+    <p>派息比率（Payout Ratio）是衡量股息可持續性最直觀的指標之一。然而，許多投資者對這個數字的理解流於表面。本文深入解讀派息比率的計算方式、不同行業的合理範圍，以及超過100%時真正意味著什麼。</p>
+
+    <h3>派息比率的計算方式</h3>
+    <p>最基本的計算：<strong>派息比率 = 每股全年股息 ÷ 每股盈利（EPS）× 100%</strong></p>
+    <p>例如：一間公司每股盈利$2.00，每股派息$1.60，派息比率 = 80%。另一間公司每股盈利$1.00，每股派息$1.20，派息比率 = 120%——即每派$1.20的股息，只賺了$1.00，需要動用其他資源補足那$0.20。</p>
+
+    <h3>不同行業的合理範圍</h3>
+    <table class="data-table">
+      <tr><th>行業</th><th>合理派息比率範圍</th><th>原因</th></tr>
+      <tr><td>科技成長股</td><td>0–30%</td><td>大量盈利需再投資以支持增長</td></tr>
+      <tr><td>一般藍籌股</td><td>40–70%</td><td>兼顧股東回報及業務再投資</td></tr>
+      <tr><td>公用事業</td><td>60–80%</td><td>業務穩定，資本開支較固定</td></tr>
+      <tr><td>REITs</td><td>80–100%（以FFO計）</td><td>法規要求派出大部分可分派收益</td></tr>
+      <tr><td>⚠️ 高危區域</td><td>超過100%</td><td>股息超越盈利，難以持續</td></tr>
+    </table>
+
+    <h3>超過100%時的三種可能情況</h3>
+    <p><strong>情況一：短暫性異常</strong>——公司在某一年度出現一次性虧損或特殊支出，令盈利暫時下滑，但基本業務現金流仍然健康。這種情況下，派息比率超過100%可能只是暫時性的，若下年度盈利恢復，則問題不大。</p>
+    <p><strong>情況二：以現金儲備或借貸維持</strong>——公司明知盈利不足以支付股息，但為維護「穩定派息」的形象，動用現金儲備或新增借貸來派息。這是典型的「以債維息」，短則一兩年、長則三五年後必然耗盡資源而被迫削息。</p>
+    <p><strong>情況三：盈利計算方式差異</strong>——部分公司（尤其REITs）以「可供分派金額」而非會計盈利作為派息基礎，因此名義上「派息超盈利」，但實際上有充足現金支撐。這需要投資者進一步查閱現金流量表，而非只看損益表數字。</p>
+
+    <h3>如何判斷風險高低？</h3>
+    <p>當見到派息比率超過100%時，應立即查閱以下兩個補充指標：</p>
+    <ul>
+      <li><strong>自由現金流派息覆蓋率</strong>：若自由現金流仍能覆蓋股息，則風險相對較低。</li>
+      <li><strong>近5年派息趨勢</strong>：若公司已連續多年派息比率超過100%且未削減，表示有其他現金來源；若最近才惡化，則警訊更強烈。</li>
+    </ul>
+    <div class="warn-box"><p>紅旗組合：派息比率超過120% + 自由現金流為負 + 負債持續上升 = 極高削息風險，應謹慎迴避。</p></div>
+    <a href="#" class="back-top">↑ 返回目錄</a>
+  </div>
+
+  <!-- 文章五 -->
+  <div class="article" id="hk-art5-zh-hk">
+    <div class="ac-num">文章五</div>
+    <h2>如何從零開始建立股息投資組合</h2>
+    <p class="article-meta">投資策略 · 組合管理</p>
+    <p>股息投資是一種著重「現金流」而非「資本增值」的投資哲學。其核心目標不是買入後等待股價急升套利，而是透過持續累積優質高息股，建立穩定的被動收入來源，並透過複息再投資效應，長期實現財富增長。</p>
+
+    <h3>第一步：釐清投資目標與風險承受能力</h3>
+    <p>在開始選股之前，必須先回答幾個基本問題：你的投資目標是提供日常生活現金流（需要較高即時息率），還是長遠財富增值（可接受較低但增長的息率）？你的投資期限是5年、10年還是20年以上？你能承受多大的本金波動？</p>
+    <p>不同目標決定了不同的選股策略。追求即時現金流的投資者，可能傾向持有公用股、REITs等高息率但增長較慢的板塊；而追求長線財富增值的投資者，則可能更偏重具備持續股息增長能力的「股息增長股」（Dividend Growth Stocks）。</p>
+
+    <h3>第二步：決定市場分佈</h3>
+    <p>分散市場能有效降低地區性風險。建議的市場分佈參考（可根據個人情況調整）：</p>
+    <ul>
+      <li>香港股市：30–40%（熟悉市場、無匯率風險、本地監管）</li>
+      <li>美國股市：30–40%（最成熟的股息增長市場、流動性高）</li>
+      <li>英國股市：10–20%（傳統高息市場、提供英鎊資產分散）</li>
+      <li>中國A股：0–10%（增長市場，近年派息文化改善）</li>
+    </ul>
+
+    <h3>第三步：建立核心持股名單</h3>
+    <p>建議一個股息投資組合的核心持股控制在15至25隻股票之間。持股過少會令組合過度集中；持股過多則難以追蹤每間公司的最新動態，亦難以察覺個別公司的基本面惡化。</p>
+    <p>核心選股標準：</p>
+    <ol>
+      <li>息率合理（通常為3%至8%，超高息率需特別審視）</li>
+      <li>派息比率健康（一般低於75%，REITs除外）</li>
+      <li>過去5年沒有削減股息</li>
+      <li>自由現金流能覆蓋股息</li>
+      <li>業務有護城河（如壟斷性、品牌效應或成本優勢）</li>
+    </ol>
+
+    <h3>第四步：股息再投資策略（DRIP）</h3>
+    <p>股息再投資（Dividend Reinvestment Plan，DRIP）是指將每次收到的股息自動用於購入更多同一股票或其他投資。複利效應在長期再投資中威力驚人：若一個組合每年總回報（股息+增值）為8%，20年後本金將增長至原來的4.66倍。</p>
+    <p>即使不採用正式的DRIP計劃，投資者亦可手動將每季度或每半年收到的股息，定期買入評分最高、估值最吸引的股票，達到類似效果。</p>
+
+    <h3>第五步：定期檢視與調整</h3>
+    <p>股息投資並非「買入後完全不管」。建議每季度或半年進行一次組合檢視，重點關注：有否公司宣佈削減或暫停股息？公司基本面是否出現明顯惡化？組合的市場分佈是否因各市場表現差異而過度集中？</p>
+    <div class="key-box"><p>股息投資的最大敵人是衝動。市場下跌時，優質高息股的估值往往更吸引，應視為機會而非恐慌。堅持紀律、定期再投資、避免追逐不可持續的超高息率，是長期成功的關鍵。</p></div>
+    <a href="#" class="back-top">↑ 返回目錄</a>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     简体中文
+═══════════════════════════════════════════════ -->
+<div class="lang-section" id="sec-zh-cn">
+  <div class="page-title">股息投资学堂</div>
+  <p class="page-sub">深入浅出的股息投资教育文章，帮助你成为更聪明的收息投资者。</p>
+  <div class="article-index">
+    <a href="#cn-art1" class="article-card"><div class="ac-num">文章一</div><div class="ac-title">高息陷阱：5个警示信号</div><div class="ac-desc">高息率并非总是好事。学会辨别可持续股息与危险陷阱。</div></a>
+    <a href="#cn-art2" class="article-card"><div class="ac-num">文章二</div><div class="ac-title">港股高息股选股指南</div><div class="ac-desc">从REITs到公用股，如何在香港市场找到优质收息标的。</div></a>
+    <a href="#cn-art3" class="article-card"><div class="ac-num">文章三</div><div class="ac-title">美国REITs入门指南</div><div class="ac-desc">房地产投资信托的运作原理，及如何评估其投资价值。</div></a>
+    <a href="#cn-art4" class="article-card"><div class="ac-num">文章四</div><div class="ac-title">派息比率超过100%代表什么？</div><div class="ac-desc">深入解读这个关键财务指标及其对股息可持续性的影响。</div></a>
+    <a href="#cn-art5" class="article-card"><div class="ac-num">文章五</div><div class="ac-title">如何建立股息投资组合</div><div class="ac-desc">从零开始的收息组合构建策略：分散市场、选股原则与再投资。</div></a>
+  </div>
+  <hr class="divider">
+  <div class="article" id="cn-art1">
+    <div class="ac-num">文章一</div>
+    <h2>高息陷阱：5个必须警惕的信号</h2>
+    <p class="article-meta">股息投资 · 风险管理</p>
+    <p>在股息投资的世界里，没有什么比「高息陷阱」（Dividend Yield Trap）更让投资者吃亏。表面上看，一只股票的息率高达8%、10%甚至15%，似乎是难得的收息机会。然而，这些超高息率背后，往往隐藏着严重的基本面问题，最终导致股息被削减，甚至股价暴跌，令投资者损失惨重。</p>
+    <h3>信号一：派息比率远超100%</h3>
+    <p>派息比率（Payout Ratio）= 每股股息 ÷ 每股盈利，反映公司用多少盈利来支付股息。当派息比率超过100%时，代表公司派出的股息超过其盈利，需要动用储备、举债或变卖资产来维持股息。这种情况短期或能维持，但长期必然不可持续。</p>
+    <div class="warn-box"><p>警示：若一间公司的派息比率持续超过100%，又无特别充裕的现金储备，削息风险极高。</p></div>
+    <h3>信号二：自由现金流为负</h3>
+    <p>盈利可以透过会计手法「美化」，但现金流难以造假。自由现金流（Free Cash Flow）直接反映公司实际能用于派息的现金。若自由现金流持续为负，即使盈利数字好看，股息亦缺乏真实现金支撑。</p>
+    <h3>信号三：股息近年曾被削减或暂停</h3>
+    <p>历史是最诚实的老师。一间公司若曾在过去5至10年内削减或暂停股息，说明管理层在困难时愿意放弃维持派息的承诺。相反，能够连续10年以上稳定或持续增加派息的公司，其派息可靠性远高于前者。</p>
+    <h3>信号四：股息增长靠股价下跌推高</h3>
+    <p>有时候，一只股票的息率从4%急升至8%，并非因为公司增加了股息，而是因为股价腰斩了。股价下跌本身就是市场对公司前景的负面投票，高息率只是下跌后的「假象」。</p>
+    <h3>信号五：财务杠杆过高</h3>
+    <p>高负债的公司在利率上升或业务下滑时首当其冲。当还款压力增大，管理层往往被迫优先偿债而非维持股息。负债比率持续偏高、利息保障倍数低于2倍的公司，都应提高警惕。</p>
+    <div class="key-box"><p>核心原则：高息率是吸引你注意的信号，而非买入的理由。真正值得持有的高息股，应具备可持续的派息比率、正面的自由现金流、稳定的派息历史及健康的资产负债表。</p></div>
+    <a href="#" class="back-top">↑ 返回目录</a>
+  </div>
+  <div class="article" id="cn-art2">
+    <div class="ac-num">文章二</div>
+    <h2>港股高息股选股指南：从REITs到公用股</h2>
+    <p class="article-meta">香港市场 · 选股策略</p>
+    <p>香港股市长期以来是亚太区最重要的收息投资市场之一，整体派息文化浓厚，平均息率在全球主要市场中位居前列。港股市场上市公司包括本地蓝筹、国企H股及红筹股，涵盖金融、地产、公用事业、电讯、能源等多个板块。</p>
+    <h3>板块一：香港REITs</h3>
+    <p>REITs必须将绝大部分可分派收入以股息形式分派给投资者，天然是高息投资工具。主要港股REITs包括领展房产基金（0823.HK）、冠君产业信托（2778.HK）及越秀房产信托（0405.HK）。评估REITs时，应关注物业出租率、租约到期时间表及负债比率。</p>
+    <h3>板块二：公用事业股</h3>
+    <p>公用事业股以稳定的盈利和现金流见称，派息稳定性高。主要标的包括电能实业（0006.HK）、中电控股（0002.HK）及香港煤气（0003.HK）。受政府监管的公用股盈利可预测性强，适合追求稳健收入的投资者。</p>
+    <h3>板块三：金融股</h3>
+    <p>在利率环境正常化后，银行股的净息差改善，派息能力回升。主要港股银行包括汇丰控股（0005.HK）、东亚银行（0023.HK）及中银香港（2388.HK）。</p>
+    <h3>选股三大原则</h3>
+    <ol>
+      <li>息率不是唯一标准，优先考虑股息的可持续性</li>
+      <li>分散板块，避免过度集中于单一行业</li>
+      <li>留意货币风险，内银H股涉及人民币业务，汇率波动或影响实际股息收益</li>
+    </ol>
+    <div class="key-box"><p>港股收息投资的核心逻辑：选择具备稳定现金流、受监管保护或具垄断性业务的企业，而非单纯追逐高息率。</p></div>
+    <a href="#" class="back-top">↑ 返回目录</a>
+  </div>
+  <div class="article" id="cn-art3">
+    <div class="ac-num">文章三</div>
+    <h2>美国REITs入门：原理、评估与主要类别</h2>
+    <p class="article-meta">美国市场 · 房地产投资信托</p>
+    <p>美国是全球REITs市场最成熟、规模最大的地区，有超过200只公开上市的REITs，市值逾1.5万亿美元，涵盖办公室、零售、工业、住宅、医疗保健、数据中心等几乎所有类型的房地产。</p>
+    <h3>REITs的基本运作原理</h3>
+    <p>根据美国税法，符合资格的REITs必须将至少90%的应课税收入以股息形式分配给股东。评估REITs的核心指标是「可供分派资金」（FFO），而非传统每股盈利，因为REITs持有大量物业，折旧摊销对利润影响显著但并非实际现金支出。</p>
+    <h3>主要类别及代表性标的</h3>
+    <table class="data-table">
+      <tr><th>类别</th><th>代表性标的</th></tr>
+      <tr><td>工业/物流REITs</td><td>Prologis (PLD)、STAG Industrial (STAG)</td></tr>
+      <tr><td>医疗保健REITs</td><td>Welltower (WELL)、Ventas (VTR)</td></tr>
+      <tr><td>净租赁REITs</td><td>Realty Income (O)、NNN REIT (NNN)</td></tr>
+      <tr><td>基础设施REITs</td><td>American Tower (AMT)</td></tr>
+    </table>
+    <h3>利率与REITs的关系</h3>
+    <p>REITs对利率敏感：高负债的REITs在利率上升时借贷成本增加；当无风险利率上升，投资者要求更高息率，导致REITs估值受压。利率下降周期通常对REITs股价有正面支撑。</p>
+    <div class="key-box"><p>REITs投资要点：聚焦FFO派息覆盖率及出租率，而非单看息率。选择有稳定租约及优质物业组合的REITs，可在利率周期波动中保持较强韧性。</p></div>
+    <a href="#" class="back-top">↑ 返回目录</a>
+  </div>
+  <div class="article" id="cn-art4">
+    <div class="ac-num">文章四</div>
+    <h2>派息比率超过100%：这意味着什么？</h2>
+    <p class="article-meta">财务分析 · 股息可持续性</p>
+    <p>派息比率是衡量股息可持续性最直观的指标之一。当这个数字超过100%时，意味着公司派出的股息超过其账面盈利，需要动用其他资源来补足缺口。</p>
+    <h3>不同行业的合理范围</h3>
+    <table class="data-table">
+      <tr><th>行业</th><th>合理派息比率范围</th></tr>
+      <tr><td>一般蓝筹股</td><td>40–70%</td></tr>
+      <tr><td>公用事业</td><td>60–80%</td></tr>
+      <tr><td>REITs（以FFO计）</td><td>80–100%</td></tr>
+      <tr><td>⚠️ 高危区域</td><td>超过100%</td></tr>
+    </table>
+    <h3>超过100%的三种情况</h3>
+    <p><strong>情况一：短暂性异常</strong>——某年度一次性亏损导致盈利暂降，基本业务现金流仍健康，下年度盈利恢复后问题消除。</p>
+    <p><strong>情况二：以储备或借贷维持</strong>——明知盈利不足仍维持派息，动用现金储备或举债，短则一两年后必然耗尽资源被迫削息。</p>
+    <p><strong>情况三：会计与现金差异</strong>——部分REITs以「可供分派金额」而非会计盈利派息，名义上超100%但实际有充足现金支撑。</p>
+    <div class="warn-box"><p>红旗组合：派息比率超过120% + 自由现金流为负 + 负债持续上升 = 极高削息风险。</p></div>
+    <a href="#" class="back-top">↑ 返回目录</a>
+  </div>
+  <div class="article" id="cn-art5">
+    <div class="ac-num">文章五</div>
+    <h2>如何从零开始建立股息投资组合</h2>
+    <p class="article-meta">投资策略 · 组合管理</p>
+    <p>股息投资是一种着重「现金流」而非「资本增值」的投资哲学。其核心目标是透过持续累积优质高息股，建立稳定的被动收入来源，并透过复息再投资效应，长期实现财富增长。</p>
+    <h3>第一步：厘清目标与风险承受能力</h3>
+    <p>投资目标是提供日常现金流还是长远财富增值？投资期限是5年、10年还是20年？不同目标决定了不同的选股策略。追求即时现金流的投资者倾向高息率但增长较慢的板块；追求长线增值则偏重具备持续股息增长能力的股票。</p>
+    <h3>第二步：决定市场分布</h3>
+    <ul>
+      <li>香港股市：30–40%（熟悉市场、无汇率风险）</li>
+      <li>美国股市：30–40%（最成熟的股息增长市场）</li>
+      <li>英国股市：10–20%（传统高息市场）</li>
+      <li>中国A股：0–10%（近年派息文化改善）</li>
+    </ul>
+    <h3>第三步：核心选股标准</h3>
+    <ol>
+      <li>息率合理（3%至8%，超高息率需特别审视）</li>
+      <li>派息比率健康（一般低于75%，REITs除外）</li>
+      <li>过去5年没有削减股息</li>
+      <li>自由现金流能覆盖股息</li>
+      <li>业务有护城河</li>
+    </ol>
+    <h3>第四步：股息再投资（DRIP）</h3>
+    <p>将收到的股息自动或手动再投资，是发挥复利效应的关键。若组合年总回报为8%，20年后本金将增长至原来的4.66倍。定期将股息买入评分最高、估值最吸引的股票，可达到类似效果。</p>
+    <div class="key-box"><p>股息投资的最大敌人是冲动。市场下跌时，优质高息股的估值往往更吸引，应视为机会而非恐慌。坚持纪律、定期再投资，是长期成功的关键。</p></div>
+    <a href="#" class="back-top">↑ 返回目录</a>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     English
+═══════════════════════════════════════════════ -->
+<div class="lang-section" id="sec-en">
+  <div class="page-title">Dividend Investing Guide</div>
+  <p class="page-sub">In-depth educational articles on dividend investing to help you become a smarter income investor.</p>
+  <div class="article-index">
+    <a href="#en-art1" class="article-card"><div class="ac-num">Article 1</div><div class="ac-title">Dividend Yield Traps: 5 Warning Signs</div><div class="ac-desc">A high yield isn't always a good sign. Learn to tell sustainable dividends from dangerous traps.</div></a>
+    <a href="#en-art2" class="article-card"><div class="ac-num">Article 2</div><div class="ac-title">HK High-Dividend Stock Selection Guide</div><div class="ac-desc">From REITs to utilities — how to find quality income stocks in Hong Kong.</div></a>
+    <a href="#en-art3" class="article-card"><div class="ac-num">Article 3</div><div class="ac-title">Introduction to US REITs</div><div class="ac-desc">How Real Estate Investment Trusts work and how to evaluate their investment value.</div></a>
+    <a href="#en-art4" class="article-card"><div class="ac-num">Article 4</div><div class="ac-title">Payout Ratio Over 100%: What Does It Mean?</div><div class="ac-desc">A deep dive into this critical metric and its implications for dividend sustainability.</div></a>
+    <a href="#en-art5" class="article-card"><div class="ac-num">Article 5</div><div class="ac-title">How to Build a Dividend Portfolio</div><div class="ac-desc">A step-by-step strategy for building an income portfolio from scratch.</div></a>
+  </div>
+  <hr class="divider">
+  <div class="article" id="en-art1">
+    <div class="ac-num">Article 1</div>
+    <h2>Dividend Yield Traps: 5 Warning Signs Every Investor Must Know</h2>
+    <p class="article-meta">Dividend Investing · Risk Management</p>
+    <p>In dividend investing, few mistakes are more costly than falling into a "dividend yield trap." A stock yielding 8%, 10% or even 15% looks like a windfall for income investors. But those eye-catching yields often mask serious underlying problems that lead to dividend cuts — and frequently steep share price declines — leaving investors with both less income and less capital than they started with.</p>
+    <p>Here are the five most reliable warning signs that a high yield may be unsustainable.</p>
+    <h3>Warning Sign 1: Payout Ratio Far Above 100%</h3>
+    <p>The payout ratio (dividends paid ÷ earnings per share) measures how much of a company's profit goes toward dividends. A healthy range for most businesses is 40–70%, leaving room to retain earnings for reinvestment while still rewarding shareholders. When this ratio exceeds 100%, the company is paying out more in dividends than it earns — funding the shortfall from reserves, new debt, or asset sales. This may last a year or two, but it is structurally unsustainable.</p>
+    <div class="warn-box"><p>Red flag: A company with a payout ratio consistently above 100% and no exceptional cash reserves carries very high dividend cut risk.</p></div>
+    <h3>Warning Sign 2: Negative Free Cash Flow</h3>
+    <p>Reported earnings can be flattering due to accounting choices, but free cash flow (FCF = operating cash flow minus capital expenditure) is much harder to manipulate. FCF tells you how much real cash a company generates that could actually be paid out as dividends. If FCF is persistently negative, the dividend has no genuine cash backing — regardless of how the income statement looks.</p>
+    <h3>Warning Sign 3: Recent Dividend Cuts or Suspensions</h3>
+    <p>History is the most honest indicator. A company that has cut or suspended its dividend in the past 5–10 years has already demonstrated it will prioritise its own balance sheet over dividend commitments under pressure. Contrast this with "Dividend Aristocrats" — US companies that have raised their dividends every year for 25+ years — where the track record itself is a form of quality assurance.</p>
+    <h3>Warning Sign 4: The Yield Rose Because the Price Fell</h3>
+    <p>This is one of the most deceptive traps. When a stock's yield jumps from 4% to 8%, it may not be because the company raised its dividend — it might be because the share price halved. A declining share price is the market's vote of no confidence in the company's future. The "high yield" is merely an artefact of the price drop, not a sign of generosity.</p>
+    <h3>Warning Sign 5: Excessive Financial Leverage</h3>
+    <p>Highly indebted companies face the most pressure when interest rates rise or revenues fall. As debt servicing costs climb, management is often forced to prioritise creditors over shareholders. Companies with persistently high debt-to-equity ratios and interest coverage ratios below 2x deserve extra scrutiny.</p>
+    <div class="key-box"><p>Core principle: A high yield should attract your attention, not trigger a buy decision. A genuinely high-quality dividend stock combines a sustainable payout ratio, positive free cash flow, a stable dividend track record, and a healthy balance sheet.</p></div>
+    <a href="#" class="back-top">↑ Back to top</a>
+  </div>
+  <div class="article" id="en-art2">
+    <div class="ac-num">Article 2</div>
+    <h2>Hong Kong High-Dividend Stock Selection Guide: REITs, Utilities and Banks</h2>
+    <p class="article-meta">Hong Kong Market · Stock Selection</p>
+    <p>Hong Kong has long been one of Asia-Pacific's most important income investing markets. Listed companies span local blue chips, mainland Chinese H-shares and red chip stocks, covering financials, real estate, utilities, telecoms and energy. The overall dividend culture is strong, and average yields consistently rank among the highest in major global markets.</p>
+    <h3>Sector 1: Hong Kong REITs</h3>
+    <p>REITs are legally required to distribute the vast majority of their distributable income — making them natural high-yield vehicles. Key HK-listed REITs include Link REIT (0823.HK), the largest retail REIT in Asia managing public housing estate malls; Champion REIT (2778.HK), which holds Grade A office and retail assets in core business districts; and Yuexiu REIT (0405.HK), which invests in quality commercial properties in Guangzhou.</p>
+    <p>When evaluating HK REITs, focus on: distribution per unit trends, portfolio occupancy rates, weighted average lease expiry (WALE), and whether gearing remains below the regulatory cap of 45%.</p>
+    <h3>Sector 2: Utilities</h3>
+    <p>Utility stocks are prized for stable earnings and predictable cash flows. Key names include Power Assets (0006.HK), with a diversified portfolio of international utility assets; CLP Holdings (0002.HK), one of HK's two regulated electricity suppliers; and HK &amp; China Gas (0003.HK), a century-old utility with operations across HK, Macau and mainland China. Government-regulated utilities offer particularly high earnings visibility.</p>
+    <h3>Sector 3: Banks and Financials</h3>
+    <p>With interest rate normalisation improving net interest margins, HK-listed banks have seen dividend capacity recover. Major names include HSBC Holdings (0005.HK), Bank of East Asia (0023.HK) and BOC Hong Kong (2388.HK). When assessing bank stocks, Core Tier 1 Capital Ratio and loan loss provisions are key indicators of dividend resilience under credit stress.</p>
+    <h3>Three Core Principles for HK Income Investing</h3>
+    <ol>
+      <li>Yield is a starting point, not an endpoint — prioritise dividend sustainability over headline yield.</li>
+      <li>Diversify across sectors — avoid concentrating too heavily in a single industry.</li>
+      <li>Be aware of currency exposure — while HKD is pegged to USD, mainland Chinese bank H-shares carry RMB business exposure that can affect real dividend income.</li>
+    </ol>
+    <div class="key-box"><p>The core logic of HK income investing: seek companies with stable cash flows, regulatory protection, or monopolistic business characteristics — not just the highest yields on the screen.</p></div>
+    <a href="#" class="back-top">↑ Back to top</a>
+  </div>
+  <div class="article" id="en-art3">
+    <div class="ac-num">Article 3</div>
+    <h2>Introduction to US REITs: How They Work and How to Evaluate Them</h2>
+    <p class="article-meta">US Market · Real Estate Investment Trusts</p>
+    <p>The United States is home to the world's largest and most mature REIT market, with over 200 publicly listed REITs representing more than US$1.5 trillion in market capitalisation. They span offices, retail, industrial, residential, healthcare, data centres and virtually every other type of real estate. For income investors, US REITs represent one of the most accessible and liquid ways to earn real-estate-backed dividends.</p>
+    <h3>How REITs Work</h3>
+    <p>Under US tax law, a qualifying REIT must distribute at least 90% of its taxable income to shareholders as dividends. In return, it pays no corporate income tax on distributed income — eliminating the double taxation that ordinary corporations face. This legal requirement is what drives REITs' structurally high yields.</p>
+    <p>The key metric for evaluating REITs is not earnings per share (EPS) but <strong>Funds From Operations (FFO)</strong>: FFO = Net Income + Depreciation &amp; Amortisation – Property Sale Gains. Because REITs hold large physical assets, depreciation charges significantly reduce reported profits even when the underlying properties are appreciating in value. FFO strips this out to give a clearer picture of actual cash generation.</p>
+    <h3>Major REIT Categories</h3>
+    <table class="data-table">
+      <tr><th>Category</th><th>Characteristics</th><th>Examples</th></tr>
+      <tr><td>Industrial / Logistics</td><td>Warehouses, distribution centres; strong e-commerce tailwind</td><td>Prologis (PLD), STAG Industrial (STAG)</td></tr>
+      <tr><td>Healthcare</td><td>Senior housing, medical offices; demographic tailwind</td><td>Welltower (WELL), Ventas (VTR)</td></tr>
+      <tr><td>Net Lease</td><td>Long-term leases; tenants pay operating costs</td><td>Realty Income (O), NNN REIT (NNN)</td></tr>
+      <tr><td>Infrastructure</td><td>Cell towers, data centres; digital economy growth</td><td>American Tower (AMT)</td></tr>
+      <tr><td>Retail</td><td>Shopping malls; more cyclical</td><td>Simon Property (SPG)</td></tr>
+    </table>
+    <h3>5 Key Metrics for Evaluating REITs</h3>
+    <ol>
+      <li><strong>FFO Payout Ratio</strong>: Dividend ÷ FFO should generally be below 85% to provide a safety buffer.</li>
+      <li><strong>Occupancy Rate</strong>: Most quality REITs maintain 90%+ occupancy.</li>
+      <li><strong>Weighted Average Lease Expiry (WALE)</strong>: Longer leases mean more predictable income.</li>
+      <li><strong>Net Debt / EBITDA</strong>: Highly leveraged REITs are vulnerable to rate rises; below 6x is generally preferable.</li>
+      <li><strong>Dividend Growth History</strong>: Realty Income has paid and increased its monthly dividend for over 25 consecutive years — a gold standard for reliability.</li>
+    </ol>
+    <h3>REITs and Interest Rates</h3>
+    <p>REITs are interest-rate sensitive for two reasons. First, highly leveraged REITs face rising borrowing costs when rates climb. Second, when risk-free rates rise, investors demand higher yields from REITs, which pressures valuations and share prices. Conversely, falling rate environments tend to provide a meaningful tailwind for REIT prices.</p>
+    <div class="key-box"><p>Key takeaway: Focus on FFO payout coverage and occupancy rather than just the headline yield. REITs with stable long-term leases and quality property portfolios tend to be more resilient through interest rate cycles.</p></div>
+    <a href="#" class="back-top">↑ Back to top</a>
+  </div>
+  <div class="article" id="en-art4">
+    <div class="ac-num">Article 4</div>
+    <h2>Payout Ratio Over 100%: What Does It Really Mean?</h2>
+    <p class="article-meta">Financial Analysis · Dividend Sustainability</p>
+    <p>The payout ratio is one of the most straightforward metrics for assessing dividend sustainability. But many investors treat it as a simple pass/fail check without understanding the nuances. This article digs into what different payout ratio levels actually signal — and what to do when you see one above 100%.</p>
+    <h3>What Is the Payout Ratio?</h3>
+    <p>Payout Ratio = Total Annual Dividends Per Share ÷ Earnings Per Share × 100%. A company earning $2.00 per share and paying $1.60 in dividends has an 80% payout ratio. A company earning $1.00 and paying $1.20 has a 120% payout ratio — meaning it pays out $0.20 more than it earns, funded from somewhere else.</p>
+    <h3>Reasonable Ranges by Industry</h3>
+    <table class="data-table">
+      <tr><th>Industry</th><th>Reasonable Payout Range</th><th>Rationale</th></tr>
+      <tr><td>Growth / Tech</td><td>0–30%</td><td>Earnings needed for reinvestment</td></tr>
+      <tr><td>General Blue Chips</td><td>40–70%</td><td>Balance between returns and reinvestment</td></tr>
+      <tr><td>Utilities</td><td>60–80%</td><td>Stable cash flows, predictable capex</td></tr>
+      <tr><td>REITs (FFO basis)</td><td>80–100%</td><td>Legally required high distribution</td></tr>
+      <tr><td>⚠️ Danger Zone</td><td>Above 100%</td><td>Unsustainable without external funding</td></tr>
+    </table>
+    <h3>Three Scenarios When Payout Exceeds 100%</h3>
+    <p><strong>Scenario 1: Temporary Anomaly.</strong> A one-off write-down, restructuring charge, or cyclical earnings dip pushes the payout ratio above 100% for a single year. If the underlying business and cash flow remain healthy, and the company has a track record of dividend growth, this is often not a cause for long-term concern.</p>
+    <p><strong>Scenario 2: Borrowing to Pay Dividends.</strong> The company is deliberately maintaining its dividend above what earnings support by drawing on reserves or taking on new debt. Management may be reluctant to signal weakness through a dividend cut. But this approach has a finite lifespan — resources will eventually run out, and when the cut comes, it can be severe.</p>
+    <p><strong>Scenario 3: Accounting vs. Cash Differences.</strong> For REITs and certain infrastructure companies, reported earnings are significantly reduced by large depreciation charges on physical assets. The "true" cash available for distribution — measured by FFO or Adjusted FFO — may comfortably exceed the dividend even when the accounting payout ratio tops 100%. Always cross-check with the cash flow statement.</p>
+    <h3>How to Assess the Risk Level</h3>
+    <p>When you see a payout ratio above 100%, immediately check two supplementary metrics:</p>
+    <ul>
+      <li><strong>Free Cash Flow Dividend Coverage</strong>: If FCF still covers the dividend, risk is lower.</li>
+      <li><strong>5-Year Payout Trend</strong>: If the ratio has been above 100% for years without a cut, there may be other cash sources; if it recently deteriorated, the warning is stronger.</li>
+    </ul>
+    <div class="warn-box"><p>Red flag combination: Payout ratio above 120% + negative free cash flow + rising debt levels = very high probability of a dividend cut. Approach with extreme caution.</p></div>
+    <a href="#" class="back-top">↑ Back to top</a>
+  </div>
+  <div class="article" id="en-art5">
+    <div class="ac-num">Article 5</div>
+    <h2>How to Build a Dividend Portfolio from Scratch</h2>
+    <p class="article-meta">Investment Strategy · Portfolio Construction</p>
+    <p>Dividend investing is an investment philosophy centred on cash flow rather than capital gains. The goal is not to buy low and sell high, but to steadily accumulate quality income-generating stocks, build a reliable stream of passive income, and harness the power of compounding through dividend reinvestment to grow wealth over the long term.</p>
+    <h3>Step 1: Define Your Objectives and Risk Tolerance</h3>
+    <p>Before selecting a single stock, answer these fundamental questions: Is your goal to generate immediate living income (prioritising high current yield) or long-term wealth growth (accepting lower but growing yields)? What is your investment horizon — 5 years, 10 years, 20+ years? How much portfolio volatility can you stomach?</p>
+    <p>Different answers lead to different strategies. Those seeking immediate cash flow may favour utilities, REITs and high-yield telecom stocks. Those building for the long term may lean toward "dividend growth stocks" — companies with lower current yields but a consistent track record of raising dividends each year, which compound powerfully over time.</p>
+    <h3>Step 2: Decide on Geographic Allocation</h3>
+    <p>Geographic diversification reduces single-market risk. A balanced starting allocation might look like:</p>
+    <ul>
+      <li>Hong Kong: 30–40% (familiar market, no currency risk for local investors, strong dividend culture)</li>
+      <li>United States: 30–40% (most mature dividend growth market, high liquidity, USD exposure)</li>
+      <li>United Kingdom: 10–20% (traditionally high-yield market, GBP diversification)</li>
+      <li>China A-shares: 0–10% (improving dividend culture, growth exposure)</li>
+    </ul>
+    <h3>Step 3: Build Your Core Holdings</h3>
+    <p>Aim for 15–25 stocks in a core dividend portfolio. Too few creates dangerous concentration risk; too many makes it impossible to track individual company developments. Core selection criteria:</p>
+    <ol>
+      <li>Reasonable yield (3–8% for most sectors; scrutinise anything above 8%)</li>
+      <li>Healthy payout ratio (generally below 75%, with sector-specific adjustments for REITs)</li>
+      <li>No dividend cuts in the past 5 years</li>
+      <li>Free cash flow comfortably covering the dividend</li>
+      <li>Durable competitive advantage (regulatory protection, brand, cost advantage or market dominance)</li>
+    </ol>
+    <h3>Step 4: Reinvest Dividends (DRIP)</h3>
+    <p>Dividend reinvestment — automatically or manually putting received dividends back into more shares — is the engine of compounding. At an 8% total annual return, a portfolio doubles in approximately 9 years and grows to 4.66x its original size in 20 years. Even without a formal Dividend Reinvestment Plan, regularly deploying quarterly or semi-annual dividend income into the highest-scoring, most attractively valued stocks in your watchlist achieves a similar effect.</p>
+    <h3>Step 5: Review and Rebalance Periodically</h3>
+    <p>Dividend investing is not completely passive. Review your portfolio every quarter or half year, focusing on: Has any company announced a dividend cut or suspension? Have any underlying businesses deteriorated materially? Has geographic or sector concentration drifted due to different market performances?</p>
+    <div class="key-box"><p>The greatest enemy of dividend investing is impatience. When markets fall, quality high-yield stocks often become more attractively valued — treat it as an opportunity to add, not a reason to sell. Discipline, consistent reinvestment, and avoiding the temptation of unsustainable ultra-high yields are the hallmarks of long-term success.</p></div>
+    <a href="#" class="back-top">↑ Back to top</a>
+  </div>
+</div>
+
+</div><!-- .content -->
+
+<div class="footer">
+  <div class="footer-inner">
+    <span class="footer-logo">HiDH Dividend Analyst</span>
+    <span>
+      <a href="/">首頁 / Home</a> ·
+      <a href="/about.html">關於我們 / About</a> ·
+      <a href="/articles.html">投資學堂 / Learn</a> ·
+      <a href="/privacy.html">私隱政策 / Privacy</a>
+    </span>
+    <span>© 2026 prosynchk.com · 僅供參考</span>
+  </div>
+</div>
+
+<script>
+var NAV={'zh-hk':['主頁','關於我們','投資學堂'],'zh-cn':['主页','关于我们','投资学堂'],'en':['Home','About','Learn']};
+var TITLE={'zh-hk':'股息投資學堂','zh-cn':'股息投资学堂','en':'Dividend Investing Guide'};
+function setLang(lang){
+  try{localStorage.setItem('hidh_lang',lang);}catch(e){}
+  ['btn-zh-hk','btn-zh-cn','btn-en'].forEach(function(id){var b=document.getElementById(id);if(b){b.style.background='transparent';b.style.color='#666';b.style.borderColor='#e5e5e5';}});
+  var a=document.getElementById('btn-'+lang);if(a){a.style.background='#1D9E75';a.style.color='#fff';a.style.borderColor='#1D9E75';}
+  var navLinks=document.querySelectorAll('.nav a[data-zh-hk]');var labels=NAV[lang]||NAV['zh-hk'];navLinks.forEach(function(el,i){if(labels[i])el.textContent=labels[i];});
+  document.title=(TITLE[lang]||TITLE['zh-hk'])+' | HiDH Dividend Analyst';
+  document.querySelectorAll('.lang-section').forEach(function(s){s.classList.remove('active');});
+  var m={'zh-hk':'sec-zh-hk','zh-cn':'sec-zh-cn','en':'sec-en'};var s=document.getElementById(m[lang]||'sec-zh-hk');if(s)s.classList.add('active');
+}
+(function(){var l=localStorage.getItem('hidh_lang');if(l&&l!=='zh-hk')setLang(l);})();
+</script>
+</body>
+</html>
