@@ -198,6 +198,13 @@ function setLang(lang) {
   var cbody=document.getElementById('contact-body');if(cbody)cbody.textContent=cl[2];
   var disc=document.querySelector('.disclaimer-inner');if(disc)disc.innerHTML='<strong>'+t.discLabel+'：</strong>'+t.disc;
 }
+function copyEmail(btn){
+  navigator.clipboard.writeText('contact@prosynchk.com').then(function(){
+    var sp=btn.querySelector('span:last-child');var orig=sp?sp.textContent:'';
+    if(sp)sp.textContent='已複製！';btn.style.background='#15803d';
+    setTimeout(function(){if(sp)sp.textContent=orig;btn.style.background='#1D9E75';},2000);
+  });
+}
 """
 
 
@@ -492,10 +499,10 @@ svg text{{font-family:system-ui,sans-serif}}
     <div style="font-size:2rem;margin-bottom:1rem">🤝</div>
     <h3 style="font-size:18px;font-weight:600;color:#222;margin-bottom:.75rem" id="contact-title">歡迎合作</h3>
     <p style="font-size:14px;color:#555;line-height:1.7;margin-bottom:1.5rem" id="contact-body">如您有興趣進行廣告合作、內容授權、數據合作或其他商業合作，歡迎透過以下方式聯絡我們。</p>
-    <a href="mailto:contact@prosynchk.com" style="display:inline-flex;align-items:center;gap:8px;background:#1D9E75;color:#fff;padding:10px 24px;border-radius:8px;text-decoration:none;font-size:14px;font-weight:600">
+    <button onclick="copyEmail(this)" style="display:inline-flex;align-items:center;gap:8px;background:#1D9E75;color:#fff;padding:10px 24px;border-radius:8px;border:none;cursor:pointer;font-size:14px;font-weight:600">
       <span>✉️</span>
       <span>contact@prosynchk.com</span>
-    </a>
+    </button>
   </div>
 </div>
 <div class="disclaimer">
@@ -1089,6 +1096,13 @@ function setLang(lang) {
   document.querySelectorAll('.div-spark-desc-lbl[data-zh-hk]').forEach(function(el){el.textContent=el.getAttribute('data-'+lang)||el.getAttribute('data-zh-hk');});
   document.querySelectorAll('.div-spark-leg[data-zh-hk]').forEach(function(el){var line=el.querySelector('.div-spark-leg-line');var lbl=el.getAttribute('data-'+lang)||el.getAttribute('data-zh-hk');el.innerHTML=(line?line.outerHTML:'')+lbl;});
 }
+function copyEmail(btn){
+  navigator.clipboard.writeText('contact@prosynchk.com').then(function(){
+    var sp=btn.querySelector('span:last-child');var orig=sp?sp.textContent:'';
+    if(sp)sp.textContent='已複製！';btn.style.background='#15803d';
+    setTimeout(function(){if(sp)sp.textContent=orig;btn.style.background='#1D9E75';},2000);
+  });
+}
 (function(){var l=localStorage.getItem('hidh_lang');if(l&&l!=='zh-hk')setLang(l);})();
 """
 
@@ -1544,10 +1558,10 @@ svg text{{font-family:system-ui,sans-serif}}
     <div style="font-size:2rem;margin-bottom:1rem">🤝</div>
     <h3 style="font-size:18px;font-weight:600;color:#222;margin-bottom:.75rem" id="contact-title">歡迎合作</h3>
     <p style="font-size:14px;color:#555;line-height:1.7;margin-bottom:1.5rem" id="contact-body">如您有興趣進行廣告合作、內容授權、數據合作或其他商業合作，歡迎透過以下方式聯絡我們。</p>
-    <a href="mailto:contact@prosynchk.com" style="display:inline-flex;align-items:center;gap:8px;background:#1D9E75;color:#fff;padding:10px 24px;border-radius:8px;text-decoration:none;font-size:14px;font-weight:600">
+    <button onclick="copyEmail(this)" style="display:inline-flex;align-items:center;gap:8px;background:#1D9E75;color:#fff;padding:10px 24px;border-radius:8px;border:none;cursor:pointer;font-size:14px;font-weight:600">
       <span>✉️</span>
       <span>contact@prosynchk.com</span>
-    </a>
+    </button>
   </div>
 </div>
 
