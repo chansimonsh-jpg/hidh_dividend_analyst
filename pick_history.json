@@ -130,7 +130,7 @@
     {
       "date": "2026-07-10",
       "price": 24.85,
-      "end_date": null
+      "end_date": "2026-07-13"
     }
   ],
   "avoid:US:NNN": [
@@ -387,7 +387,7 @@
     {
       "date": "2026-07-04",
       "price": 1.41,
-      "end_date": null
+      "end_date": "2026-07-13"
     }
   ],
   "pick:UK:BP.L": [
@@ -408,7 +408,7 @@
     {
       "date": "2026-07-04",
       "price": 0.73,
-      "end_date": null
+      "end_date": "2026-07-13"
     }
   ],
   "avoid:HK:1038.HK": [
@@ -441,7 +441,7 @@
     {
       "date": "2026-07-10",
       "price": 44.97,
-      "end_date": null
+      "end_date": "2026-07-13"
     }
   ],
   "avoid:UK:BARC.L": [
@@ -515,6 +515,11 @@
       "date": "2026-07-07",
       "price": 13.45,
       "end_date": "2026-07-10"
+    },
+    {
+      "date": "2026-07-13",
+      "price": 13.44,
+      "end_date": null
     }
   ],
   "pick:UK:FRES.L": [
@@ -542,13 +547,41 @@
     {
       "date": "2026-07-10",
       "price": 0.62,
-      "end_date": null
+      "end_date": "2026-07-13"
     }
   ],
   "avoid:CN:600900.SS": [
     {
       "date": "2026-07-10",
       "price": 28.03,
+      "end_date": null
+    }
+  ],
+  "pick:HK:1336.HK": [
+    {
+      "date": "2026-07-13",
+      "price": 43.42,
+      "end_date": null
+    }
+  ],
+  "pick:UK:BWY.L": [
+    {
+      "date": "2026-07-13",
+      "price": 18.78,
+      "end_date": null
+    }
+  ],
+  "pick:UK:PSN.L": [
+    {
+      "date": "2026-07-13",
+      "price": 10.37,
+      "end_date": null
+    }
+  ],
+  "avoid:HK:6823.HK": [
+    {
+      "date": "2026-07-13",
+      "price": 12.08,
       "end_date": null
     }
   ]
