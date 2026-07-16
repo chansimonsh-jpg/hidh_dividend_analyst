@@ -97,6 +97,11 @@
       "date": "2026-06-23",
       "price": 16.06,
       "end_date": "2026-06-24"
+    },
+    {
+      "date": "2026-07-16",
+      "price": 17.96,
+      "end_date": null
     }
   ],
   "pick:HK:0027.HK": [
@@ -108,7 +113,7 @@
     {
       "date": "2026-06-23",
       "price": 29.64,
-      "end_date": null
+      "end_date": "2026-07-16"
     }
   ],
   "pick:CN:603369.SS": [
@@ -135,7 +140,7 @@
     {
       "date": "2026-07-15",
       "price": 25.91,
-      "end_date": null
+      "end_date": "2026-07-16"
     }
   ],
   "avoid:US:NNN": [
@@ -227,6 +232,11 @@
       "date": "2026-07-06",
       "price": 225.0,
       "end_date": "2026-07-14"
+    },
+    {
+      "date": "2026-07-16",
+      "price": 228.49,
+      "end_date": null
     }
   ],
   "avoid:US:VTR": [
@@ -364,7 +374,7 @@
     {
       "date": "2026-07-04",
       "price": 39.78,
-      "end_date": null
+      "end_date": "2026-07-16"
     }
   ],
   "pick:US:HPQ": [
@@ -372,6 +382,11 @@
       "date": "2026-07-04",
       "price": 21.93,
       "end_date": "2026-07-06"
+    },
+    {
+      "date": "2026-07-16",
+      "price": 24.14,
+      "end_date": null
     }
   ],
   "pick:US:LEN": [
@@ -432,7 +447,7 @@
     {
       "date": "2026-07-04",
       "price": 57.75,
-      "end_date": null
+      "end_date": "2026-07-16"
     }
   ],
   "avoid:UK:SSE.L": [
@@ -487,7 +502,7 @@
     {
       "date": "2026-07-14",
       "price": 7.94,
-      "end_date": null
+      "end_date": "2026-07-16"
     }
   ],
   "pick:CN:600600.SS": [
@@ -501,7 +516,7 @@
     {
       "date": "2026-07-06",
       "price": 26.7,
-      "end_date": null
+      "end_date": "2026-07-16"
     }
   ],
   "pick:UK:ABF.L": [
@@ -628,6 +643,27 @@
     {
       "date": "2026-07-15",
       "price": 16.11,
+      "end_date": "2026-07-16"
+    }
+  ],
+  "pick:US:BF-B": [
+    {
+      "date": "2026-07-16",
+      "price": 25.96,
+      "end_date": null
+    }
+  ],
+  "avoid:HK:2388.HK": [
+    {
+      "date": "2026-07-16",
+      "price": 46.68,
+      "end_date": null
+    }
+  ],
+  "avoid:CN:600188.SS": [
+    {
+      "date": "2026-07-16",
+      "price": 19.47,
       "end_date": null
     }
   ]
