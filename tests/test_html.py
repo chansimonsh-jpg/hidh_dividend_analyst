@@ -362,11 +362,13 @@ class TestArticlesHtml:
         for sec_id in ["sec-zh-hk", "sec-zh-cn", "sec-en"]:
             assert f'id="{sec_id}"' in self.src, f"Missing content section id={sec_id}"
 
-    def test_has_five_articles_per_language(self):
-        """Each language section must have at least 5 article anchors."""
-        for i in range(1, 6):
+    def test_has_ten_articles_per_language(self):
+        """Each language section must have 10 article anchors."""
+        for i in range(1, 11):
             assert f'id="hk-art{i}-zh-hk"' in self.src, f"zh-hk article {i} anchor missing"
-        for i in range(1, 6):
+        for i in range(1, 11):
+            assert f'id="cn-art{i}"' in self.src, f"zh-cn article {i} anchor missing"
+        for i in range(1, 11):
             assert f'id="en-art{i}"' in self.src, f"en article {i} anchor missing"
 
     def test_lang_buttons_use_setlang(self):
