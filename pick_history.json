@@ -10,7 +10,7 @@
     {
       "date": "2026-06-16",
       "price": 5.76,
-      "end_date": null
+      "end_date": "2026-07-20"
     }
   ],
   "pick:UK:III.L": [
@@ -146,6 +146,11 @@
       "date": "2026-07-15",
       "price": 25.91,
       "end_date": "2026-07-16"
+    },
+    {
+      "date": "2026-07-20",
+      "price": 26.7,
+      "end_date": null
     }
   ],
   "avoid:US:NNN": [
@@ -153,6 +158,11 @@
       "date": "2026-06-16",
       "price": 45.93,
       "end_date": "2026-07-17"
+    },
+    {
+      "date": "2026-07-20",
+      "price": 48.92,
+      "end_date": null
     }
   ],
   "avoid:US:D": [
@@ -195,7 +205,7 @@
     {
       "date": "2026-06-20",
       "price": 112.54,
-      "end_date": null
+      "end_date": "2026-07-20"
     }
   ],
   "avoid:US:XEL": [
@@ -296,7 +306,7 @@
     {
       "date": "2026-06-17",
       "price": 10.78,
-      "end_date": null
+      "end_date": "2026-07-20"
     }
   ],
   "pick:UK:RKT.L": [
@@ -528,6 +538,11 @@
       "date": "2026-07-14",
       "price": 7.94,
       "end_date": "2026-07-16"
+    },
+    {
+      "date": "2026-07-20",
+      "price": 7.98,
+      "end_date": null
     }
   ],
   "pick:CN:600600.SS": [
@@ -535,6 +550,11 @@
       "date": "2026-07-06",
       "price": 54.44,
       "end_date": "2026-07-09"
+    },
+    {
+      "date": "2026-07-20",
+      "price": 54.05,
+      "end_date": null
     }
   ],
   "pick:US:VICI": [
@@ -573,6 +593,11 @@
       "date": "2026-07-08",
       "price": 29.98,
       "end_date": "2026-07-17"
+    },
+    {
+      "date": "2026-07-20",
+      "price": 30.66,
+      "end_date": null
     }
   ],
   "avoid:UK:UU.L": [
@@ -671,7 +696,7 @@
     {
       "date": "2026-07-15",
       "price": 4.45,
-      "end_date": null
+      "end_date": "2026-07-20"
     }
   ],
   "avoid:US:HTGC": [
@@ -699,7 +724,7 @@
     {
       "date": "2026-07-16",
       "price": 19.47,
-      "end_date": null
+      "end_date": "2026-07-20"
     }
   ],
   "pick:CN:000708.SZ": [
@@ -713,7 +738,7 @@
     {
       "date": "2026-07-17",
       "price": 1.16,
-      "end_date": null
+      "end_date": "2026-07-20"
     }
   ],
   "avoid:UK:WPP.L": [
