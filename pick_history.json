@@ -61,6 +61,11 @@
       "date": "2026-06-16",
       "price": 4.87,
       "end_date": "2026-07-22"
+    },
+    {
+      "date": "2026-07-28",
+      "price": 5.08,
+      "end_date": null
     }
   ],
   "pick:CN:600219.SS": [
@@ -266,7 +271,7 @@
     {
       "date": "2026-07-27",
       "price": 231.67,
-      "end_date": null
+      "end_date": "2026-07-28"
     }
   ],
   "avoid:US:VTR": [
@@ -525,6 +530,11 @@
       "date": "2026-07-04",
       "price": 24.6,
       "end_date": "2026-07-27"
+    },
+    {
+      "date": "2026-07-28",
+      "price": 23.77,
+      "end_date": null
     }
   ],
   "avoid:UK:BATS.L": [
@@ -553,7 +563,7 @@
     {
       "date": "2026-07-27",
       "price": 5.25,
-      "end_date": null
+      "end_date": "2026-07-28"
     }
   ],
   "avoid:UK:CTY.L": [
@@ -598,6 +608,11 @@
       "date": "2026-07-20",
       "price": 7.98,
       "end_date": "2026-07-27"
+    },
+    {
+      "date": "2026-07-28",
+      "price": 7.67,
+      "end_date": null
     }
   ],
   "pick:CN:600600.SS": [
@@ -626,7 +641,7 @@
     {
       "date": "2026-07-17",
       "price": 26.87,
-      "end_date": null
+      "end_date": "2026-07-28"
     }
   ],
   "pick:UK:ABF.L": [
@@ -674,7 +689,7 @@
     {
       "date": "2026-07-13",
       "price": 13.44,
-      "end_date": null
+      "end_date": "2026-07-28"
     }
   ],
   "pick:UK:FRES.L": [
@@ -786,7 +801,7 @@
     {
       "date": "2026-07-24",
       "price": 4.52,
-      "end_date": null
+      "end_date": "2026-07-28"
     }
   ],
   "avoid:US:HTGC": [
@@ -846,6 +861,11 @@
       "date": "2026-07-17",
       "price": 2.89,
       "end_date": "2026-07-21"
+    },
+    {
+      "date": "2026-07-28",
+      "price": 2.94,
+      "end_date": null
     }
   ],
   "pick:US:AOS": [
@@ -853,6 +873,11 @@
       "date": "2026-07-21",
       "price": 58.76,
       "end_date": "2026-07-22"
+    },
+    {
+      "date": "2026-07-28",
+      "price": 64.01,
+      "end_date": null
     }
   ],
   "pick:HK:0762.HK": [
@@ -885,6 +910,13 @@
     {
       "date": "2026-07-24",
       "price": 0.38,
+      "end_date": null
+    }
+  ],
+  "avoid:US:AMCR": [
+    {
+      "date": "2026-07-28",
+      "price": 46.69,
       "end_date": null
     }
   ]
