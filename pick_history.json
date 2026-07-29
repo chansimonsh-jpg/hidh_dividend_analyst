@@ -15,7 +15,7 @@
     {
       "date": "2026-07-22",
       "price": 5.99,
-      "end_date": null
+      "end_date": "2026-07-29"
     }
   ],
   "pick:UK:III.L": [
@@ -65,7 +65,7 @@
     {
       "date": "2026-07-28",
       "price": 5.08,
-      "end_date": null
+      "end_date": "2026-07-29"
     }
   ],
   "pick:CN:600219.SS": [
@@ -220,7 +220,7 @@
     {
       "date": "2026-07-22",
       "price": 113.46,
-      "end_date": null
+      "end_date": "2026-07-29"
     }
   ],
   "avoid:US:XEL": [
@@ -272,6 +272,11 @@
       "date": "2026-07-27",
       "price": 231.67,
       "end_date": "2026-07-28"
+    },
+    {
+      "date": "2026-07-29",
+      "price": 235.61,
+      "end_date": null
     }
   ],
   "avoid:US:VTR": [
@@ -504,6 +509,11 @@
       "date": "2026-07-14",
       "price": 0.72,
       "end_date": "2026-07-17"
+    },
+    {
+      "date": "2026-07-29",
+      "price": 0.77,
+      "end_date": null
     }
   ],
   "avoid:HK:1038.HK": [
@@ -547,6 +557,11 @@
       "date": "2026-07-10",
       "price": 44.97,
       "end_date": "2026-07-13"
+    },
+    {
+      "date": "2026-07-29",
+      "price": 46.69,
+      "end_date": null
     }
   ],
   "avoid:UK:BARC.L": [
@@ -732,7 +747,7 @@
     {
       "date": "2026-07-24",
       "price": 0.62,
-      "end_date": null
+      "end_date": "2026-07-29"
     }
   ],
   "avoid:CN:600900.SS": [
@@ -802,6 +817,11 @@
       "date": "2026-07-24",
       "price": 4.52,
       "end_date": "2026-07-28"
+    },
+    {
+      "date": "2026-07-29",
+      "price": 4.6,
+      "end_date": null
     }
   ],
   "avoid:US:HTGC": [
@@ -877,7 +897,7 @@
     {
       "date": "2026-07-28",
       "price": 64.01,
-      "end_date": null
+      "end_date": "2026-07-29"
     }
   ],
   "pick:HK:0762.HK": [
@@ -903,7 +923,7 @@
     {
       "date": "2026-07-27",
       "price": 4.39,
-      "end_date": null
+      "end_date": "2026-07-29"
     }
   ],
   "pick:HK:0467.HK": [
@@ -917,6 +937,13 @@
     {
       "date": "2026-07-28",
       "price": 46.69,
+      "end_date": null
+    }
+  ],
+  "pick:CN:002236.SZ": [
+    {
+      "date": "2026-07-29",
+      "price": 16.42,
       "end_date": null
     }
   ]
