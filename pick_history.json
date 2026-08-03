@@ -186,7 +186,7 @@
     {
       "date": "2026-06-16",
       "price": 93.82,
-      "end_date": null
+      "end_date": "2026-08-03"
     }
   ],
   "avoid:US:PLD": [
@@ -227,7 +227,7 @@
     {
       "date": "2026-06-16",
       "price": 79.35,
-      "end_date": null
+      "end_date": "2026-08-03"
     }
   ],
   "avoid:US:WELL": [
@@ -550,6 +550,11 @@
       "date": "2026-07-28",
       "price": 23.77,
       "end_date": "2026-07-31"
+    },
+    {
+      "date": "2026-08-03",
+      "price": 23.46,
+      "end_date": null
     }
   ],
   "avoid:UK:BATS.L": [
@@ -571,7 +576,7 @@
     {
       "date": "2026-07-31",
       "price": 45.66,
-      "end_date": null
+      "end_date": "2026-08-03"
     }
   ],
   "avoid:UK:BARC.L": [
@@ -880,6 +885,11 @@
       "date": "2026-07-21",
       "price": 20.94,
       "end_date": "2026-07-27"
+    },
+    {
+      "date": "2026-08-03",
+      "price": 18.95,
+      "end_date": null
     }
   ],
   "pick:CN:000708.SZ": [
@@ -963,6 +973,11 @@
       "date": "2026-07-28",
       "price": 46.69,
       "end_date": "2026-07-31"
+    },
+    {
+      "date": "2026-08-03",
+      "price": 46.02,
+      "end_date": null
     }
   ],
   "pick:CN:002236.SZ": [
@@ -976,6 +991,13 @@
     {
       "date": "2026-07-31",
       "price": 8.76,
+      "end_date": null
+    }
+  ],
+  "pick:US:KHC": [
+    {
+      "date": "2026-08-03",
+      "price": 26.42,
       "end_date": null
     }
   ]
