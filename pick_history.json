@@ -510,6 +510,11 @@
       "date": "2026-07-04",
       "price": 4.64,
       "end_date": "2026-07-06"
+    },
+    {
+      "date": "2026-08-05",
+      "price": 5.25,
+      "end_date": null
     }
   ],
   "pick:UK:SHEL.L": [
@@ -569,7 +574,7 @@
     {
       "date": "2026-08-03",
       "price": 23.46,
-      "end_date": null
+      "end_date": "2026-08-05"
     }
   ],
   "avoid:UK:BATS.L": [
@@ -740,6 +745,11 @@
       "date": "2026-07-30",
       "price": 13.79,
       "end_date": "2026-08-04"
+    },
+    {
+      "date": "2026-08-05",
+      "price": 14.06,
+      "end_date": null
     }
   ],
   "pick:UK:FRES.L": [
@@ -794,7 +804,7 @@
     {
       "date": "2026-07-10",
       "price": 28.03,
-      "end_date": null
+      "end_date": "2026-08-05"
     }
   ],
   "pick:HK:1336.HK": [
@@ -830,7 +840,7 @@
     {
       "date": "2026-08-04",
       "price": 11.31,
-      "end_date": null
+      "end_date": "2026-08-05"
     }
   ],
   "avoid:HK:6823.HK": [
@@ -917,6 +927,11 @@
       "date": "2026-07-17",
       "price": 13.39,
       "end_date": "2026-07-21"
+    },
+    {
+      "date": "2026-08-05",
+      "price": 14.16,
+      "end_date": null
     }
   ],
   "avoid:UK:VOD.L": [
