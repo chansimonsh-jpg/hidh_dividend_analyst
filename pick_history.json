@@ -20,7 +20,7 @@
     {
       "date": "2026-08-04",
       "price": 6.03,
-      "end_date": null
+      "end_date": "2026-08-10"
     }
   ],
   "pick:UK:III.L": [
@@ -99,7 +99,7 @@
     {
       "date": "2026-08-07",
       "price": 50.69,
-      "end_date": null
+      "end_date": "2026-08-10"
     }
   ],
   "pick:HK:2319.HK": [
@@ -301,7 +301,7 @@
     {
       "date": "2026-08-07",
       "price": 222.91,
-      "end_date": null
+      "end_date": "2026-08-10"
     }
   ],
   "avoid:US:VTR": [
@@ -511,6 +511,11 @@
       "date": "2026-08-04",
       "price": 76.04,
       "end_date": "2026-08-07"
+    },
+    {
+      "date": "2026-08-10",
+      "price": 74.83,
+      "end_date": null
     }
   ],
   "pick:HK:0570.HK": [
@@ -762,7 +767,7 @@
     {
       "date": "2026-08-07",
       "price": 31.42,
-      "end_date": null
+      "end_date": "2026-08-10"
     }
   ],
   "avoid:UK:UU.L": [
@@ -806,7 +811,7 @@
     {
       "date": "2026-08-07",
       "price": 28.64,
-      "end_date": null
+      "end_date": "2026-08-10"
     }
   ],
   "pick:HK:0966.HK": [
@@ -864,6 +869,11 @@
       "date": "2026-07-13",
       "price": 18.78,
       "end_date": "2026-08-07"
+    },
+    {
+      "date": "2026-08-10",
+      "price": 21.0,
+      "end_date": null
     }
   ],
   "pick:UK:PSN.L": [
@@ -987,6 +997,11 @@
       "date": "2026-08-05",
       "price": 14.16,
       "end_date": "2026-08-07"
+    },
+    {
+      "date": "2026-08-10",
+      "price": 13.93,
+      "end_date": null
     }
   ],
   "avoid:UK:VOD.L": [
@@ -1006,6 +1021,11 @@
       "date": "2026-07-28",
       "price": 2.94,
       "end_date": "2026-08-07"
+    },
+    {
+      "date": "2026-08-10",
+      "price": 3.91,
+      "end_date": null
     }
   ],
   "pick:US:AOS": [
@@ -1093,6 +1113,20 @@
     {
       "date": "2026-08-03",
       "price": 26.42,
+      "end_date": "2026-08-10"
+    }
+  ],
+  "pick:CN:600690.SS": [
+    {
+      "date": "2026-08-10",
+      "price": 22.25,
+      "end_date": null
+    }
+  ],
+  "avoid:US:CLX": [
+    {
+      "date": "2026-08-10",
+      "price": 107.7,
       "end_date": null
     }
   ]
