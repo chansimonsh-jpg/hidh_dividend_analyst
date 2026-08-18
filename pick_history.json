@@ -44,7 +44,7 @@
     {
       "date": "2026-06-18",
       "price": 113.28,
-      "end_date": null
+      "end_date": "2026-08-18"
     }
   ],
   "pick:CN:000963.SZ": [
@@ -102,7 +102,7 @@
     {
       "date": "2026-08-17",
       "price": 4.86,
-      "end_date": null
+      "end_date": "2026-08-18"
     }
   ],
   "pick:CN:000538.SZ": [
@@ -263,7 +263,7 @@
     {
       "date": "2026-08-12",
       "price": 140.73,
-      "end_date": null
+      "end_date": "2026-08-18"
     }
   ],
   "avoid:US:WEC": [
@@ -606,7 +606,7 @@
     {
       "date": "2026-08-07",
       "price": 32.77,
-      "end_date": null
+      "end_date": "2026-08-18"
     }
   ],
   "pick:UK:TRIG.L": [
@@ -780,6 +780,11 @@
       "date": "2026-07-22",
       "price": 53.84,
       "end_date": "2026-08-14"
+    },
+    {
+      "date": "2026-08-18",
+      "price": 51.63,
+      "end_date": null
     }
   ],
   "pick:US:VICI": [
@@ -842,7 +847,7 @@
     {
       "date": "2026-08-17",
       "price": 30.4,
-      "end_date": null
+      "end_date": "2026-08-18"
     }
   ],
   "avoid:UK:UU.L": [
@@ -875,6 +880,11 @@
       "date": "2026-08-12",
       "price": 14.09,
       "end_date": "2026-08-17"
+    },
+    {
+      "date": "2026-08-18",
+      "price": 14.15,
+      "end_date": null
     }
   ],
   "pick:UK:FRES.L": [
@@ -949,7 +959,7 @@
     {
       "date": "2026-08-17",
       "price": 27.96,
-      "end_date": null
+      "end_date": "2026-08-18"
     }
   ],
   "pick:HK:1336.HK": [
@@ -969,6 +979,11 @@
       "date": "2026-08-10",
       "price": 21.0,
       "end_date": "2026-08-11"
+    },
+    {
+      "date": "2026-08-18",
+      "price": 21.16,
+      "end_date": null
     }
   ],
   "pick:UK:PSN.L": [
@@ -1062,7 +1077,7 @@
     {
       "date": "2026-07-22",
       "price": 47.42,
-      "end_date": null
+      "end_date": "2026-08-18"
     }
   ],
   "avoid:CN:600188.SS": [
@@ -1106,7 +1121,7 @@
     {
       "date": "2026-08-10",
       "price": 13.93,
-      "end_date": null
+      "end_date": "2026-08-18"
     }
   ],
   "avoid:UK:VOD.L": [
@@ -1244,7 +1259,7 @@
     {
       "date": "2026-08-12",
       "price": 3.26,
-      "end_date": null
+      "end_date": "2026-08-18"
     }
   ],
   "pick:HK:0788.HK": [
@@ -1265,6 +1280,13 @@
     {
       "date": "2026-08-14",
       "price": 209.6,
+      "end_date": null
+    }
+  ],
+  "pick:HK:0288.HK": [
+    {
+      "date": "2026-08-18",
+      "price": 8.14,
       "end_date": null
     }
   ]
