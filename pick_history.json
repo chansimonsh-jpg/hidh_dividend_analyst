@@ -184,6 +184,11 @@
       "date": "2026-07-17",
       "price": 31.72,
       "end_date": "2026-08-12"
+    },
+    {
+      "date": "2026-08-27",
+      "price": 34.28,
+      "end_date": null
     }
   ],
   "pick:CN:603369.SS": [
@@ -659,6 +664,11 @@
       "date": "2026-08-19",
       "price": 0.77,
       "end_date": "2026-08-20"
+    },
+    {
+      "date": "2026-08-27",
+      "price": 0.77,
+      "end_date": null
     }
   ],
   "avoid:HK:1038.HK": [
@@ -705,6 +715,11 @@
       "date": "2026-08-14",
       "price": 24.2,
       "end_date": "2026-08-24"
+    },
+    {
+      "date": "2026-08-27",
+      "price": 24.09,
+      "end_date": null
     }
   ],
   "avoid:UK:BATS.L": [
@@ -929,7 +944,7 @@
     {
       "date": "2026-08-24",
       "price": 14.25,
-      "end_date": null
+      "end_date": "2026-08-27"
     }
   ],
   "pick:UK:FRES.L": [
@@ -963,7 +978,7 @@
     {
       "date": "2026-08-20",
       "price": 19.66,
-      "end_date": null
+      "end_date": "2026-08-27"
     }
   ],
   "avoid:HK:0003.HK": [
@@ -1038,7 +1053,7 @@
     {
       "date": "2026-08-18",
       "price": 21.16,
-      "end_date": null
+      "end_date": "2026-08-27"
     }
   ],
   "pick:UK:PSN.L": [
@@ -1075,7 +1090,7 @@
     {
       "date": "2026-08-20",
       "price": 11.44,
-      "end_date": null
+      "end_date": "2026-08-27"
     }
   ],
   "avoid:HK:6823.HK": [
@@ -1138,6 +1153,11 @@
       "date": "2026-07-22",
       "price": 47.42,
       "end_date": "2026-08-18"
+    },
+    {
+      "date": "2026-08-27",
+      "price": 49.64,
+      "end_date": null
     }
   ],
   "avoid:CN:600188.SS": [
@@ -1237,7 +1257,7 @@
     {
       "date": "2026-08-25",
       "price": 62.15,
-      "end_date": null
+      "end_date": "2026-08-27"
     }
   ],
   "pick:HK:0762.HK": [
@@ -1363,7 +1383,7 @@
     {
       "date": "2026-08-20",
       "price": 122.91,
-      "end_date": null
+      "end_date": "2026-08-27"
     }
   ],
   "pick:US:PGR": [
@@ -1412,6 +1432,27 @@
     {
       "date": "2026-08-25",
       "price": 14.05,
+      "end_date": "2026-08-27"
+    }
+  ],
+  "pick:HK:0590.HK": [
+    {
+      "date": "2026-08-27",
+      "price": 23.64,
+      "end_date": null
+    }
+  ],
+  "avoid:US:AMT": [
+    {
+      "date": "2026-08-27",
+      "price": 175.73,
+      "end_date": null
+    }
+  ],
+  "avoid:CN:600460.SS": [
+    {
+      "date": "2026-08-27",
+      "price": 33.07,
       "end_date": null
     }
   ]
