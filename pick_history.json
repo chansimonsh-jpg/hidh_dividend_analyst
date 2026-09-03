@@ -194,6 +194,11 @@
       "date": "2026-08-27",
       "price": 34.28,
       "end_date": "2026-09-01"
+    },
+    {
+      "date": "2026-09-03",
+      "price": 33.46,
+      "end_date": null
     }
   ],
   "pick:CN:603369.SS": [
@@ -922,7 +927,7 @@
     {
       "date": "2026-08-21",
       "price": 31.14,
-      "end_date": null
+      "end_date": "2026-09-03"
     }
   ],
   "avoid:UK:UU.L": [
@@ -1551,6 +1556,13 @@
     {
       "date": "2026-09-02",
       "price": 5.97,
+      "end_date": null
+    }
+  ],
+  "avoid:UK:ULVR.L": [
+    {
+      "date": "2026-09-03",
+      "price": 48.11,
       "end_date": null
     }
   ]
