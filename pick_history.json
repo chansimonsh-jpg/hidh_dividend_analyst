@@ -122,7 +122,7 @@
     {
       "date": "2026-09-01",
       "price": 4.84,
-      "end_date": null
+      "end_date": "2026-09-04"
     }
   ],
   "pick:CN:000538.SZ": [
@@ -499,6 +499,11 @@
       "date": "2026-08-13",
       "price": 51.38,
       "end_date": "2026-09-02"
+    },
+    {
+      "date": "2026-09-04",
+      "price": 52.26,
+      "end_date": null
     }
   ],
   "avoid:US:PM": [
@@ -1047,7 +1052,7 @@
     {
       "date": "2026-09-02",
       "price": 0.62,
-      "end_date": null
+      "end_date": "2026-09-04"
     }
   ],
   "avoid:CN:600900.SS": [
@@ -1181,6 +1186,11 @@
       "date": "2026-07-16",
       "price": 25.96,
       "end_date": "2026-07-17"
+    },
+    {
+      "date": "2026-09-04",
+      "price": 27.38,
+      "end_date": null
     }
   ],
   "avoid:HK:2388.HK": [
@@ -1563,6 +1573,13 @@
     {
       "date": "2026-09-03",
       "price": 48.11,
+      "end_date": null
+    }
+  ],
+  "pick:HK:2318.HK": [
+    {
+      "date": "2026-09-04",
+      "price": 56.95,
       "end_date": null
     }
   ]
