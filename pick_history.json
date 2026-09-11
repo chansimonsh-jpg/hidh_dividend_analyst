@@ -270,6 +270,11 @@
       "date": "2026-06-16",
       "price": 68.15,
       "end_date": "2026-09-09"
+    },
+    {
+      "date": "2026-09-11",
+      "price": 65.1,
+      "end_date": null
     }
   ],
   "avoid:US:SO": [
@@ -1674,6 +1679,13 @@
     {
       "date": "2026-09-10",
       "price": 83.83,
+      "end_date": "2026-09-11"
+    }
+  ],
+  "avoid:US:SWKS": [
+    {
+      "date": "2026-09-11",
+      "price": 76.54,
       "end_date": null
     }
   ]
