@@ -225,6 +225,10 @@ def safe(v, default=0.0):
     except Exception:
         return default
 
+def is_bank(info):
+    industry = (info.get("industry") or "").lower()
+    return "bank" in industry
+
 def get_status(total):
     if   total >= 75: return "🟢🟢 強力買入"
     elif total >= 60: return "🟢 值得關注"
@@ -627,7 +631,41 @@ def score_valuation(info, c_yield, y_avg, y_std, c_pe, pe_avg, pe_std, rfr=4.3):
     else:                pts += 0
     return round(pts, 2)
 
+def score_financial_health_bank(info):
+    # 銀行股 EBITDA/EBIT/利息支出/流動比率 通常無數據，改用 ROE/ROA/現金流動性
+    pts = 0.0
+    roe = info.get("returnOnEquity")
+    if roe is None: pts += 5            # 數據缺失：給中等分
+    else:
+        roe = safe(roe, 0)
+        if   roe >= 0.15: pts += 10
+        elif roe >= 0.12: pts += 8
+        elif roe >= 0.08: pts += 6
+        elif roe >= 0.04: pts += 3
+        else:             pts += 0
+    roa = info.get("returnOnAssets")
+    if roa is None: pts += 4.5          # 數據缺失：給中等分
+    else:
+        roa = safe(roa, 0)
+        if   roa >= 0.012: pts += 9
+        elif roa >= 0.009: pts += 7
+        elif roa >= 0.006: pts += 4
+        elif roa >= 0.003: pts += 2
+        else:              pts += 0
+    total_d = safe(info.get("totalDebt"), 0)
+    cash    = safe(info.get("totalCash") or info.get("cash"), 0)
+    if total_d <= 0: pts += 3           # 數據缺失：給中等分
+    else:
+        liq = cash / total_d
+        if   liq >= 0.30: pts += 6
+        elif liq >= 0.20: pts += 4
+        elif liq >= 0.10: pts += 2
+        else:             pts += 0
+    return round(pts, 2)
+
 def score_financial_health(info):
+    if is_bank(info):
+        return score_financial_health_bank(info)
     pts = 0.0
     ebitda   = safe(info.get("ebitda"), 0)
     total_d  = safe(info.get("totalDebt"), 0)

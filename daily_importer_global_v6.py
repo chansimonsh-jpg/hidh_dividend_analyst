@@ -278,6 +278,10 @@ def safe(v, default=0.0):
         return default if f != f else f
     except: return default
 
+def is_bank(info):
+    industry = (info.get("industry") or "").lower()
+    return "bank" in industry
+
 def ticker_to_sheet(tid):
     return tid.replace(".L","").replace(".HK","").replace("-","_").replace(".","_")
 
@@ -611,7 +615,36 @@ def score_valuation(info, c_yield, y_avg, y_std, c_pe, pe_avg, pe_std, rfr=4.3):
     elif sp>=-1.0:pts+=2
     return round(pts,2)
 
+def score_financial_health_bank(info):
+    # 銀行股 EBITDA/EBIT/利息支出/流動比率 通常無數據，改用 ROE/ROA/現金流動性
+    pts=0.0
+    roe=info.get("returnOnEquity")
+    if roe is None: pts+=5          # 數據缺失：給中等分
+    else:
+        roe=safe(roe,0)
+        if   roe>=0.15: pts+=10
+        elif roe>=0.12: pts+=8
+        elif roe>=0.08: pts+=6
+        elif roe>=0.04: pts+=3
+    roa=info.get("returnOnAssets")
+    if roa is None: pts+=4.5        # 數據缺失：給中等分
+    else:
+        roa=safe(roa,0)
+        if   roa>=0.012: pts+=9
+        elif roa>=0.009: pts+=7
+        elif roa>=0.006: pts+=4
+        elif roa>=0.003: pts+=2
+    td=safe(info.get("totalDebt"),0); cash=safe(info.get("totalCash") or info.get("cash"),0)
+    if td<=0: pts+=3                # 數據缺失：給中等分
+    else:
+        liq=cash/td
+        if   liq>=0.30: pts+=6
+        elif liq>=0.20: pts+=4
+        elif liq>=0.10: pts+=2
+    return round(pts,2)
+
 def score_financial_health(info):
+    if is_bank(info): return score_financial_health_bank(info)
     pts=0.0
     ebitda=safe(info.get("ebitda"),0); td=safe(info.get("totalDebt"),0)
     cash=safe(info.get("totalCash") or info.get("cash"),0); nd=td-cash

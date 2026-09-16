@@ -1274,6 +1274,11 @@ def safe(v, default=0.0):
         return default
 
 
+def is_bank(info):
+    industry = (info.get("industry") or "").lower()
+    return "bank" in industry
+
+
 # ==========================================
 # 📊 評分系統（五維度）
 # ==========================================
@@ -1364,8 +1369,46 @@ def score_valuation(info, c_yield, y_avg, y_std, c_pe, pe_avg, pe_std,
     return round(pts, 2)
 
 
+def score_financial_health_bank(info):
+    """財務健康（滿分 25）— 銀行股專用：EBITDA/EBIT/利息支出/流動比率通常無數據，改用 ROE/ROA/現金流動性"""
+    pts = 0.0
+    # ① ROE（10分，取代 Net Debt / EBITDA）
+    roe = info.get("returnOnEquity")
+    if roe is None: pts += 5            # 未知，給中等分
+    else:
+        roe = safe(roe, 0)
+        if   roe >= 0.15: pts += 10
+        elif roe >= 0.12: pts += 8
+        elif roe >= 0.08: pts += 6
+        elif roe >= 0.04: pts += 3
+        else:             pts += 0
+    # ② ROA（9分，取代利息覆蓋率）
+    roa = info.get("returnOnAssets")
+    if roa is None: pts += 4.5          # 未知，給中等分
+    else:
+        roa = safe(roa, 0)
+        if   roa >= 0.012: pts += 9
+        elif roa >= 0.009: pts += 7
+        elif roa >= 0.006: pts += 4
+        elif roa >= 0.003: pts += 2
+        else:              pts += 0
+    # ③ 現金 / 總負債 — 流動性緩衝（6分，取代流動比率；yfinance 無法取得資本充足率）
+    total_d = safe(info.get("totalDebt"), 0)
+    cash    = safe(info.get("totalCash") or info.get("cash"), 0)
+    if total_d <= 0: pts += 3           # 未知，給中等分
+    else:
+        liq = cash / total_d
+        if   liq >= 0.30: pts += 6
+        elif liq >= 0.20: pts += 4
+        elif liq >= 0.10: pts += 2
+        else:             pts += 0
+    return round(pts, 2)
+
+
 def score_financial_health(info):
     """財務健康（滿分 25）"""
+    if is_bank(info):
+        return score_financial_health_bank(info)
     pts = 0.0
     ebitda  = safe(info.get("ebitda"), 0)
     total_d = safe(info.get("totalDebt"), 0)
