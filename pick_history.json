@@ -143,6 +143,11 @@
       "date": "2026-09-05",
       "price": 4.92,
       "end_date": "2026-09-08"
+    },
+    {
+      "date": "2026-10-02",
+      "price": 4.71,
+      "end_date": null
     }
   ],
   "pick:CN:000538.SZ": [
@@ -373,7 +378,7 @@
     {
       "date": "2026-09-22",
       "price": 134.84,
-      "end_date": null
+      "end_date": "2026-10-02"
     }
   ],
   "avoid:US:WEC": [
@@ -406,6 +411,11 @@
       "date": "2026-09-16",
       "price": 105.17,
       "end_date": "2026-09-17"
+    },
+    {
+      "date": "2026-10-02",
+      "price": 101.73,
+      "end_date": null
     }
   ],
   "avoid:US:XEL": [
@@ -916,7 +926,7 @@
     {
       "date": "2026-10-01",
       "price": 41.44,
-      "end_date": null
+      "end_date": "2026-10-02"
     }
   ],
   "avoid:UK:BARC.L": [
@@ -1600,7 +1610,7 @@
     {
       "date": "2026-09-30",
       "price": 0.41,
-      "end_date": null
+      "end_date": "2026-10-02"
     }
   ],
   "avoid:US:AMCR": [
@@ -1637,6 +1647,11 @@
       "date": "2026-09-25",
       "price": 8.4,
       "end_date": "2026-10-01"
+    },
+    {
+      "date": "2026-10-02",
+      "price": 8.14,
+      "end_date": null
     }
   ],
   "pick:US:KHC": [
