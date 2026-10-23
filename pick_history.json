@@ -13,7 +13,7 @@
     {
       "date": "2026-10-21",
       "price": 0.76,
-      "end_date": null
+      "end_date": "2026-10-23"
     }
   ],
   "pick:CN:601766.SS": [
@@ -268,7 +268,7 @@
     {
       "date": "2026-09-29",
       "price": 31.52,
-      "end_date": null
+      "end_date": "2026-10-23"
     }
   ],
   "pick:CN:603369.SS": [
@@ -355,6 +355,11 @@
       "date": "2026-10-21",
       "price": 62.21,
       "end_date": "2026-10-22"
+    },
+    {
+      "date": "2026-10-23",
+      "price": 62.33,
+      "end_date": null
     }
   ],
   "avoid:US:SO": [
@@ -493,6 +498,11 @@
       "date": "2026-08-17",
       "price": 79.21,
       "end_date": "2026-08-20"
+    },
+    {
+      "date": "2026-10-23",
+      "price": 76.78,
+      "end_date": null
     }
   ],
   "avoid:US:WELL": [
@@ -581,7 +591,7 @@
     {
       "date": "2026-10-22",
       "price": 206.99,
-      "end_date": null
+      "end_date": "2026-10-23"
     }
   ],
   "avoid:US:VTR": [
@@ -705,7 +715,7 @@
     {
       "date": "2026-10-17",
       "price": 199.9,
-      "end_date": null
+      "end_date": "2026-10-23"
     }
   ],
   "pick:CN:600018.SS": [
@@ -928,7 +938,7 @@
     {
       "date": "2026-10-21",
       "price": 0.79,
-      "end_date": null
+      "end_date": "2026-10-23"
     }
   ],
   "avoid:HK:1038.HK": [
@@ -1510,7 +1520,7 @@
     {
       "date": "2026-10-20",
       "price": 12.62,
-      "end_date": null
+      "end_date": "2026-10-23"
     }
   ],
   "avoid:HK:6823.HK": [
@@ -1903,7 +1913,7 @@
     {
       "date": "2026-09-24",
       "price": 24.37,
-      "end_date": null
+      "end_date": "2026-10-23"
     }
   ],
   "pick:CN:600690.SS": [
@@ -2067,7 +2077,7 @@
     {
       "date": "2026-10-21",
       "price": 13.12,
-      "end_date": null
+      "end_date": "2026-10-23"
     }
   ],
   "pick:HK:0590.HK": [
@@ -2085,6 +2095,11 @@
       "date": "2026-10-16",
       "price": 21.48,
       "end_date": "2026-10-17"
+    },
+    {
+      "date": "2026-10-23",
+      "price": 21.34,
+      "end_date": null
     }
   ],
   "avoid:US:AMT": [
@@ -2161,6 +2176,11 @@
       "date": "2026-09-04",
       "price": 56.95,
       "end_date": "2026-09-30"
+    },
+    {
+      "date": "2026-10-23",
+      "price": 48.48,
+      "end_date": null
     }
   ],
   "avoid:US:VZ": [
@@ -2254,6 +2274,11 @@
       "date": "2026-10-17",
       "price": 14.18,
       "end_date": "2026-10-22"
+    },
+    {
+      "date": "2026-10-23",
+      "price": 14.04,
+      "end_date": null
     }
   ],
   "avoid:US:IFF": [
