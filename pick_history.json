@@ -14,6 +14,11 @@
       "date": "2026-10-21",
       "price": 0.76,
       "end_date": "2026-10-23"
+    },
+    {
+      "date": "2026-10-24",
+      "price": 0.81,
+      "end_date": null
     }
   ],
   "pick:CN:601766.SS": [
@@ -73,6 +78,11 @@
       "date": "2026-10-17",
       "price": 24.47,
       "end_date": "2026-10-20"
+    },
+    {
+      "date": "2026-10-24",
+      "price": 23.14,
+      "end_date": null
     }
   ],
   "pick:CN:600809.SS": [
@@ -861,6 +871,11 @@
       "date": "2026-10-15",
       "price": 74.3,
       "end_date": "2026-10-17"
+    },
+    {
+      "date": "2026-10-24",
+      "price": 82.0,
+      "end_date": null
     }
   ],
   "pick:HK:0570.HK": [
@@ -1290,6 +1305,11 @@
       "date": "2026-10-16",
       "price": 14.44,
       "end_date": "2026-10-20"
+    },
+    {
+      "date": "2026-10-24",
+      "price": 15.13,
+      "end_date": null
     }
   ],
   "pick:UK:FRES.L": [
@@ -1521,6 +1541,11 @@
       "date": "2026-10-20",
       "price": 12.62,
       "end_date": "2026-10-23"
+    },
+    {
+      "date": "2026-10-24",
+      "price": 12.62,
+      "end_date": null
     }
   ],
   "avoid:HK:6823.HK": [
@@ -1777,7 +1802,7 @@
     {
       "date": "2026-10-22",
       "price": 59.54,
-      "end_date": null
+      "end_date": "2026-10-24"
     }
   ],
   "pick:HK:0762.HK": [
@@ -1896,7 +1921,7 @@
     {
       "date": "2026-10-22",
       "price": 7.48,
-      "end_date": null
+      "end_date": "2026-10-24"
     }
   ],
   "pick:US:KHC": [
@@ -2122,6 +2147,11 @@
       "date": "2026-10-15",
       "price": 179.4,
       "end_date": "2026-10-22"
+    },
+    {
+      "date": "2026-10-24",
+      "price": 181.57,
+      "end_date": null
     }
   ],
   "avoid:CN:600460.SS": [
@@ -2278,7 +2308,7 @@
     {
       "date": "2026-10-23",
       "price": 14.04,
-      "end_date": null
+      "end_date": "2026-10-24"
     }
   ],
   "avoid:US:IFF": [
@@ -2327,6 +2357,13 @@
     {
       "date": "2026-10-22",
       "price": 8.7,
+      "end_date": null
+    }
+  ],
+  "pick:US:TMUS": [
+    {
+      "date": "2026-10-24",
+      "price": 158.79,
       "end_date": null
     }
   ]
