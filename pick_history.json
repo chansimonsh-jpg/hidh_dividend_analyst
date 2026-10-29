@@ -187,7 +187,7 @@
     {
       "date": "2026-10-06",
       "price": 4.71,
-      "end_date": null
+      "end_date": "2026-10-29"
     }
   ],
   "pick:CN:000538.SZ": [
@@ -336,6 +336,11 @@
       "date": "2026-09-23",
       "price": 28.35,
       "end_date": "2026-10-22"
+    },
+    {
+      "date": "2026-10-29",
+      "price": 30.5,
+      "end_date": null
     }
   ],
   "avoid:US:NNN": [
@@ -406,7 +411,7 @@
     {
       "date": "2026-10-15",
       "price": 89.38,
-      "end_date": null
+      "end_date": "2026-10-29"
     }
   ],
   "avoid:US:PLD": [
@@ -714,6 +719,11 @@
       "date": "2026-09-04",
       "price": 52.26,
       "end_date": "2026-10-15"
+    },
+    {
+      "date": "2026-10-29",
+      "price": 52.18,
+      "end_date": null
     }
   ],
   "avoid:US:PM": [
@@ -891,6 +901,11 @@
       "date": "2026-10-24",
       "price": 82.0,
       "end_date": "2026-10-28"
+    },
+    {
+      "date": "2026-10-29",
+      "price": 77.8,
+      "end_date": null
     }
   ],
   "pick:HK:0570.HK": [
@@ -1020,6 +1035,11 @@
       "date": "2026-08-27",
       "price": 24.09,
       "end_date": "2026-10-28"
+    },
+    {
+      "date": "2026-10-29",
+      "price": 24.9,
+      "end_date": null
     }
   ],
   "avoid:UK:BATS.L": [
@@ -1213,7 +1233,7 @@
     {
       "date": "2026-10-28",
       "price": 19.66,
-      "end_date": null
+      "end_date": "2026-10-29"
     }
   ],
   "avoid:HK:0002.HK": [
@@ -1800,7 +1820,7 @@
     {
       "date": "2026-10-27",
       "price": 3.98,
-      "end_date": null
+      "end_date": "2026-10-29"
     }
   ],
   "pick:US:AOS": [
@@ -2192,6 +2212,11 @@
       "date": "2026-10-24",
       "price": 181.57,
       "end_date": "2026-10-28"
+    },
+    {
+      "date": "2026-10-29",
+      "price": 183.75,
+      "end_date": null
     }
   ],
   "avoid:CN:600460.SS": [
@@ -2381,14 +2406,14 @@
     {
       "date": "2026-10-15",
       "price": 364.1,
-      "end_date": null
+      "end_date": "2026-10-29"
     }
   ],
   "pick:US:VRT": [
     {
       "date": "2026-10-17",
       "price": 214.75,
-      "end_date": null
+      "end_date": "2026-10-29"
     }
   ],
   "avoid:CN:600011.SS": [
@@ -2410,6 +2435,11 @@
       "date": "2026-10-24",
       "price": 158.79,
       "end_date": "2026-10-27"
+    },
+    {
+      "date": "2026-10-29",
+      "price": 148.08,
+      "end_date": null
     }
   ],
   "pick:UK:BA.L": [
