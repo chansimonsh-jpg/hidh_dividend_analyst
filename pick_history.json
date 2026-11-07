@@ -804,7 +804,7 @@
     {
       "date": "2026-07-04",
       "price": 12.3,
-      "end_date": null
+      "end_date": "2026-11-07"
     }
   ],
   "pick:HK:0322.HK": [
@@ -841,6 +841,11 @@
       "date": "2026-07-24",
       "price": 130.52,
       "end_date": "2026-07-27"
+    },
+    {
+      "date": "2026-11-07",
+      "price": 127.78,
+      "end_date": null
     }
   ],
   "pick:US:CTSH": [
@@ -904,6 +909,11 @@
       "date": "2026-11-04",
       "price": 86.09,
       "end_date": "2026-11-05"
+    },
+    {
+      "date": "2026-11-07",
+      "price": 88.74,
+      "end_date": null
     }
   ],
   "pick:US:ZTS": [
@@ -972,6 +982,11 @@
       "date": "2026-08-07",
       "price": 32.77,
       "end_date": "2026-08-18"
+    },
+    {
+      "date": "2026-11-07",
+      "price": 37.84,
+      "end_date": null
     }
   ],
   "pick:UK:TRIG.L": [
@@ -1451,7 +1466,7 @@
     {
       "date": "2026-11-03",
       "price": 22.35,
-      "end_date": null
+      "end_date": "2026-11-07"
     }
   ],
   "pick:HK:0966.HK": [
@@ -2062,6 +2077,11 @@
       "date": "2026-10-22",
       "price": 7.48,
       "end_date": "2026-10-24"
+    },
+    {
+      "date": "2026-11-07",
+      "price": 7.94,
+      "end_date": null
     }
   ],
   "pick:US:KHC": [
@@ -2521,6 +2541,11 @@
       "date": "2026-10-20",
       "price": 7.66,
       "end_date": "2026-10-21"
+    },
+    {
+      "date": "2026-11-07",
+      "price": 7.65,
+      "end_date": null
     }
   ],
   "pick:HK:1093.HK": [
@@ -2549,7 +2574,7 @@
     {
       "date": "2026-11-05",
       "price": 159.17,
-      "end_date": null
+      "end_date": "2026-11-07"
     }
   ],
   "pick:UK:BA.L": [
@@ -2596,7 +2621,7 @@
     {
       "date": "2026-11-05",
       "price": 115.51,
-      "end_date": null
+      "end_date": "2026-11-07"
     }
   ],
   "pick:US:FIS": [
