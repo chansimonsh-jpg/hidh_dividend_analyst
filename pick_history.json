@@ -1910,7 +1910,7 @@
     {
       "date": "2026-11-06",
       "price": 4.19,
-      "end_date": null
+      "end_date": "2026-11-10"
     }
   ],
   "pick:US:AOS": [
@@ -2545,7 +2545,7 @@
     {
       "date": "2026-11-07",
       "price": 7.65,
-      "end_date": null
+      "end_date": "2026-11-10"
     }
   ],
   "pick:HK:1093.HK": [
@@ -2628,6 +2628,13 @@
     {
       "date": "2026-11-06",
       "price": 29.39,
+      "end_date": null
+    }
+  ],
+  "avoid:UK:UKW.L": [
+    {
+      "date": "2026-11-10",
+      "price": 1.21,
       "end_date": null
     }
   ]
