@@ -24,6 +24,11 @@
       "date": "2026-10-31",
       "price": 0.8,
       "end_date": "2026-11-03"
+    },
+    {
+      "date": "2026-11-12",
+      "price": 0.82,
+      "end_date": null
     }
   ],
   "pick:CN:601766.SS": [
@@ -548,6 +553,11 @@
       "date": "2026-11-05",
       "price": 80.5,
       "end_date": "2026-11-11"
+    },
+    {
+      "date": "2026-11-12",
+      "price": 81.1,
+      "end_date": null
     }
   ],
   "avoid:US:WELL": [
@@ -845,7 +855,7 @@
     {
       "date": "2026-11-07",
       "price": 127.78,
-      "end_date": null
+      "end_date": "2026-11-12"
     }
   ],
   "pick:US:CTSH": [
@@ -991,7 +1001,7 @@
     {
       "date": "2026-11-07",
       "price": 37.84,
-      "end_date": null
+      "end_date": "2026-11-12"
     }
   ],
   "pick:UK:TRIG.L": [
@@ -2309,7 +2319,7 @@
     {
       "date": "2026-10-23",
       "price": 21.34,
-      "end_date": null
+      "end_date": "2026-11-12"
     }
   ],
   "avoid:US:AMT": [
@@ -2628,6 +2638,11 @@
       "date": "2026-11-05",
       "price": 3.65,
       "end_date": "2026-11-06"
+    },
+    {
+      "date": "2026-11-12",
+      "price": 3.58,
+      "end_date": null
     }
   ],
   "pick:UK:HFEL.L": [
