@@ -360,7 +360,7 @@
     {
       "date": "2026-11-05",
       "price": 34.42,
-      "end_date": null
+      "end_date": "2026-11-17"
     }
   ],
   "avoid:US:NNN": [
@@ -856,6 +856,11 @@
       "date": "2026-11-07",
       "price": 127.78,
       "end_date": "2026-11-12"
+    },
+    {
+      "date": "2026-11-17",
+      "price": 130.59,
+      "end_date": null
     }
   ],
   "pick:US:CTSH": [
@@ -873,6 +878,11 @@
       "date": "2026-09-22",
       "price": 59.87,
       "end_date": "2026-10-15"
+    },
+    {
+      "date": "2026-11-17",
+      "price": 62.29,
+      "end_date": null
     }
   ],
   "pick:US:TAP": [
@@ -894,7 +904,7 @@
     {
       "date": "2026-11-11",
       "price": 39.98,
-      "end_date": null
+      "end_date": "2026-11-17"
     }
   ],
   "pick:US:HPQ": [
@@ -1182,6 +1192,11 @@
       "date": "2026-10-20",
       "price": 44.57,
       "end_date": "2026-11-11"
+    },
+    {
+      "date": "2026-11-17",
+      "price": 46.56,
+      "end_date": null
     }
   ],
   "avoid:UK:BARC.L": [
@@ -1440,6 +1455,11 @@
       "date": "2026-11-11",
       "price": 15.46,
       "end_date": "2026-11-13"
+    },
+    {
+      "date": "2026-11-17",
+      "price": 15.81,
+      "end_date": null
     }
   ],
   "pick:UK:FRES.L": [
@@ -1710,7 +1730,7 @@
     {
       "date": "2026-11-14",
       "price": 12.93,
-      "end_date": null
+      "end_date": "2026-11-17"
     }
   ],
   "avoid:HK:6823.HK": [
@@ -2126,7 +2146,7 @@
     {
       "date": "2026-11-13",
       "price": 7.85,
-      "end_date": null
+      "end_date": "2026-11-17"
     }
   ],
   "pick:US:KHC": [
@@ -2481,7 +2501,7 @@
     {
       "date": "2026-11-14",
       "price": 89.94,
-      "end_date": null
+      "end_date": "2026-11-17"
     }
   ],
   "avoid:UK:HSBA.L": [
@@ -2685,6 +2705,11 @@
       "date": "2026-11-03",
       "price": 2.48,
       "end_date": "2026-11-14"
+    },
+    {
+      "date": "2026-11-17",
+      "price": 2.47,
+      "end_date": null
     }
   ],
   "avoid:US:ABT": [
@@ -2710,6 +2735,20 @@
     {
       "date": "2026-11-10",
       "price": 1.21,
+      "end_date": "2026-11-17"
+    }
+  ],
+  "pick:HK:0358.HK": [
+    {
+      "date": "2026-11-17",
+      "price": 21.6,
+      "end_date": null
+    }
+  ],
+  "pick:CN:600989.SS": [
+    {
+      "date": "2026-11-17",
+      "price": 20.36,
       "end_date": null
     }
   ]
