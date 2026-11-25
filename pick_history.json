@@ -212,7 +212,7 @@
     {
       "date": "2026-11-21",
       "price": 4.19,
-      "end_date": null
+      "end_date": "2026-11-25"
     }
   ],
   "pick:CN:000538.SZ": [
@@ -2591,6 +2591,11 @@
       "date": "2026-11-20",
       "price": 18.06,
       "end_date": "2026-11-24"
+    },
+    {
+      "date": "2026-11-25",
+      "price": 17.96,
+      "end_date": null
     }
   ],
   "pick:US:GEHC": [
