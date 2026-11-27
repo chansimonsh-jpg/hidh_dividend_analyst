@@ -2141,6 +2141,11 @@
       "date": "2026-11-05",
       "price": 0.43,
       "end_date": "2026-11-26"
+    },
+    {
+      "date": "2026-11-27",
+      "price": 0.4,
+      "end_date": null
     }
   ],
   "avoid:US:AMCR": [
