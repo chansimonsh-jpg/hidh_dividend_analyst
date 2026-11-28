@@ -375,7 +375,7 @@
     {
       "date": "2026-11-18",
       "price": 32.7,
-      "end_date": null
+      "end_date": "2026-11-28"
     }
   ],
   "avoid:US:NNN": [
@@ -1061,7 +1061,7 @@
     {
       "date": "2026-11-20",
       "price": 35.95,
-      "end_date": null
+      "end_date": "2026-11-28"
     }
   ],
   "pick:UK:TRIG.L": [
@@ -1572,6 +1572,11 @@
       "date": "2026-11-19",
       "price": 23.77,
       "end_date": "2026-11-26"
+    },
+    {
+      "date": "2026-11-28",
+      "price": 21.9,
+      "end_date": null
     }
   ],
   "pick:HK:0966.HK": [
@@ -1681,7 +1686,7 @@
     {
       "date": "2026-11-05",
       "price": 40.68,
-      "end_date": null
+      "end_date": "2026-11-28"
     }
   ],
   "pick:UK:BWY.L": [
@@ -2145,7 +2150,7 @@
     {
       "date": "2026-11-27",
       "price": 0.4,
-      "end_date": null
+      "end_date": "2026-11-28"
     }
   ],
   "avoid:US:AMCR": [
@@ -2859,6 +2864,13 @@
     {
       "date": "2026-11-24",
       "price": 19.65,
+      "end_date": null
+    }
+  ],
+  "pick:CN:002532.SZ": [
+    {
+      "date": "2026-11-28",
+      "price": 10.03,
       "end_date": null
     }
   ]
